@@ -3,16 +3,13 @@
 Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
+Em clínicas que atendem muitas especialidades, como médicos, dentistas, psicólogos e fisioterapeutas dividem a mesma estrutura física e de atendimento, o processo de agendamento de consultas pode acabar se tornando complexo. Cada profissional possui sua agenda de horários de atendimento e disponibilidade específica. Quando não há um sistema integrado e distribuído, a possibilidade de ocorrer falhas operacionais, como sobreposição de horários, falhas de registro de consultas ou até mesmo marcações duplicadas é grande. 
 
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
+Além disso, muitas vezes o processo acaba sendo desgastante para o paciente, que precisa ligar para a clínica para agendar a consulta e até comparecer pessoalmente ao local para verificar a disponibilidade da agenda do profissional para o qual deseja um atendimento.
 
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+A falta de sincronização da agenda dos profissionais em tempo real também acaba gerando uma dificuldade para todos envolvidos no processo. Quando uma consulta é remarcada ou cancelada, essa alteração não pode não ser imediatamente refletida nos registros gerais da clínica, o que causa desencontro de informações entre os profissionais da saúde, que não possuem sua agenda atualizada, pacientes, que não conseguem visualizar toda a agenda disponível e colaboradores da clínica, responsáveis pela administração das agendas.
+O problema de pesquisa se concentra na necessidade de desenvolvimento de um sistema que permita gerenciar de forma eficiente e atualizada as agendas de diferentes profissionais de saúde, garantindo que alterações em consultas sejam refletidas imediatamente, evitando conflitos de horários, duplicidades e dificuldades de acesso à informação tanto para pacientes quanto para profissionais de saúde e a equipe administrativa.
 
 ## Objetivos
 
