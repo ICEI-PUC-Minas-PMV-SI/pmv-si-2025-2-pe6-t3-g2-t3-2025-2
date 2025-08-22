@@ -1,4 +1,4 @@
-# TÍTULO DO PROJETO
+# SISTEMA DE AGENDA MÉDICA DISTRIBUÍDA
 
 `CURSO: Sistemas de Informação`
 
