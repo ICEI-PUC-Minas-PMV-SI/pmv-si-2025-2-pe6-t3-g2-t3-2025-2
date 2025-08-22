@@ -13,9 +13,10 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 * Lucas Oliveira
 * Beatriz Fontainha de Castro
 * Ramir Aguiar Ribeiro Junior
-* Nome completo do aluno 4
-* Nome completo do aluno 5
-* Nome completo do aluno 6
+* Ricardo Andrade
+* André Fabiano
+* Felipe Paiva
+* Lucas Peres
 
 ## Orientador
 
