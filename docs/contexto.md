@@ -16,18 +16,18 @@ O problema de pesquisa se concentra na necessidade de desenvolvimento de um sist
 Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
 
 Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
+
 > **Links Úteis**:
 > - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+Ainda hoje, o agendamento de consultas e serviços clínicos representa um desafio na área da saúde. Alguns estabelecimentos ainda utilizam sistemas isolados e dependem de poucos funcionários para operação, o que gera problemas de comunicação, limita a disponibilidade de horários e reduz a flexibilidade para os pacientes.
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
+Diante desse contexto, a implementação de um sistema de agendamento médico distribuído torna-se necessária, com o objetivo de centralizar e integrar os serviços clínicos de forma prática e acessível ao usuário. O sistema garantirá uma gestão eficiente da disponibilidade de agendas, reduzirá falhas manuais e facilitará a comunicação, proporcionando mais conforto aos pacientes, que poderão visualizar e agendar atendimentos de maneira rápida e confiável.
 
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+A escolha de se aprofundar em aspectos como sistemas distribuídos, integração com bancos de dados, deploy em nuvem e serviços de processamento remoto se justifica pelo potencial de oferecer sincronização em tempo real, escalabilidade, confiabilidade e alta disponibilidade do sistema. Além disso, o estudo desses elementos possibilita aprendizado acadêmico sólido e aplicação prática de conceitos avançados de tecnologia, tornando o projeto relevante tanto para a formação dos alunos quanto para soluções reais na área da saúde.
+
 
 ## Público-Alvo
 
@@ -66,16 +66,16 @@ Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Cla
 
 - [Requisitos Funcionais
  (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
+   correspondem a uma funcionalidade que deve estar presente na
   plataforma (ex: cadastro de usuário).
 - [Requisitos Não Funcionais
   (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
   correspondem a uma característica técnica, seja de usabilidade,
   desempenho, confiabilidade, segurança ou outro (ex: suporte a
   dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+  Lembre-se que cada requisito deve corresponder à uma e somente uma
+  característica alvo da sua solução. Além disso, certifique-se de que
+  todos os aspectos capturados nas Histórias de Usuário foram cobertos.
 
 ## Restrições
 
