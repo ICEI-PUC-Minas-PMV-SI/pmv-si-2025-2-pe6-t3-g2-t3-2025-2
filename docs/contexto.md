@@ -1,6 +1,10 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+O processo de agendamento de consultas em clínicas que atendem diversas especialidades pode ser um grande desafio. Cada profissional possui horários e disponibilidades diferentes, o que pode gerar falhas, como sobreposição de atendimentos, marcações duplicadas ou falta de informações atualizadas para pacientes e equipe administrativa.
+
+Além disso, muitos pacientes ainda precisam ligar ou comparecer à clínica para verificar horários disponíveis, tornando o processo mais demorado e pouco prático. Quando ocorre um cancelamento ou alteração, a falta de sincronização imediata nas agendas aumenta as dificuldades para todos os envolvidos.
+
+Diante desse cenário, este trabalho tem como objetivo desenvolver uma solução simples para facilitar o agendamento de consultas, oferecendo maior organização, praticidade e acesso rápido às informações. Busca-se criar um sistema que centralize as agendas, reduza falhas manuais e proporcione uma melhor experiência tanto para pacientes quanto para profissionais da saúde.
 
 ## Problema
 
