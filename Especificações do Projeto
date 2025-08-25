@@ -1,0 +1,46 @@
+# Especificações do Projeto — 
+
+**Visão geral**
+Sistema de agendamento para clínica multi-especialidades, acessível via web e mobile, com atualização em tempo real das agendas e controle de acesso por perfil.
+
+**Escopo do MVP**
+
+* Cadastro/login e gerenciamento básico de perfil.
+* Catálogo de especialidades e profissionais.
+* Consulta de disponibilidade por profissional/especialidade e data.
+* Agendamento, remarcação e cancelamento de consultas/exames sem sobreposição de horários.
+* Histórico de consultas do paciente.
+
+**Perfis e permissões (RBAC)**
+
+* **Paciente:** gerencia seus dados e consultas.
+* **Profissional de saúde:** visualiza e bloqueia a própria agenda.
+* **Administrativo:** gerencia profissionais, especialidades, horários e consultas.
+
+**Fluxos principais**
+
+1. Buscar disponibilidade → escolher horário → confirmar agendamento.
+2. Remarcar/Cancelar consulta (respeitando regras de prazo).
+3. Administrativo: cadastrar/editar profissionais, especialidades e janelas de atendimento.
+
+**Regras de negócio básicas**
+
+* Um **slot** comporta apenas **uma** consulta ativa (sem duplicidade/overbooking).
+* Remarcação/cancelamento permitido até **X horas** antes do horário (valor configurável).
+* Bloqueios definidos pelo profissional tornam os slots do período indisponíveis.
+* Consultas passadas permanecem no histórico (alterações apenas de status).
+
+**Dados/Entidades essenciais**
+Usuário/Perfil, Paciente, Profissional, Especialidade, Agenda/Slot (início/fim/status), Consulta (status/notas).
+
+**Plataforma e tecnologia (alto nível)**
+Aplicação web e mobile (PWA), backend REST, banco relacional, atualização em tempo real (ex.: WebSocket), interface simples e navegável.
+
+**Critérios de aceite do MVP**
+
+* O sistema impede agendar duas consultas no mesmo slot.
+* Agendar, remarcar e cancelar funcionam de ponta a ponta.
+* Mudanças de agenda são refletidas em tempo real nas telas abertas.
+* Telas principais utilizáveis em navegador desktop e mobile.
+
+
