@@ -17,12 +17,27 @@ O problema de pesquisa se concentra na necessidade de desenvolvimento de um sist
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+### **Objetivos gerais**
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
+- **Desenvolver** uma aplicação web e mobile integrada para gerenciar os processos clínicos e administrativos de uma clínica médica multidisciplinar. ![Prioritário](https://img.shields.io/badge/Prioritário-green)
 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+### **Objetivos específicos**
+
+- **Implementar** um sistema de agendamento online que permita visualizar disponibilidade de médicos e evitar conflitos de horários. ![Prioritário](https://img.shields.io/badge/Prioritário-green)
+- **Criar** um módulo de cadastro de pacientes, incluindo dados pessoais, convênios médicos e histórico de consultas. ![Prioritário](https://img.shields.io/badge/Prioritário-green)
+- **Desenvolver** um prontuário eletrônico para centralizar o histórico clínico e exames dos pacientes. ![Prioritário](https://img.shields.io/badge/Prioritário-green)
+- **Disponibilizar** um painel administrativo com relatórios sobre número de atendimentos, faturamento e ocupação da agenda. ![Complexo](https://img.shields.io/badge/Complexo-red)
+- **Garantir segurança** da informação por meio de autenticação, autorização e criptografia de dados sensíveis. ![Prioritário](https://img.shields.io/badge/Prioritário-green)
+- **Implementar** diferentes perfis de acesso (*administrador, recepcionista, médico e paciente*). ![Opcional](https://img.shields.io/badge/Opcional-orange)
+- **Permitir** a integração com convênios médicos para facilitar processos de faturamento e repasse. ![Complexo](https://img.shields.io/badge/Complexo-red)
+- **Disponibilizar** um histórico de consultas e procedimentos para médicos e pacientes. ![Opcional](https://img.shields.io/badge/Opcional-orange)
+- **Implementar** notificações (*e-mail ou SMS*) para lembrete de consultas e acompanhamento de agendamentos. ![Prioritário](https://img.shields.io/badge/Prioritário-green)
+  
+> **Obs.:**  
+> - Badges **vermelhas** indicam objetivos mais complexos.  
+> - Badges **laranja** indicam objetivos opcionais.  
+> - Badges **verdes** indicam objetivos prioritários ou mais fáceis de implementar.
+
 
 ## Justificativa
 
