@@ -62,30 +62,24 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Permitir login e autenticação de pacientes e profissionais de saúde | ALTA | 
+|RF-002| Permitir atualização de dados pessoais e contato dos usuários  | MÉDIA |
+|RF-003| Permitir que pacientes visualizem a disponibilidade de profissionais por especialidade   | ALTA |
+|RF-004| Permitir agendamento de consultas e exames de acordo com horários disponíveis  | ALTA |
+|RF-005| Evitar conflitos de horário ao impedir marcações duplicadas ou sobreposição de agendas  | ALTA |
+|RF-006| Permitir remarcação e cancelamento de consultas com atualização em tempo real  | MÉDIA |
+|RF-007| Armazenar histórico de consultas dos pacientes (para os profissionais de saúde e pacientes)  | MÉDIA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
-   correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-  Lembre-se que cada requisito deve corresponder à uma e somente uma
-  característica alvo da sua solução. Além disso, certifique-se de que
-  todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+|RNF-001| A interface deve ser intuitiva para diferentes tipos de usuários (pacientes e profissionais de saúde) | MÉDIA | 
+|RNF-002| A navegação deve ser simples, com menus claros e informações visíveis |  MÉDIA | 
+|RNF-003| Permitir acesso ao sistema via navegador web e aplicativo mobile |  ALTA | 
+|RNF-004| Atualização em tempo real das agendas de profissionais |  MÉDIA | 
+|RNF-005| Controle de acesso por perfil (paciente e profissional de saúde) |  MÉDIA | 
+|RNF-006| Garantir a capacidade de adicionar novos profissionais e usuários sem impacto significativo no sistema |  BAIXA | 
 
 ## Restrições
 
