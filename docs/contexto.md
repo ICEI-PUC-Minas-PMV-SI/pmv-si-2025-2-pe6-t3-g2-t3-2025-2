@@ -91,7 +91,91 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 
 # Catálogo de Serviços
 
-Descreva aqui todos os serviços que serão disponibilizados pelo seu projeto, detalhando suas características e funcionalidades.
+O sistema de agendamento de consultas oferecerá um conjunto de serviços voltados para pacientes, profissionais da saúde e equipe administrativa da clínica. Esses serviços foram projetados para garantir praticidade, confiabilidade e facilidade de acesso, atendendo diferentes perfis de usuários.
+
+## Serviços para Pacientes
+- **Cadastro e Login**  
+  Permite que o paciente crie uma conta, atualize seus dados pessoais e acesse o sistema com segurança.
+
+- **Visualização de Especialidades e Profissionais**  
+  Exibe a lista de médicos e profissionais disponíveis, com informações sobre suas especialidades, horários de atendimento e convênios aceitos.
+
+- **Agendamento de Consultas e Exames**  
+  Possibilita a marcação de consultas de acordo com os horários disponíveis, evitando sobreposição de agendas.
+
+- **Remarcação e Cancelamento de Consultas**  
+  Permite ao paciente remarcar ou cancelar uma consulta com atualização imediata no sistema.
+
+- **Histórico de Consultas**  
+  Disponibiliza ao paciente o acesso ao histórico de atendimentos realizados.
+
+- **Notificações e Lembretes**  
+  Envia alertas automáticos por e-mail ou SMS sobre consultas agendadas, cancelamentos e lembretes de atendimento.
+
+---
+
+## Serviços para Profissionais de Saúde
+- **Login Seguro e Perfil Profissional**  
+  Acesso individual para os profissionais cadastrados.
+
+- **Gerenciamento da Agenda**  
+  Permite definir horários de atendimento, pausas, férias e bloqueios de agenda.
+
+- **Visualização e Acompanhamento de Consultas**  
+  Apresenta os agendamentos confirmados, cancelados e em espera em tempo real.
+
+- **Histórico de Pacientes**  
+  Fornece acesso ao histórico de atendimentos e informações clínicas do paciente.
+
+- **Prontuário Eletrônico**  
+  Registro eletrônico das informações médicas, exames e evoluções clínicas, centralizando o acompanhamento do paciente.
+
+---
+
+## Serviços Administrativos (Equipe da Clínica)
+- **Gestão de Usuários**  
+  Cadastro e manutenção de dados de pacientes e profissionais.
+
+- **Controle de Agendas**  
+  Supervisão geral dos agendamentos, evitando duplicidades e garantindo a organização da clínica.
+
+---
+
+## Serviços Técnicos e de Infraestrutura
+- **Autenticação e Autorização**  
+  Garantia de acesso seguro com perfis diferenciados (paciente e profissional).
+
+- **Disponibilidade Multiplataforma**  
+  Acesso via navegador web e aplicativo mobile, com interface adaptada.
+
+- **Sincronização em Tempo Real**  
+  Atualização imediata das agendas em caso de agendamento, cancelamento ou alteração.
+
+- **Armazenamento Seguro de Dados**  
+  Utilização de criptografia para proteger informações sensíveis de pacientes e profissionais.
+
+---
+
+# Catálogo de Serviços (Resumo)
+
+| Serviço                          | Descrição                                                                 | Perfil Atendido              |
+|----------------------------------|---------------------------------------------------------------------------|------------------------------|
+| Cadastro e Login                 | Criação de conta, atualização de dados pessoais e acesso seguro ao sistema | Pacientes / Profissionais    |
+| Visualização de Profissionais    | Exibição de especialidades, horários e convênios disponíveis               | Pacientes                    |
+| Agendamento de Consultas/Exames  | Marcação de consultas sem sobreposição de agendas                          | Pacientes                    |
+| Remarcação e Cancelamento        | Alteração ou exclusão de agendamentos com atualização em tempo real        | Pacientes                    |
+| Histórico de Consultas           | Consulta ao histórico de atendimentos realizados                           | Pacientes / Profissionais    |
+| Notificações e Lembretes         | Alertas automáticos sobre consultas agendadas e cancelamentos              | Pacientes                    |
+| Gerenciamento da Agenda          | Definição de horários, pausas e bloqueios                                  | Profissionais                |
+| Acompanhamento de Consultas      | Visualização em tempo real de agendamentos confirmados ou cancelados       | Profissionais                |
+| Prontuário Eletrônico            | Registro clínico com informações, exames e evoluções                       | Profissionais                |
+| Gestão de Usuários               | Cadastro e manutenção de pacientes e profissionais                         | Administradores              |
+| Controle de Agendas              | Supervisão de todos os agendamentos da clínica                             | Administradores              |
+| Autenticação e Autorização       | Acesso seguro com perfis diferenciados                                     | Todos                        |
+| Multiplataforma                  | Acesso via navegador web e aplicativo mobile                               | Todos                        |
+| Sincronização em Tempo Real      | Atualização imediata das agendas                                           | Todos                        |
+| Armazenamento Seguro de Dados    | Criptografia para proteger informações sensíveis                           | Todos                        |
+
 
 # Arquitetura da Solução
 
