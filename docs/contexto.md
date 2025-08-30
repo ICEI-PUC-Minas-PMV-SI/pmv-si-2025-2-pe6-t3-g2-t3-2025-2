@@ -109,9 +109,37 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 ## Tecnologias Utilizadas
 
-Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
-
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
+Para o desenvolvimento da aplicação integrada de gestão para a clínica médica, foi definida uma arquitetura de software moderna, robusta e escalável. A seleção de tecnologias a seguir visa atender aos requisitos de funcionalidades prioritárias e complexas, como agendamento online, prontuário eletrônico, segurança de dados e relatórios administrativos, garantindo uma experiência de usuário fluida tanto na plataforma web quanto na mobile.
+​1. Back-end
+​O back-end será o núcleo do sistema, responsável por toda a lógica de negócio, processamento de dados e segurança.
+​Linguagem: Java (LTS) - Uma linguagem robusta, madura e com um vasto ecossistema, ideal para aplicações corporativas complexas que exigem alta performance e segurança.
+​Framework Principal: Spring Boot - Simplifica o desenvolvimento de aplicações Java, oferecendo configuração automática, gerenciamento de dependências e um servidor web embutido (Tomcat), o que acelera a construção de APIs RESTful.
+​Banco de Dados: PostgreSQL - Um sistema de gerenciamento de banco de dados relacional objeto, conhecido por sua confiabilidade, robustez e conformidade com os padrões SQL. É excelente para lidar com os dados estruturados do sistema, como pacientes, agendamentos e prontuários.
+​ORM (Mapeamento Objeto-Relacional): Spring Data JPA (com Hibernate) - Facilita a comunicação entre a aplicação Java e o banco de dados PostgreSQL, permitindo que os desenvolvedores manipulem o banco de dados usando objetos Java, o que aumenta a produtividade e a manutenibilidade do código.
+​Segurança: Spring Security - Framework essencial para implementar a autenticação e autorização dos diferentes perfis de acesso (administrador, médico, paciente), garantindo a proteção dos dados sensíveis, em conformidade com requisitos de segurança da informação.
+​Servidor Web: Apache Tomcat (embutido no Spring Boot) - Servidor de aplicações Java que executará a nossa aplicação.
+​2. Front-end (Aplicação Web)
+​A interface web será utilizada por administradores, recepcionistas e médicos para as operações do dia a dia da clínica.
+​Linguagens Base: HTML5, CSS3, JavaScript (ES6+) - A estrutura, estilo e interatividade fundamental de qualquer aplicação web.
+​Linguagem de Tipagem: TypeScript - Um superset do JavaScript que adiciona tipagem estática ao código. Isso torna a aplicação mais robusta, fácil de manter e menos propensa a erros em tempo de execução, especialmente em projetos grandes.
+​Framework/Biblioteca: React.js - Uma biblioteca JavaScript líder de mercado para a construção de interfaces de usuário componentizadas, reativas e eficientes. Facilita a criação de UIs complexas como o painel administrativo e a agenda.
+​Gerenciador de Estado: Redux Toolkit - Para gerenciar o estado global da aplicação de forma previsível e centralizada, essencial para controlar informações como dados do usuário logado e agendamentos.
+​Estilização: Material-UI ou Tailwind CSS - Frameworks de componentes e/ou CSS que agilizam o desenvolvimento de uma interface bonita e responsiva, seguindo as melhores práticas de design.
+​Cliente HTTP: Axios - Para realizar as chamadas à API RESTful do back-end de forma simples e padronizada.
+​3. Mobile (Aplicação para Pacientes e Médicos)
+​O aplicativo mobile focará na experiência de pacientes (agendamento, histórico) e médicos (acesso rápido à agenda e prontuários).
+​IDE de Desenvolvimento: Android Studio e Xcode (para build) - Ferramentas oficiais para desenvolvimento e compilação de aplicativos Android e iOS, respectivamente.
+​Framework: React Native - Permite o desenvolvimento de aplicativos móveis nativos para Android e iOS utilizando uma base de código majoritariamente em JavaScript/TypeScript e React. Isso otimiza o tempo de desenvolvimento e mantém a consistência entre as plataformas.
+​Navegação: React Navigation - Biblioteca para gerenciar a navegação entre as diferentes telas do aplicativo.
+​Componentes Visuais: React Native Paper ou NativeBase - Bibliotecas de componentes UI que fornecem elementos visuais (botões, formulários, etc.) prontos e customizáveis para ambas as plataformas.
+​4. Ferramentas e Infraestrutura (DevOps)
+​IDE de Desenvolvimento: Visual Studio Code (VS Code) para o Front-end/Mobile e IntelliJ IDEA para o Back-end Java/Spring.
+​Controle de Versão: Git e GitHub - Para gerenciamento do código-fonte, trabalho em equipe e versionamento do projeto.
+​Gerenciador de Pacotes: NPM (para o Front-end/Mobile) e Maven (para o Back-end).
+​Ferramenta de Testes de API: Postman ou Insomnia - Para testar os endpoints da API RESTful durante o desenvolvimento.
+​Conteinerização: Docker - (Opcional, mas recomendado) Para criar ambientes de desenvolvimento e produção padronizados, facilitando o deploy da aplicação e do banco de dados.
+​Arquitetura da Solução e Fluxo de Interação do Usuário
+​A figura abaixo ilustra a arquitetura da aplicação e como as tecnologias se interconectam. Ela demonstra o fluxo de uma requisição de um usuário, desde o clique em um dispositivo até a resposta ser exibida na tela.
 
 ## Hospedagem
 
