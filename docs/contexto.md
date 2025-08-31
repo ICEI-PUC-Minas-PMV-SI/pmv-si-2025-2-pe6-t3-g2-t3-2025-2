@@ -181,7 +181,7 @@ O sistema de agendamento de consultas oferecerá um conjunto de serviços voltad
 
 Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
 
-![arq](docs/img/Arquitetura.jpeg)
+![Arquitetura](docs/img/Arquitetura.jpeg)
 
 
 ## Tecnologias Utilizadas
