@@ -181,7 +181,7 @@ O sistema de agendamento de consultas oferecerá um conjunto de serviços voltad
 
 Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
 
-![Arquitetura](docs/img/Arquitetura.jpeg)
+![Arquitetura](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t3-g2-t3-2025-2/blob/main/docs/img/Arquitetura.jpg)
 
 
 ## Tecnologias Utilizadas
