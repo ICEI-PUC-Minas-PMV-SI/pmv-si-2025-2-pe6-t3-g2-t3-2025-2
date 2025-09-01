@@ -46,7 +46,62 @@ A escolha de se aprofundar em aspectos como sistemas distribuídos, integração
 O site da clínica médica será utilizado por diferentes perfis de usuários. O principal público é formado por pacientes de variadas faixas etárias, que acessam a plataforma para agendar consultas e exames. Entre eles, jovens e adultos geralmente apresentam maior familiaridade com tecnologia e preferem utilizar o celular na versão mobile, enquanto pacientes idosos podem ter mais dificuldades e necessitam de uma navegação simples e objetiva. Outro grupo relevante são familiares ou cuidadores, que realizam agendamentos em nome de terceiros, muitas vezes com maior domínio digital. Também fazem parte do público usuários em busca de informações, que acessam o site para conhecer serviços e especialidades antes de efetivar um agendamento. De forma indireta, profissionais da clínica podem utilizar áreas restritas para acompanhar agendas e confirmações, embora não sejam o foco principal do site. Em todos os casos, a plataforma deve garantir clareza, rapidez e facilidade de contato, atendendo diferentes níveis de experiência com tecnologia.
 
 # Especificações do Projeto
+Visão geral
+Sistema de agendamento para clínica multi-especialidades, acessível via web e mobile, com atualização em tempo real das agendas e controle de acesso por perfil.
 
+Escopo do MVP
+
+Cadastro/login e gerenciamento básico de perfil.
+
+Catálogo de especialidades e profissionais.
+
+Consulta de disponibilidade por profissional/especialidade e data.
+
+Agendamento, remarcação e cancelamento de consultas/exames sem sobreposição de horários.
+
+Histórico de consultas do paciente.
+
+Perfis e permissões (RBAC)
+
+Paciente: gerencia seus dados e consultas.
+
+Profissional de saúde: visualiza e bloqueia a própria agenda.
+
+Administrativo: gerencia profissionais, especialidades, horários e consultas.
+
+Fluxos principais
+
+Buscar disponibilidade → escolher horário → confirmar agendamento.
+
+Remarcar/Cancelar consulta (respeitando regras de prazo).
+
+Administrativo: cadastrar/editar profissionais, especialidades e janelas de atendimento.
+
+Regras de negócio básicas
+
+Um slot comporta apenas uma consulta ativa (sem duplicidade/overbooking).
+
+Remarcação/cancelamento permitido até X horas antes do horário (valor configurável).
+
+Bloqueios definidos pelo profissional tornam os slots do período indisponíveis.
+
+Consultas passadas permanecem no histórico (alterações apenas de status).
+
+Dados/Entidades essenciais
+Usuário/Perfil, Paciente, Profissional, Especialidade, Agenda/Slot (início/fim/status), Consulta (status/notas).
+
+Plataforma e tecnologia (alto nível)
+Aplicação web e mobile (PWA), backend REST, banco relacional, atualização em tempo real (ex.: WebSocket), interface simples e navegável.
+
+Critérios de aceite do MVP
+
+O sistema impede agendar duas consultas no mesmo slot.
+
+Agendar, remarcar e cancelar funcionam de ponta a ponta.
+
+Mudanças de agenda são refletidas em tempo real nas telas abertas.
+
+Telas principais utilizáveis em navegador desktop e mobile.
 ## Requisitos
 
 As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, aplicar uma técnica de priorização de requisitos e detalhar como a técnica foi aplicada.
