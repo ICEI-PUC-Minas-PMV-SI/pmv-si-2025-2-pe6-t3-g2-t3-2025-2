@@ -278,7 +278,19 @@ Para o desenvolvimento da aplicação integrada de gestão para a clínica médi
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+A aplicação será hospedada em uma instância da AWS (Amazon Web Services), infraestrutura providenciada pela PUC para suportar o ambiente de produção. Essa etapa de hospedagem será realizada após a conclusão dos testes finais da plataforma.
+
+Além da instância de processamento, pode ser integrado o Amazon S3 (Simple Storage Service) como repositório de arquivos, garantindo armazenamento escalável, durável e de fácil acesso. Essa solução permite gerenciar documentos e dados de forma eficiente, com alta disponibilidade e integração nativa com outros serviços da AWS.
+
+A arquitetura escolhida oferece os seguintes benefícios:
+
+- Escalabilidade: ajuste dinâmico de recursos e armazenamento conforme a demanda;
+- Alta disponibilidade: sistema projetado para minimizar falhas e manter acessibilidade contínua;
+- Segurança: mecanismos de criptografia, controle de acessos e conformidade com padrões internacionais;
+- Flexibilidade: compatibilidade com diferentes frameworks e serviços em nuvem;
+- Monitoramento e gestão: acompanhamento de desempenho e otimização de recursos em tempo real.
+
+Essa combinação entre a instância AWS e o Amazon S3 assegura que a aplicação seja disponibilizada em um ambiente robusto, confiável e preparado para atender às necessidades atuais e futuras do sistema.
 
 # Planejamento
 
