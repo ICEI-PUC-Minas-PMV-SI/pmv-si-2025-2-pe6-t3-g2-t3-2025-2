@@ -273,6 +273,9 @@ Para o desenvolvimento da aplicação integrada de gestão para a clínica médi
 ​Arquitetura da Solução e Fluxo de Interação do Usuário
 ​A figura abaixo ilustra a arquitetura da aplicação e como as tecnologias se interconectam. Ela demonstra o fluxo de uma requisição de um usuário, desde o clique em um dispositivo até a resposta ser exibida na tela.
 
+![Uploading Gemini_Generated_Image_6u8qww6u8qww6u8q.png…]()
+
+
 ## Hospedagem
 
 Explique como a hospedagem e o lançamento da plataforma foi feita.
