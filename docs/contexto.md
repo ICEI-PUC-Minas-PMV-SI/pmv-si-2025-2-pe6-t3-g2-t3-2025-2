@@ -241,37 +241,54 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 ## Tecnologias Utilizadas
 
+Tecnologias para Implementação da Solução
 Para o desenvolvimento da aplicação integrada de gestão para a clínica médica, foi definida uma arquitetura de software moderna, robusta e escalável. A seleção de tecnologias a seguir visa atender aos requisitos de funcionalidades prioritárias e complexas, como agendamento online, prontuário eletrônico, segurança de dados e relatórios administrativos, garantindo uma experiência de usuário fluida tanto na plataforma web quanto na mobile.
-​1. Back-end
-​O back-end será o núcleo do sistema, responsável por toda a lógica de negócio, processamento de dados e segurança.
-​Linguagem: Java (LTS) - Uma linguagem robusta, madura e com um vasto ecossistema, ideal para aplicações corporativas complexas que exigem alta performance e segurança.
-​Framework Principal: Spring Boot - Simplifica o desenvolvimento de aplicações Java, oferecendo configuração automática, gerenciamento de dependências e um servidor web embutido (Tomcat), o que acelera a construção de APIs RESTful.
-​Banco de Dados: PostgreSQL - Um sistema de gerenciamento de banco de dados relacional objeto, conhecido por sua confiabilidade, robustez e conformidade com os padrões SQL. É excelente para lidar com os dados estruturados do sistema, como pacientes, agendamentos e prontuários.
-​ORM (Mapeamento Objeto-Relacional): Spring Data JPA (com Hibernate) - Facilita a comunicação entre a aplicação Java e o banco de dados PostgreSQL, permitindo que os desenvolvedores manipulem o banco de dados usando objetos Java, o que aumenta a produtividade e a manutenibilidade do código.
-​Segurança: Spring Security - Framework essencial para implementar a autenticação e autorização dos diferentes perfis de acesso (administrador, médico, paciente), garantindo a proteção dos dados sensíveis, em conformidade com requisitos de segurança da informação.
-​Servidor Web: Apache Tomcat (embutido no Spring Boot) - Servidor de aplicações Java que executará a nossa aplicação.
-​2. Front-end (Aplicação Web)
-​A interface web será utilizada por administradores, recepcionistas e médicos para as operações do dia a dia da clínica.
-​Linguagens Base: HTML5, CSS3, JavaScript (ES6+) - A estrutura, estilo e interatividade fundamental de qualquer aplicação web.
-​Linguagem de Tipagem: TypeScript - Um superset do JavaScript que adiciona tipagem estática ao código. Isso torna a aplicação mais robusta, fácil de manter e menos propensa a erros em tempo de execução, especialmente em projetos grandes.
-​Framework/Biblioteca: React.js - Uma biblioteca JavaScript líder de mercado para a construção de interfaces de usuário componentizadas, reativas e eficientes. Facilita a criação de UIs complexas como o painel administrativo e a agenda.
-​Gerenciador de Estado: Redux Toolkit - Para gerenciar o estado global da aplicação de forma previsível e centralizada, essencial para controlar informações como dados do usuário logado e agendamentos.
-​Estilização: Material-UI ou Tailwind CSS - Frameworks de componentes e/ou CSS que agilizam o desenvolvimento de uma interface bonita e responsiva, seguindo as melhores práticas de design.
-​Cliente HTTP: Axios - Para realizar as chamadas à API RESTful do back-end de forma simples e padronizada.
-​3. Mobile (Aplicação para Pacientes e Médicos)
-​O aplicativo mobile focará na experiência de pacientes (agendamento, histórico) e médicos (acesso rápido à agenda e prontuários).
-​IDE de Desenvolvimento: Android Studio e Xcode (para build) - Ferramentas oficiais para desenvolvimento e compilação de aplicativos Android e iOS, respectivamente.
-​Framework: React Native - Permite o desenvolvimento de aplicativos móveis nativos para Android e iOS utilizando uma base de código majoritariamente em JavaScript/TypeScript e React. Isso otimiza o tempo de desenvolvimento e mantém a consistência entre as plataformas.
-​Navegação: React Navigation - Biblioteca para gerenciar a navegação entre as diferentes telas do aplicativo.
-​Componentes Visuais: React Native Paper ou NativeBase - Bibliotecas de componentes UI que fornecem elementos visuais (botões, formulários, etc.) prontos e customizáveis para ambas as plataformas.
-​4. Ferramentas e Infraestrutura (DevOps)
-​IDE de Desenvolvimento: Visual Studio Code (VS Code) para o Front-end/Mobile e IntelliJ IDEA para o Back-end Java/Spring.
-​Controle de Versão: Git e GitHub - Para gerenciamento do código-fonte, trabalho em equipe e versionamento do projeto.
-​Gerenciador de Pacotes: NPM (para o Front-end/Mobile) e Maven (para o Back-end).
-​Ferramenta de Testes de API: Postman ou Insomnia - Para testar os endpoints da API RESTful durante o desenvolvimento.
-​Conteinerização: Docker - (Opcional, mas recomendado) Para criar ambientes de desenvolvimento e produção padronizados, facilitando o deploy da aplicação e do banco de dados.
-​Arquitetura da Solução e Fluxo de Interação do Usuário
-​A figura abaixo ilustra a arquitetura da aplicação e como as tecnologias se interconectam. Ela demonstra o fluxo de uma requisição de um usuário, desde o clique em um dispositivo até a resposta ser exibida na tela.
+
+1. Back-end
+Linguagem: Java (LTS)
+
+Framework Principal: Spring Boot
+
+Banco de Dados: PostgreSQL
+
+Mapeamento Objeto-Relacional (ORM): Spring Data JPA (com Hibernate)
+
+Segurança: Spring Security
+
+Servidor Web: Apache Tomcat (embutido no Spring Boot)
+
+2. Front-end (Aplicação Web)
+Linguagens Base: HTML5, CSS3, JavaScript (ES6+)
+
+Linguagem de Tipagem: TypeScript
+
+Framework/Biblioteca UI: React.js
+
+Gerenciador de Estado: Redux Toolkit
+
+Framework de Estilização: Material-UI ou Tailwind CSS
+
+Cliente HTTP: Axios
+
+3. Mobile (Aplicação para Pacientes e Médicos)
+Framework: React Native
+
+Navegação: React Navigation
+
+Biblioteca de Componentes: React Native Paper ou NativeBase
+
+Ferramentas de Build: Android Studio (para Android) e Xcode (para iOS)
+
+4. Ferramentas e Infraestrutura (DevOps)
+IDEs (Ambiente de Desenvolvimento): IntelliJ IDEA (Back-end) e Visual Studio Code (Front-end/Mobile)
+
+Controle de Versão: Git e GitHub
+
+Gerenciadores de Pacotes: Maven (Back-end) e NPM (Front-end/Mobile)
+
+Ferramenta de Testes de API: Open AI
+
+Conteinerização (Opcional): Docker
 
 ![Fluxo](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t3-g2-t3-2025-2/blob/main/docs/img/Fluxo.png)
 
@@ -298,24 +315,43 @@ Essa combinação entre a instância AWS e o Amazon S3 assegura que a aplicaçã
 
 > Apresente a divisão de tarefas entre os membros do grupo e o acompanhamento da execução, conforme o exemplo abaixo.
 
-### Semana 1
+### Semana 2
 
-Atualizado em: 21/04/2024
+Atualizado em: 08/08/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
+| Lucas        | Organização do Grupo | 04/08/2025     | 11/08/2025 | ✔️    | 11/08/2025      |
+
+### Semana 3
+
+Atualizado em: 17/08/2025
+
+| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
+| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
+| Lucas        | Introdução | 11/08/2025     | 17/08/2025 | ✔️    | 17/08/2025      |
 | AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
 | AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
 | AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
 
-#### Semana 2
+#### Semana 4
 
-Atualizado em: 21/04/2024
+Atualizado em: 24/08/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
+| Lucas        | Reunião e Divisão    | 17/08/2025     | 24/08/2025 | ✔️    | 24/08/2025      |
+| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
+| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
+| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
+
+#### Semana 5
+
+Atualizado em: 31/08/2025
+
+| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
+| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
+| Lucas        | Tecnologias Utilizadas    | 24/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
 | AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
 | AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
 | AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
