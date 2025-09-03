@@ -108,15 +108,27 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir login e autenticação de pacientes e profissionais de saúde | ALTA | 
-|RF-002| Permitir atualização de dados pessoais e contato dos usuários  | MÉDIA |
-|RF-003| Permitir que pacientes visualizem a disponibilidade de profissionais por especialidade   | ALTA |
-|RF-004| Permitir agendamento de consultas e exames de acordo com horários disponíveis  | ALTA |
-|RF-005| Evitar conflitos de horário ao impedir marcações duplicadas ou sobreposição de agendas  | ALTA |
-|RF-006| Permitir remarcação e cancelamento de consultas com atualização em tempo real  | MÉDIA |
-|RF-007| Armazenar histórico de consultas dos pacientes (para os profissionais de saúde e pacientes)  | MÉDIA |
+| ID     | Descrição do Requisito Funcional                                                                 | Prioridade |
+|--------|---------------------------------------------------------------------------------------------------|------------|
+| RF-001 | Permitir login e autenticação de pacientes e profissionais de saúde                               | ALTA |
+| RF-002 | Permitir atualização de dados pessoais e contato dos usuários                                     | MÉDIA |
+| RF-003 | Permitir que pacientes visualizem a disponibilidade de profissionais por especialidade            | ALTA |
+| RF-004 | Permitir agendamento de consultas e exames de acordo com horários disponíveis                     | ALTA |
+| RF-005 | Evitar conflitos de horário ao impedir marcações duplicadas ou sobreposição de agendas            | ALTA |
+| RF-006 | Permitir remarcação e cancelamento de consultas com atualização em tempo real                     | MÉDIA |
+| RF-007 | Armazenar histórico de consultas dos pacientes (para os profissionais de saúde e pacientes)       | MÉDIA |
+| RF-008 | Enviar notificações e lembretes de consulta (e-mail/SMS) com confirmação de presença (opt-in)     | ALTA |
+| RF-009 | Gestão administrativa (CRUD) de profissionais, especialidades, horários/janelas de atendimento e convênios aceitos | ALTA |
+| RF-010 | Permitir que o profissional gerencie a própria agenda, incluindo criação de bloqueios, pausas e férias | ALTA |
+| RF-011 | Prontuário eletrônico: criar/visualizar evoluções, anexar e baixar documentos/exames              | ALTA |
+| RF-012 | Aplicar regras de prazo para remarcação/cancelamento (ex.: impedir ações com menos de *X* horas)  | ALTA |
+| RF-013 | Controle de acesso baseado em perfis (RBAC), com permissões distintas para Paciente, Profissional e Administrativo | ALTA |
+| RF-014 | Registrar auditoria de alterações em consultas e agenda (quem alterou, quando e o quê)            | MÉDIA |
+| RF-015 | Permitir filtro e busca de profissionais por especialidade, data, convênio e unidade              | MÉDIA |
+| RF-016 | Gerar relatórios básicos (ex.: consultas por período/profissional/status; taxa de faltas)         | MÉDIA |
+| RF-017 | Recuperação de acesso: redefinição de senha e verificação de e-mail do usuário                    | MÉDIA |
+| RF-018 | Configuração de preferências de lembretes (canal e antecedência) por usuário                      | BAIXA |
+
 
 ### Requisitos não Funcionais
 
