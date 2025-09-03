@@ -342,7 +342,7 @@ Atualizado em: 17/08/2025
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Lucas        | Introdução | 11/08/2025     | 17/08/2025 | ✔️    | 17/08/2025      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
+| Andre        | Objetivos    | 11/08/2025     | 17/08/2025 | 📝    |  17/08/2025               |
 | AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
 | AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
 
@@ -353,7 +353,7 @@ Atualizado em: 24/08/2025
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Lucas        | Reunião e Divisão    | 17/08/2025     | 24/08/2025 | ✔️    | 24/08/2025      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
+| André        | Objetivos    | 17/08/2025     | 24/08/2025 | ✔️    |    24/08/2025             |
 | AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
 | AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
 
@@ -364,7 +364,7 @@ Atualizado em: 31/08/2025
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Lucas        | Tecnologias Utilizadas    | 24/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
+| Andre        | Catálogo de Serviços      | 24/08/2025     | 31/08/2025 | ✔️    |   31/08/2025    |
 | AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
 | AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
 
