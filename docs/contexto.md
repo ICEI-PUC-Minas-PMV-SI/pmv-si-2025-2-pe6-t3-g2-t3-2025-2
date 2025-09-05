@@ -343,7 +343,11 @@ Atualizado em: 17/08/2025
 | Lucas        | Introdução | 11/08/2025     | 17/08/2025 | ✔️    | 17/08/2025      |
 | Andre        | Objetivos    | 11/08/2025     | 17/08/2025 | 📝    |  17/08/2025               |
 | Felipe P        | Público Alvo  | 11/08/2025     | 17/08/2025|  ✔️   |    17/08/2025             |
+<<<<<<< HEAD
 | Ricardo        | Introdução  | 11/08/2025     | 17/08/2025 | ✔️    | 17/08/2025      |
+=======
+| Ramir    | Justificativa |    11/08/2025      | 17/08/2025 | ✔️  | 17/08/2025 |
+>>>>>>> 677fece (Updating planning context)
 
 #### Semana 4
 
@@ -354,7 +358,11 @@ Atualizado em: 24/08/2025
 | Lucas        | Reunião e Divisão    | 17/08/2025     | 24/08/2025 | ✔️    | 24/08/2025      |
 | André        | Objetivos    | 17/08/2025     | 24/08/2025 | ✔️    |    24/08/2025             |
 | Felipe P        | Público Alvo  |  17/08/2025     | 24/08/2025 |  ✔️   |    17/08/2025             |
+<<<<<<< HEAD
 | Ricardo        | Reunião e Divisão    | 17/08/2025     | 24/08/2025 | ✔️    | 24/08/2025      |
+=======
+| Ramir       | Justificativa     | 17/08/2025  | 24/08/2025 |   ✔️    | 24/08/2025 |
+>>>>>>> 677fece (Updating planning context)
 
 #### Semana 5
 
@@ -365,9 +373,20 @@ Atualizado em: 31/08/2025
 | Lucas        | Tecnologias Utilizadas    | 24/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
 | Andre        | Catálogo de Serviços      | 24/08/2025     | 31/08/2025 | ✔️    |   31/08/2025    |
 | Felipe P        | Requisitos | 11/08/2025     | 24/08/2025  |  ✔️   |    31/08/2025         |
+<<<<<<< HEAD
 | Ricardo        | Arquitetura da Solução    | 24/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
+=======
+| Ramir       | Hospedagem             | 24/08/2025  | 31/08/2025 |   ✔️    | 31/08/2025 |
 
+#### Semana 6
+
+Atualizado em: 31/08/2025
+
+| Responsável | Tarefa/Requisito | Iniciado em |   Prazo    | Status | Terminado em |
+| :---------- | :--------------- | :---------: | :--------: | :----: | :----------: |
+| Ramir       | Slide da Etapa 1 | 01/09/2025  | 07/09/2025 |   ✔️    |  05/09/2025  |
 Legenda:
+
 - ✔️: terminado
 - 📝: em execução
 - ⌛: atrasado
