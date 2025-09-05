@@ -148,7 +148,6 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
 
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
@@ -344,7 +343,7 @@ Atualizado em: 17/08/2025
 | Lucas        | Introdução | 11/08/2025     | 17/08/2025 | ✔️    | 17/08/2025      |
 | Andre        | Objetivos    | 11/08/2025     | 17/08/2025 | 📝    |  17/08/2025               |
 | Felipe P        | Público Alvo  | 11/08/2025     | 17/08/2025|  ✔️   |    17/08/2025             |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
+| Ricardo        | Introdução  | 11/08/2025     | 17/08/2025 | ✔️    | 17/08/2025      |
 
 #### Semana 4
 
@@ -355,7 +354,7 @@ Atualizado em: 24/08/2025
 | Lucas        | Reunião e Divisão    | 17/08/2025     | 24/08/2025 | ✔️    | 24/08/2025      |
 | André        | Objetivos    | 17/08/2025     | 24/08/2025 | ✔️    |    24/08/2025             |
 | Felipe P        | Público Alvo  |  17/08/2025     | 24/08/2025 |  ✔️   |    17/08/2025             |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
+| Ricardo        | Reunião e Divisão    | 17/08/2025     | 24/08/2025 | ✔️    | 24/08/2025      |
 
 #### Semana 5
 
@@ -366,7 +365,7 @@ Atualizado em: 31/08/2025
 | Lucas        | Tecnologias Utilizadas    | 24/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
 | Andre        | Catálogo de Serviços      | 24/08/2025     | 31/08/2025 | ✔️    |   31/08/2025    |
 | Felipe P        | Requisitos | 11/08/2025     | 24/08/2025  |  ✔️   |    31/08/2025         |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
+| Ricardo        | Arquitetura da Solução    | 24/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
 
 Legenda:
 - ✔️: terminado
