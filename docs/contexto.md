@@ -347,6 +347,7 @@ Atualizado em: 17/08/2025
 | Ricardo        | Introdução  | 11/08/2025     | 17/08/2025 | ✔️    | 17/08/2025      |
 =======
 | Ramir    | Justificativa |    11/08/2025      | 17/08/2025 | ✔️  | 17/08/2025 |
+| Beatriz       | Problema  | 11/08/2025     | 17/08/2025 | ✔️    | 17/08/2025      |
 >>>>>>> 677fece (Updating planning context)
 
 #### Semana 4
@@ -362,6 +363,7 @@ Atualizado em: 24/08/2025
 | Ricardo        | Reunião e Divisão    | 17/08/2025     | 24/08/2025 | ✔️    | 24/08/2025      |
 =======
 | Ramir       | Justificativa     | 17/08/2025  | 24/08/2025 |   ✔️    | 24/08/2025 |
+| Beatriz       | Problema  |  17/08/2025     | 24/08/2025 |  ✔️   |    17/08/2025             |
 >>>>>>> 677fece (Updating planning context)
 
 #### Semana 5
@@ -377,6 +379,7 @@ Atualizado em: 31/08/2025
 | Ricardo        | Arquitetura da Solução    | 24/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
 =======
 | Ramir       | Hospedagem             | 24/08/2025  | 31/08/2025 |   ✔️    | 31/08/2025 |
+|Beatriz   | Requisitos funcionais e não funcionais        | 24/08/2025  | 31/08/2025 |   ✔️    | 31/08/2025 |
 
 #### Semana 6
 
@@ -385,6 +388,8 @@ Atualizado em: 31/08/2025
 | Responsável | Tarefa/Requisito | Iniciado em |   Prazo    | Status | Terminado em |
 | :---------- | :--------------- | :---------: | :--------: | :----: | :----------: |
 | Ramir       | Slide da Etapa 1 | 01/09/2025  | 07/09/2025 |   ✔️    |  05/09/2025  |
+| Beatriz     | Slide da Etapa 1 | 01/09/2025  | 07/09/2025 |   ✔️    |  06/09/2025  |
+
 Legenda:
 
 - ✔️: terminado
