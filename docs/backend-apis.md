@@ -1,84 +1,111 @@
-# APIs e Web Services
+# APIs e Web Services  
 
-O planejamento de uma aplicação de APIS Web é uma etapa fundamental para o sucesso do projeto. Ao planejar adequadamente, você pode evitar muitos problemas e garantir que a sua API seja segura, escalável e eficiente.
+O sistema de agendamento para clínica multidisciplinar será construído com uma API RESTful, servindo de base para a aplicação web e mobile. Essa API permitirá o gerenciamento centralizado de pacientes, profissionais, agendas e consultas, garantindo sincronização em tempo real e segurança das informações.
 
-Aqui estão algumas etapas importantes que devem ser consideradas no planejamento de uma aplicação de APIS Web.
+---
 
-[Inclua uma breve descrição do projeto.]
+## Objetivos da API  
 
-## Objetivos da API
+- **Centralizar** a comunicação entre clientes (web/mobile) e o backend.  
+- **Disponibilizar** serviços de autenticação, agendamento, gestão de usuários, prontuário eletrônico.  
+- **Permitir** acesso seguro e controlado a dados clínicos e administrativos, de acordo com os perfis (Paciente, Profissional e Administrativo).  
+- **Oferecer** dados atualizados em tempo real, evitando conflitos de agenda e falhas manuais.  
+- **Escalar** facilmente para atender maior volume de usuários.  
 
-O primeiro passo é definir os objetivos da sua API. O que você espera alcançar com ela? Você quer que ela seja usada por clientes externos ou apenas por aplicações internas? Quais são os recursos que a API deve fornecer?
+---
 
-[Inclua os objetivos da sua api.]
+## Modelagem da Aplicação  
 
+**Entidades principais:**  
+- **Usuário/Perfil** (autenticação e RBAC)  
+- **Paciente** (dados pessoais, histórico de consultas)  
+- **Profissional de Saúde** (dados de especialidade, agenda, bloqueios)  
+- **Especialidade** (cardiologia, odontologia, psicologia etc.)  
+- **Agenda/Slot** (início, fim, status)  
+- **Consulta** (status, vínculo paciente-profissional)  
+- **Prontuário Eletrônico** (anotações, exames anexados, evolução clínica)  
 
-## Modelagem da Aplicação
-[Descreva a modelagem da aplicação, incluindo a estrutura de dados, diagramas de classes ou entidades, e outras representações visuais relevantes.]
+---
 
+## Tecnologias Utilizadas  
 
-## Tecnologias Utilizadas
+- **Back-end:** Java (Spring Boot, Spring Data JPA/Hibernate, Spring Security, PostgreSQL, Tomcat embutido).  
+- **Front-end (Web):** React.js + Redux Toolkit, TypeScript, Tailwind CSS/Material UI.  
+- **Mobile:** React Native + React Navigation + NativeBase/Paper.  
+- **Infraestrutura:** AWS (EC2 para backend, S3 para armazenamento de arquivos, WebSocket para atualizações em tempo real).  
 
-Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs Web. A tecnologia certa para o seu projeto dependerá dos seus objetivos, dos seus clientes e dos recursos que a API deve fornecer.
+---
 
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+## API Endpoints  
 
-## API Endpoints
+### Autenticação  
+- **POST /auth/login** → autenticação de usuários.  
+- **POST /auth/register** → cadastro de pacientes e profissionais.  
+- **POST /auth/forgot-password** → recuperação de senha.  
 
-[Liste os principais endpoints da API, incluindo as operações disponíveis, os parâmetros esperados e as respostas retornadas.]
+### Usuários e Perfis  
+- **GET /users/{id}** → consulta dados do usuário.  
+- **PUT /users/{id}** → atualização de dados pessoais.  
 
-### Endpoint 1
-- Método: GET
-- URL: /endpoint1
-- Parâmetros:
-  - param1: [descrição]
-- Resposta:
-  - Sucesso (200 OK)
-    ```
-    {
-      "message": "Success",
-      "data": {
-        ...
-      }
-    }
-    ```
-  - Erro (4XX, 5XX)
-    ```
-    {
-      "message": "Error",
-      "error": {
-        ...
-      }
-    }
-    ```
+### Pacientes  
+- **GET /patients/{id}/history** → histórico de consultas.  
+- **POST /patients** → cadastro de paciente.  
 
-## Considerações de Segurança
+### Profissionais de Saúde  
+- **GET /professionals** → listar por especialidade/unidade.  
+- **PUT /professionals/{id}/agenda** → gerenciar agenda (bloqueios, pausas, férias).  
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+### Consultas e Agendas  
+- **GET /appointments/availability** → consultar horários disponíveis por especialidade/profissional.  
+- **POST /appointments** → agendar consulta.  
+- **PUT /appointments/{id}/reschedule** → remarcar consulta.  
+- **DELETE /appointments/{id}** → cancelar consulta.  
 
-## Implantação
+### Prontuário Eletrônico  
+- **GET /records/{patientId}** → obter prontuário do paciente.  
+- **POST /records/{patientId}** → criar nova anotação/evolução.  
 
-[Instruções para implantar a aplicação distribuída em um ambiente de produção.]
+### Relatórios (Administrativo)  
+- **GET /reports/appointments** → consultas por período/profissional/status.  
 
-1. Defina os requisitos de hardware e software necessários para implantar a aplicação em um ambiente de produção.
-2. Escolha uma plataforma de hospedagem adequada, como um provedor de nuvem ou um servidor dedicado.
-3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
-4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
-5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
+---
 
-## Testes
+## Considerações de Segurança  
 
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+- **Autenticação** via JWT (JSON Web Token).  
+- **Autorização (RBAC):** perfis distintos para Paciente, Profissional e Administrativo.  
+- **Criptografia:** dados sensíveis (senhas, informações médicas) protegidos em trânsito (HTTPS/TLS) e em repouso.  
+- **Auditoria:** registro de todas as alterações em consultas/agendas.  
+- **Proteção contra ataques:** rate limiting, sanitização de entradas (SQL Injection/XSS), monitoramento de logs.  
 
-1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
-2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
-3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
-4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+---
 
-# Referências
+## Implantação  
 
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
+1. **Requisitos:** servidor AWS EC2 com Docker, PostgreSQL gerenciado (RDS), S3 para arquivos.  
+2. **Configuração:** variáveis de ambiente (.env) para credenciais e chaves secretas.  
+3. **CI/CD:** deploy automatizado via GitHub Actions para AWS.  
+4. **Escalabilidade:** balanceador de carga (AWS ELB) e auto scaling groups.  
+5. **Monitoramento:** CloudWatch para logs e métricas de performance.  
+
+---
+
+## Testes  
+
+- **Unitários:** serviços, controladores e repositórios.  
+- **Integração:** comunicação entre backend, banco de dados e APIs externas.  
+- **Carga:** simulação de múltiplos usuários simultâneos (ex.: JMeter).  
+- **Segurança:** testes de autenticação/autorização, injeção de falhas.  
+- **Automatização:** Jest (frontend), JUnit (backend), Cypress (end-to-end).  
+
+---
+
+## Referências  
+
+- Documentação oficial Spring Boot e React.  
+- Artigos sobre APIs RESTful, RBAC e prontuário eletrônico.  
+- Padrões OWASP para segurança de aplicações web.  
+- Repositório oficial do projeto no GitHub (com diagramas e imagens).  
 
 # Planejamento
 
