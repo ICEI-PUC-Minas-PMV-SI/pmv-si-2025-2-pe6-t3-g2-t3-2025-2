@@ -11,7 +11,7 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 ## Integrantes
 
 * Lucas Oliveira
-* Beatriz Fontainha de Castro
+* Beatriz Castro
 * Ramir Aguiar Ribeiro Junior
 * Ricardo Andrade
 * André Fabiano
