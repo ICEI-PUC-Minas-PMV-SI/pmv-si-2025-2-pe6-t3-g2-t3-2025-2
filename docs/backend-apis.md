@@ -29,7 +29,7 @@ O sistema de agendamento para clínica multidisciplinar será construído com um
 
 ## Tecnologias Utilizadas  
 
-- **Back-end:** Java (Spring Boot, Spring Data JPA/Hibernate, Spring Security, PostgreSQL, Tomcat embutido).  
+- **Back-end:** Java (Spring Boot, Spring Data JPA/Hibernate, Spring Security, H2, Tomcat embutido).  
 - **Front-end (Web):** React.js + Redux Toolkit, TypeScript, Tailwind CSS/Material UI.  
 - **Mobile:** React Native + React Navigation + NativeBase/Paper.  
 - **Infraestrutura:** AWS (EC2 para backend, S3 para armazenamento de arquivos, WebSocket para atualizações em tempo real).  
