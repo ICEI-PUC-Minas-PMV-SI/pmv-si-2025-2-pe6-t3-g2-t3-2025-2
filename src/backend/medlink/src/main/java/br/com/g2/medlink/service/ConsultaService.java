@@ -6,6 +6,8 @@ import br.com.g2.medlink.repository.ConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ConsultaService {
 
@@ -19,5 +21,9 @@ public class ConsultaService {
 //        User user = userService.getCurrentUser();
 //       consulta.setPaciente(user);
         return consultaRepository.save(consulta);
+    }
+
+    public List<Consulta> listarConsultas(){
+        return consultaRepository.findAll();
     }
 }
