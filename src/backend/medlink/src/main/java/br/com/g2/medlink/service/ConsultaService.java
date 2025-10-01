@@ -26,4 +26,11 @@ public class ConsultaService {
     public List<Consulta> listarConsultas(){
         return consultaRepository.findAll();
     }
+
+    public void deletarConsulta(String id) {
+        if (!consultaRepository.existsById(id)) {
+            throw new RuntimeException("Consulta não encontrada com id: " + id);
+        }
+        consultaRepository.deleteById(id);
+    }
 }

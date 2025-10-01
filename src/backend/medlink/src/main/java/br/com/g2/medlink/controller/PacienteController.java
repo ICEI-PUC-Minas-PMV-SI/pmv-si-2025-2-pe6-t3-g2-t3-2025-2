@@ -30,4 +30,13 @@ public class PacienteController {
         List<Consulta> consultas = consultaService.listarConsultas();
         return ResponseEntity.ok(consultas);
     }
+    @DeleteMapping("/consulta/{id}")
+    public ResponseEntity<String> deletarConsulta(@PathVariable String id) {
+        try {
+            consultaService.deletarConsulta(id);
+            return ResponseEntity.ok("Consulta excluída com sucesso!");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 }
