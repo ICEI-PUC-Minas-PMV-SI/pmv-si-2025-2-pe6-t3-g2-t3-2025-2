@@ -1,12 +1,10 @@
-package br.com.g2.medlink.entity.dto;
+package br.com.g2.medlink.controller.dto;
 
-import br.com.g2.medlink.entity.enums.Especialidade;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public record MedicoRequest(
+public record PacienteRequest(
         @Email(message = "E-mail em formato inválido")
         @NotBlank(message = "E-mail não pode ficar em branco")
         String email,
@@ -18,12 +16,6 @@ public record MedicoRequest(
         @NotBlank(message = "Nome não pode ficar em branco")
         String nome,
         String endereco,
-        String telefone,
-
-        @NotNull(message = "Especialidade não pode ficar em branco")
-        Especialidade especialidade,
-
-        @NotBlank(message = "CRM não pode ficar em branco")
-        String crm
+        String telefone
 ) {
 }

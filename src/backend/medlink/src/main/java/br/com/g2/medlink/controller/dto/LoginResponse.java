@@ -1,4 +1,4 @@
-package br.com.g2.medlink.entity.dto;
+package br.com.g2.medlink.controller.dto;
 
 public record LoginResponse(String token) {
 }

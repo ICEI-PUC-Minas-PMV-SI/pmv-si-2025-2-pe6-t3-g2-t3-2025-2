@@ -40,7 +40,8 @@ public class User implements UserDetails {
             return List.of(
                     new SimpleGrantedAuthority("ROLE_ADMIN"),
                     new SimpleGrantedAuthority("ROLE_MEDICO"),
-                    new SimpleGrantedAuthority("ROLE_PACIENTE")
+                    new SimpleGrantedAuthority("ROLE_PACIENTE"),
+                    new SimpleGrantedAuthority("ROLE_FUNCIONARIO")
             );
         }
         return List.of(new SimpleGrantedAuthority("ROLE_" + role.getRole().toUpperCase()));

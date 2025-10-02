@@ -1,6 +1,6 @@
 package br.com.g2.medlink.controller;
 
-import br.com.g2.medlink.entity.dto.MedicoRequest;
+import br.com.g2.medlink.controller.dto.MedicoRequest;
 import br.com.g2.medlink.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

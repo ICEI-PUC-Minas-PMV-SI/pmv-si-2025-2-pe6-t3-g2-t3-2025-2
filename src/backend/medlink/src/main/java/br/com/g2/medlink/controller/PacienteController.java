@@ -1,13 +1,17 @@
 package br.com.g2.medlink.controller;
 
+import br.com.g2.medlink.controller.dto.PacienteResponse;
+import br.com.g2.medlink.controller.dto.UpdatePacienteRequest;
 import br.com.g2.medlink.entity.Consulta;
 import br.com.g2.medlink.entity.Paciente;
-import br.com.g2.medlink.entity.dto.ConsultaRequest;
-import br.com.g2.medlink.entity.dto.PacienteRequest;
+import br.com.g2.medlink.controller.dto.ConsultaRequest;
+import br.com.g2.medlink.controller.dto.PacienteRequest;
 import br.com.g2.medlink.service.ConsultaService;
+import br.com.g2.medlink.service.PacienteService;
 import br.com.g2.medlink.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,6 +25,9 @@ import java.util.UUID;
 public class PacienteController {
 
     @Autowired
+    private PacienteService pacienteService;
+
+    @Autowired
     private ConsultaService consultaService;
 
     @Autowired
@@ -32,6 +39,20 @@ public class PacienteController {
         Paciente paciente = userService.getPacienteDoUsuarioLogado();
         Consulta consulta = consultaService.criarConsulta(paciente, request.medicoId(), request.dataHora(), request.observacoes());
         return ResponseEntity.status(HttpStatus.CREATED).body(consulta);
+    }
+
+    @GetMapping
+    @PreAuthorize("hasRole('PACIENTE')")
+    public ResponseEntity<PacienteResponse> getPaciente(){
+        PacienteResponse response = pacienteService.getPaciente();
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PutMapping
+    @PreAuthorize("hasRole('PACIENTE')")
+    public ResponseEntity<PacienteResponse> updatePaciente(@RequestBody @Valid UpdatePacienteRequest updatePacienteRequest){
+        PacienteResponse response = pacienteService.updatePaciente(updatePacienteRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @GetMapping("/consultas")

@@ -3,7 +3,8 @@ package br.com.g2.medlink.entity.enums;
 public enum UserRole {
     ADMIN("admin"),
     MEDICO("medico"),
-    PACIENTE("paciente");
+    PACIENTE("paciente"),
+    FUNCIONARIO("funcionário");
 
     private String role;
 
