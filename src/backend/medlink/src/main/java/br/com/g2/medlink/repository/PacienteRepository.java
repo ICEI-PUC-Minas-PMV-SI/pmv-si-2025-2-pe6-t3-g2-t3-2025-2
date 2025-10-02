@@ -1,12 +1,12 @@
 package br.com.g2.medlink.repository;
 
-import br.com.g2.medlink.entity.User;
+import br.com.g2.medlink.entity.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {
-    Optional<User> findByEmail(String email);
+public interface PacienteRepository extends JpaRepository<Paciente, String> {
+    Optional<Paciente> findByUserId(String id);
 }

@@ -1,0 +1,21 @@
+package br.com.g2.medlink.entity.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public record PacienteRequest(
+        @Email(message = "E-mail em formato inválido")
+        @NotBlank(message = "E-mail não pode ficar em branco")
+        String email,
+
+        @NotBlank(message = "Senha não pode ficar em branco")
+        @Size(min = 6, message = "Senha deve ter pelo menos 6 caracteres")
+        String password,
+
+        @NotBlank(message = "Nome não pode ficar em branco")
+        String nome,
+        String endereco,
+        String telefone
+) {
+}

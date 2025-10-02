@@ -1,5 +1,6 @@
 package br.com.g2.medlink.entity;
 
+import br.com.g2.medlink.entity.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,17 +16,23 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Table(name = "usuarios")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private String username;
+    private String email;
     private String password;
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    public User(String email, String password, UserRole role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -35,13 +42,13 @@ public class User implements UserDetails {
                     new SimpleGrantedAuthority("ROLE_MEDICO"),
                     new SimpleGrantedAuthority("ROLE_PACIENTE")
             );
-        }  return List.of(new SimpleGrantedAuthority("ROLE_" + role.getRole().toUpperCase()));
+        }
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.getRole().toUpperCase()));
     }
 
-    public User (String username, String password, UserRole role){
-        this.username = username;
-        this.password = password;
-        this.role = role;
+    @Override
+    public String getUsername() {
+        return email;
     }
 
     @Override
