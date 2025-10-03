@@ -1,8 +1,8 @@
-package br.com.g2.medlink.controller.dto;
+package br.com.g2.medlink.controller;
 
+import br.com.g2.medlink.controller.dto.AdminRequest;
 import br.com.g2.medlink.service.UserService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
