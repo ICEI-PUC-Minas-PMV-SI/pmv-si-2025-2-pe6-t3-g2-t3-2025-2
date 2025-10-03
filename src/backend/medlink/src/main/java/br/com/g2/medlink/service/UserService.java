@@ -1,11 +1,14 @@
 package br.com.g2.medlink.service;
 
+import br.com.g2.medlink.controller.dto.AdminRequest;
+import br.com.g2.medlink.entity.Admin;
 import br.com.g2.medlink.entity.Medico;
 import br.com.g2.medlink.entity.Paciente;
 import br.com.g2.medlink.entity.User;
 import br.com.g2.medlink.controller.dto.MedicoRequest;
 import br.com.g2.medlink.controller.dto.PacienteRequest;
 import br.com.g2.medlink.entity.enums.UserRole;
+import br.com.g2.medlink.repository.AdminRepository;
 import br.com.g2.medlink.repository.MedicoRepository;
 import br.com.g2.medlink.repository.PacienteRepository;
 import br.com.g2.medlink.repository.UserRepository;
@@ -22,6 +25,9 @@ public class UserService {
 
     @Autowired
     private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private AdminRepository adminRepository;
 
     @Autowired
     private MedicoRepository medicoRepository;
@@ -89,5 +95,16 @@ public class UserService {
         return pacienteRepository.findByUserId(user.getId())
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado para o usuário logado"));
 
+    }
+
+    public Admin salvarAdmin(AdminRequest adminRequest){
+        User user = new User(
+                adminRequest.email(),
+                passwordEncoder.encode(adminRequest.password()),
+                UserRole.ADMIN);
+        User usuarioSalvo = userRepository.save(user);
+
+        Admin admin = new Admin(adminRequest.nome(), adminRequest.email(), usuarioSalvo);
+        return adminRepository.save(admin);
     }
 }
