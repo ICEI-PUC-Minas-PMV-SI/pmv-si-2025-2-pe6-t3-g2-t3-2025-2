@@ -71,6 +71,51 @@ _________________________________________________________________
 
 _________________________________________________________________
 
+### Listar Consultas do Médico Logado
+
+* GET /medlink/medico/consultas
+* Authorization Bearer Token: <token-gerado-no-login>
+* (sem body)
+
+_________________________________________________________________
+
+### Registrar um Admin
+
+* POST  /medlink/admin/register
+* Authorization Bearer Token: <token-gerado-no-login> (precisa ser um ADMIN)
+```json
+{
+  "nome": "Admin 1",
+  "email": "admin1@email.com",
+  "password": "123456789"
+}
+```
+_________________________________________________________________
+
+### Listar Consultas (Admin)
+
+* GET /medlink/admin/consultas
+* Authorization Bearer Token: <token-gerado-no-login>
+* (sem body)
+
+_________________________________________________________________
+
+### Listar Médicos (Admin)
+
+* GET /medlink/admin/medicos
+* Authorization Bearer Token: <token-gerado-no-login>
+* (sem body)
+
+_________________________________________________________________
+
+### Listar Pacientes (Admin)
+
+* GET /medlink/admin/pacientes
+* Authorization Bearer Token: <token-gerado-no-login>
+* (sem body)
+
+_________________________________________________________________
+
 # Instruções de utilização
 
 ## Instalação do Site
