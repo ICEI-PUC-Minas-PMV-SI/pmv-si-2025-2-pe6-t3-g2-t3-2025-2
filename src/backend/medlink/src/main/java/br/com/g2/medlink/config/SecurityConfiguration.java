@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -25,14 +26,18 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
-                .headers(headers -> headers.frameOptions().disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/").hasRole("ADMIN") TODO: Aplicar nas rotas
-                        .anyRequest().permitAll())
+                        .requestMatchers(HttpMethod.POST, "/medlink/admin/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/medlink/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/medlink/paciente/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/medlink/paciente/**").hasRole("PACIENTE")
+                        .requestMatchers(HttpMethod.GET, "/medlink/paciente/**").hasRole("PACIENTE")
+                        .requestMatchers(HttpMethod.PUT, "/medlink/paciente/**").hasRole("PACIENTE")
+                        .requestMatchers(HttpMethod.DELETE, "/medlink/paciente/**").hasRole("PACIENTE")
+                        .requestMatchers(HttpMethod.POST, "/medlink/medico/**").hasRole("MEDICO")
+                        .requestMatchers(HttpMethod.GET, "/medlink/medico/**").hasRole("MEDICO")
+                        .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class )
                 .build();
     }

@@ -40,11 +40,10 @@ public class User implements UserDetails {
             return List.of(
                     new SimpleGrantedAuthority("ROLE_ADMIN"),
                     new SimpleGrantedAuthority("ROLE_MEDICO"),
-                    new SimpleGrantedAuthority("ROLE_PACIENTE"),
-                    new SimpleGrantedAuthority("ROLE_FUNCIONARIO")
+                    new SimpleGrantedAuthority("ROLE_PACIENTE")
             );
         }
-        return List.of(new SimpleGrantedAuthority("ROLE_" + role.getRole().toUpperCase()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + this.role.name()));
     }
 
     @Override

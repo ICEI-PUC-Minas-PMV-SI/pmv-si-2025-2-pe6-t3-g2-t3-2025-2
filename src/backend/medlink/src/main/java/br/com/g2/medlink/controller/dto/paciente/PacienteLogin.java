@@ -1,4 +1,4 @@
-package br.com.g2.medlink.controller.dto;
+package br.com.g2.medlink.controller.dto.paciente;
 
 import lombok.Getter;
 

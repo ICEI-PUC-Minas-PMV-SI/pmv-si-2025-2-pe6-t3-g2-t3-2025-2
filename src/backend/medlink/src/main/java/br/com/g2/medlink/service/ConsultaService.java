@@ -1,10 +1,10 @@
 package br.com.g2.medlink.service;
 
+import br.com.g2.medlink.controller.dto.consulta.ConsultaResponse;
 import br.com.g2.medlink.entity.Consulta;
+import br.com.g2.medlink.entity.Medico;
 import br.com.g2.medlink.entity.Paciente;
-import br.com.g2.medlink.entity.User;
 import br.com.g2.medlink.repository.ConsultaRepository;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +21,13 @@ public class ConsultaService {
     @Autowired
     private UserService userService;
 
-    public Consulta salvarConsulta(Consulta consulta){
+    public Consulta salvarConsulta(Consulta consulta) {
 //        User user = userService.getCurrentUser();
 //       consulta.setPaciente(user);
         return consultaRepository.save(consulta);
     }
 
-    public List<Consulta> listarConsultas(){
+    public List<Consulta> listarConsultas() {
         return consultaRepository.findAll();
     }
 
@@ -55,5 +55,21 @@ public class ConsultaService {
             throw new RuntimeException("Sem permissão para deletar essa consulta");
         }
         consultaRepository.delete(consulta);
+    }
+
+    public List<Consulta> listarConsultasDoMedico(Medico medico) {
+        return consultaRepository.findByMedicoId(medico.getId());
+    }
+
+    public List<ConsultaResponse> getConsultas() {
+        return consultaRepository.findAll()
+                .stream()
+                .map(consulta -> new ConsultaResponse(
+                        consulta.getId(),
+                        consulta.getPaciente().getId(),
+                        consulta.getMedicoId(),
+                        consulta.getObservacoes(),
+                        consulta.getDataHora()))
+                .toList();
     }
 }

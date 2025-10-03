@@ -1,8 +1,11 @@
 package br.com.g2.medlink.controller;
 
-import br.com.g2.medlink.controller.dto.*;
+import br.com.g2.medlink.controller.dto.consulta.ConsultaRequest;
+import br.com.g2.medlink.controller.dto.medico.MedicoResponse;
+import br.com.g2.medlink.controller.dto.paciente.PacienteRequest;
+import br.com.g2.medlink.controller.dto.paciente.PacienteResponse;
+import br.com.g2.medlink.controller.dto.paciente.UpdatePacienteRequest;
 import br.com.g2.medlink.entity.Consulta;
-import br.com.g2.medlink.entity.Medico;
 import br.com.g2.medlink.entity.Paciente;
 import br.com.g2.medlink.service.ConsultaService;
 import br.com.g2.medlink.service.MedicoService;
@@ -10,7 +13,6 @@ import br.com.g2.medlink.service.PacienteService;
 import br.com.g2.medlink.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -1,4 +1,4 @@
-package br.com.g2.medlink.controller.dto;
+package br.com.g2.medlink.controller.dto.paciente;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,12 +1,12 @@
 package br.com.g2.medlink.service;
 
-import br.com.g2.medlink.controller.dto.AdminRequest;
+import br.com.g2.medlink.controller.dto.admin.AdminRequest;
 import br.com.g2.medlink.entity.Admin;
 import br.com.g2.medlink.entity.Medico;
 import br.com.g2.medlink.entity.Paciente;
 import br.com.g2.medlink.entity.User;
-import br.com.g2.medlink.controller.dto.MedicoRequest;
-import br.com.g2.medlink.controller.dto.PacienteRequest;
+import br.com.g2.medlink.controller.dto.medico.MedicoRequest;
+import br.com.g2.medlink.controller.dto.paciente.PacienteRequest;
 import br.com.g2.medlink.entity.enums.UserRole;
 import br.com.g2.medlink.repository.AdminRepository;
 import br.com.g2.medlink.repository.MedicoRepository;
@@ -94,7 +94,6 @@ public class UserService {
 
         return pacienteRepository.findByUserId(user.getId())
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado para o usuário logado"));
-
     }
 
     public Admin salvarAdmin(AdminRequest adminRequest){
@@ -106,5 +105,13 @@ public class UserService {
 
         Admin admin = new Admin(adminRequest.nome(), adminRequest.email(), usuarioSalvo);
         return adminRepository.save(admin);
+    }
+
+    public Medico getMedicoDoUsuarioLogado() {
+        User user = getCurrentUser()
+                .orElseThrow(() -> new RuntimeException("Usuário não autenticado"));
+
+        return medicoRepository.findByUserId(user.getId())
+                .orElseThrow(() -> new RuntimeException("Paciente não encontrado para o usuário logado"));
     }
 }

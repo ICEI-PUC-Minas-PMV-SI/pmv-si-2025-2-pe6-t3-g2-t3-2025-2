@@ -1,14 +1,13 @@
 package br.com.g2.medlink.service;
 
-import br.com.g2.medlink.controller.dto.PacienteResponse;
-import br.com.g2.medlink.controller.dto.UpdatePacienteRequest;
+import br.com.g2.medlink.controller.dto.paciente.PacienteResponse;
+import br.com.g2.medlink.controller.dto.paciente.UpdatePacienteRequest;
 import br.com.g2.medlink.entity.Paciente;
-import br.com.g2.medlink.entity.User;
 import br.com.g2.medlink.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class PacienteService {
@@ -32,11 +31,11 @@ public class PacienteService {
     public PacienteResponse updatePaciente(UpdatePacienteRequest updatePacienteRequest) {
         Paciente paciente = userService.getPacienteDoUsuarioLogado();
 
-        if(updatePacienteRequest.nome() != null && !updatePacienteRequest.nome().isBlank())
+        if (updatePacienteRequest.nome() != null && !updatePacienteRequest.nome().isBlank())
             paciente.setNome(updatePacienteRequest.nome());
-        if(updatePacienteRequest.endereco() != null && !updatePacienteRequest.endereco().isBlank())
+        if (updatePacienteRequest.endereco() != null && !updatePacienteRequest.endereco().isBlank())
             paciente.setEndereco(updatePacienteRequest.endereco());
-        if(updatePacienteRequest.telefone() != null && !updatePacienteRequest.telefone().isBlank())
+        if (updatePacienteRequest.telefone() != null && !updatePacienteRequest.telefone().isBlank())
             paciente.setTelefone(updatePacienteRequest.telefone());
 
         Paciente updatedPaciente = pacienteRepository.save(paciente);
@@ -46,5 +45,17 @@ public class PacienteService {
                 updatedPaciente.getNome(),
                 updatedPaciente.getEndereco(),
                 updatedPaciente.getTelefone());
+    }
+
+    public List<PacienteResponse> getPacientes() {
+        return pacienteRepository.findAll()
+                .stream()
+                .map(paciente -> new PacienteResponse(
+                        paciente.getId(),
+                        paciente.getEmail(),
+                        paciente.getNome(),
+                        paciente.getEndereco(),
+                        paciente.getTelefone())
+                ).toList();
     }
 }
