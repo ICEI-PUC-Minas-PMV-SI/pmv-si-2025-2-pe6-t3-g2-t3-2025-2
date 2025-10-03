@@ -1,12 +1,11 @@
 package br.com.g2.medlink.controller;
 
-import br.com.g2.medlink.controller.dto.PacienteResponse;
-import br.com.g2.medlink.controller.dto.UpdatePacienteRequest;
+import br.com.g2.medlink.controller.dto.*;
 import br.com.g2.medlink.entity.Consulta;
+import br.com.g2.medlink.entity.Medico;
 import br.com.g2.medlink.entity.Paciente;
-import br.com.g2.medlink.controller.dto.ConsultaRequest;
-import br.com.g2.medlink.controller.dto.PacienteRequest;
 import br.com.g2.medlink.service.ConsultaService;
+import br.com.g2.medlink.service.MedicoService;
 import br.com.g2.medlink.service.PacienteService;
 import br.com.g2.medlink.service.UserService;
 import jakarta.validation.Valid;
@@ -32,6 +31,9 @@ public class PacienteController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MedicoService medicoService;
 
     @PostMapping("/consulta")
     @PreAuthorize("hasRole('PACIENTE')")
@@ -81,5 +83,12 @@ public class PacienteController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("E-mail já cadastrado.");
         userService.salvarPaciente(pacienteRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body("Paciente registrado com sucesso.");
+    }
+
+    @GetMapping("/medicos")
+    @PreAuthorize("hasRole('PACIENTE')")
+    public ResponseEntity<List<MedicoResponse>> listarMedicos() {
+        List<MedicoResponse> medicos = medicoService.listarMedicos();
+        return ResponseEntity.status(HttpStatus.OK).body(medicos);
     }
 }
