@@ -1,12 +1,12 @@
 package br.com.g2.medlink.service;
 
 import br.com.g2.medlink.controller.dto.admin.AdminRequest;
+import br.com.g2.medlink.controller.dto.medico.MedicoRequest;
+import br.com.g2.medlink.controller.dto.paciente.PacienteRequest;
 import br.com.g2.medlink.entity.Admin;
 import br.com.g2.medlink.entity.Medico;
 import br.com.g2.medlink.entity.Paciente;
 import br.com.g2.medlink.entity.User;
-import br.com.g2.medlink.controller.dto.medico.MedicoRequest;
-import br.com.g2.medlink.controller.dto.paciente.PacienteRequest;
 import br.com.g2.medlink.entity.enums.UserRole;
 import br.com.g2.medlink.repository.AdminRepository;
 import br.com.g2.medlink.repository.MedicoRepository;
@@ -41,7 +41,6 @@ public class UserService {
         if (auth == null || !auth.isAuthenticated() || auth.getPrincipal().equals("anonymousUser")) {
             return Optional.empty();
         }
-
         Object principal = auth.getPrincipal();
         if (principal instanceof User user) return Optional.of(user);
         if (principal instanceof String email) return userRepository.findByEmail(email);
@@ -56,16 +55,14 @@ public class UserService {
         User user = new User(
                 pacienteRequest.email(),
                 passwordEncoder.encode(pacienteRequest.password()),
-                UserRole.PACIENTE
-        );
+                UserRole.PACIENTE);
         User savedUser = userRepository.save(user);
         Paciente paciente = new Paciente(
                 savedUser,
                 pacienteRequest.email(),
                 pacienteRequest.nome(),
                 pacienteRequest.endereco(),
-                pacienteRequest.telefone()
-        );
+                pacienteRequest.telefone());
         return pacienteRepository.save(paciente);
     }
 
@@ -73,8 +70,7 @@ public class UserService {
         User user = new User(
                 medicoRequest.email(),
                 passwordEncoder.encode(medicoRequest.password()),
-                UserRole.MEDICO
-        );
+                UserRole.MEDICO);
         User savedUser = userRepository.save(user);
         Medico medico = new Medico(
                 savedUser,
@@ -83,26 +79,23 @@ public class UserService {
                 medicoRequest.endereco(),
                 medicoRequest.telefone(),
                 medicoRequest.crm(),
-                medicoRequest.especialidade()
-        );
+                medicoRequest.especialidade());
         return medicoRepository.save(medico);
     }
 
     public Paciente getPacienteDoUsuarioLogado() {
         User user = getCurrentUser()
                 .orElseThrow(() -> new RuntimeException("Usuário não autenticado"));
-
         return pacienteRepository.findByUserId(user.getId())
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado para o usuário logado"));
     }
 
-    public Admin salvarAdmin(AdminRequest adminRequest){
+    public Admin salvarAdmin(AdminRequest adminRequest) {
         User user = new User(
                 adminRequest.email(),
                 passwordEncoder.encode(adminRequest.password()),
                 UserRole.ADMIN);
         User usuarioSalvo = userRepository.save(user);
-
         Admin admin = new Admin(adminRequest.nome(), adminRequest.email(), usuarioSalvo);
         return adminRepository.save(admin);
     }

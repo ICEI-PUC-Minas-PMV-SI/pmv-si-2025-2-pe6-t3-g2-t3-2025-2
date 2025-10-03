@@ -26,16 +26,16 @@ public class MedicoController {
 
     @PostMapping("/register")
     @PreAuthorize("hasRole('MEDICO')")
-    public ResponseEntity register(@RequestBody @Valid MedicoRequest medicoRequest) {
+    public ResponseEntity<String> register(@RequestBody @Valid MedicoRequest medicoRequest) {
         if (userService.findByEmail(medicoRequest.email()).isPresent())
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         userService.salvarMedico(medicoRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body("Médico registrado com sucesso.");
     }
 
     @GetMapping("/consultas")
     @PreAuthorize("hasRole('MEDICO')")
-    public ResponseEntity<List<Consulta>> getConsultas(){
+    public ResponseEntity<List<Consulta>> getConsultas() {
         Medico medico = userService.getMedicoDoUsuarioLogado();
         List<Consulta> consultas = consultaService.listarConsultasDoMedico(medico);
         return ResponseEntity.status(HttpStatus.OK).body(consultas);

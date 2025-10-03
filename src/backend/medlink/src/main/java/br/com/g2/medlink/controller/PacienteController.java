@@ -19,7 +19,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/medlink/paciente")
@@ -47,14 +46,14 @@ public class PacienteController {
 
     @GetMapping
     @PreAuthorize("hasRole('PACIENTE')")
-    public ResponseEntity<PacienteResponse> getPaciente(){
+    public ResponseEntity<PacienteResponse> getPaciente() {
         PacienteResponse response = pacienteService.getPaciente();
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PutMapping
     @PreAuthorize("hasRole('PACIENTE')")
-    public ResponseEntity<PacienteResponse> updatePaciente(@RequestBody @Valid UpdatePacienteRequest updatePacienteRequest){
+    public ResponseEntity<PacienteResponse> updatePaciente(@RequestBody @Valid UpdatePacienteRequest updatePacienteRequest) {
         PacienteResponse response = pacienteService.updatePaciente(updatePacienteRequest);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -69,7 +68,7 @@ public class PacienteController {
 
     @DeleteMapping("/consulta/{id}")
     @PreAuthorize("hasRole('PACIENTE')")
-    public ResponseEntity<String> deletarConsulta(@PathVariable UUID id) {
+    public ResponseEntity<String> deletarConsulta(@PathVariable String id) {
         try {
             Paciente paciente = userService.getPacienteDoUsuarioLogado();
             consultaService.deletarConsultaDoPaciente(id, paciente);

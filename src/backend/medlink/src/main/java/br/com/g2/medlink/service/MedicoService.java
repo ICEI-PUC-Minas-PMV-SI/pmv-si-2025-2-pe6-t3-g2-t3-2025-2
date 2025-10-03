@@ -13,7 +13,7 @@ public class MedicoService {
     @Autowired
     private MedicoRepository medicoRepository;
 
-    public List<MedicoResponse> listarMedicos (){
+    public List<MedicoResponse> listarMedicos() {
         return medicoRepository.findAll()
                 .stream()
                 .map(medico -> new MedicoResponse(
