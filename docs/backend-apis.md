@@ -17,13 +17,12 @@ O sistema de agendamento para clínica multidisciplinar será construído com um
 ## Modelagem da Aplicação  
 
 **Entidades principais:**  
-- **Usuário/Perfil** (autenticação e RBAC)  
+- **Usuário/Perfil** (autenticação, perfil e RBAC)
+- **Administrador** (autenticação e RBAC)
 - **Paciente** (dados pessoais, histórico de consultas)  
-- **Profissional de Saúde** (dados de especialidade, agenda, bloqueios)  
-- **Especialidade** (cardiologia, odontologia, psicologia etc.)  
-- **Agenda/Slot** (início, fim, status)  
-- **Consulta** (status, vínculo paciente-profissional)  
-- **Prontuário Eletrônico** (anotações, exames anexados, evolução clínica)  
+- **Profissional de Saúde** (dados de especialidade, agenda, bloqueios)    
+- **Agenda/Slot** (início, fim, status, hora)  
+- **Consulta** (status, horário, vínculo paciente-profissional, especialidade)   
 
 ---
 
@@ -38,35 +37,47 @@ O sistema de agendamento para clínica multidisciplinar será construído com um
 
 ## API Endpoints  
 
-### Autenticação  
-- **POST /auth/login** → autenticação de usuários.  
-- **POST /auth/register** → cadastro de pacientes e profissionais.  
-- **POST /auth/forgot-password** → recuperação de senha.  
+### Realizar Login (Qualquer tipo de usuário)  
+- **POST /medlink/login** → autenticação de usuários.   
 
-### Usuários e Perfis  
-- **GET /users/{id}** → consulta dados do usuário.  
-- **PUT /users/{id}** → atualização de dados pessoais.  
+### Registrar um Paciente  
+- **POST /medlink/paciente/register** → cadastro de um paciente.  
 
-### Pacientes  
-- **GET /patients/{id}/history** → histórico de consultas.  
-- **POST /patients** → cadastro de paciente.  
+### Listar Dados do Paciente  
+- **GET /medlink/paciente**
+- **Authorization Bearer Token** → dados do paciente.
 
-### Profissionais de Saúde  
-- **GET /professionals** → listar por especialidade/unidade.  
-- **PUT /professionals/{id}/agenda** → gerenciar agenda (bloqueios, pausas, férias).  
+### Atualizar Dados do Paciente  
+- **PUT /medlink/paciente**
+- **Authorization Bearer Token** → atualizar dados do paciente.
 
-### Consultas e Agendas  
-- **GET /appointments/availability** → consultar horários disponíveis por especialidade/profissional.  
-- **POST /appointments** → agendar consulta.  
-- **PUT /appointments/{id}/reschedule** → remarcar consulta.  
-- **DELETE /appointments/{id}** → cancelar consulta.  
+### Listar Consultas do Paciente    
+- **GET /medlink/paciente/consultas**  
+- **Authorization Bearer Token** → listar consultas do paciente.  
 
-### Prontuário Eletrônico  
-- **GET /records/{patientId}** → obter prontuário do paciente.  
-- **POST /records/{patientId}** → criar nova anotação/evolução.  
+### Deletar Consulta   
+- **DELETE /medlink/paciente/consulta/**  
+- **Authorization Bearer Token** → deletar consulta.
 
-### Relatórios (Administrativo)  
-- **GET /reports/appointments** → consultas por período/profissional/status.  
+### Listar Consultas do Médico Logado
+- **GET /medlink/medico/consultas**  
+- **Authorization Bearer Token** → lista de consultas do médico logado disponíveis. 
+
+### Registrar um Admin
+- **POST /medlink/admin/register**  
+- **Authorization Bearer Token** → Cadastro do Admin.
+
+### Listar Médicos (Admin)
+- **GET /medlink/admin/medicos**  
+- **Authorization Bearer Token** → Listar Médicos.
+
+### Listar Consultas (Admin)
+- **GET /medlink/admin/consultas**  
+- **Authorization Bearer Token** → Listar Consultas.
+
+### Listar Pacientes (Admin)
+- **GET /medlink/admin/pacientes**  
+- **Authorization Bearer Token** → Listar Pacientes.
 
 ---
 
@@ -93,8 +104,7 @@ O sistema de agendamento para clínica multidisciplinar será construído com um
 ## Testes  
 
 - **Unitários:** serviços, controladores e repositórios.  
-- **Integração:** comunicação entre backend, banco de dados e APIs externas.  
-- **Carga:** simulação de múltiplos usuários simultâneos (ex.: JMeter).  
+- **Integração:** comunicação entre backend, banco de dados e APIs externas.   
 - **Segurança:** testes de autenticação/autorização, injeção de falhas.  
 - **Automatização:** Jest (frontend), JUnit (backend), Cypress (end-to-end).  
 
