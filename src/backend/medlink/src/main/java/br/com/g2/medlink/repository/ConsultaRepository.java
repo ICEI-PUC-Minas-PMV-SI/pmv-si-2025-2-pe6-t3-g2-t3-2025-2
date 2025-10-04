@@ -10,7 +10,9 @@ import java.util.UUID;
 
 @Repository
 public interface ConsultaRepository extends JpaRepository<Consulta, String> {
-    List<Consulta> findByPacienteId(String id);
+    List<Consulta> findByPacienteId(String pacienteId);
 
-    Optional<Consulta> findById(UUID consultaId);
+    Optional<Consulta> findById(String consultaId);
+
+    List<Consulta> findByMedicoId(String medicoId);
 }

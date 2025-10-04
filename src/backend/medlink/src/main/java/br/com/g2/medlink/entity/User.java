@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Entity
@@ -21,7 +22,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
     private String email;
     private String password;
 
@@ -40,11 +41,10 @@ public class User implements UserDetails {
             return List.of(
                     new SimpleGrantedAuthority("ROLE_ADMIN"),
                     new SimpleGrantedAuthority("ROLE_MEDICO"),
-                    new SimpleGrantedAuthority("ROLE_PACIENTE"),
-                    new SimpleGrantedAuthority("ROLE_FUNCIONARIO")
+                    new SimpleGrantedAuthority("ROLE_PACIENTE")
             );
         }
-        return List.of(new SimpleGrantedAuthority("ROLE_" + role.getRole().toUpperCase()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + this.role.name()));
     }
 
     @Override
