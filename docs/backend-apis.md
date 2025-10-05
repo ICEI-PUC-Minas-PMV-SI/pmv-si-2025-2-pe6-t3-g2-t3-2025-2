@@ -288,7 +288,7 @@ no body
 
 
 ### Respostas (Responses)
-[Resultado]
+Retorno com os dados do médico em formato json
 
 ---
 
