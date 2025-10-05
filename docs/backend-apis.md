@@ -222,7 +222,7 @@ no body
 
 
 ### Respostas (Responses)
-[Resultado]
+Retorno com os dados das consultas criadas pelo paciente
 
 ---
 
