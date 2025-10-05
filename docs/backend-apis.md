@@ -178,6 +178,51 @@ no body
 
 ---
 
+### **Endpoint 4: Atualizar Paciente**
+
+* **Endpoint:** `PUT /medlink/paciente`
+* **Header:** `Authorization: Bearer <token>`
+* **Descrição:** Atualizar os pacientes registrados.
+
+#### Corpo da Requisição (Request Body)
+
+```json
+{
+  "nome": "Paciente Novo Nome",
+  "endereco": "Novo Endereço do Paciente",
+  "telefone": "123456 (novo número)"
+}
+```
+
+[Imagem]
+
+### Respostas (Responses)
+[Resultado]
+
+---
+
+### **Endpoint 4: Atualizar Paciente**
+
+* **Endpoint:** `PUT /medlink/paciente`
+* **Header:** `Authorization: Bearer <token>`
+* **Descrição:** Atualizar os pacientes registrados.
+
+#### Corpo da Requisição (Request Body)
+
+```json
+{
+  "nome": "Paciente Novo Nome",
+  "endereco": "Novo Endereço do Paciente",
+  "telefone": "123456 (novo número)"
+}
+```
+
+[Imagem]
+
+### Respostas (Responses)
+[Resultado]
+
+---
 
 
 
