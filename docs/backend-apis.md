@@ -127,7 +127,7 @@ Esta documentação descreve os endpoints para interagir com a API de gestão da
 ![login](https://github.com/user-attachments/assets/15aa387d-16c9-4328-a62f-c46aae9c4d3b)
 
 ### Respostas (Responses)
-200 OK: Token de autorização. Retorna o token de autenticação para ser utilizado no banco de dados.
+200 OK: Token de autorização. Retorna o token de autenticação para ser utilizado nas próximas requisições.
 
 ---
 
@@ -157,7 +157,26 @@ Esta documentação descreve os endpoints para interagir com a API de gestão da
 
 ---
 
+### **Endpoint 3: Listar Dados do Paciente**
 
+* **Endpoint:** `GET /medlink/paciente`
+* **Header:** `Authorization: Bearer <token>`
+* **Descrição:** Listar os pacientes registrados.
+
+#### Corpo da Requisição (Request Body)
+
+```json
+
+no body
+
+```
+
+[Imagem]
+
+### Respostas (Responses)
+[Resultado]
+
+---
 
 
 
