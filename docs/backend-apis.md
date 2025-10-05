@@ -206,7 +206,7 @@ no body
 
 ### **Endpoint 5: Listar Consultas do Paciente**
 
-* **Endpoint:** `PUT /medlink/paciente/consultas`
+* **Endpoint:** `POST /medlink/paciente/consultas`
 * **Header:** `Authorization: Bearer <token>`
 * **Descrição:** Listar as consultas do paciente.
 
@@ -218,7 +218,8 @@ no body
 
 ```
 
-[Imagem]
+![CONSULTAS](https://github.com/user-attachments/assets/3ff3962e-625a-4402-b35a-62d40c6afc92)
+
 
 ### Respostas (Responses)
 [Resultado]
