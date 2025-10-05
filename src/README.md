@@ -1,88 +1,154 @@
-## Documentação dos Endpoints
+# 🩺 Medlink — Backend da Agenda Médica
 
-### Realizar Login (Qualquer tipo de usuário)
-* POST /medlink/login
+API REST desenvolvida com **Spring Boot 3.5.6** para gerenciamento de pacientes, médicos e administradores em um sistema de agenda médica.
+O projeto inclui autenticação JWT, controle de acesso com Spring Security e integração com banco de dados **MySQL** (executado via Docker).
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+| Categoria               | Tecnologias                                                  |
+| ----------------------- | ------------------------------------------------------------ |
+| **Linguagem**           | Java 17                                                      |
+| **Framework Principal** | Spring Boot 3.5.6                                            |
+| **Módulos Spring**      | Spring Web, Spring Data JPA, Spring Security, Spring Validation |
+| **Banco de Dados**      | MySQL (com Docker)                                           |
+| **Autenticação**        | JWT (biblioteca `java-jwt` da Auth0)                         |
+| **Outros**              | Lombok para acesso de atributos encapsulados                 |
+
+---
+
+## 🐳 Banco de Dados (Docker)
+
+O projeto utiliza um container **MySQL**.
+Exemplo de execução do banco com Docker:
+
+```bash
+docker run --name mysql-medlink -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=medlink_db -p 3306:3306 -d mysql:8
+```
+
+A interface do Adminer ficará disponível em `localhost:8081`. As credenciais de acesso são: 
+
+```properties
+server: mysql
+User: user
+Password: user123
+Database: medlink_db
+```
+
+---
+
+## 📦 Execução do Projeto
+
+1. **Clonar o repositório**
+
+   ```bash
+   git clone https://github.com/seu-usuario/medlink.git
+   cd medlink
+   ```
+
+2. **Executar o banco via Docker** (caso ainda não esteja rodando)
+
+   ```bash
+   docker-compose up -d  # aguardar as aplicações subirem
+   ```
+
+3. **Rodar a aplicação**
+
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+
+   > A aplicação ficará disponível em: [http://localhost:8080](http://localhost:8080)
+
+---
+
+## 📘 Documentação dos Endpoints
+
+### 🔐 Login (qualquer tipo de usuário)
+
+**POST** `/medlink/login`
+
 ```json
 {
-    "email": "paciente1@email.com",
-    "password": "123456789"
+  "email": "paciente1@email.com",
+  "password": "123456789"
 }
 ```
-_________________________________________________________________
 
-### Registrar um Paciente
+---
 
-* POST  /medlink/paciente/register
+### 👤 Registrar Paciente
+
+**POST** `/medlink/paciente/register`
+
 ```json
 {
-    "email": "paciente1@email.com",
-    "password": "123456789",
-    "nome": "Paciente 1",
-    "endereco": "Rua Paulista, 100",
-    "telefone": "998877665544"
+  "email": "paciente1@email.com",
+  "password": "123456789",
+  "nome": "Paciente 1",
+  "endereco": "Rua Paulista, 100",
+  "telefone": "998877665544"
 }
 ```
-_________________________________________________________________
 
-### Listar dados do Paciente
+---
 
-* GET /medlink/paciente
-* Authorization Bearer Token: <token-gerado-no-login>
+### 📄 Listar Dados do Paciente
+
+**GET** `/medlink/paciente`
+**Header:** `Authorization: Bearer <token>`
+
+---
+
+### ✏️ Atualizar Paciente
+
+**PUT** `/medlink/paciente`
+**Header:** `Authorization: Bearer <token>`
+
 ```json
 {
-    "email": "paciente1@email.com",
-    "password": "123456789"
+  "nome": "Paciente Novo Nome",
+  "endereco": "Novo Endereço do Paciente",
+  "telefone": "123456 (novo número)"
 }
 ```
-_________________________________________________________________
 
-### Atualizar Paciente
+---
 
-* PUT /medlink/paciente
-* Authorization Bearer Token: <token-gerado-no-login>
-```json
-{
-    "nome": "Paciente Novo Nome",
-    "endereco": "Novo endereco do PAciente",
-    "telefone": "123456 (novo numero)"
-}
-```
-_________________________________________________________________
+### 📅 Listar Consultas do Paciente
 
-### Listar Consultas do Paciente
+**GET** `/medlink/paciente/consultas`
+**Header:** `Authorization: Bearer <token>`
 
-* GET /medlink/paciente/consultas
-* Authorization Bearer Token: <token-gerado-no-login>
-* (sem body)
-_________________________________________________________________
+---
 
-### Listar Médicos Disponíveis
+### 👨‍⚕️ Listar Médicos Disponíveis
 
-* GET /medlink/paciente/medicos
-* Authorization Bearer Token: <token-gerado-no-login>
-* (sem body)
-_________________________________________________________________
+**GET** `/medlink/paciente/medicos`
+**Header:** `Authorization: Bearer <token>`
 
-### Deletar Consulta
+---
 
-* DELETE /medlink/paciente/consulta/<id-da-consulta>
-* Authorization Bearer Token: <token-gerado-no-login>
-* (sem body)
+### ❌ Deletar Consulta
 
-_________________________________________________________________
+**DELETE** `/medlink/paciente/consulta/<id-da-consulta>`
+**Header:** `Authorization: Bearer <token>`
 
-### Listar Consultas do Médico Logado
+---
 
-* GET /medlink/medico/consultas
-* Authorization Bearer Token: <token-gerado-no-login>
-* (sem body)
+### 🩺 Consultas do Médico Logado
 
-_________________________________________________________________
+**GET** `/medlink/medico/consultas`
+**Header:** `Authorization: Bearer <token>`
 
-### Registrar um Admin
+---
 
-* POST  /medlink/admin/register
-* Authorization Bearer Token: <token-gerado-no-login> (precisa ser um ADMIN)
+### 🧑‍💼 Registrar Admin
+
+**POST** `/medlink/admin/register`
+**Header:** `Authorization: Bearer <token (ADMIN)>`
+
 ```json
 {
   "nome": "Admin 1",
@@ -90,40 +156,35 @@ _________________________________________________________________
   "password": "123456789"
 }
 ```
-_________________________________________________________________
 
-### Listar Consultas (Admin)
+---
 
-* GET /medlink/admin/consultas
-* Authorization Bearer Token: <token-gerado-no-login>
-* (sem body)
+### 📋 Listar Consultas (Admin)
 
-_________________________________________________________________
+**GET** `/medlink/admin/consultas`
+**Header:** `Authorization: Bearer <token>`
 
-### Listar Médicos (Admin)
+---
 
-* GET /medlink/admin/medicos
-* Authorization Bearer Token: <token-gerado-no-login>
-* (sem body)
+### 🧑‍⚕️ Listar Médicos (Admin)
 
-_________________________________________________________________
+**GET** `/medlink/admin/medicos`
+**Header:** `Authorization: Bearer <token>`
 
-### Listar Pacientes (Admin)
+---
 
-* GET /medlink/admin/pacientes
-* Authorization Bearer Token: <token-gerado-no-login>
-* (sem body)
+### 🧍‍♂️ Listar Pacientes (Admin)
 
-_________________________________________________________________
+**GET** `/medlink/admin/pacientes`
+**Header:** `Authorization: Bearer <token>`
 
-# Instruções de utilização
+---
 
-## Instalação do Site
+## 🌐 Documentação Interativa (Swagger)
 
-O site em HTML/CSS/JS é um projeto estático, logo pode ser utilizado tanto em servidores...
+Após iniciar o projeto, acesse:
+👉 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
-## Histórico de versões
+---
 
-### [0.1.0] - DD/MM/AAAA
-#### Adicionado
-- Adicionado ...
+*O projeto segue em desenvolvimento e evolução ao longo das próximas etapas.*
