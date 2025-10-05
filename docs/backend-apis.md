@@ -202,10 +202,10 @@ Esta documentação descreve os endpoints para interagir com a API de gestão da
 }
 ```
 
-[Imagem]
+![atualizar-paciente](https://github.com/user-attachments/assets/7bdc2e21-6fcc-4569-8f6d-3fc810dfbcb9)
 
 ### Respostas (Responses)
-[Resultado]
+200 OK: Token de autorização validado. Retorna o paciente com dados atualizados.
 
 ---
 
