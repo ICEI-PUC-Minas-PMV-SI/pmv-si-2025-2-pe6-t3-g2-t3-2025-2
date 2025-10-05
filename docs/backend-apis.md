@@ -103,6 +103,39 @@ O sistema de agendamento para clínica multidisciplinar será construído com um
 
 ## Testes  
 
+Esta documentação descreve os endpoints para interagir com a API de gestão da clínica.
+
+**URL Base:** Após iniciar o projeto, acesse: `http://localhost:8080/swagger-ui.html`
+
+
+## Módulo 1: Login
+
+### **Endpoint 1: Login de usuários**
+
+* **Endpoint:** `POST /medlink/login`
+* **Descrição:** Registro de login de qualquer tipo de usuário.
+* **Requisitos de Autorização:** `Usuário`, `Paciente`, `Administrador`.
+
+#### Corpo da Requisição (Request Body)
+
+```json
+{
+  "email": "paciente1@email.com",
+  "password": "123456789"
+}
+
+![b](https://github.com/user-attachments/assets/0133f123-c42b-4526-9165-9ea240ca63a2)
+
+
+
+
+
+
+
+
+
+
+
 - **Unitários:** serviços, controladores e repositórios.  
 - **Integração:** comunicação entre backend, banco de dados e APIs externas.   
 - **Segurança:** testes de autenticação/autorização, injeção de falhas.  
