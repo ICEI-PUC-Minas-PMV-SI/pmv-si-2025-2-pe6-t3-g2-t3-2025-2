@@ -45,21 +45,21 @@ public class AdminController {
 
     @GetMapping("/consultas")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<ConsultaResponse>> getConsultas(){
+    public ResponseEntity<List<ConsultaResponse>> getConsultas() {
         List<ConsultaResponse> consultas = consultaService.getConsultas();
         return ResponseEntity.status(HttpStatus.OK).body(consultas);
     }
 
     @GetMapping("/medicos")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<MedicoResponse>> getMedicos(){
+    public ResponseEntity<List<MedicoResponse>> getMedicos() {
         List<MedicoResponse> medicos = medicoService.getMedicos();
         return ResponseEntity.status(HttpStatus.OK).body(medicos);
     }
 
     @GetMapping("/pacientes")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<PacienteResponse>> getPacientes(){
+    public ResponseEntity<List<PacienteResponse>> getPacientes() {
         List<PacienteResponse> pacientes = pacienteService.getPacientes();
         return ResponseEntity.status(HttpStatus.OK).body(pacientes);
     }
