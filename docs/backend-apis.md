@@ -16,14 +16,17 @@ O sistema de agendamento para clínica multidisciplinar será construído com um
 
 ## Modelagem da Aplicação  
 
+![Modelagem](https://github.com/user-attachments/assets/85e25234-c11a-4918-8812-73a0981dc01c)
+
+
 **Entidades principais:**  
 - **Usuário/Perfil** (autenticação, perfil e RBAC)
 - **Administrador** (autenticação e RBAC)
 - **Paciente** (dados pessoais, histórico de consultas)  
 - **Profissional de Saúde** (dados de especialidade, agenda, bloqueios)    
 - **Agenda/Slot** (início, fim, status, hora)  
-- **Consulta** (status, horário, vínculo paciente-profissional, especialidade)   
-
+- **Consulta** (status, horário, vínculo paciente-profissional, especialidade)
+   
 ---
 
 ## Tecnologias Utilizadas  
