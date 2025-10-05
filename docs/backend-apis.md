@@ -118,13 +118,13 @@ Esta documentação descreve os endpoints para interagir com a API de gestão da
 
 #### Corpo da Requisição (Request Body)
 
-```json
+json
 {
   "email": "paciente1@email.com",
   "password": "123456789"
 }
 
-![b](https://github.com/user-attachments/assets/0133f123-c42b-4526-9165-9ea240ca63a2)
+![login](https://github.com/user-attachments/assets/0133f123-c42b-4526-9165-9ea240ca63a2)
 
 
 
