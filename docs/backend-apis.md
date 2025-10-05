@@ -164,20 +164,25 @@ Esta documentação descreve os endpoints para interagir com a API de gestão da
 
 * **Endpoint:** `GET /medlink/paciente`
 * **Header:** `Authorization: Bearer <token>`
-* **Descrição:** Listar os pacientes registrados.
+* **Descrição:** Listar o paciente registrado pelo token.
 
 #### Corpo da Requisição (Request Body)
 
 ```json
 
-no body
+{
+  "id": "ddc0909e-5f2f-45ec-b1cd-d9f6bb1d6a55",
+  "email": "paciente@gmail.com",
+  "telefone": "9988776654",
+  "endereco": "Rua Paulista, 100"
+}
 
 ```
 
-[Imagem]
+![buscar-dados-por-token](https://github.com/user-attachments/assets/ef3b962f-5517-40a7-ac93-87895f86eece)
 
 ### Respostas (Responses)
-[Resultado]
+200 OK: Token de autorização validado. Retorna o paciente pertencente ao token.
 
 ---
 
