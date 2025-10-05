@@ -201,20 +201,18 @@ no body
 
 ---
 
-### **Endpoint 4: Atualizar Paciente**
+### **Endpoint 5: Listar Consultas do Paciente**
 
-* **Endpoint:** `PUT /medlink/paciente`
+* **Endpoint:** `PUT /medlink/paciente/consultas`
 * **Header:** `Authorization: Bearer <token>`
-* **Descrição:** Atualizar os pacientes registrados.
+* **Descrição:** Listar as consultas do paciente.
 
 #### Corpo da Requisição (Request Body)
 
 ```json
-{
-  "nome": "Paciente Novo Nome",
-  "endereco": "Novo Endereço do Paciente",
-  "telefone": "123456 (novo número)"
-}
+
+no body
+
 ```
 
 [Imagem]
@@ -224,10 +222,70 @@ no body
 
 ---
 
+### **Endpoint 6: Listar Médicos Disponíveis**
 
+* **Endpoint:** `GET /medlink/paciente/medicos`
+* **Header:** `Authorization: Bearer <token>`
+* **Descrição:** Listar médicos disponíveis para o paciente.
 
+#### Corpo da Requisição (Request Body)
 
+```json
 
+no body
+
+```
+
+[Imagem]
+
+### Respostas (Responses)
+[Resultado]
+
+---
+
+### **Endpoint 7: Deletar Consulta**
+
+* **Endpoint:** `DELETE /medlink/paciente/consulta/<id-da-consulta>`
+* **Header:** `Authorization: Bearer <token>`
+* **Descrição:** Cancelar Consulta.
+
+#### Corpo da Requisição (Request Body)
+
+```json
+
+no body
+
+```
+
+[Imagem]
+
+### Respostas (Responses)
+[Resultado]
+
+---
+
+## Módulo 3: Médicos
+
+### **Endpoint 8: Consultas do Médico Logado**
+
+* **Endpoint:** `GET /medlink/medico/consultas`
+* **Header:** `Authorization: Bearer <token>`
+* **Descrição:** Listar consultas registradas para o médico.
+
+#### Corpo da Requisição (Request Body)
+
+```json
+
+no body
+
+```
+
+[Imagem]
+
+### Respostas (Responses)
+[Resultado]
+
+---
 
 
 
