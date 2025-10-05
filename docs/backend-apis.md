@@ -114,17 +114,48 @@ Esta documentação descreve os endpoints para interagir com a API de gestão da
 
 * **Endpoint:** `POST /medlink/login`
 * **Descrição:** Registro de login de qualquer tipo de usuário.
-* **Requisitos de Autorização:** `Usuário`, `Paciente`, `Administrador`.
 
 #### Corpo da Requisição (Request Body)
 
-json
+```json
 {
   "email": "paciente1@email.com",
   "password": "123456789"
 }
+```
 
-![login](https://github.com/user-attachments/assets/0133f123-c42b-4526-9165-9ea240ca63a2)
+![login](https://github.com/user-attachments/assets/15aa387d-16c9-4328-a62f-c46aae9c4d3b)
+
+### Respostas (Responses)
+200 OK: Token de autorização. Retorna o token de autenticação para ser utilizado no banco de dados.
+
+---
+
+## Módulo 2: Pacientes
+
+### **Endpoint 2: Registrar Paciente**
+
+* **Endpoint:** `POST /medlink/paciente/register`
+* **Descrição:** Registro de novos pacientes.
+
+#### Corpo da Requisição (Request Body)
+
+```json
+{
+  "email": "paciente1@email.com",
+  "password": "123456789",
+  "nome": "Paciente 1",
+  "endereco": "Rua Paulista, 100",
+  "telefone": "998877665544"
+}
+```
+
+![registro-paciente](https://github.com/user-attachments/assets/dce812cb-76dd-4aa4-9450-64df9450bf4d)
+
+### Respostas (Responses)
+201 : Paciente registrado com sucesso.
+
+---
 
 
 
