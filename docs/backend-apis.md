@@ -231,51 +231,9 @@ Retorno com os dados das consultas criadas pelo paciente
 
 ---
 
-### **Endpoint 6: Listar Médicos Disponíveis**
-
-* **Endpoint:** `GET /medlink/paciente/medicos`
-* **Header:** `Authorization: Bearer <token>`
-* **Descrição:** Listar médicos disponíveis para o paciente.
-
-#### Corpo da Requisição (Request Body)
-
-```json
-
-no body
-
-```
-
-[Imagem]
-
-### Respostas (Responses)
-[Resultado]
-
----
-
-### **Endpoint 7: Deletar Consulta**
-
-* **Endpoint:** `DELETE /medlink/paciente/consulta/<id-da-consulta>`
-* **Header:** `Authorization: Bearer <token>`
-* **Descrição:** Cancelar Consulta.
-
-#### Corpo da Requisição (Request Body)
-
-```json
-
-no body
-
-```
-
-[Imagem]
-
-### Respostas (Responses)
-[Resultado]
-
----
-
 ## Módulo 3: Médicos
 
-### **Endpoint 8: Consultas do Médico Logado**
+### **Endpoint 6: Consultas do Médico Logado**
 
 * **Endpoint:** `GET /medlink/medico/consultas`
 * **Header:** `Authorization: Bearer <token>`
@@ -293,16 +251,7 @@ no body
 
 
 ### Respostas (Responses)
-Retorno com os dados do médico em formato json
-
----
-
-
-
-- **Unitários:** serviços, controladores e repositórios.  
-- **Integração:** comunicação entre backend, banco de dados e APIs externas.   
-- **Segurança:** testes de autenticação/autorização, injeção de falhas.  
-- **Automatização:** Jest (frontend), JUnit (backend), Cypress (end-to-end).  
+Retorno com os dados do médico em formato json  
 
 ---
 
@@ -321,25 +270,65 @@ Retorno com os dados do médico em formato json
 
 ### Semana 1
 
-Atualizado em: 21/04/2024
+Atualizado em: 05/10/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
-| AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
-
+| Lucas Oliveira        | Reunião e definição de endpoints | 01/09/2025     | 08/09/2025 | ✔️    | 08/09/2025      |
+| André        | Reunião e definição de endpoints | 01/09/2025     | 08/09/2025 | ✔️    | 08/09/2025      |
+| Ramir        | Reunião e definição de endpoints | 01/09/2025     | 08/09/2025 | ✔️    | 08/09/2025      |
+| Beatriz        | Reunião e definição de endpoints | 01/09/2025     | 08/09/2025 | ✔️    | 08/09/2025      |
+| Ricardo        | Reunião e definição de endpoints | 01/09/2025     | 08/09/2025 | ✔️    | 08/09/2025      |
+| Felipe        | Reunião e definição de endpoints | 01/09/2025     | 08/09/2025 | ✔️    | 08/09/2025      |
 #### Semana 2
 
-Atualizado em: 21/04/2024
+Atualizado em: 05/10/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
+| Lucas Oliveira        | Reunião e acompanhamento | 08/09/2025     | 15/09/2025 | ✔️    | 15/09/2025      |
+| Felipe        | Reunião e acompanhamento | 08/09/2025     | 15/09/2025 | ✔️    | 15/09/2025      |
+| Ricardo        | Reunião e acompanhamento | 08/09/2025     | 15/09/2025 | ✔️    | 15/09/2025      |
+| André        | Reunião e acompanhamento | 08/09/2025     | 15/09/2025 | ✔️    | 15/09/2025      |
+| Ramir        | Criação do banco de dados | 08/09/2025     | 15/09/2025 | ✔️    | 15/09/2025      |
+| Beatriz        | Criação do sistema de autenticação | 08/09/2025     | 15/09/2025 | ✔️    | 15/09/2025      |
+#### Semana 3
+
+Atualizado em: 05/10/2025
+
+| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
+| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
+| Lucas Oliveira        | Modelagem do banco de dados | 15/09/2025     | 22/09/2025 | ✔️    | 22/09/2025      |
+| Felipe        | Modelagem do banco de dados | 15/09/2025     | 22/09/2025 | ✔️    | 22/09/2025      |
+| Ricardo        | Modelagem do banco de dados | 15/09/2025     | 22/09/2025 | ✔️    | 22/09/2025      |
+| André        | Modelagem do banco de dados | 15/09/2025     | 22/09/2025 | ✔️    | 22/09/2025      |
+| Ramir        | Criação do sistema de login | 15/09/2025     | 22/09/2025 | ✔️    | 22/09/2025      |
+| Beatriz        | Criação do sistema de login | 15/09/2025     | 22/09/2025 | ✔️    | 22/09/2025      |
+#### Semana 4
+
+Atualizado em: 05/10/2025
+
+| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
+| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
+| Lucas Oliveira        | Reunião e acompanhamento | 22/09/2025     | 29/09/2025 | ✔️    | 29/09/2025      |
+| Felipe        | Reunião e acompanhamento | 22/09/2025     | 29/09/2025 | ✔️    | 29/09/2025      |
+| Ricardo        | Reunião e acompanhamento | 22/09/2025     | 29/09/2025 | ✔️    | 29/09/2025      |
+| André        | Reunião e acompanhamento | 22/09/2025     | 29/09/2025 | ✔️    | 29/09/2025      |
+| Ramir        | Criação do CRUD | 22/09/2025     | 29/09/2025 | ✔️    | 29/09/2025      |
+| Beatriz        | Criação do CRUD | 22/09/2025     | 29/09/2025 | ✔️    | 29/09/2025      |
+#### Semana 5
+
+Atualizado em: 05/10/2025
+
+| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
+| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
+| Lucas Oliveira        | Criação dos Testes | 29/09/2025     | 05/10/2025 | ✔️    | 05/10/2025      |
+| Felipe        | Criação dos Testes | 29/09/2025     | 05/10/2025 | ✔️    | 05/10/2025      |
+| Ricardo        | Criação dos Testes | 29/09/2025     | 05/10/2025 | ✔️    | 05/10/2025      |
+| André        | Criação dos Testes | 29/09/2025     | 05/10/2025 | ✔️    | 05/10/2025      |
+| Ramir        | Ajustes finais | 29/09/2025     | 05/10/2025 | ✔️    | 05/10/2025      |
+| Beatriz        | Ajustes Finais | 29/09/2025     | 05/10/2025 | ✔️    | 05/10/2025      |
+| Lucas Peres        | Criação da Apresentação | 29/09/2025     | 05/10/2025 | ✔️    | 05/10/2025      |
 
 Legenda:
 - ✔️: terminado
