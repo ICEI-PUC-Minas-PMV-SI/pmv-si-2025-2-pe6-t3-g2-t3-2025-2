@@ -25,7 +25,7 @@ public class MedicoController {
     private ConsultaService consultaService;
 
     @PostMapping("/register")
-    @PreAuthorize("hasRole('MEDICO')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> register(@RequestBody @Valid MedicoRequest medicoRequest) {
         if (userService.findByEmail(medicoRequest.email()).isPresent())
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
