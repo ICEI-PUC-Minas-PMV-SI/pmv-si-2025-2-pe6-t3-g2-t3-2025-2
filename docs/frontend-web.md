@@ -10,6 +10,15 @@
 
 [Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
 
+### Home - Desktop
+![Home - Desktop](https://github.com/user-attachments/assets/19eaf80c-16a4-4fa1-81f8-8ae2fdc56c44)
+
+### Home - Tablet
+![Home Tablet](https://github.com/user-attachments/assets/45bd863a-f7a6-477b-9215-5caba4f5dc9d)
+
+### Home - Mobile
+![Home - Mobile](https://github.com/user-attachments/assets/14d84747-e83d-4339-988f-476288409cba)
+
 ### Design Visual
 
 [Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
