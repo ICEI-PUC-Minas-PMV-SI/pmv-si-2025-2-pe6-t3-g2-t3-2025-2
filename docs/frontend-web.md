@@ -10,6 +10,8 @@
 
 [Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
 
+## Home
+
 ### Home - Desktop
 ![Home - Desktop](https://github.com/user-attachments/assets/19eaf80c-16a4-4fa1-81f8-8ae2fdc56c44)
 
@@ -18,6 +20,28 @@
 
 ### Home - Mobile
 ![Home - Mobile](https://github.com/user-attachments/assets/14d84747-e83d-4339-988f-476288409cba)
+
+## Cadastro
+
+### Cadastro - Desktop
+![cadastro - desktop](https://github.com/user-attachments/assets/0e4df0c4-ce48-4325-a355-c54690e8008c)
+
+### Cadastro - Tablet
+![cadastro - tablet](https://github.com/user-attachments/assets/044d7396-e2d6-45a2-804e-c7898d5a1d78)
+
+### Cadastro - Mobile
+![cadastro - mobile](https://github.com/user-attachments/assets/6f924285-7e6e-444e-8b52-807889e15f79)
+
+## Login
+
+### Login - Desktop
+![login - desktop](https://github.com/user-attachments/assets/c52d2364-df46-483a-a532-e0b070084563)
+
+### Login - Tablet
+![login - tablet](https://github.com/user-attachments/assets/037bf97e-2be9-4d03-871d-702a3aedc393)
+
+### Login - Mobile
+![login - mobile](https://github.com/user-attachments/assets/c1d04d3c-183f-4b36-a13d-b0bec228a291)
 
 ### Design Visual
 
