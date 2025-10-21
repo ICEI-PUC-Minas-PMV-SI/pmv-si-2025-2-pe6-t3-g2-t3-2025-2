@@ -1,4 +1,27 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 36px;
+}
+
 .logo {
     display: flex;
-    align-items: center
+    align-items: center;
+    gap: 8px;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.link {
+    font-weight: 500;
+    transition: all .1s;
+}
+
+.link:hover {
+    color: var(--green)
 }

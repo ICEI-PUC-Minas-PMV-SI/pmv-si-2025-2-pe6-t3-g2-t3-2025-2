@@ -14,4 +14,14 @@
 
 body {
     background-color: #f2f2f2;
+    color: var(--black);
+    max-width: 1440px;
+    padding-inline: 100px;
+    margin-inline: auto;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: initial;
 }
