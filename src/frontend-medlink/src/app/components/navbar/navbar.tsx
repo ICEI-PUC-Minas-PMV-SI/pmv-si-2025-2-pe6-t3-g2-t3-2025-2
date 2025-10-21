@@ -1,7 +1,5 @@
+import { Logo } from "../logo/logo";
 import "./styles.css"
-import logo from "../../assets/logo.svg"
-import logo_name from "../../assets/logo_nome.svg"
-import Image from "next/image";
 import Link from "next/link";
 
 interface NavbarLink {
@@ -15,14 +13,13 @@ export function Navbar() {
         {label: "Sobre", href: "#sobre"},
         {label: "Especialidades", href: "#especialidades"},
         {label: "Profissionais", href: "#profissionais"},
-        {label: "Entrar", href: "#entrar"},
+        {label: "Entrar", href: "/register"},
     ]
 
     return (
         <nav>
             <Link href="/" className="logo">
-                <Image src={logo} alt="logo Medlink" width={36}></Image>
-                <Image src={logo_name} alt="logo Medlink" width={120}></Image>
+               <Logo/>
             </Link>
             <div className="links">
                 {links.map((link) => (
