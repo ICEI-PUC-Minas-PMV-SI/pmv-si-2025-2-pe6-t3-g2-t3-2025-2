@@ -1,0 +1,23 @@
+input {
+    border: none;
+    background-color: var(--gray-light);
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+    margin-top: 4px;
+}
+
+input::placeholder {
+    color: initial;
+}
+
+input:focus-within {
+    border: 2px solid var(--green);
+}
+
+label {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 600;
+}
