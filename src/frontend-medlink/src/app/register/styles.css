@@ -1,0 +1,47 @@
+.container {
+    max-width: 1240px;
+    width: 100%;
+    padding-block: 36px;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+    margin-top: 24px;
+}
+
+.aside {
+    width: 610px;
+    height: 864px;
+    overflow: hidden;
+    position: relative;
+}
+
+.img {
+    max-width: 100%;
+    opacity: 30%;
+}
+
+
+.info > h1 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
+
+.info > div {
+    position: absolute;
+    bottom: 5%;
+    letf: 5%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form {
+    width: 610px;
+    height: 864px;
+    overflow: hidden;
+}

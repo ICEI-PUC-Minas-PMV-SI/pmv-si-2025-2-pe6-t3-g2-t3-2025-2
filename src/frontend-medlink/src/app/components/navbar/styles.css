@@ -5,12 +5,6 @@ nav {
     padding-block: 36px;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
 .links {
     display: flex;
     align-items: center;
