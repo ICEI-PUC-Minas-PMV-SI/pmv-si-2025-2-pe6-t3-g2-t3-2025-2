@@ -1,22 +1,26 @@
 .container {
     max-width: 1240px;
     width: 100%;
+    height: 100%;
     padding-block: 36px;
 }
 
 .app {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 64px;
     margin-top: 24px;
+    overflow: hidden;
+
 }
 
 .aside {
+    position: relative;
+}
+
+.aside, .form {
     width: 610px;
     height: 864px;
     overflow: hidden;
-    position: relative;
 }
 
 .img {
@@ -34,14 +38,67 @@
 .info > div {
     position: absolute;
     bottom: 5%;
-    letf: 5%;
+    left: 5%;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
 .form {
-    width: 610px;
-    height: 864px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+}
+
+fieldset {
+    border: none;
+}
+
+fieldset > legend {
+    margin-bottom: 24px;
+}
+
+legend {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+fieldset > input {
+    margin-bottom: 24px;
+}
+
+.checkbox {
+    display: flex;
+    width: 100%;
+    align-items: start;
+    gap: 4px;
+}
+
+.checkbox > input {
+    width: auto;
+    border: red;
+}
+
+.register {
+    width: 60%;
+}
+
+.register > button {
+    border: none;
+    background-color: var(--green);
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+    transition: all .1s
+}
+
+.register > button:hover {
+    opacity: 90%;
 }
