@@ -14,4 +14,13 @@ export const newTaskFormSchema = z.object({
     address: z.string().optional()
 })
 
+export const newTaskFormSchemaLogin= z.object({
+    email: z
+        .string()
+        .regex(/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/, { message: "E-mail inválido" })
+        .min(5, {message: "Campo obrigatório"}),
+    password: z.string().min(8, {message: "Senha deve ter no mínimo 8 caracteres"}),
+})
+
 export type NewTaskFormData = z.infer<typeof newTaskFormSchema>
+export type NewTaskFormDataLogin = z.infer<typeof newTaskFormSchemaLogin>

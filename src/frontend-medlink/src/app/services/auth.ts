@@ -22,7 +22,14 @@ export const useRegister = () => {
 
     return useMutation({
         mutationFn: async (data: RegisterData) => {
-            const response = await api.post("/medlink/register", data)
+            const payload = {
+                nome: data.name,
+                email: data.email,
+                telefone: data.phone,
+                password: data.password,
+                endereco: data.address ?? ''
+            }
+            const response = await api.post("/medlink/paciente/register", payload)
             return response.data
         },
         onSuccess: (data) => {

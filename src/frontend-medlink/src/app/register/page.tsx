@@ -10,14 +10,21 @@ import { Input } from "../components/input/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { NewTaskFormData, newTaskFormSchema } from "../validators/tasks-validators";
+import { useRegister } from "../services/auth";
 
 export default function Register() {
     const form = useForm<NewTaskFormData>({
         resolver: zodResolver(newTaskFormSchema)
     })
 
+    const { mutate: register, isPending, isError, error } = useRegister()
+
     function onSubmit(data: NewTaskFormData) {
-        console.log(data)
+        register(data, {
+            onSuccess: () => {
+                form.reset()
+            }
+        })
     }
 
     return (
@@ -39,9 +46,19 @@ export default function Register() {
 
                     <fieldset>
                         <legend>Criar uma conta</legend>
+                        {isError && (
+                            <div className="erro-banner">
+                                <p>Erro ao criar conta: {error?.message || "Tente novamente"}</p>
+                            </div>
+                        )}
                         <div className="err-form">
                             <label htmlFor="nome">Nome</label>
-                            <Input type="text" placeholder="Digite seu nome completo" { ...form.register("name") }/>
+                            <Input 
+                                type="text" 
+                                placeholder="Digite seu nome completo" 
+                                disabled={isPending}
+                                { ...form.register("name") }
+                            />
                             {form.formState.errors.name && (
                                 <p className="err-message">
                                     {form.formState.errors.name.message}
@@ -51,7 +68,12 @@ export default function Register() {
 
                         <div className="err-form">
                             <label htmlFor="email">Email</label>
-                            <Input type="" placeholder="email@email.com" { ...form.register("email") }/>
+                            <Input 
+                                type="" 
+                                placeholder="email@email.com"
+                                disabled={isPending} 
+                                { ...form.register("email") }
+                            />
                             {form.formState.errors.email && (
                                 <p className="err-message">
                                     {form.formState.errors.email.message}
@@ -60,7 +82,12 @@ export default function Register() {
                         </div>
                         <div className="err-form">
                             <label htmlFor="phone">Telefone</label>
-                            <Input type="tel" placeholder="(99) 9 9999-9999" { ...form.register("phone") }/>
+                            <Input 
+                                type="tel" 
+                                placeholder="(99) 9 9999-9999" 
+                                disabled={isPending}
+                                { ...form.register("phone") }
+                            />
                             {form.formState.errors.phone && (
                                 <p className="err-message">
                                     {form.formState.errors.phone.message}
@@ -69,7 +96,12 @@ export default function Register() {
                         </div>
                         <div className="err-form">
                             <label htmlFor="password">Senha</label>
-                            <Input type="password" placeholder="Crie uma senha" { ...form.register("password") }/>
+                            <Input 
+                                type="password" 
+                                placeholder="Crie uma senha"
+                                disabled={isPending} 
+                                { ...form.register("password") }
+                            />
                             {form.formState.errors.password && (
                                 <p className="err-message">
                                     {form.formState.errors.password.message}
@@ -80,12 +112,14 @@ export default function Register() {
                     </fieldset>
 
                     <div className="checkbox">
-                        <Input type="checkbox" />
+                        <Input type="checkbox" disabled={isPending} />
                         <label htmlFor="terms">Confirmo que li e concordo com o Contrato do Cliente, os Termos ce Condições e as políticas legais da Medlink.</label>
                     </div>
 
                     <div className="register">
-                        <button type="submit">Cadastrar</button>
+                        <button type="submit" disabled={isPending}>
+                            {isPending ? "Cadastrando..." : "Cadastrar"}
+                        </button>
                         <span>
                             Já possui cadastro? <Link href="/login" className="register-link">Entrar</Link>
                         </span>
