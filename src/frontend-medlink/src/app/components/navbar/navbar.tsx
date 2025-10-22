@@ -13,7 +13,7 @@ export function Navbar() {
         {label: "Sobre", href: "#sobre"},
         {label: "Especialidades", href: "#especialidades"},
         {label: "Profissionais", href: "#profissionais"},
-        {label: "Entrar", href: "/register"},
+        {label: "Entrar", href: "/login"},
     ]
 
     return (

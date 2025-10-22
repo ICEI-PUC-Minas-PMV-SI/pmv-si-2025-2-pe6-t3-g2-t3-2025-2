@@ -6,7 +6,7 @@ import { Logo } from "../components/logo/logo";
 import Link from "next/link";
 import { Input } from "../components/input/input";
 
-export default function Register() {
+export default function Login() {
     return (
         <main className="container">
             <Link href="/">
@@ -17,7 +17,7 @@ export default function Register() {
                     <Image src={register_img} alt="Imagem de uma médica" className="img"/>
                     <div className="info">
                         <h1>
-                            Crie sua conta e gerencie seus agendamentos com praticidade e segurança
+                            Bem-vindo(a)! Conte com uma clínica que cuida da sua saúde com praticidade e atenção
                         </h1>
                         <Logo/>
                     </div>
@@ -25,28 +25,18 @@ export default function Register() {
                 <form className="form">
 
                     <fieldset>
-                        <legend>Criar uma conta</legend>
-                        <label htmlFor="nome">Nome</label>
-                        <Input name="name" type="text" required placeholder="Digite seu nome completo" min={5}/>
+                        <legend>Login</legend>
 
                         <label htmlFor="email">Email</label>
-                        <Input name="email" type="" required placeholder="email@email.com" min={5}/>
-
-                        <label htmlFor="phone">Telefone</label>
-                        <Input name="phone" type="tel" required placeholder="(99) 9 9999-9999" min={5}/>  
+                        <Input name="email" type="" required placeholder="email@email.com" min={5}/> 
                         <label htmlFor="password">Senha</label>
                         <Input name="password" type="password" required placeholder="Crie uma senha" min={5}/>  
                     </fieldset>
 
-                    <div className="checkbox">
-                        <Input type="checkbox" />
-                        <label htmlFor="terms">Confirmo que li e concordo com o Contrato do Cliente, os Termos ce Condições e as políticas legais da Medlink.</label>
-                    </div>
-
-                    <div className="register">
-                        <button type="submit">Cadastrar</button>
+                    <div className="login">
+                        <button type="submit">Entrar</button>
                         <span>
-                            Já possui cadastro? <Link href="/login" className="register-link">Entrar</Link>
+                            Não possui cadastro? <Link href="/register" className="login-link">Cadastre-se</Link>
                         </span>
                     </div>
                     
