@@ -70,23 +70,11 @@ fieldset > input {
     margin-bottom: 24px;
 }
 
-.checkbox {
-    display: flex;
-    width: 100%;
-    align-items: start;
-    gap: 4px;
-}
-
-.checkbox > input {
-    width: auto;
-    border: red;
-}
-
-.register {
+.login {
     width: 60%;
 }
 
-.register > button {
+.login > button {
     border: none;
     background-color: var(--green);
     width: 100%;
@@ -99,14 +87,14 @@ fieldset > input {
     transition: all .1s
 }
 
-.register > button:hover {
+.login > button:hover {
     opacity: 90%;
 }
 
-.register > span {
+.login > span {
     font-size: 14px;
 }
 
-.register-link:hover {
+.login-link:hover {
     color: var(--green);
 }
