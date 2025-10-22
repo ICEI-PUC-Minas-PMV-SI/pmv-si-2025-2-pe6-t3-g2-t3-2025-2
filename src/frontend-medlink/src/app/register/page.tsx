@@ -1,12 +1,25 @@
-import { ArrowHome } from "../components/arrow-home/arrow-home";
+"use client"
+
+import { ArrowHome } from "../components/arrow-home/arrow-home"
 import "./styles.css"
 import register_img from "../assets/register_img.png"
 import Image from "next/image";
 import { Logo } from "../components/logo/logo";
 import Link from "next/link";
 import { Input } from "../components/input/input";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { NewTaskFormData, newTaskFormSchema } from "../validators/tasks-validators";
 
 export default function Register() {
+    const form = useForm<NewTaskFormData>({
+        resolver: zodResolver(newTaskFormSchema)
+    })
+
+    function onSubmit(data: NewTaskFormData) {
+        console.log(data)
+    }
+
     return (
         <main className="container">
             <Link href="/">
@@ -22,20 +35,48 @@ export default function Register() {
                         <Logo/>
                     </div>
                 </aside>
-                <form className="form">
+                <form className="form" onSubmit={form.handleSubmit(onSubmit)}>
 
                     <fieldset>
                         <legend>Criar uma conta</legend>
-                        <label htmlFor="nome">Nome</label>
-                        <Input name="name" type="text" required placeholder="Digite seu nome completo" min={5}/>
+                        <div className="err-form">
+                            <label htmlFor="nome">Nome</label>
+                            <Input type="text" placeholder="Digite seu nome completo" { ...form.register("name") }/>
+                            {form.formState.errors.name && (
+                                <p className="err-message">
+                                    {form.formState.errors.name.message}
+                                </p>
+                            )}
+                        </div>
 
-                        <label htmlFor="email">Email</label>
-                        <Input name="email" type="" required placeholder="email@email.com" min={5}/>
+                        <div className="err-form">
+                            <label htmlFor="email">Email</label>
+                            <Input type="" placeholder="email@email.com" { ...form.register("email") }/>
+                            {form.formState.errors.email && (
+                                <p className="err-message">
+                                    {form.formState.errors.email.message}
+                                </p>
+                            )}
+                        </div>
+                        <div className="err-form">
+                            <label htmlFor="phone">Telefone</label>
+                            <Input type="tel" placeholder="(99) 9 9999-9999" { ...form.register("phone") }/>
+                            {form.formState.errors.phone && (
+                                <p className="err-message">
+                                    {form.formState.errors.phone.message}
+                                </p>
+                            )}
+                        </div>
+                        <div className="err-form">
+                            <label htmlFor="password">Senha</label>
+                            <Input type="password" placeholder="Crie uma senha" { ...form.register("password") }/>
+                            {form.formState.errors.password && (
+                                <p className="err-message">
+                                    {form.formState.errors.password.message}
+                                </p>
+                            )}
+                        </div>
 
-                        <label htmlFor="phone">Telefone</label>
-                        <Input name="phone" type="tel" required placeholder="(99) 9 9999-9999" min={5}/>  
-                        <label htmlFor="password">Senha</label>
-                        <Input name="password" type="password" required placeholder="Crie uma senha" min={5}/>  
                     </fieldset>
 
                     <div className="checkbox">

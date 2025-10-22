@@ -2,15 +2,15 @@ import { ComponentProps } from "react";
 import "./styles.css";
 
 interface InputProps extends ComponentProps<'input'> {
-    label?: string
     error?: string
 }
 
-export function Input({ label, id, ...props }: InputProps) {
+export function Input({ id, className, error, ...props }: InputProps) {
     return (
-        <>
-            <label htmlFor={id}>{label}</label>
-            <input {...props}/>
-        </>
+        <input 
+            {...props}
+            aria-invalid={!!error}
+            className={`${className ?? ""} ${error ? "input-error" : ""}`}
+        />
     )
 }

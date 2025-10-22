@@ -12,12 +12,17 @@ input::placeholder {
     color: initial;
 }
 
-input:focus-within {
-    border: 2px solid var(--green);
+input:focus {
+    border: 2px solid var(--gray);
 }
 
 label {
     font-size: 14px;
     color: var(--gray);
     font-weight: 600;
+}
+
+input.input-error,
+input.input-error:focus {
+    border: 2px solid var(--danger) !important;
 }
