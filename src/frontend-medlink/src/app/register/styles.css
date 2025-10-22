@@ -116,3 +116,12 @@ fieldset > .err-form {
     color: var(--danger);
     font-size: 14px;
 }
+
+.error-banner {
+    background-color: var(--gray-light);
+    border: 1px solid var(--gray);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    color: var(--danger);
+}
