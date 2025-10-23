@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Providers } from "./services/providers";
+import { AuthProvider } from "./contexts/auth-context";
 
 export const metadata: Metadata = {
   title: "Medlink",
@@ -21,7 +22,9 @@ export default function RootLayout({
     <html lang="pt-BR" className={`${inter.className} antialiased`}>
       <body>
         <Providers>
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </Providers>
       </body>
     </html>
