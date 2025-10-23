@@ -1,3 +1,6 @@
+"use client"
+
+import { useAuth } from "@/app/contexts/auth-context";
 import { Logo } from "../logo/logo";
 import "./styles.css"
 import Link from "next/link";
@@ -9,11 +12,12 @@ interface NavbarLink {
 
 export function Navbar() {
 
+    const { isAuthenticated, logout } = useAuth()
+
     const links: NavbarLink[] = [
         {label: "Sobre", href: "#sobre"},
         {label: "Especialidades", href: "#especialidades"},
         {label: "Profissionais", href: "#profissionais"},
-        {label: "Entrar", href: "/login"},
     ]
 
     return (
@@ -27,6 +31,15 @@ export function Navbar() {
                         {link.label}
                     </Link>
                 ))}
+                {isAuthenticated ? (
+                    <button onClick={logout} className="link" type="button">
+                        Sair
+                    </button>
+                ) : (
+                    <Link href="/login" className="link">
+                        Entrar
+                    </Link>
+                )}
             </div>
         </nav>
     )

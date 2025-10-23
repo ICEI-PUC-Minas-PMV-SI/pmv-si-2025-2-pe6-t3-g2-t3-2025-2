@@ -34,7 +34,7 @@ export const useRegister = () => {
         },
         onSuccess: (data) => {
             localStorage.setItem("token", data.token)
-            console.log(data)
+            router.push("/login")
         }
     })
 }

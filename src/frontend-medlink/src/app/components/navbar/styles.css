@@ -25,3 +25,12 @@ nav {
 .link:hover {
     color: var(--green)
 }
+
+button {
+    border: none;
+    background: none;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
