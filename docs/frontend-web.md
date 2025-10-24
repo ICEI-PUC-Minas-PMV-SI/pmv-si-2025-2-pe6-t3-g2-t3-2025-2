@@ -1,6 +1,16 @@
 # Front-end Web
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+Esta é a interface principal do sistema de gerenciamento da clínica, responsável por fornecer a experiência do usuário para pacientes, profissionais de saúde e administradores. A aplicação web consome a API REST desenvolvida no back-end para apresentar e gerenciar os dados de forma intuitiva, ágil e responsiva.
+
+O objetivo deste front-end é traduzir as regras de negócio complexas do sistema em fluxos de navegação simples, permitindo que cada perfil de usuário realize suas tarefas de forma eficiente.
+
+#### Objetivos específicos do Front-end:
+
+Para Pacientes: Criar um portal público onde possam pesquisar especialidades e profissionais, visualizar agendas em tempo real, realizar agendamentos, remarcações, cancelamentos e acessar seu histórico de consultas.
+
+Para Profissionais de Saúde: Desenvolver um painel de controle (dashboard) logado que permita ao profissional gerenciar sua própria agenda, definir bloqueios/férias e acessar os prontuários eletrônicos de seus pacientes.
+
+Para Administradores: Implementar uma área administrativa robusta para o gerenciamento completo de profissionais, pacientes, especialidades e convênios, além da supervisão geral dos agendamentos.
 
 ## Projeto da Interface Web
 
@@ -52,7 +62,15 @@
 [Diagrama ou descrição do fluxo de dados na aplicação.]
 
 ## Tecnologias Utilizadas
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+
+| Categoria | Tecnologia(s) |
+| :--- | :--- |
+| Linguagens Base | HTML5, CSS3, JavaScript (ES6+) |
+| Linguagem de Tipagem | TypeScript |
+| Framework/Biblioteca UI | React.js |
+| Gerenciador de Estado | Redux Toolkit |
+| Framework de Estilização | Material-UI ou Tailwind CSS |
+| Cliente HTTP | Axios |
 
 ## Considerações de Segurança
 
