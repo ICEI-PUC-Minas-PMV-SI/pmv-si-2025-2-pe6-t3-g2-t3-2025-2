@@ -86,6 +86,31 @@ Para Administradores: Implementar uma área administrativa robusta para o gerenc
 4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
 5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
 
+## 🚀 Implantação (Deploy)
+
+A aplicação **front-end web** será implantada na **Amazon Web Services (AWS)**, garantindo escalabilidade, segurança e alta disponibilidade.
+
+### Arquitetura de Deploy (Front-End Web)
+
+A estratégia de implantação mais provável para um projeto React/web estático na AWS envolve:
+
+1.  **Amazon S3 (Simple Storage Service):**
+    * O *build* de produção do projeto (os arquivos estáticos `HTML`, `CSS` e `JavaScript` gerados) será armazenado em um bucket S3.
+    * Este bucket será configurado para atuar como um servidor de *static website hosting*.
+
+2.  **Amazon CloudFront:**
+    * Uma distribuição do CloudFront (um serviço de CDN - Content Delivery Network) será configurada na frente do bucket S3.
+    * **Benefícios:** Isso garante que a aplicação seja carregada rapidamente para usuários em qualquer lugar do mundo, além de fornecer uma camada de segurança (DDoS) e permitir a fácil configuração de um certificado **SSL/TLS (HTTPS)**.
+
+*Alternativa: Também está em consideração o uso do **AWS Amplify**, que automatiza todo esse processo (build, deploy e hospedagem) diretamente a partir do repositório Git.*
+
+### Status do Projeto
+
+Esta etapa de implantação refere-se exclusivamente à **aplicação Web**.
+
+O desenvolvimento da aplicação **Mobile** (com React Native) é uma fase futura do projeto. Quando concluído, o mobile terá seu próprio ciclo de vida e processo de implantação (publicação na Google Play Store e Apple App Store).
+
+
 ## Testes
 
 [Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
