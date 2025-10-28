@@ -1,34 +1,30 @@
+// middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-    const token = request.cookies.get("token")?.value
+  const token = request.cookies.get("token")?.value;
+  const { pathname } = request.nextUrl;
 
-    const isProtecteRoute = 
-        request.nextUrl.pathname.startsWith("/dashboard") ||
-        request.nextUrl.pathname.startsWith("/scheduling") || 
-        request.nextUrl.pathname.startsWith("/perfil") 
+  const isAdminLogin = pathname === "/admin/login";
+  const isAdminRoute = pathname.startsWith("/admin");
 
+  // Permite /admin/login sem token
+  if (isAdminLogin) {
+    if (token) return NextResponse.redirect(new URL("/admin", request.url));
+    return NextResponse.next();
+  }
 
-    if (isProtecteRoute && !token) {
-        const loginUrl = new URL("/login", request.url)
-        loginUrl.searchParams.set("redirect", request.nextUrl.pathname)
-        return NextResponse.redirect(loginUrl)
-    }
+  // Proteger /admin: exige token
+  if (isAdminRoute && !token) {
+    const url = new URL("/admin/login", request.url);
+    url.searchParams.set("redirect", pathname);
+    return NextResponse.redirect(url);
+  }
 
-    if (token && (request.nextUrl.pathname === "/login" || request.nextUrl.pathname === "/register")) {
-        return NextResponse.redirect(new URL("/scheduling", request.url))
-    }
-
-    return NextResponse.next()
+  return NextResponse.next();
 }
 
 export const config = {
-    matcher: [
-        "/dashboard/:path*",
-        "/scheduling/:path*",
-        "/perfil/:path*",
-        "/login",
-        "/register"
-    ]
-}
+  matcher: ["/admin/:path*", "/admin/login"],
+};
