@@ -15,7 +15,7 @@ export default function AdminHome() {
           <h1>Dashboard do Administrador</h1>
           <p>Gerencie médicos, pacientes e consultas.</p>
         </div>
-        <Link href="/admin/medicos">
+        <Link href="/admin/medicos/novo">
           <button type="button">Novo Médico</button>
         </Link>
       </header>
