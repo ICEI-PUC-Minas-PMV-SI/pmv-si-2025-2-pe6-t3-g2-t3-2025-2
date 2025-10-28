@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Medlink — Perfil de Paciente</title>
+
+  <!-- Importando o CSS -->
+  <link rel="stylesheet" href="admin.css" />
+
+  <!-- Variáveis e ajustes globais -->
+  <style>
+    :root {
+      --green: #16a34a;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --gray-light: #e5e7eb;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #fafafa;
+      color: #111827;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+  
+  <style>
+    .back-home-button {
+      background: transparent;
+      border: 1px solid var(--green);
+      color: var(--green);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 24px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-home-button:hover {
+      background: var(--green);
+      color: white;
+    }
+  </style>
+  
+  <!-- Importando o JavaScript -->
+  <script src="ScriptPaciente.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <button class="back-home-button" onclick="window.location.href='../Home Arquivos/home.html'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Voltar para página inicial
+    </button>
+    
+    <div class="content-header">
+      <div class="content-info">
+        <h1>Meu Perfil — Paciente</h1>
+        <p>Gerencie suas informações pessoais, histórico de consultas e preferências médicas.</p>
+      </div>
+      <button>Atualizar Perfil</button>
+    </div>
+
+    <!-- Cards de informações -->
+    <div class="content-cards">
+      <a href="#" class="card-link">
+        <div class="card-content">
+          <div class="card-title">Consultas Marcadas</div>
+          <div class="card-value">3</div>
+          <div class="card-subtitle">Próximas consultas</div>
+        </div>
+      </a>
+
+      <a href="#" class="card-link">
+        <div class="card-content">
+          <div class="card-title">Histórico de Consultas</div>
+          <div class="card-value">28</div>
+          <div class="card-subtitle">Consultas realizadas</div>
+        </div>
+      </a>
+
+      <a href="#" class="card-link">
+        <div class="card-content">
+          <div class="card-title">Médicos Favoritos</div>
+          <div class="card-value">5</div>
+          <div class="card-subtitle">Especialistas salvos</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Seção de informações pessoais -->
+    <div class="profile-section">
+      <h2>Informações Pessoais</h2>
+      <form class="profile-form">
+        <div>
+          <label for="nome">Nome Completo</label>
+          <input id="nome" type="text" value="Maria Silva Santos" />
+        </div>
+
+        <div>
+          <label for="cpf">CPF</label>
+          <input id="cpf" type="text" value="123.456.789-00" />
+        </div>
+
+        <div>
+          <label for="nascimento">Data de Nascimento</label>
+          <input id="nascimento" type="date" value="1990-05-15" />
+        </div>
+
+        <div>
+          <label for="genero">Gênero</label>
+          <select id="genero">
+            <option>Feminino</option>
+            <option>Masculino</option>
+            <option>Outro</option>
+            <option>Prefiro não informar</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="email">E-mail</label>
+          <input id="email" type="email" value="maria.silva@email.com" />
+        </div>
+
+        <div>
+          <label for="telefone">Telefone</label>
+          <input id="telefone" type="tel" value="(11) 98888-7777" />
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <label for="endereco">Endereço</label>
+          <textarea id="endereco" rows="2">Rua das Flores, 123 - Centro, São Paulo - SP, 01234-567</textarea>
+        </div>
+      </form>
+    </div>
+
+    <!-- Seção de informações médicas -->
+    <div class="profile-section">
+      <h2>Informações de Saúde</h2>
+      <form class="profile-form">
+        <div>
+          <label for="tipo-sanguineo">Tipo Sanguíneo</label>
+          <select id="tipo-sanguineo">
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+            <option>Não sei</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="plano">Plano de Saúde</label>
+          <select id="plano">
+            <option>Nenhum (particular)</option>
+            <option>SUS</option>
+            <option>Unimed</option>
+            <option>Amil</option>
+            <option>Bradesco Saúde</option>
+            <option>SulAmérica</option>
+            <option>Outro</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="convenio">Número do Convênio</label>
+          <input id="convenio" type="text" value="123456789" />
+        </div>
+
+        <div>
+          <label for="altura">Altura (cm)</label>
+          <input id="altura" type="number" value="165" />
+        </div>
+
+        <div>
+          <label for="peso">Peso (kg)</label>
+          <input id="peso" type="number" value="62" />
+        </div>
+
+        <div>
+          <label for="imc">IMC</label>
+          <input id="imc" type="text" value="22.8" disabled />
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <label for="medicamentos">Medicamentos em Uso</label>
+          <textarea id="medicamentos" rows="3" placeholder="Liste os medicamentos que você usa regularmente...">Nenhum</textarea>
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <label for="alergias">Alergias</label>
+          <textarea id="alergias" rows="2" placeholder="Informe suas alergias conhecidas...">Nenhuma alergia conhecida</textarea>
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <label for="doencas">Doenças Crônicas ou Condições Médicas</label>
+          <textarea id="doencas" rows="2" placeholder="Descreva condições médicas relevantes...">Nenhuma</textarea>
+        </div>
+      </form>
+    </div>
+
+    <!-- Seção de preferências -->
+    <div class="profile-section">
+      <h2>Preferências de Consultas</h2>
+      <form class="profile-form">
+        <div>
+          <label for="modalidade">Modalidade Preferida</label>
+          <select id="modalidade">
+            <option>Presencial</option>
+            <option>Online</option>
+            <option>Ambas</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="horario">Horário Preferido</label>
+          <select id="horario">
+            <option>Manhã (8h - 12h)</option>
+            <option>Tarde (13h - 17h)</option>
+            <option>Noite (18h - 20h)</option>
+            <option>Sem preferência</option>
+          </select>
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <label for="obs">Observações Adicionais</label>
+          <textarea id="obs" rows="3" placeholder="Informe qualquer preferência especial ou observação..."></textarea>
+        </div>
+      </form>
+    </div>
+
+    <!-- Seção de histórico recente -->
+    <div class="profile-section">
+      <h2>Próximas Consultas</h2>
+      <form class="profile-form">
+        <div style="grid-column: 1 / -1; border: 1px solid var(--gray-light); border-radius: 8px; padding: 16px; background: var(--white);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <strong>Dr. Felipe Almeida</strong>
+            <span style="color: var(--green); font-weight: 600;">15/02/2025 - 10:00</span>
+          </div>
+          <div style="color: var(--gray); font-size: 14px;">Especialidade: Clínico Geral</div>
+          <div style="color: var(--gray); font-size: 14px;">Modalidade: Online</div>
+        </div>
+
+        <div style="grid-column: 1 / -1; border: 1px solid var(--gray-light); border-radius: 8px; padding: 16px; background: var(--white);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <strong>Dr. Ana Paula Costa</strong>
+            <span style="color: var(--green); font-weight: 600;">18/02/2025 - 14:30</span>
+          </div>
+          <div style="color: var(--gray); font-size: 14px;">Especialidade: Cardiologia</div>
+          <div style="color: var(--gray); font-size: 14px;">Modalidade: Presencial</div>
+        </div>
+
+        <div style="grid-column: 1 / -1; border: 1px solid var(--gray-light); border-radius: 8px; padding: 16px; background: var(--white);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <strong>Dra. Juliana Ferreira</strong>
+            <span style="color: var(--green); font-weight: 600;">22/02/2025 - 09:00</span>
+          </div>
+          <div style="color: var(--gray); font-size: 14px;">Especialidade: Dermatologia</div>
+          <div style="color: var(--gray); font-size: 14px;">Modalidade: Online</div>
+        </div>
+      </form>
+    </div>
+
+    <footer>
+      Medlink © 2025 — Sistema de Agendamento de Consultas Médicas
+    </footer>
+  </div>
+</body>
+</html>
+
