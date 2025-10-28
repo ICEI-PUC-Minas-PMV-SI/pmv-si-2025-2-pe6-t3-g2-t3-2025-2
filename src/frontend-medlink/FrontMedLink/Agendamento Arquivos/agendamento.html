@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Medlink — Agendar Consulta</title>
+
+  <!-- Importando o CSS específico da página de agendamento -->
+  <link rel="stylesheet" href="agendamento.css" />
+
+  <!-- Importando o JavaScript -->
+  <script src="ScriptAgendamento.js"></script>
+
+  <!-- Variáveis e ajustes globais -->
+  <style>
+    :root {
+      --green: #16a34a;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --gray-light: #e5e7eb;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #fafafa;
+      color: #111827;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+  
+  <style>
+    .back-home-button {
+      background: transparent;
+      border: 1px solid var(--green);
+      color: var(--green);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 24px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-home-button:hover {
+      background: var(--green);
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <button class="back-home-button" onclick="window.location.href='../Home Arquivos/home.html'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Voltar para página inicial
+    </button>
+    
+    <div class="content-header">
+      <div class="content-info">
+        <h1>Agendar Nova Consulta</h1>
+        <p>Encontre o médico ideal e escolha um horário que se encaixe na sua agenda.</p>
+      </div>
+      <button onclick="window.history.back()">Cancelar</button>
+    </div>
+
+    <!-- Busca -->
+    <div class="profile-section">
+      <h2>Buscar Médico</h2>
+      <div class="search-box">
+        <input type="text" placeholder="Digite o nome do médico ou especialidade..." />
+        <button>Buscar</button>
+      </div>
+
+      <div class="profile-form">
+        <div>
+          <label for="especialidade">Filtrar por Especialidade</label>
+          <select id="especialidade">
+            <option>Todas</option>
+            <option>Clínico Geral</option>
+            <option>Cardiologia</option>
+            <option>Dermatologia</option>
+            <option>Ortopedia</option>
+            <option>Pediatria</option>
+            <option>Ginecologia</option>
+            <option>Psiquiatria</option>
+            <option>Neurologia</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="modalidade">Modalidade</label>
+          <select id="modalidade">
+            <option>Ambas</option>
+            <option>Presencial</option>
+            <option>Online</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Médicos disponíveis -->
+    <div class="profile-section">
+      <h2>Médicos Disponíveis</h2>
+      
+      <div class="doctor-card selected">
+        <div class="doctor-header">
+          <div class="doctor-info">
+            <h3>Dr. Felipe Almeida</h3>
+            <div class="doctor-specialty">Clínico Geral</div>
+            <div class="doctor-rating">
+              <span>★★★★★</span> 4.9 (124 avaliações)
+            </div>
+          </div>
+          <div style="color: var(--green); font-size: 32px; font-weight: bold;">✓</div>
+        </div>
+        <div class="doctor-details">
+          <span>CRM: 123456-SP</span>
+          <span>📍 Consultas Online</span>
+        </div>
+        <div style="margin-top: 12px;">
+          <span class="modalidade-badge online">Online</span>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-header">
+          <div class="doctor-info">
+            <h3>Dra. Ana Paula Costa</h3>
+            <div class="doctor-specialty">Cardiologia</div>
+            <div class="doctor-rating">
+              <span>★★★★★</span> 4.8 (89 avaliações)
+            </div>
+          </div>
+        </div>
+        <div class="doctor-details">
+          <span>CRM: 654321-SP</span>
+          <span>📍 Consultas Presenciais</span>
+        </div>
+        <div style="margin-top: 12px;">
+          <span class="modalidade-badge">Presencial</span>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-header">
+          <div class="doctor-info">
+            <h3>Dra. Juliana Ferreira</h3>
+            <div class="doctor-specialty">Dermatologia</div>
+            <div class="doctor-rating">
+              <span>★★★★★</span> 4.9 (156 avaliações)
+            </div>
+          </div>
+        </div>
+        <div class="doctor-details">
+          <span>CRM: 789012-SP</span>
+          <span>📍 Consultas Online</span>
+        </div>
+        <div style="margin-top: 12px;">
+          <span class="modalidade-badge online">Online</span>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-header">
+          <div class="doctor-info">
+            <h3>Dr. Roberto Silva</h3>
+            <div class="doctor-specialty">Ortopedia</div>
+            <div class="doctor-rating">
+              <span>★★★★☆</span> 4.7 (67 avaliações)
+            </div>
+          </div>
+        </div>
+        <div class="doctor-details">
+          <span>CRM: 345678-SP</span>
+          <span>📍 Consultas Presenciais</span>
+        </div>
+        <div style="margin-top: 12px;">
+          <span class="modalidade-badge">Presencial</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seleção de data e horário -->
+    <div class="profile-section">
+      <h2>Escolha a Data e Horário</h2>
+      <form class="profile-form">
+        <div>
+          <label for="data-consulta">Data da Consulta</label>
+          <input id="data-consulta" type="date" min="2025-01-01" />
+        </div>
+
+        <div>
+          <label for="modalidade-consulta">Tipo de Consulta</label>
+          <select id="modalidade-consulta">
+            <option>Online (Videoconferência)</option>
+            <option>Presencial</option>
+          </select>
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <label>Horários Disponíveis</label>
+          <div class="time-slots">
+            <div class="time-slot selected">08:00</div>
+            <div class="time-slot">08:30</div>
+            <div class="time-slot">09:00</div>
+            <div class="time-slot">09:30</div>
+            <div class="time-slot">10:00</div>
+            <div class="time-slot disabled">10:30</div>
+            <div class="time-slot disabled">11:00</div>
+            <div class="time-slot">11:30</div>
+            <div class="time-slot">14:00</div>
+            <div class="time-slot">14:30</div>
+            <div class="time-slot">15:00</div>
+            <div class="time-slot">15:30</div>
+            <div class="time-slot">16:00</div>
+            <div class="time-slot disabled">16:30</div>
+            <div class="time-slot">17:00</div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Motivo da consulta -->
+    <div class="profile-section">
+      <h2>Informações da Consulta</h2>
+      <form class="profile-form">
+        <div style="grid-column: 1 / -1;">
+          <label for="motivo">Motivo da Consulta</label>
+          <textarea id="motivo" rows="4" placeholder="Descreva brevemente o motivo da sua consulta..."></textarea>
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <label for="sintomas">Sintomas ou Problemas</label>
+          <textarea id="sintomas" rows="3" placeholder="Descreva os sintomas, se houver..."></textarea>
+        </div>
+      </form>
+    </div>
+
+    <!-- Resumo e confirmação -->
+    <div class="profile-section summary-section">
+      <h2>Resumo do Agendamento</h2>
+      <div class="summary-card">
+        <div style="display: grid; gap: 12px;">
+          <div class="summary-item">
+            <span class="summary-label">Médico:</span>
+            <strong class="summary-value">Dr. Felipe Almeida</strong>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Especialidade:</span>
+            <strong class="summary-value">Clínico Geral</strong>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Data:</span>
+            <strong class="summary-value">15 de Fevereiro de 2025</strong>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Horário:</span>
+            <strong class="summary-value">08:00</strong>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Modalidade:</span>
+            <strong class="summary-value" style="color: var(--green);">Online (Videoconferência)</strong>
+          </div>
+          <div class="summary-total">
+            <span>Valor:</span>
+            <span class="summary-price">R$ 150,00</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="confirm-button-wrapper">
+        <button id="botao-confirmar">Confirmar Agendamento</button>
+      </div>
+    </div>
+
+    <footer>
+      Medlink © 2025 — Sistema de Agendamento de Consultas Médicas
+    </footer>
+  </div>
+</body>
+</html>
+
