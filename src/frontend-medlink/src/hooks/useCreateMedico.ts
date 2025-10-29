@@ -1,8 +1,8 @@
 "use client";
 
-import { api } from "@/app/services/api";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { api } from "@/app/services/api";
 
 export type Especialidade = "OFTALMOLOGIA" | "CARDIOLOGIA" | "ORTOPEDIA" | "PEDIATRIA";
 

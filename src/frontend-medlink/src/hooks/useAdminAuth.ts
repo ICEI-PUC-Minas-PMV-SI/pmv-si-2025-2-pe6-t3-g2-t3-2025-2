@@ -1,9 +1,9 @@
 // src/app/admin/hooks/useAdminAuth.ts (ou src/hooks/useAdminAuth.ts)
 "use client";
 
-import { api } from "@/app/services/api";// ajuste o caminho conforme onde está seu api
 import { useMutation } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
+import { api } from "@/app/services/api";
 
 interface AdminLoginData {
   email: string;
