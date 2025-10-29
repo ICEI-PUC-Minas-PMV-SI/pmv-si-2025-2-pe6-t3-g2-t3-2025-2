@@ -1,20 +1,11 @@
-// src/app/paciente/consultas/page.tsx
 "use client";
 
 import Link from "next/link";
 import { Trash2, RefreshCw, Plus } from "lucide-react";
 import { useConsultasPaciente } from "@/features/paciente/useConsultasPaciente";
 import { useCancelarConsulta } from "@/features/paciente/useCancelarConsulta";
-
-function formatDateTime(iso: string) {
-  const d = new Date(iso);
-  return d.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
-}
-
-// Opcional: helper para saber se falta < 1h
-function menosDeUmaHora(iso: string) {
-  return new Date(iso).getTime() - Date.now() < 60 * 60 * 1000;
-}
+import { toast } from "@/app/components/ui/toast";
+import { formatDateTime, isLessThanHourFromNow } from "@/lib/datetime";
 
 export default function ConsultasPacientePage() {
   const { data: consultas, isLoading, isError, refetch, isFetching } = useConsultasPaciente();
@@ -24,7 +15,7 @@ export default function ConsultasPacientePage() {
     if (!confirm("Tem certeza que deseja cancelar esta consulta?")) return;
     cancelar(id, {
       onSuccess: (msg: any) => {
-        alert(typeof msg === "string" ? msg : "Consulta cancelada.");
+        toast.success(typeof msg === "string" ? msg : "Consulta cancelada.");
       },
       onError: (err: any) => {
         const status = err?.response?.status;
@@ -33,10 +24,10 @@ export default function ConsultasPacientePage() {
           err?.response?.data ||
           "Não foi possível cancelar a consulta.";
 
-        if (status === 404) alert("Consulta não encontrada.");
-        else if (status === 403) alert("Você não tem permissão para cancelar esta consulta.");
-        else if (status === 400) alert("Cancelamento indisponível a menos de 1 hora do início."); // NOVO
-        else alert(msg);
+        if (status === 404) toast.error("Consulta não encontrada.");
+        else if (status === 403) toast.warning("Você não tem permissão para cancelar esta consulta.");
+        else if (status === 400) toast.info("Cancelamento indisponível a menos de 1 hora do início.");
+        else toast.error(msg);
 
         console.log("[CancelarConsulta][ERR]", {
           status,
@@ -78,7 +69,7 @@ export default function ConsultasPacientePage() {
 
       <ul style={{ display: "grid", gap: 8, padding: 0, listStyle: "none" }}>
         {consultas?.map((c) => {
-          const bloquearCancelamento = menosDeUmaHora(c.dataHora); // OPCIONAL
+          const bloquearCancelamento = isLessThanHourFromNow(c.dataHora);
 
           return (
             <li
@@ -105,8 +96,12 @@ export default function ConsultasPacientePage() {
                 <button
                   type="button"
                   onClick={() => handleCancelar(c.id)}
-                  disabled={cancelando || bloquearCancelamento} // OPCIONAL
-                  title={bloquearCancelamento ? "Não é possível cancelar a menos de 1h do início" : "Cancelar consulta"}
+                  disabled={cancelando || bloquearCancelamento}
+                  title={
+                    bloquearCancelamento
+                      ? "Não é possível cancelar a menos de 1h do início"
+                      : "Cancelar consulta"
+                  }
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -133,12 +128,8 @@ export default function ConsultasPacientePage() {
           animation: spin 1s linear infinite;
         }
         @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>
