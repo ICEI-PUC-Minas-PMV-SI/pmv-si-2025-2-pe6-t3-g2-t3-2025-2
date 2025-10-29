@@ -1,7 +1,6 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/app/services/api";
 
 export type Especialidade = "OFTALMOLOGIA" | "CARDIOLOGIA" | "ORTOPEDIA" | "PEDIATRIA";
@@ -17,7 +16,7 @@ export interface MedicoRequest {
 }
 
 export function useCreateMedico() {
-  const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (payload: MedicoRequest) => {
@@ -26,21 +25,9 @@ export function useCreateMedico() {
       return data;
     },
     onSuccess: () => {
-      alert("Médico cadastrado com sucesso!");
-      router.push("/admin/medicos");
+      // Invalida a lista de médicos para forçar refetch automático
+      queryClient.invalidateQueries({ queryKey: ["admin-medicos"] });
     },
-    onError: (err: any) => {
-      const status = err?.response?.status;
-      if (status === 403) {
-        alert("Sem permissão para cadastrar médico.");
-      } else if (status === 409) {
-        alert("E-mail já cadastrado.");
-      } else if (status === 400) {
-        const msg = err?.response?.data?.message || "Dados inválidos.";
-        alert(msg);
-      } else {
-        alert("Ocorreu um erro ao cadastrar o médico.");
-      }
-    },
+    // onError e onSuccess específicos são tratados na página via callbacks
   });
 }
