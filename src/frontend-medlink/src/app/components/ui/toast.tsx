@@ -26,22 +26,16 @@ export const toast = {
     emitir({ id: counter++, message, type: "warning", duration });
   },
   clear() {
-    // limpa todos os toasts de todos os viewports
     listeners.forEach((set) => {
       set([]);
-      // não retornar nada aqui
     });
   },
 };
 
 function emitir(t: Toast) {
-  // notifica todos os listeners
   listeners.forEach((set) => {
     set((prev) => [...prev, t]);
-    // não retornar nada aqui
   });
-
-  // auto dismiss
   if (t.duration && t.duration > 0) {
     const id = t.id;
     window.setTimeout(() => fechar(id), t.duration);
@@ -51,7 +45,6 @@ function emitir(t: Toast) {
 function fechar(id: number) {
   listeners.forEach((set) => {
     set((prev) => prev.filter((x) => x.id !== id));
-    // não retornar nada aqui
   });
 }
 
@@ -71,21 +64,41 @@ export function ToastViewport() {
     <>
       <div style={viewportStyle} aria-live="polite">
         {items.map((t) => (
-          <button
+          <div
             key={t.id}
-            type="button"
-            onClick={() => fechar(t.id)}
-            aria-label="Dispensar notificação"
             style={{
-              ...toastButtonStyle,
+              ...toastContainerStyle,
               ...byTypeStyle[t.type ?? "info"],
             }}
           >
-            <div style={{ fontWeight: 600, marginBottom: 2 }}>
-              {titleByType[t.type ?? "info"]}
+            {/* Conteúdo do toast */}
+            <div style={{ paddingRight: 36 }}>
+              <div style={{ fontWeight: 600, marginBottom: 2 }}>
+                {titleByType[t.type ?? "info"]}
+              </div>
+              <div>{t.message}</div>
             </div>
-            <div>{t.message}</div>
-          </button>
+
+            {/* Botão X (semântico) */}
+            <button
+              type="button"
+              aria-label="Fechar notificação"
+              onClick={() => fechar(t.id)}
+              style={closeBtnStyle}
+            >
+              ×
+            </button>
+
+            {/* Botão “dismiss” cobrindo o card (sem aninhar botões) */}
+            <button
+              type="button"
+              onClick={() => fechar(t.id)}
+              aria-label="Dispensar notificação"
+              style={dismissOverlayBtnStyle}
+              // Não precisa de onKeyDown: button já é acessível
+              title="Clique para dispensar"
+            />
+          </div>
         ))}
       </div>
       <style jsx global>{globalAnim}</style>
@@ -103,23 +116,48 @@ const viewportStyle: React.CSSProperties = {
   width: "min(360px, 90vw)",
 };
 
-const toastButtonStyle: React.CSSProperties = {
-  appearance: "none",
-  WebkitAppearance: "none",
-  border: "1px solid #e5e7eb",
-  background: "#fff",
-  color: "#111",
-  textAlign: "left",
-  width: "100%",
+const toastContainerStyle: React.CSSProperties = {
+  position: "relative",
   padding: "10px 12px",
   borderRadius: 8,
+  background: "#fff",
+  color: "#111",
+  border: "1px solid #e5e7eb",
   boxShadow:
     "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)",
   animation: "slideIn 200ms ease-out",
-  cursor: "pointer",
-  outline: "none",
-  transition: "box-shadow 80ms ease, transform 80ms ease",
 } as const;
+
+const closeBtnStyle: React.CSSProperties = {
+  position: "absolute",
+  top: 6,
+  right: 6,
+  width: 28,
+  height: 28,
+  lineHeight: "28px",
+  textAlign: "center",
+  borderRadius: 6,
+  border: "1px solid transparent",
+  background: "transparent",
+  color: "#444",
+  cursor: "pointer",
+} as const;
+
+const dismissOverlayBtnStyle: React.CSSProperties = {
+  // botão transparente que cobre o card todo para permitir dismiss por clique/teclado
+  position: "absolute",
+  inset: 0,
+  background: "transparent",
+  border: "none",
+  cursor: "pointer",
+  // manter área do botão X fora do overlay (não interceptar cliques do X)
+  // deixa um "buraco" de clique sobre o X
+  // Truque: overlay cobre tudo, mas o X fica por cima com zIndex maior
+  zIndex: 1,
+} as const;
+
+// Garantir que o X fica acima do overlay
+(closeBtnStyle as any).zIndex = 2;
 
 const byTypeStyle: Record<string, React.CSSProperties> = {
   success: { borderColor: "#c7f9cc", background: "#f0fff4" },
@@ -139,11 +177,5 @@ const globalAnim = `
 @keyframes slideIn {
   from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
-}
-button[aria-label="Dispensar notificação"]:focus-visible {
-  box-shadow: 0 0 0 3px #bfdbfe;
-}
-button[aria-label="Dispensar notificação"]:active {
-  transform: translateY(1px);
 }
 `;

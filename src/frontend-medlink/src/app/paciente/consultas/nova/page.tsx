@@ -12,6 +12,8 @@ import {
 } from "@/features/paciente/queries";
 import { useAgendarConsultaPorSlot } from "@/features/paciente/useAgendarConsulta";
 import { useMemo, useState } from "react";
+import { toast } from "@/app/components/ui/toast";
+import { formatTime } from "@/lib/datetime";
 
 const schema = z.object({
   medicoId: z.string().min(1, "Selecione um médico"),
@@ -21,17 +23,14 @@ const schema = z.object({
 });
 type FormData = z.infer<typeof schema>;
 
-function formatHora(s: string) {
-  const d = new Date(s);
-  return d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
-}
 function formatHoraLabel(s: SlotDTO) {
-  return `${formatHora(s.inicio)} - ${formatHora(s.fim)}`;
+  return `${formatTime(s.inicio)} - ${formatTime(s.fim)}`;
 }
 
 export default function NovaConsultaPacientePage() {
   const router = useRouter();
-  const { data: medicos, isLoading: medicosLoading, isError: medicosError } = useListMedicosParaPaciente();
+  const { data: medicos, isLoading: medicosLoading, isError: medicosError } =
+    useListMedicosParaPaciente();
   const { mutate: agendar, isPending } = useAgendarConsultaPorSlot();
 
   const {
@@ -71,21 +70,21 @@ export default function NovaConsultaPacientePage() {
       { slotId: values.slotId, observacoes: values.observacoes || "" },
       {
         onSuccess: () => {
-          alert("Consulta agendada com sucesso!");
+          toast.success("Consulta agendada com sucesso!");
           router.push("/paciente/consultas");
         },
         onError: (err: any) => {
           const status = err?.response?.status;
           if (status === 409) {
-            alert("Esse horário acabou de ser reservado. Escolha outro.");
+            toast.warning("Esse horário acabou de ser reservado. Escolha outro.");
           } else if (status === 404) {
-            alert("Slot não encontrado.");
+            toast.error("Slot não encontrado.");
           } else if (status === 400) {
-            alert(err?.response?.data?.message || "Dados inválidos.");
+            toast.info(err?.response?.data?.message || "Dados inválidos.");
           } else if (status === 403) {
-            alert("Você não tem permissão para agendar. Faça login como paciente.");
+            toast.error("Você não tem permissão para agendar. Faça login como paciente.");
           } else {
-            alert("Erro ao agendar consulta.");
+            toast.error("Erro ao agendar consulta.");
           }
           console.log("[AgendarConsulta][ERR]", {
             status,
@@ -195,13 +194,13 @@ export default function NovaConsultaPacientePage() {
               !slotsError &&
               slotsOrdenados.map((slot) => {
                 const selected = selectedSlot === slot.id;
+                const indisponivel = slot.status !== "LIVRE";
                 return (
                   <button
                     key={slot.id}
                     type="button"
-                    aria-pressed={selected}
                     onClick={() => handleSelectSlot(slot.id)}
-                    disabled={disabledSlots || slot.status !== "LIVRE"}
+                    disabled={disabledSlots || indisponivel}
                     title={formatHoraLabel(slot)}
                     style={{
                       textAlign: "left",
@@ -210,11 +209,15 @@ export default function NovaConsultaPacientePage() {
                       border: selected ? "2px solid #2563eb" : "1px solid #ddd",
                       background: selected ? "#eff6ff" : "#fff",
                       cursor: disabledSlots ? "not-allowed" : "pointer",
+                      opacity: indisponivel ? 0.6 : 1,
                     }}
+                    aria-pressed={selected}
                   >
-                    <div style={{ fontWeight: 600 }}>{formatHora(slot.inicio)}</div>
-                    <div style={{ color: "#555", fontSize: 12 }}>até {formatHora(slot.fim)}</div>
-                    {slot.status !== "LIVRE" && (
+                    <div style={{ fontWeight: 600 }}>{formatTime(slot.inicio)}</div>
+                    <div style={{ color: "#555", fontSize: 12 }}>
+                      até {formatTime(slot.fim)}
+                    </div>
+                    {indisponivel && (
                       <div style={{ marginTop: 6, color: "#a00", fontSize: 12 }}>Indisponível</div>
                     )}
                   </button>
