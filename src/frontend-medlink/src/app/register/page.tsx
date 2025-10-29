@@ -1,16 +1,16 @@
 "use client"
 
-import { ArrowHome } from "../components/arrow-home/arrow-home"
-import "./styles.css"
-import register_img from "../assets/register_img.png"
-import Image from "next/image";
-import { Logo } from "../components/logo/logo";
-import Link from "next/link";
-import { Input } from "../components/input/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { NewTaskFormData, newTaskFormSchema } from "../validators/tasks-validators";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRegister } from "../services/auth";
+import Image from "next/image";
+import register_img from "../assets/register_img.png"
+import Link from "next/link";
+import { ArrowHome } from "../components/arrow-home/arrow-home"
+import { Logo } from "../components/logo/logo";
+import { useForm } from "react-hook-form";
+import { Input } from "../components/input/input";
+import "./styles.css"
 
 export default function Register() {
     const form = useForm<NewTaskFormData>({

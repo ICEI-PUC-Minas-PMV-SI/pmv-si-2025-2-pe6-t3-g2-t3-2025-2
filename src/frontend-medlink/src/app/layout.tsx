@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google"
-import "./globals.css"
-import { Providers } from "./services/providers";
 import { AuthProvider } from "./contexts/auth-context";
+import "./globals.css"
+import type { Metadata } from "next";
+import { Providers } from "./services/providers";
 
 export const metadata: Metadata = {
   title: "Medlink",
