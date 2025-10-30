@@ -1,4 +1,3 @@
-// src/app/admin/layout.tsx
 "use client";
 
 import Link from "next/link";
@@ -16,6 +15,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link href="/admin/medicos">Médicos</Link>
           <Link href="/admin/pacientes">Pacientes</Link>
           <Link href="/admin/consultas">Consultas</Link>
+          <Link href="/admin/slots">Slots</Link>
           <button onClick={logout} style={{ marginTop: 16 }} type="button">Sair</button>
         </nav>
       </aside>

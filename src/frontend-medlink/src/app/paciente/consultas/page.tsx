@@ -44,7 +44,7 @@ export default function ConsultasPacientePage() {
       <header style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
         <h1 style={{ margin: 0 }}>Minhas Consultas</h1>
         <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
-          <Link href="/paciente/consulta/nova">
+          <Link href="/paciente/consultas/nova">
             <button type="button" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
               <Plus size={16} />
               Nova

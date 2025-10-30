@@ -11,7 +11,7 @@ import {
   type SlotDTO,
 } from "@/features/paciente/queries";
 import { useAgendarConsultaPorSlot } from "@/features/paciente/useAgendarConsulta";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "@/app/components/ui/toast";
 import { formatTime } from "@/lib/datetime";
 
@@ -41,16 +41,35 @@ export default function NovaConsultaPacientePage() {
     setValue,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      medicoId: "",
+      data: "",
+      slotId: "",
+      observacoes: "",
+    },
   });
 
   const medicoId = watch("medicoId");
   const dataISO = watch("data");
+
+  // LOGS de depuração
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log("[NovaConsulta] medicoId=", medicoId, "dataISO=", dataISO);
+  }, [medicoId, dataISO]);
 
   const {
     data: slots,
     isLoading: slotsLoading,
     isError: slotsError,
   } = useSlotsLivresDoMedico(medicoId, dataISO);
+
+  useEffect(() => {
+    if (slots) {
+      // eslint-disable-next-line no-console
+      console.log("[NovaConsulta][Slots]", slots);
+    }
+  }, [slots]);
 
   const [selectedSlot, setSelectedSlot] = useState<string>("");
 
@@ -119,16 +138,18 @@ export default function NovaConsultaPacientePage() {
 
       <form onSubmit={handleSubmit(onSubmit)} style={{ display: "grid", gap: 16 }}>
         <div>
-          <label htmlFor="#">Médico</label>
+          <label htmlFor="medico">Médico</label>
           <select
             {...register("medicoId")}
             disabled={isPending || medicosLoading}
             defaultValue=""
             onChange={(e) => {
-              // sempre que trocar médico, resetar seleção de slot
+              const val = e.target.value;
+              // setar no RHF para o watch refletir imediatamente
+              setValue("medicoId", val, { shouldValidate: true, shouldDirty: true });
+              // resetar seleção de slot
               setSelectedSlot("");
-              setValue("slotId", "");
-              return e.target.onchange;
+              setValue("slotId", "", { shouldValidate: true });
             }}
           >
             <option value="">Selecione</option>
@@ -142,16 +163,16 @@ export default function NovaConsultaPacientePage() {
         </div>
 
         <div>
-          <label htmlFor="#">Data</label>
+          <label htmlFor="data">Data</label>
           <input
             type="date"
             {...register("data")}
             disabled={isPending}
             onChange={(e) => {
-              // reset seleção ao trocar a data
+              const val = e.target.value; // YYYY-MM-DD
+              setValue("data", val, { shouldValidate: true, shouldDirty: true });
               setSelectedSlot("");
-              setValue("slotId", "");
-              return e.target.onchange;
+              setValue("slotId", "", { shouldValidate: true });
             }}
           />
           {errors.data && <small style={{ color: "crimson" }}>{errors.data.message}</small>}
@@ -161,7 +182,7 @@ export default function NovaConsultaPacientePage() {
         <input type="hidden" {...register("slotId")} />
 
         <div>
-          <label htmlFor="#">Horários disponíveis</label>
+          <label htmlFor="hora">Horários disponíveis</label>
           <div
             style={{
               display: "grid",
@@ -214,9 +235,7 @@ export default function NovaConsultaPacientePage() {
                     aria-pressed={selected}
                   >
                     <div style={{ fontWeight: 600 }}>{formatTime(slot.inicio)}</div>
-                    <div style={{ color: "#555", fontSize: 12 }}>
-                      até {formatTime(slot.fim)}
-                    </div>
+                    <div style={{ color: "#555", fontSize: 12 }}>até {formatTime(slot.fim)}</div>
                     {indisponivel && (
                       <div style={{ marginTop: 6, color: "#a00", fontSize: 12 }}>Indisponível</div>
                     )}
@@ -228,7 +247,7 @@ export default function NovaConsultaPacientePage() {
         </div>
 
         <div>
-          <label htmlFor="#">Observações</label>
+          <label htmlFor="obser">Observações</label>
           <textarea
             {...register("observacoes")}
             placeholder="Observações (opcional)"

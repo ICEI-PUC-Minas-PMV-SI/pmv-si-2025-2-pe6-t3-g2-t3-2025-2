@@ -9,7 +9,7 @@ type PacienteResponse = {
   nome: string;
   email: string;
   telefone?: string | null;
-  endereço?: string | null;
+  endereco?: string | null; // corrigido (sem acento)
 };
 
 export default function PacientesListPage() {

@@ -20,7 +20,6 @@ export function useCreateSlots() {
       return data;
     },
     onSuccess: () => {
-      // Invalida a lista de slots para forçar refetch
       queryClient.invalidateQueries({ queryKey: ["admin-slots"] });
     },
   });
