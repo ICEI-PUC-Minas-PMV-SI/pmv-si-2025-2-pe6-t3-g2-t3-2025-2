@@ -66,7 +66,7 @@ export const useLogin = () => {
     },
     onError: (err: any) => {
       const status = err?.response?.status;
-      if (status === 401) {
+      if (status === 401 || status === 403) {
         throw new Error("E-mail ou senha inválidos.");
       }
       throw new Error("Não foi possível entrar. Tente novamente.");

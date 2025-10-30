@@ -60,7 +60,6 @@ export default function AdminSlotsPage() {
   const medicoIdForm = watch("medicoId");
   const dataForm = watch("data");
 
-  // Usa os filtros para listar slots (inicialmente vazios)
   const {
     data: slots,
     isLoading: slotsLoading,
@@ -81,8 +80,7 @@ export default function AdminSlotsPage() {
         onSuccess: (data: any) => {
           const count = Array.isArray(data) ? data.length : data?.count || "vários";
           toast.success(`${count} slot(s) criado(s) com sucesso!`);
-          reset();
-          // Atualiza os filtros para mostrar os slots recém-criados
+          reset({ intervaloMinutos: 30, medicoId: "", data: "", horaInicio: "", horaFim: "" });
           setFiltroMedicoId(values.medicoId);
           setFiltroData(values.data);
         },
@@ -164,7 +162,6 @@ export default function AdminSlotsPage() {
       </header>
 
       <div style={{ display: "grid", gap: 24, gridTemplateColumns: "1fr 1fr" }}>
-        {/* Formulário de criação */}
         <section
           style={{
             border: "1px solid #e5e7eb",
@@ -242,7 +239,6 @@ export default function AdminSlotsPage() {
           </form>
         </section>
 
-        {/* Listagem de slots */}
         <section
           style={{
             border: "1px solid #e5e7eb",

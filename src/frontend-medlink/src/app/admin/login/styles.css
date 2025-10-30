@@ -1,29 +1,29 @@
 .container {
-    max-width: 420px;
-    margin: 64px auto;
-    padding: 24px;
-    border: 1px solid var(--gray-light);
-    border-radius: 8px;
+  max-width: 420px;
+  margin: 64px auto;
+  padding: 24px;
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
 }
 
 .is-error {
-    color: var(--danger);
+  color: var(--danger);
 }
 
 .form {
-    display: grid;
-    gap: 12px;
+  display: grid;
+  gap: 12px;
 }
 
 .form div {
-    display: flex;
-    align-items: start; 
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .form div input {
-    padding: 8px;
-    width: 100%;
-    border: none;
+  padding: 8px;
+  width: 100%;
+  border: none;
 }

@@ -1,11 +1,10 @@
 "use client";
 
-import "./styles.css"
-
+import "./styles.css";
 import Link from "next/link";
 
 export default function AdminHome() {
-  // Aqui você pode, no futuro, usar React Query para buscar contagens:
+  // Futuro: buscar métricas reais com React Query
   // const { data } = useQuery({ queryKey: ['admin-stats'], queryFn: getAdminStats });
 
   return (
@@ -15,15 +14,21 @@ export default function AdminHome() {
           <h1>Dashboard do Administrador</h1>
           <p>Gerencie médicos, pacientes e consultas.</p>
         </div>
-        <Link href="/admin/medicos/novo">
-          <button type="button">Novo Médico</button>
-        </Link>
+        <div style={{ display: "flex", gap: 8 }}>
+          <Link href="/admin/medicos/novo">
+            <button type="button">Novo Médico</button>
+          </Link>
+          <Link href="/admin/slots">
+            <button type="button">Gerenciar Slots</button>
+          </Link>
+        </div>
       </header>
 
       <section className="content-cards">
         <Card title="Médicos" value="—" href="/admin/medicos" subtitle="Gerenciar médicos" />
         <Card title="Pacientes" value="—" href="/admin/pacientes" subtitle="Lista de pacientes" />
         <Card title="Consultas" value="—" href="/admin/consultas" subtitle="Agenda e histórico" />
+        <Card title="Slots" value="—" href="/admin/slots" subtitle="Gerenciar disponibilidade" />
       </section>
 
       <section className="content-list">
