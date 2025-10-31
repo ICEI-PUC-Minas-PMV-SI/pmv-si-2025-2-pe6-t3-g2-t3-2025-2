@@ -69,7 +69,7 @@ A cor cinza claro (#E5E7EB) foi utilizada para borda de cards, inputs, seções 
 A cor azul (#E0F2FE) transmite tranquilidade, limpeza e suavidade, mantendo a interface leve e agradável. Foi escolhida, portanto, para o fundo da página web.<br><br>
 <img width="406" height="125" alt="image" src="https://github.com/user-attachments/assets/210587c3-51fc-4add-9568-ec21ea0def0e" />
 <br>
-#### Corees de alerta:
+#### Cores de alerta:
 
 A cor verde (#16A34A), além de ser a cor principal da interface e normalmente associada à saúde, também é usada no contexto para indicar sucesso ou confirmação em mensagens de confirmação e seleção ativa. <br><br>
 A cor vermelha (#EF4444) é usada para alertas, erros ou campos inválidos.
