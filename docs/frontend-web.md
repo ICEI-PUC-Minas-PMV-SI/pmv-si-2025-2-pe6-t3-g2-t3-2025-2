@@ -56,6 +56,26 @@ Para Administradores: Implementar uma área administrativa robusta para o gerenc
 ### Design Visual
 
 [Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
+### Paleta de cores:
+
+A paleta de cores do Medlink foi escolhida para transmitir profissionalismo, clareza e confiança, com foco em saúde e bem-estar do paciente. 
+
+#### Cores principais:
+
+A cor verde (#16A34A), cor principal, é tradicionalmente associado a saúde. Foi utilizada em botões principais, elementos de destaque e avisos de sucesso. <br><br>
+A cor branca (#FFFFFF) foi escolhida pois transmite limpeza, simplicidade e neutralidade, garantindo que os elementos coloridos se destaquem. Foi utilizada no projeto como fundo das seções, cards e inputs para facilitar uma leitura clara e agradável.<br><br>
+A cor cinza escuro(#6B7280) tem a função de ser uma cor neutra para textos, descrições e subtítulos, garantindo legibilidade. Além disso, mantém harmonia com o branco e o verde.<br><br>
+A cor cinza claro (#E5E7EB) foi utilizada para borda de cards, inputs, seções e divisores, proporcionando delimitação sutil de elementos da página. A escolha da cor também contribui para um layout limpo e organizado.<br><br>
+A cor azul (#E0F2FE) transmite tranquilidade, limpeza e suavidade, mantendo a interface leve e agradável. Foi escolhida, portanto, para o fundo da página web.<br><br>
+<img width="406" height="125" alt="image" src="https://github.com/user-attachments/assets/210587c3-51fc-4add-9568-ec21ea0def0e" />
+<br>
+#### Corees de alerta:
+
+A cor verde (#16A34A), além de ser a cor principal da interface e normalmente associada à saúde, também é usada no contexto para indicar sucesso ou confirmação em mensagens de confirmação e seleção ativa. <br><br>
+A cor vermelha (#EF4444) é usada para alertas, erros ou campos inválidos.
+<br><br>
+<img width="242" height="117" alt="image" src="https://github.com/user-attachments/assets/6bfb34af-5610-4485-aa70-486c2250c002" />
+
 
 ## Fluxo de Dados
 
