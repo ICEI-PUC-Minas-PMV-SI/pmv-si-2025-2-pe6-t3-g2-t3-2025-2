@@ -40,7 +40,7 @@
 }
 
 .btn:hover:not(:disabled) {
-  background: #f9fafb;
+  opacity: .8;
 }
 
 .btn:disabled {

@@ -1,127 +1,131 @@
-.container {
-    max-width: 1240px;
-    width: 100%;
-    height: 100%;
-    padding-block: 36px;
+/* Página de Cadastro (escopo local) */
+
+.register.container {
+  max-width: 1240px;
+  width: 100%;
+  padding-block: 36px;
 }
 
-.app {
-    display: flex;
-    gap: 64px;
-    margin-top: 24px;
-    overflow: hidden;
-
+.register__top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.aside {
-    position: relative;
+/* Grid principal: imagem + formulário */
+.register__grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 24px;
+}
+@media (min-width: 1024px) {
+  .register__grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
 }
 
-.aside, .form {
-    width: 610px;
-    height: 864px;
-    overflow: hidden;
+/* Aside visual */
+.register__aside {
+  position: relative;
+  min-height: 420px;
+  border-radius: var(--radius, 8px);
+  overflow: hidden;
+  background: var(--color-surface, #f9fafb);
+  border: 1px solid var(--color-border, #e5e7eb);
 }
 
-.img {
-    max-width: 100%;
-    opacity: 30%;
+.register__media { position: absolute; inset: 0; }
+.register__img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+
+.register__overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 5%;
+  display: grid;
+  align-content: space-between;
 }
 
+.register__headline {
+  font-size: clamp(1.125rem, 1rem + 1vw, 1.75rem);
+  font-weight: 600;
+  margin: 0;
+}
+.register__brand { display: flex; align-items: center; gap: 8px; }
 
-.info > h1 {
-    position: absolute;
-    top: 5%;
-    left: 5%;
+/* Formulário */
+.register__form { 
+  padding: 2rem; 
+  align-self: center;
+  display: flex;
+  flex-direction: column; 
+  gap: 24px; 
+}
+.register__legend { font-size: 1.75rem; font-weight: 600; margin: 0 0 0.5rem; }
+
+.stack-md > * + * { margin-top: 1rem; }
+
+/* Campos */
+.form-field { display: grid; gap: 0.375rem; }
+.form-error { color: var(--danger, #dc2626); font-size: 0.875rem; }
+
+/* Termos */
+.register__terms {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.5rem;
 }
 
-.info > div {
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+/* Ações */
+.register__actions {
+  display: grid;
+  gap: 0.75rem;
+  width: min(420px, 100%);
+  margin-inline: auto;
+}
+.register__hint { font-size: 0.95rem; }
+
+/* Botões e links (fallbacks locais, caso não tenha globais) */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border-radius: 8px; border: 1px solid var(--color-border, #e5e7eb);
+  background: var(--color-bg, #fff); color: var(--color-text, #111827);
+  padding: 0.5rem 0.75rem; font-weight: 600; cursor: pointer; text-decoration: none;
+  transition: background .15s ease, opacity .15s ease;
+}
+.btn:hover { opacity: .5; }
+.btn--lg { padding: 0.675rem 1rem; }
+.btn--primary { background: var(--primary-600, #2563eb); color: #fff; border-color: var(--primary-200, #bfdbfe); }
+.btn--primary:hover { opacity: 0.95; }
+.btn--ghost { background: transparent; }
+
+.link { color: var(--primary-600, #2563eb); font-weight: 600; text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
+/* Alert banner */
+.alert {
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+  padding: 0.75rem 0.875rem;
+  font-size: 0.95rem;
+}
+.alert--error {
+  background: var(--danger-50, #fef2f2);
+  border-color: var(--danger-100, #fee2e2);
+  color: var(--danger, #dc2626);
 }
 
-.form {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 48px;
+/* Card base (se não tiver global) */
+.card {
+  background: var(--color-bg, #fff);
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
 }
 
-fieldset {
-    border: none;
-    width: 100%;
-}
-
-fieldset > legend {
-    margin-bottom: 24px;
-}
-
-legend {
-    font-size: 36px;
-    font-weight: 600;
-}
-
-fieldset > .err-form {
-    margin-bottom: 24px;
-}
-
-.checkbox {
-    display: flex;
-    width: 100%;
-    align-items: start;
-    gap: 4px;
-}
-
-.checkbox > input {
-    width: auto;
-    border: red;
-}
-
-.register {
-    width: 60%;
-}
-
-.register > button {
-    border: none;
-    background-color: var(--green);
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--white);
-    cursor: pointer;
-    transition: all .1s
-}
-
-.register > button:hover {
-    opacity: 90%;
-}
-
-.register > span {
-    font-size: 14px;
-}
-
-.register-link:hover {
-    color: var(--green);
-}
-
-.err-message {
-    color: var(--danger);
-    font-size: 14px;
-}
-
-.error-banner {
-    background-color: var(--gray-light);
-    border: 1px solid var(--gray);
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    color: var(--danger);
+/* SR-only utilitário */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0; 
 }
