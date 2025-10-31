@@ -1,36 +1,102 @@
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block: 36px;
+/* Layout base */
+.navbar {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding-block: 16px; /* reduzido para caber em mobile */
 }
 
+/* Logo */
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
 }
 
+/* Links desktop */
 .links {
-    display: flex;
-    align-items: center;
-    gap: 24px;
+  display: none; /* escondido no mobile */
+  align-items: center;
+  gap: 24px;
 }
-
 .link {
-    font-weight: 500;
-    transition: all .1s;
+  font-weight: 500;
+  color: var(--text, #111827);
+  text-decoration: none;
+  transition: color .12s ease, opacity .12s ease;
 }
-
 .link:hover {
-    color: var(--green)
+  color: var(--green, #16a34a);
 }
 
-button {
-    border: none;
-    background: none;
-    padding: 0;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
+/* Botão reset utilitário */
+.btn-reset {
+  border: none;
+  background: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Toggle mobile */
+.navbar__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 8px;
+}
+.navbar__toggle:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+/* Painel mobile */
+.navbar__panel {
+  position: absolute;
+  inset: 64px 16px auto 16px; /* abaixo do header */
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .16s ease, opacity .16s ease;
+  z-index: 30;
+}
+.navbar__panel.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.navbar__panel-inner {
+  display: grid;
+  padding: 12px;
+}
+.link--block {
+  display: block;
+  padding: 10px 8px;
+  border-radius: 8px;
+}
+.link--block:hover {
+  background: #f3f4f6;
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+  .navbar {
+    grid-template-columns: auto 1fr auto;
+    padding-block: 24px;
+  }
+  .links {
+    display: flex;
+    justify-self: end;
+  }
+  .navbar__toggle,
+  .navbar__panel {
+    display: none;
+  }
 }

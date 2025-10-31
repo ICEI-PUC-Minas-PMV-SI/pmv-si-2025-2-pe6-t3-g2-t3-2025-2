@@ -12,7 +12,7 @@ import register_img from "../assets/register_img.png";
 
 import { NewTaskFormDataLogin, newTaskFormSchemaLogin } from "../validators/tasks-validators";
 import { useLogin } from "../services/auth";
-import { toast } from "../components/ui/toast"; // INTEGRAÇÃO TOAST
+import { toast } from "../components/ui/toast";
 
 import "./styles.css";
 
@@ -27,13 +27,9 @@ export default function Login() {
   function onSubmit(data: NewTaskFormDataLogin) {
     login(data, {
       onSuccess: () => {
-        // feedback rápido de sucesso
         toast.success("Login realizado com sucesso!");
-        // Caso haja redirecionamento automático pelo hook, ok.
-        // Se não, você pode redirecionar aqui.
       },
       onError: (err: any) => {
-        // tenta extrair mensagem do backend
         const status = err?.response?.status;
         const msg =
           err?.response?.data?.message ||
@@ -49,7 +45,6 @@ export default function Login() {
           toast.error(msg);
         }
 
-        // Log detalhado pra debug
         console.log("[Login][ERR]", {
           status,
           url: err?.config?.url,
@@ -60,19 +55,8 @@ export default function Login() {
     });
   }
 
-  // Dispara toasts de validação do formulário (client-side)
   const emailError = form.formState.errors.email?.message;
   const passwordError = form.formState.errors.password?.message;
-
-  // Opcional: anunciar erros de validação quando aparecerem
-  // Evite spam: só mostre quando o campo for tocado e tiver erro
-  if (emailError && form.getFieldState("email").isTouched) {
-    // Você pode optar por um toast.info em vez de error para validações
-    // toast.info(emailError);
-  }
-  if (passwordError && form.getFieldState("password").isTouched) {
-    // toast.info(passwordError);
-  }
 
   return (
     <main className="login container">
