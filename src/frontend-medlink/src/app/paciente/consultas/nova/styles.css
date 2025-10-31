@@ -1,0 +1,208 @@
+/* Container da página */
+.nova-consulta {
+  max-width: 680px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+  padding: 24px 12px; /* pequeno padding lateral para telas estreitas */
+}
+
+@media (min-width: 768px) {
+  .nova-consulta {
+    max-width: 920px; /* maior em tablets/desktops pequenos */
+    gap: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nova-consulta {
+    max-width: 1080px; /* área de conteúdo mais ampla no desktop */
+    gap: 20px;
+  }
+}
+
+/* Header */
+.nova-consulta__header {
+  display: grid;
+  gap: 10px;
+  align-items: center;
+  grid-template-columns: 1fr auto;
+}
+
+.nova-consulta__title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .nova-consulta__title { font-size: 1.5rem; }
+}
+@media (min-width: 1024px) {
+  .nova-consulta__title { font-size: 1.65rem; }
+}
+
+/* Mensagens */
+.nova-consulta__info {
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+.nova-consulta__info--error {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+/* Form padrão */
+.form {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 1024px) {
+  .form {
+    gap: 12px; /* um pouco mais denso no desktop */
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-input {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+@media (min-width: 1024px) {
+  .form-input {
+    padding: 9px 12px; /* ligeiro ajuste para mais densidade */
+    font-size: 0.94rem;
+  }
+}
+
+.form-input:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.form-error {
+  color: #b91c1c;
+  font-size: 0.82rem;
+}
+
+/* Grid dos cards de horário */
+.slots-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+@media (min-width: 768px) {
+  .slots-grid {
+    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .slots-grid {
+    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* mais largo no desktop */
+  }
+}
+
+.slots-hint {
+  color: #666;
+  font-style: italic;
+}
+
+.slots-error {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+/* Card de slot */
+.slotcard {
+  text-align: left;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #dcdfe4;
+  background: #fff;
+  cursor: pointer;
+  display: grid;
+  gap: 2px;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+@media (min-width: 1024px) {
+  .slotcard { padding: 12px 14px; }
+}
+
+.slotcard:hover:not(:disabled) {
+  border-color: #c5ccd6;
+  background: #f9fbff;
+  box-shadow: 0 1px 0 rgba(17, 24, 39, 0.04);
+}
+
+.slotcard--selected {
+  border: 2px solid #2563eb;
+  background: #eff6ff;
+}
+
+.slotcard--disabled,
+.slotcard:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.slotcard__start {
+  font-weight: 700;
+}
+
+.slotcard__end {
+  color: #555;
+  font-size: 12px;
+}
+
+.slotcard__badge {
+  margin-top: 6px;
+  color: #a00;
+  font-size: 12px;
+}
+
+/* Botões padrão */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #111827;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn:hover:not(:disabled) { background: #f9fafb; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btn--primary {
+  background: #2563eb;
+  color: #fff;
+  font-size: 16px;
+  border-color: #2563eb;
+}
+.btn--primary:hover:not(:disabled) { background: #1d4ed8; border-color: #1d4ed8; }

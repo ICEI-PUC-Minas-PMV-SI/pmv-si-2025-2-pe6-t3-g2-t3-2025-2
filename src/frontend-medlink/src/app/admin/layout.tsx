@@ -1,25 +1,63 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useAdminLogout } from "@/hooks/useAdminAuth";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import './layout.css';
+import { useAdminLogout } from '@/hooks/useAdminAuth';
+
+// Ícones do lucide-react
+import {
+  Gauge,
+  Stethoscope,
+  Users,
+  CalendarCheck2,
+  Clock8,
+  LogOut,
+} from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const logout = useAdminLogout();
+  const pathname = usePathname();
+
+  const links = [
+    { href: '/admin', label: 'Dashboard', Icon: Gauge, match: (p: string) => p === '/admin' },
+    { href: '/admin/medicos', label: 'Médicos', Icon: Stethoscope, match: (p: string) => p.startsWith('/admin/medicos') },
+    { href: '/admin/pacientes', label: 'Pacientes', Icon: Users, match: (p: string) => p.startsWith('/admin/pacientes') },
+    { href: '/admin/consultas', label: 'Consultas', Icon: CalendarCheck2, match: (p: string) => p.startsWith('/admin/consultas') },
+    { href: '/admin/slots', label: 'Slots', Icon: Clock8, match: (p: string) => p.startsWith('/admin/slots') },
+  ];
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", minHeight: "100vh" }}>
-      <aside style={{ borderRight: "1px solid #eee", padding: 16 }}>
-        <h2 style={{ marginBottom: 16 }}>Admin</h2>
-        <nav style={{ display: "grid", gap: 8 }}>
-          <Link href="/admin">Dashboard</Link>
-          <Link href="/admin/medicos">Médicos</Link>
-          <Link href="/admin/pacientes">Pacientes</Link>
-          <Link href="/admin/consultas">Consultas</Link>
-          <Link href="/admin/slots">Slots</Link>
-          <button onClick={logout} style={{ marginTop: 16 }} type="button">Sair</button>
+    <div className="admin-layout">
+      <aside className="admin-layout__sidebar">
+        <h2 className="admin-layout__brand">Admin</h2>
+        <nav className="admin-layout__nav" aria-label="Admin navigation">
+          {links.map(({ href, label, Icon, match }) => {
+            const active = match(pathname ?? '');
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`admin-layout__link${active ? ' admin-layout__link--active' : ''}`}
+                aria-current={active ? 'page' : undefined}
+              >
+                <Icon aria-hidden="true" className="admin-layout__icon" size={18} />
+                <span className="admin-layout__linktext">{label}</span>
+              </Link>
+            );
+          })}
+          <button
+            onClick={logout}
+            type="button"
+            className="admin-layout__logout"
+            aria-label="Sair"
+          >
+            <LogOut aria-hidden="true" className="admin-layout__icon" size={18} />
+            <span className="admin-layout__linktext">Sair</span>
+          </button>
         </nav>
       </aside>
-      <main style={{ padding: 24 }}>{children}</main>
+      <main className="admin-layout__main">{children}</main>
     </div>
   );
 }
