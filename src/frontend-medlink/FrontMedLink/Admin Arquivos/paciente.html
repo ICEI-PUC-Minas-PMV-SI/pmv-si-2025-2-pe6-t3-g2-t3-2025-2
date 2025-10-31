@@ -68,7 +68,7 @@
         <h1>Meu Perfil — Paciente</h1>
         <p>Gerencie suas informações pessoais, histórico de consultas e preferências médicas.</p>
       </div>
-      <button>Atualizar Perfil</button>
+      <button>Salvar Alterações</button>
     </div>
 
     <!-- Cards de informações -->
@@ -135,6 +135,11 @@
         <div>
           <label for="telefone">Telefone</label>
           <input id="telefone" type="tel" value="(11) 98888-7777" />
+        </div>
+
+        <div>
+          <label for="emergencia">Contato de Emergência</label>
+          <input id="emergencia" type="tel" value="(11) 97777-6666" />
         </div>
 
         <div style="grid-column: 1 / -1;">
@@ -278,8 +283,10 @@
 
     <footer>
       Medlink © 2025 — Sistema de Agendamento de Consultas Médicas
+      <div style="text-align:center; font-size: 13px; color: var(--gray); margin-top: 8px;">
+        Última atualização: <span id="lastUpdated">30/10/2025</span>
+      </div>
     </footer>
   </div>
 </body>
 </html>
-
