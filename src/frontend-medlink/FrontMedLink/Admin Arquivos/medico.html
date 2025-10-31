@@ -25,9 +25,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-  </style>
-  
-  <style>
+
     .back-home-button {
       background: transparent;
       border: 1px solid var(--green);
@@ -48,21 +46,42 @@
       background: var(--green);
       color: white;
     }
+
+    .last-updated {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-top: 24px;
+      text-align: right;
+    }
   </style>
-  
+
   <!-- Importando o JavaScript -->
-  <script src="ScriptMedico.js"></script>
+  <script>
+    // Exibe data/hora da última atualização da página
+    document.addEventListener("DOMContentLoaded", () => {
+      const el = document.getElementById("lastUpdatedValue");
+      if (el) {
+        const now = new Date();
+        const data = now.toLocaleDateString("pt-BR");
+        const hora = now.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+        el.textContent = `${data} — ${hora}`;
+      }
+    });
+  </script>
 </head>
 
 <body>
   <div class="container">
+
+    <!-- Botão voltar -->
     <button class="back-home-button" onclick="window.location.href='../Home Arquivos/home.html'">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
       </svg>
       Voltar para página inicial
     </button>
-    
+
+    <!-- Cabeçalho -->
     <div class="content-header">
       <div class="content-info">
         <h1>Painel de Administração — Medlink</h1>
@@ -104,17 +123,17 @@
       <form class="profile-form">
         <div>
           <label for="nome">Nome Completo</label>
-          <input id="nome" type="text" value="Dr. Felipe Almeida" />
+          <input id="nome" type="text" value="Dr. Felipe Almeida" aria-label="Nome completo" />
         </div>
 
         <div>
           <label for="crm">CRM</label>
-          <input id="crm" type="text" value="123456-SP" />
+          <input id="crm" type="text" value="123456-SP" aria-label="CRM do médico" />
         </div>
 
         <div>
           <label for="especialidade">Especialidade</label>
-          <select id="especialidade">
+          <select id="especialidade" aria-label="Especialidade médica">
             <option>Clínico Geral</option>
             <option>Dermatologia</option>
             <option>Cardiologia</option>
@@ -124,17 +143,17 @@
 
         <div>
           <label for="email">E-mail</label>
-          <input id="email" type="email" value="dr.felipe@medlink.com" />
+          <input id="email" type="email" value="dr.felipe@medlink.com" aria-label="E-mail profissional" />
         </div>
 
         <div>
           <label for="telefone">Telefone</label>
-          <input id="telefone" type="tel" value="(11) 99999-9999" />
+          <input id="telefone" type="tel" value="(11) 99999-9999" aria-label="Telefone de contato" />
         </div>
 
         <div style="grid-column: 1 / -1;">
           <label for="bio">Descrição / Sobre</label>
-          <textarea id="bio" rows="4">Médico com foco em atendimento humanizado e consultas online via Medlink.</textarea>
+          <textarea id="bio" rows="4" aria-label="Descrição sobre o médico">Médico com foco em atendimento humanizado e consultas online via Medlink.</textarea>
         </div>
       </form>
     </div>
@@ -167,12 +186,21 @@
           <label for="sexta">Sexta-feira</label>
           <input id="sexta" type="text" placeholder="09:00 - 17:00" value="09:00 - 17:00" />
         </div>
+
+        <div>
+          <label for="almoco">Horário de Almoço</label>
+          <input id="almoco" type="text" placeholder="12:00 - 13:00" value="12:00 - 13:00" />
+        </div>
       </form>
     </div>
 
     <footer>
       Medlink © 2025 — Sistema de Agendamento de Consultas Médicas
+      <div class="last-updated">
+        Última atualização: <span id="lastUpdatedValue">carregando...</span>
+      </div>
     </footer>
   </div>
 </body>
 </html>
+
