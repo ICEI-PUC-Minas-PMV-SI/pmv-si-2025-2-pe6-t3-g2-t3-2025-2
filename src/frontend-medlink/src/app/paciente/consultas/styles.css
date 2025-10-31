@@ -182,7 +182,7 @@
   text-decoration: none;
 }
 
-.btn:hover:not(:disabled) { background: #f9fafb; }
+.btn:hover:not(:disabled) { opacity: .8; }
 .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .btn--primary {
