@@ -36,7 +36,6 @@ export const useRegister = () => {
       return response.data;
     },
     onSuccess: () => {
-      // Cadastro de paciente não retorna token → enviar para login
       router.push("/login");
     },
     onError: (err: any) => {
@@ -59,9 +58,7 @@ export const useLogin = () => {
       return response.data;
     },
     onSuccess: ({ token }) => {
-      // Centraliza no AuthContext
       login(token);
-      // Redirecione para a área do paciente (ajuste se preferir outra rota)
       router.push("/paciente/consultas");
     },
     onError: (err: any) => {

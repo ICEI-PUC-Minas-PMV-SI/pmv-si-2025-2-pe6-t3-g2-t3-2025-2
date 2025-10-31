@@ -1,5 +1,4 @@
-// contexts/AuthContext.tsx
-"use client"
+"use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { useRouter } from "next/navigation";
@@ -18,20 +17,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
-    // Considera cookie OU localStorage
-    const token = Cookies.get("token") || (typeof window !== "undefined" ? localStorage.getItem("token") : null);
+    const token = Cookies.get("token");
     setIsAuthenticated(!!token);
   }, []);
 
   const login = (token: string) => {
-    // Salva nos dois: cookie (para middleware/interceptors) e localStorage (fallback)
-    localStorage.setItem("token", token);
     Cookies.set("token", token, { sameSite: "lax", path: "/" });
     setIsAuthenticated(true);
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
     Cookies.remove("token", { path: "/" });
     setIsAuthenticated(false);
     router.push("/login");
