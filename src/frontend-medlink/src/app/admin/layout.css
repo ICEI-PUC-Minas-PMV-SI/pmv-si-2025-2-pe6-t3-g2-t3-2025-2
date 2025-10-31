@@ -1,0 +1,108 @@
+/* Container principal do layout do Admin */
+.admin-layout {
+  display: grid;
+  grid-template-columns: 1fr;           /* mobile: empilhado */
+  min-height: 100vh;
+  background: #f7f8fa;
+}
+
+/* Sidebar */
+.admin-layout__sidebar {
+  border-bottom: 1px solid #eeeeee;     /* mobile: separador horizontal */
+  padding: 16px;
+  background: #ffffff;
+}
+
+.admin-layout__brand {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Navegação */
+.admin-layout__nav {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-layout__link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1f2937;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.admin-layout__link:hover {
+  background: #f3f4f6;
+}
+
+.admin-layout__link:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Botão sair */
+.admin-layout__logout {
+  margin-top: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.admin-layout__logout:hover {
+  background: #f9fafb;
+}
+
+.admin-layout__logout:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Área principal */
+.admin-layout__main {
+  padding: 24px;
+  min-width: 0; /* permite tabela rolar corretamente */
+}
+
+/* ...restante do arquivo permanece igual... */
+
+.admin-layout__link--active {
+  background: #e5efff;           /* leve destaque */
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+  font-weight: 600;
+}
+
+.admin-layout__link--active:hover {
+  background: #dbeafe;
+}
+
+/* Acessibilidade: quando ativo e focado, manter contraste */
+.admin-layout__link--active:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+  .admin-layout {
+    grid-template-columns: 240px 1fr;  /* sidebar fixa à esquerda */
+  }
+  .admin-layout__sidebar {
+    border-right: 1px solid #eeeeee;   /* desktop: separador vertical */
+    border-bottom: none;
+    min-height: 100%;
+  }
+}

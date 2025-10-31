@@ -1,146 +1,89 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { RefreshCw, Plus } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { api } from "@/app/services/api";
+import Link from 'next/link';
+import { RefreshCw, Plus } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/app/services/api';
+import './styles.css';
 
 type MedicoResponse = {
   id: string;
   nome: string;
-  especialidade: "OFTALMOLOGIA" | "CARDIOLOGIA" | "ORTOPEDIA" | "PEDIATRIA";
+  especialidade: 'OFTALMOLOGIA' | 'CARDIOLOGIA' | 'ORTOPEDIA' | 'PEDIATRIA';
   crm?: string;
   telefone?: string;
 };
 
 export default function MedicosListPage() {
   const { data, isLoading, isError, refetch, isFetching } = useQuery({
-    queryKey: ["admin-medicos"],
+    queryKey: ['admin-medicos'],
     queryFn: async () => {
-      const { data } = await api.get<MedicoResponse[]>("/medlink/admin/medicos");
+      const { data } = await api.get<MedicoResponse[]>('/medlink/admin/medicos');
       return data;
     },
+    staleTime: 30_000,
   });
 
   return (
-    <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-      <header style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-        <h1 style={{ margin: 0 }}>Médicos</h1>
-        <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
+    <div className="medicos">
+      <header className="medicos__header">
+        <h1 className="medicos__title">Médicos</h1>
+
+        <div className="medicos__actions">
           <button
             type="button"
             onClick={() => refetch()}
             disabled={isFetching}
-            style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+            className="btn"
+            aria-live="polite"
           >
-            <RefreshCw size={16} className={isFetching ? "spin" : ""} />
-            {isFetching ? "Atualizando..." : "Atualizar"}
+            <RefreshCw size={16} className={isFetching ? 'icon-spin' : ''} aria-hidden="true" />
+            <span>{isFetching ? 'Atualizando...' : 'Atualizar'}</span>
           </button>
-          <Link href="/admin/medicos/novo">
-            <button type="button" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-              <Plus size={16} />
-              Novo Médico
-            </button>
+
+          <Link href="/admin/medicos/novo" className="btn btn--primary">
+            <Plus size={16} aria-hidden="true" />
+            <span>Novo Médico</span>
           </Link>
         </div>
       </header>
 
-      {isLoading && <p>Carregando...</p>}
-      {isError && <p style={{ color: "crimson" }}>Erro ao carregar médicos.</p>}
+      {isLoading && <p className="medicos__info">Carregando...</p>}
+      {isError && <p className="medicos__info medicos__info--error">Erro ao carregar médicos.</p>}
 
       {data && data.length === 0 && (
-        <div
-          style={{
-            padding: 32,
-            textAlign: "center",
-            border: "1px dashed #ddd",
-            borderRadius: 8,
-            color: "#666",
-          }}
-        >
-          <p style={{ margin: 0 }}>Nenhum médico cadastrado.</p>
-          <Link href="/admin/medicos/novo">
-            <button type="button" style={{ marginTop: 12 }}>
-              Cadastrar primeiro médico
-            </button>
+        <div className="medicos__empty">
+          <p className="medicos__emptytext">Nenhum médico cadastrado.</p>
+          <Link href="/admin/medicos/novo" className="btn btn--primary btn--mt">
+            Cadastrar primeiro médico
           </Link>
         </div>
       )}
 
       {data && data.length > 0 && (
-        <div style={{ overflowX: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <div className="medicos__tablewrap">
+          <table className="medicos__table">
             <thead>
-              <tr style={{ background: "#f9fafb" }}>
-                <th
-                  style={{
-                    textAlign: "left",
-                    borderBottom: "2px solid #e5e7eb",
-                    padding: "10px 12px",
-                    fontWeight: 600,
-                  }}
-                >
-                  Nome
-                </th>
-                <th
-                  style={{
-                    textAlign: "left",
-                    borderBottom: "2px solid #e5e7eb",
-                    padding: "10px 12px",
-                    fontWeight: 600,
-                  }}
-                >
-                  Especialidade
-                </th>
-                <th
-                  style={{
-                    textAlign: "left",
-                    borderBottom: "2px solid #e5e7eb",
-                    padding: "10px 12px",
-                    fontWeight: 600,
-                  }}
-                >
-                  CRM
-                </th>
-                <th
-                  style={{
-                    textAlign: "left",
-                    borderBottom: "2px solid #e5e7eb",
-                    padding: "10px 12px",
-                    fontWeight: 600,
-                  }}
-                >
-                  Telefone
-                </th>
+              <tr>
+                <th>Nome</th>
+                <th>Especialidade</th>
+                <th>CRM</th>
+                <th>Telefone</th>
               </tr>
             </thead>
             <tbody>
               {data.map((m) => (
-                <tr key={m.id} style={{ borderBottom: "1px solid #f3f4f6" }}>
-                  <td style={{ padding: "10px 12px" }}>{m.nome}</td>
-                  <td style={{ padding: "10px 12px", color: "#555" }}>{m.especialidade}</td>
-                  <td style={{ padding: "10px 12px", color: "#555" }}>{m.crm || "—"}</td>
-                  <td style={{ padding: "10px 12px", color: "#555" }}>{m.telefone || "—"}</td>
+                <tr key={m.id}>
+                  <td>{m.nome}</td>
+                  <td className="is-muted">{m.especialidade}</td>
+                  <td className="is-muted">{m.crm || '—'}</td>
+                  <td className="is-muted">{m.telefone || '—'}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       )}
-
-      <style jsx global>{`
-        .spin {
-          animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      `}</style>
     </div>
   );
 }

@@ -1,0 +1,205 @@
+/* Container principal */
+.admin-consultas {
+  padding: 24px;
+}
+
+.admin-consultas__title {
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Filtros */
+.admin-consultas__filters {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr; /* mobile */
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.admin-consultas__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-consultas__field--span2 {
+  grid-column: span 1;
+}
+
+.admin-consultas__actions {
+  grid-column: span 1;
+  display: flex;
+  gap: 8px;
+}
+
+/* Tabela */
+.admin-consultas__tablewrap {
+  overflow: auto;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-top: 16px;
+  background: #fff;
+}
+
+.ac-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.ac-table thead {
+  background: #f3f4f6;
+  text-align: left;
+}
+
+.ac-table th,
+.ac-table td {
+  padding: 12px;
+  vertical-align: top;
+  border-top: 1px solid #e5e7eb;
+}
+
+.ac-cell { }
+.ac-cell--error {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.ac-strong {
+  font-weight: 600;
+}
+
+.ac-subtle {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+/* Inputs e botões */
+.ac-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.ac-input {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 8px 12px;
+  background: #fff;
+}
+
+.ac-input:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}
+
+.ac-input--sm {
+  padding: 6px 10px;
+  font-size: 0.875rem;
+}
+
+.ac-button {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #111827;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ac-button:hover:not(:disabled) {
+  background: #f9fafb;
+}
+
+.ac-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ac-button--primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+.ac-button--primary:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.ac-button--ghost {
+  background: #fff;
+  border-color: #d1d5db;
+}
+
+.ac-muted {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Chips de status */
+.ac-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+}
+
+.ac-chip--ok {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.ac-chip--danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.ac-chip--muted {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+/* Paginação */
+.admin-consultas__pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.admin-consultas__pager {
+  display: flex;
+  gap: 8px;
+}
+
+/* Responsividade */
+@media (min-width: 640px) {
+  .admin-consultas__filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .admin-consultas__field--span2 {
+    grid-column: span 2;
+  }
+  .admin-consultas__actions {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .admin-consultas__filters {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .admin-consultas__field--span2 {
+    grid-column: span 2;
+  }
+  .admin-consultas__actions {
+    grid-column: span 5;
+  }
+}
