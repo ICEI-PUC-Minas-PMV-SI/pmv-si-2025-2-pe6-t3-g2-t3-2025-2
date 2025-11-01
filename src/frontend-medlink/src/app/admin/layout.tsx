@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import './layout.css';
+import styles from './layout.module.css';
 import { useAdminLogout } from '@/hooks/useAdminAuth';
 
 // Ícones do lucide-react
@@ -28,36 +28,37 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
-    <div className="admin-layout">
-      <aside className="admin-layout__sidebar">
-        <h2 className="admin-layout__brand">Admin</h2>
-        <nav className="admin-layout__nav" aria-label="Admin navigation">
+    <div className={styles['admin-layout']}>
+      <aside className={styles['admin-layout__sidebar']}>
+        <h2 className={styles['admin-layout__brand']}>Admin</h2>
+        <nav className={styles['admin-layout__nav']} aria-label="Admin navigation">
           {links.map(({ href, label, Icon, match }) => {
             const active = match(pathname ?? '');
+            const linkClass = `${styles['admin-layout__link']} ${active ? styles['admin-layout__link--active'] : ''}`;
             return (
               <Link
                 key={href}
                 href={href}
-                className={`admin-layout__link${active ? ' admin-layout__link--active' : ''}`}
+                className={linkClass}
                 aria-current={active ? 'page' : undefined}
               >
-                <Icon aria-hidden="true" className="admin-layout__icon" size={18} />
-                <span className="admin-layout__linktext">{label}</span>
+                <Icon aria-hidden="true" className={styles['admin-layout__icon']} size={18} />
+                <span className={styles['admin-layout__linktext']}>{label}</span>
               </Link>
             );
           })}
           <button
             onClick={logout}
             type="button"
-            className="admin-layout__logout"
+            className={styles['admin-layout__logout']}
             aria-label="Sair"
           >
-            <LogOut aria-hidden="true" className="admin-layout__icon" size={18} />
-            <span className="admin-layout__linktext">Sair</span>
+            <LogOut aria-hidden="true" className={styles['admin-layout__icon']} size={18} />
+            <span className={styles['admin-layout__linktext']}>Sair</span>
           </button>
         </nav>
       </aside>
-      <main className="admin-layout__main">{children}</main>
+      <main className={styles['admin-layout__main']}>{children}</main>
     </div>
   );
 }

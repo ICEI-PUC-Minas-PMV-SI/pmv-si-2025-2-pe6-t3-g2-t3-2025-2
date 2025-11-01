@@ -1,28 +1,175 @@
-:root {
-    --green: #4caf50;
-    --black: #000000;
-    --gray: #757575;
-    --gray-light: #b9b6b6ff;
-    --white: #f2f2f2;
-    --danger: #ff1e00;
+/* src/app/globals.css */
+
+/* ----------------------
+   Tokens (cores, espaçamentos, tipografia, breakpoints)
+   ---------------------- */
+:root{
+  /* Colors */
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-border: #eeeeee;
+  --color-text: #1f2937;
+  --color-text-strong: #111827;
+  --color-muted: #6b7280;
+  --color-primary: #1d4ed8;
+  --color-primary-600: #2563eb;
+  --color-primary-100: #e5efff;
+  --color-primary-200: #dbeafe;
+  --color-primary-300: #bfdbfe;
+  --color-hover: #f3f4f6;
+  --color-focus-outline: #2563eb;
+
+  /* Semantic */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger:  #ef4444;
+
+  /* Spacing (8px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-sm: 14px;
+  --heading-1: 1.5rem;
+  --heading-2: 1.125rem;
+
+  --elevation-1: 0 1px 2px rgba(16,24,40,0.03), 0 1px 3px rgba(16,24,40,0.04);
+
+  /* Breakpoints */
+  --bp-sm: 640px;  /* large phones */
+  --bp-md: 768px;  /* tablets */
+  --bp-lg: 1024px; /* desktops */
+
+  /* Motion */
+  --motion-fast: 150ms;
+  --motion-medium: 250ms;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Optional dark theme */
+[data-theme="dark"] {
+  --color-bg: #0b1220;
+  --color-surface: #071126;
+  --color-text: #e5e7eb;
+  --color-text-strong: #ffffff;
+  --color-border: rgba(255,255,255,0.06);
+  --color-hover: rgba(255,255,255,0.03);
+  --color-primary-100: #0b2b5d;
+}
+
+/* ----------------------
+   Base / Reset
+   ---------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body, #__next { height: 100%; }
+
+html {
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-    background-color: #f2f2f2;
-    color: var(--black);
-    max-width: 1440px;
-    padding-inline: 100px;
-    margin-inline: auto;
-    font-size: 16px;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.45;
 }
 
-a {
-    text-decoration: none;
-    color: initial;
+/* Links */
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Buttons baseline */
+button { font: inherit; cursor: pointer; background: none; border: none; }
+
+/* Focus-visible accessible outline */
+:focus { outline: none; }
+:focus-visible {
+  outline: 3px solid var(--color-focus-outline);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Visually hidden helper */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Forms baseline */
+input, textarea, select { font: inherit; color: inherit; }
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ----------------------
+   Utilities (small set)
+   ---------------------- */
+.u-mb-1 { margin-bottom: var(--space-2); }
+.u-mb-2 { margin-bottom: var(--space-3); }
+.u-p-1 { padding: var(--space-2); }
+.u-p-2 { padding: var(--space-3); }
+
+.u-hidden { display: none !important; }
+
+.text-muted { color: var(--color-muted); font-size: var(--text-sm); }
+
+/* Layout helpers */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--elevation-1);
+}
+
+/* Responsive table wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Simple grid helpers */
+.row { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+.col { flex: 1 1 0; min-width: 200px; }
+
+/* Small-screen touch spacing */
+@media (max-width: calc(var(--bp-md) - 1px)) {
+  .touch-lg { padding: 12px 14px; }
 }

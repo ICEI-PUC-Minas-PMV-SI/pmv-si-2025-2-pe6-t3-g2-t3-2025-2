@@ -1,9 +1,11 @@
 import { Inter } from "next/font/google"
 import { AuthProvider } from "./contexts/auth-context";
-import "./globals.css"
 import type { Metadata } from "next";
 import { Providers } from "./services/providers";
 import { ToastViewport } from "./components/ui/toast";
+
+import './globals.css'
+
 
 export const metadata: Metadata = {
   title: "Medlink",
