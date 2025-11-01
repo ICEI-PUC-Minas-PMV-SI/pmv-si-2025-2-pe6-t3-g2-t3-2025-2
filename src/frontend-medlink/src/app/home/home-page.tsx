@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import heroImg from '../assets/heroImg.jpg';
-import featureImg from '../assets/featureImg.jpg';
-import featureImg2 from '../assets/featureImg2.jpg';
+import heroImg from '../../assets/heroImg.jpg';
+import featureImg from '../../assets/featureImg.jpg';
+import featureImg2 from '../../assets/featureImg2.jpg';
 import { Icon } from '@iconify/react';
 
 import './styles.css';
