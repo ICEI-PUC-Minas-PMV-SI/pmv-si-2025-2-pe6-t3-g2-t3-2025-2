@@ -55,7 +55,6 @@ Para Administradores: Implementar uma área administrativa robusta para o gerenc
 
 ### Design Visual
 
-[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
 ### Paleta de cores:
 
 A paleta de cores do Medlink foi escolhida para transmitir profissionalismo, clareza e confiança, com foco em saúde e bem-estar do paciente. 
@@ -78,7 +77,7 @@ A cor vermelha (#EF4444) é usada para alertas, erros ou campos inválidos.
 
 ### Tipografia:
 
-A tipografia do sistema Medlink foi definido para garantir uma leitura clara e compatibilidade entre diferentes dispositivos e sistemas operacionais. Todas as páginas principai utilizam fontes padronizadas, que são:
+A tipografia do sistema Medlink foi definido para garantir uma leitura clara e compatibilidade entre diferentes dispositivos e sistemas operacionais. Além disso, as fontes possuem diferentes pesos e tamanhos, o que ajuda os usuários a identificar diferentes seções e informações importantes rapidamente. Todas as páginas principais utilizam fontes padronizadas, que são:
 
 Inter: <br>
 <img width="199" height="107" alt="image" src="https://github.com/user-attachments/assets/6d0e815f-7e29-4c05-a342-4fc2b34f2d5c" />
@@ -87,13 +86,22 @@ Inter: <br>
 Roboto: <br>
 <img width="199" height="107" alt="image" src="https://github.com/user-attachments/assets/c3af8289-a164-464f-a0d7-016522a5b667" />
 
-
 Helvetica Neue: <br>
 <img width="199" height="107" alt="image" src="https://github.com/user-attachments/assets/04dcff61-7724-4e13-9e57-b507d2360b83" />
 
 Arial: <br>
 <img width="199" height="107" alt="image" src="https://github.com/user-attachments/assets/153c93e1-2b39-44cf-aea9-a8404519ae61" />
 
+### Utilização de emojs e ícones:
+
+O painel inicial do Medlink utiliza uma combinação de ícones gráficos e emojis para tornar a navegação intuitiva para o usuário e reforçar visualmente as funcionalidades principais. Eles seguem a paleta de cores da interface e ajudam o usuário a identificar rapidamente cada seção. Abaixo, um exemplo de utilização de emojis no projeto:
+
+<img width="923" height="363" alt="image" src="https://github.com/user-attachments/assets/92061e23-5b57-43bb-97e7-95222a541522" />
+
+Outro exemplo interessante é o uso de emojis para facilitar a localização da informação na tela sobre onde o atendimento ocorrerá. Além disso, o símbolo de check verde indica visualmente que aquele médico foi escolhido. Isso ajuda a criar feedback imediato para o usuário, aumentando a clareza da interação. Esses exemplos podem ser vistos abaixo:
+
+<img width="809" height="179" alt="image" src="https://github.com/user-attachments/assets/e25556e9-537b-4817-8891-261d4bc087bb" /> <br>
+De forma geral, foram utilizados ícones SVGs que facilitam a navegação, para que fique mais fluido para o usuário. É importante ressaltar que todos os ícones seguem a paleta de cores, mantendo coerência visual.
 
 
 ## Fluxo de Dados
