@@ -76,6 +76,25 @@ A cor vermelha (#EF4444) é usada para alertas, erros ou campos inválidos.
 <br><br>
 <img width="242" height="117" alt="image" src="https://github.com/user-attachments/assets/6bfb34af-5610-4485-aa70-486c2250c002" />
 
+### Tipografia:
+
+A tipografia do sistema Medlink foi definido para garantir uma leitura clara e compatibilidade entre diferentes dispositivos e sistemas operacionais. Todas as páginas principai utilizam fontes padronizadas, que são:
+
+Inter: <br>
+<img width="199" height="107" alt="image" src="https://github.com/user-attachments/assets/6d0e815f-7e29-4c05-a342-4fc2b34f2d5c" />
+
+
+Roboto: <br>
+<img width="199" height="107" alt="image" src="https://github.com/user-attachments/assets/c3af8289-a164-464f-a0d7-016522a5b667" />
+
+
+Helvetica Neue: <br>
+<img width="199" height="107" alt="image" src="https://github.com/user-attachments/assets/04dcff61-7724-4e13-9e57-b507d2360b83" />
+
+Arial: <br>
+<img width="199" height="107" alt="image" src="https://github.com/user-attachments/assets/153c93e1-2b39-44cf-aea9-a8404519ae61" />
+
+
 
 ## Fluxo de Dados
 
