@@ -304,6 +304,21 @@ RF-005 - Evitar conflitos de horário ao impedir marcações duplicadas ou sobre
 Como já havia marcado as 08:00 esse horário some.
 <img width="886" height="431" alt="image" src="https://github.com/user-attachments/assets/fbc6c506-54a7-431b-9153-305ce86a5f2a" />
 
+RF-016- Gerar relatórios básicos (ex.: consultas por período/profissional/status; taxa de faltas) <br>
+Profissionais cadastrados
+<img width="1344" height="385" alt="image" src="https://github.com/user-attachments/assets/f83041e6-7443-4cdb-b0d7-e8720414c967" />
+
+Relatório de consultas agendada por paciente
+<img width="1282" height="306" alt="image" src="https://github.com/user-attachments/assets/9f640821-3e68-4f76-95de-7115cd558362" />
+
+RNF-001- A interface deve ser intuitiva para diferentes tipos de usuários (pacientes e profissionais de saúde)<br>
+Itens observados: uma paleta de cores harmônica, bom uso de contrastes, botões de fácil localização e uma interface intuitiva e amigável.
+<img width="1920" height="3310" alt="screencapture-localhost-3000-2025-11-02-19_46_29" src="https://github.com/user-attachments/assets/c1a8d44e-a79e-41de-a85b-756c25ac74bc" />
+
+RNF-003 - Permitir acesso ao sistema via navegador web e aplicativo mobile <br>
+Navegador web:
+<img width="959" height="500" alt="image" src="https://github.com/user-attachments/assets/db77fd1e-8e8a-4428-af3c-d784df765e90" />
+A versão mobile será implementada na próxima etapa.
 
 
 RNF-004	Atualização em tempo real das agendas de profissionais
@@ -312,15 +327,8 @@ RNF-004	Atualização em tempo real das agendas de profissionais
 
 
 
-RF-016- Gerar relatórios básicos (ex.: consultas por período/profissional/status; taxa de faltas) <br>
-Profissionais cadastrados
-<img width="1344" height="385" alt="image" src="https://github.com/user-attachments/assets/f83041e6-7443-4cdb-b0d7-e8720414c967" />
-
-Relatório de consultas agendada por paciente
-<img width="1282" height="306" alt="image" src="https://github.com/user-attachments/assets/9f640821-3e68-4f76-95de-7115cd558362" />
 
 
-RNF-001	A interface deve ser intuitiva para diferentes tipos de usuários (pacientes e profissionais de saúde)
 
 
 # Referências
