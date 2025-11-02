@@ -295,6 +295,10 @@ RF-005 - Evitar conflitos de horário ao impedir marcações duplicadas ou sobre
 Como já havia marcado as 08:00 esse horário some.
 <img width="886" height="431" alt="image" src="https://github.com/user-attachments/assets/fbc6c506-54a7-431b-9153-305ce86a5f2a" />
 
+RF-013 - Controle de acesso baseado em perfis (RBAC), com permissões distintas para Paciente, Profissional e Administrativo
+O administrador detém permissão total das ações.
+<img width="1920" height="872" alt="admin" src="https://github.com/user-attachments/assets/4bdc7ef7-1df9-4234-9d1d-73cdca2ac7d3" />
+
 RF-016- Gerar relatórios básicos (ex.: consultas por período/profissional/status; taxa de faltas) <br>
 Profissionais cadastrados
 <img width="1344" height="385" alt="image" src="https://github.com/user-attachments/assets/f83041e6-7443-4cdb-b0d7-e8720414c967" />
