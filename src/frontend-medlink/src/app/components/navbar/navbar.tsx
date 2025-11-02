@@ -1,12 +1,11 @@
 'use client';
 
-import { useAuth } from '@/app/contexts/auth-context';
-import { Logo } from '../logo/logo';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-
-import './styles.css';
+import { useAuth } from '@/app/contexts/auth-context';
+import { Logo } from '../logo/logo';
+import styles from './navbar.module.css';
 
 interface NavbarLink {
   label: string;
@@ -57,31 +56,32 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <nav className="navbar" aria-label="Barra de navegação principal">
-      <Link href="/" className="logo" onClick={handleNavigate}>
+    <nav className={styles.navbar} aria-label="Barra de navegação principal">
+      <Link href="/" className={styles.logo} onClick={handleNavigate}>
         <Logo />
       </Link>
 
       {/* Links desktop */}
-      <div className="links">
+      <div className={styles.links}>
         {links.map((link) => (
-          <Link href={link.href} key={link.label} className="link">
+          <Link key={link.label} href={link.href} className={styles.link}>
             {link.label}
           </Link>
         ))}
+
         {isAuthenticated ? (
           <button
             onClick={() => {
               logout();
               setOpen(false);
             }}
-            className="link btn-reset"
+            className={`${styles.link} ${styles['btn-reset']}`}
             type="button"
           >
             Sair
           </button>
         ) : (
-          <Link href="/login" className="link">
+          <Link href="/login" className={styles.link}>
             Entrar
           </Link>
         )}
@@ -89,9 +89,9 @@ export function Navbar() {
 
       {/* Botão mobile */}
       <button
-        type='button'
+        type="button"
         ref={btnRef}
-        className="navbar__toggle btn-reset"
+        className={`${styles['navbar__toggle']} ${styles['btn-reset']}`}
         aria-label={open ? 'Fechar menu' : 'Abrir menu'}
         aria-expanded={open}
         aria-controls="navbar-mobile-panel"
@@ -104,32 +104,33 @@ export function Navbar() {
       <div
         id="navbar-mobile-panel"
         ref={panelRef}
-        className={`navbar__panel ${open ? 'is-open' : ''}`}
+        className={`${styles['navbar__panel']} ${open ? styles['is-open'] : ''}`}
       >
-        <div className="navbar__panel-inner">
+        <div className={styles['navbar__panel-inner']}>
           {links.map((link) => (
             <Link
               href={link.href}
               key={link.label}
-              className="link link--block"
+              className={`${styles.link} ${styles['link--block']}`}
               onClick={handleNavigate}
             >
               {link.label}
             </Link>
           ))}
+
           {isAuthenticated ? (
             <button
               onClick={() => {
                 logout();
                 setOpen(false);
               }}
-              className="link link--block btn-reset"
+              className={`${styles.link} ${styles['link--block']} ${styles['btn-reset']}`}
               type="button"
             >
               Sair
             </button>
           ) : (
-            <Link href="/login" className="link link--block" onClick={handleNavigate}>
+            <Link href="/login" className={`${styles.link} ${styles['link--block']}`} onClick={handleNavigate}>
               Entrar
             </Link>
           )}

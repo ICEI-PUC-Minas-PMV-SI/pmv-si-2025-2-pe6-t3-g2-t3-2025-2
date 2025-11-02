@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/app/services/api';
 import { useMemo, useState } from 'react';
-import './styles.css';
+import styles from './page.module.css';
 
 type PacienteResponse = {
   id: string;
@@ -38,47 +38,54 @@ export default function PacientesListPage() {
   }, [data, search]);
 
   return (
-    <div className="pacientes">
-      <header className="pacientes__header">
-        <h1 className="pacientes__title">Pacientes</h1>
-        <input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Buscar por nome, email ou telefone"
-          className="pacientes__search"
-          aria-label="Buscar pacientes"
-        />
-      </header>
+    <div className={styles.pacientes}>
+      <div className="container">
+        <header className={styles.pacientes__header}>
+          <h1 className={styles.pacientes__title}>Pacientes</h1>
 
-      {isLoading && <p className="pacientes__info">Carregando...</p>}
-      {isError && <p className="pacientes__info pacientes__info--error">Erro ao carregar pacientes.</p>}
+          <div className={styles['pacientes__searchwrap']}>
+            <label htmlFor="pacientes-search" className={styles['visually-hidden']}>Buscar pacientes</label>
+            <input
+              id="pacientes-search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Buscar por nome, email ou telefone"
+              className={styles.pacientes__search}
+              aria-label="Buscar pacientes"
+            />
+          </div>
+        </header>
 
-      {!isLoading && filtered.length === 0 && (
-        <p className="pacientes__info">Nenhum paciente encontrado.</p>
-      )}
+        {isLoading && <p className={styles.pacientes__info}>Carregando...</p>}
+        {isError && <p className={`${styles.pacientes__info} ${styles['pacientes__info--error']}`} role="alert">Erro ao carregar pacientes.</p>}
 
-      {filtered.length > 0 && (
-        <div className="pacientes__tablewrap">
-          <table className="pacientes__table">
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((p) => (
-                <tr key={p.id}>
-                  <td>{p.nome}</td>
-                  <td>{p.email}</td>
-                  <td>{p.telefone || '-'}</td>
+        {!isLoading && filtered.length === 0 && (
+          <p className={styles.pacientes__info}>Nenhum paciente encontrado.</p>
+        )}
+
+        {filtered.length > 0 && (
+          <div className={styles.pacientes__tablewrap}>
+            <table className={styles.pacientes__table} aria-label="Lista de pacientes">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Telefone</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+              </thead>
+              <tbody>
+                {filtered.map((p) => (
+                  <tr key={p.id}>
+                    <td>{p.nome}</td>
+                    <td>{p.email}</td>
+                    <td>{p.telefone || '-'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

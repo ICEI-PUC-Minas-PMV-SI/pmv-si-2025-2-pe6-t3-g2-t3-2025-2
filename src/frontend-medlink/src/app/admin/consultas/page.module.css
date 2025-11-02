@@ -1,23 +1,27 @@
-/* Container principal */
+/* page.module.css (scoped styles for Admin Consultas) */
+
 .admin-consultas {
-  padding: 24px;
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 24px;
 }
 
+/* Title */
 .admin-consultas__title {
   margin-bottom: 16px;
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-/* Filtros */
+/* Filters */
 .admin-consultas__filters {
   display: grid;
   gap: 12px;
   grid-template-columns: 1fr; /* mobile */
-  background: #fff;
+  background: var(--color-surface, #fff);
   padding: 16px;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border, #e5e7eb);
 }
 
 .admin-consultas__field {
@@ -36,15 +40,16 @@
   gap: 8px;
 }
 
-/* Tabela */
+/* Table wrapper */
 .admin-consultas__tablewrap {
   overflow: auto;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border, #e5e7eb);
   margin-top: 16px;
-  background: #fff;
+  background: var(--color-surface, #fff);
 }
 
+/* Table */
 .ac-table {
   width: 100%;
   border-collapse: collapse;
@@ -52,7 +57,7 @@
 }
 
 .ac-table thead {
-  background: #f3f4f6;
+  background: var(--color-bg, #f3f4f6);
   text-align: left;
 }
 
@@ -60,12 +65,12 @@
 .ac-table td {
   padding: 12px;
   vertical-align: top;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--color-border, #e5e7eb);
 }
 
 .ac-cell { }
 .ac-cell--error {
-  color: #b91c1c;
+  color: var(--color-danger, #b91c1c);
   font-weight: 600;
 }
 
@@ -74,11 +79,11 @@
 }
 
 .ac-subtle {
-  color: #6b7280;
+  color: var(--color-muted, #6b7280);
   font-size: 0.75rem;
 }
 
-/* Inputs e botões */
+/* Inputs and buttons */
 .ac-label {
   font-size: 0.875rem;
   font-weight: 500;
@@ -87,14 +92,14 @@
 
 .ac-input {
   width: 100%;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border, #e5e7eb);
   border-radius: 6px;
   padding: 8px 12px;
-  background: #fff;
+  background: var(--color-surface, #fff);
 }
 
 .ac-input:focus {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid var(--color-primary, #3b82f6);
   outline-offset: 1px;
 }
 
@@ -104,16 +109,16 @@
 }
 
 .ac-button {
-  border: 1px solid #e5e7eb;
-  background: #fff;
-  color: #111827;
+  border: 1px solid var(--color-border, #e5e7eb);
+  background: var(--color-surface, #fff);
+  color: var(--color-text, #111827);
   padding: 8px 12px;
   border-radius: 6px;
   cursor: pointer;
 }
 
 .ac-button:hover:not(:disabled) {
-  background: #f9fafb;
+  background: var(--color-hover, #f9fafb);
 }
 
 .ac-button:disabled {
@@ -122,27 +127,22 @@
 }
 
 .ac-button--primary {
-  background: #2563eb;
+  background: var(--color-primary, #2563eb);
   color: #fff;
-  border-color: #2563eb;
-}
-
-.ac-button--primary:hover:not(:disabled) {
-  background: #1d4ed8;
-  border-color: #1d4ed8;
+  border-color: var(--color-primary, #2563eb);
 }
 
 .ac-button--ghost {
-  background: #fff;
+  background: var(--color-surface, #fff);
   border-color: #d1d5db;
 }
 
 .ac-muted {
-  color: #6b7280;
+  color: var(--color-muted, #6b7280);
   font-size: 0.875rem;
 }
 
-/* Chips de status */
+/* Chips */
 .ac-chip {
   display: inline-block;
   padding: 2px 8px;
@@ -162,11 +162,11 @@
 }
 
 .ac-chip--muted {
-  background: #f3f4f6;
+  background: var(--color-bg, #f3f4f6);
   color: #374151;
 }
 
-/* Paginação */
+/* Pagination */
 .admin-consultas__pagination {
   display: flex;
   justify-content: space-between;
@@ -179,7 +179,7 @@
   gap: 8px;
 }
 
-/* Responsividade */
+/* Responsive layouts */
 @media (min-width: 640px) {
   .admin-consultas__filters {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -203,3 +203,6 @@
     grid-column: span 5;
   }
 }
+
+/* Small improvements */
+.ac-table tr td:first-child { white-space: nowrap; }

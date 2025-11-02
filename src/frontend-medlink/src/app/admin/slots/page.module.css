@@ -1,0 +1,282 @@
+/* page.module.css - scoped styles for Slots */
+
+.slots {
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 24px;
+}
+
+/* Header */
+.slots__header {
+  margin-bottom: 24px;
+}
+
+.slots__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.slots__subtitle {
+  color: var(--color-muted, #666);
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+
+/* Grid principal (form + lista) */
+.slots__grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr; /* mobile */
+}
+
+@media (min-width: 900px) {
+  .slots__grid {
+    grid-template-columns: 1fr 1fr; /* 2 colunas no desktop */
+  }
+}
+
+/* Card genérico */
+.card {
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 10px;
+  padding: 20px;
+  background: var(--color-surface, #fff);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.card__title {
+  margin: 0 0 12px 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+/* Formulário */
+.form {
+  display: grid;
+  gap: 14px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr; /* mobile */
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr; /* duas colunas */
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-strong, #111827);
+}
+
+.form-input {
+  width: 100%;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: var(--color-surface, #fff);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--color-bg, #f9fafb);
+}
+
+.form-error {
+  color: var(--color-danger, #b91c1c);
+  font-size: 0.82rem;
+  margin-top: 2px;
+}
+
+/* Botões reutilizáveis */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  background: var(--color-surface, #fff);
+  color: var(--color-text, #111827);
+  cursor: pointer;
+  transition: background 150ms ease, opacity 150ms ease;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--color-hover, #f9fafb);
+  opacity: 0.9;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--color-primary, #2563eb);
+  color: #fff;
+  border-color: var(--color-primary, #2563eb);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.btn--danger {
+  color: var(--color-danger, #dc2626);
+  border-color: #fecaca;
+  background: var(--color-surface, #fff);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: #fff5f5;
+}
+
+.btn--sm {
+  padding: 4px 8px;
+  font-size: 0.85rem;
+}
+
+/* Cabeçalho da lista de slots */
+.slots__listhead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.slots__listactions {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.slots__hint,
+.slots__info {
+  color: var(--color-muted, #666);
+  font-style: italic;
+  padding: 8px 0;
+}
+
+.slots__info {
+  font-style: normal;
+}
+
+/* Lista de slots */
+.slots__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+/* Item do slot */
+.slot {
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-surface, #fff);
+  transition: background 150ms ease;
+}
+
+.slot--ok {
+  background: #f0fff4; /* livre */
+}
+.slot--warn {
+  background: #fffbeb; /* reservado */
+}
+.slot--danger {
+  background: #fef2f2; /* indisponível/cancelado */
+}
+
+.slot__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.slot__range {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.slot__status {
+  font-size: 0.75rem;
+  color: var(--color-muted, #666);
+}
+
+.slot__statusvalue {
+  font-weight: 700;
+  color: var(--color-text, #374151);
+}
+
+.slot--ok .slot__statusvalue {
+  color: #16a34a;
+}
+.slot--warn .slot__statusvalue {
+  color: #ca8a04;
+}
+.slot--danger .slot__statusvalue {
+  color: #dc2626;
+}
+
+/* Animação do ícone de atualizar */
+@keyframes ac-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-spin {
+  animation: ac-spin 1s linear infinite;
+}
+
+/* Ajustes para mobile */
+@media (max-width: 480px) {
+  .form-input {
+    padding: 9px 11px;
+    font-size: 0.9rem;
+  }
+  .btn {
+    padding: 7px 11px;
+    font-size: 0.875rem;
+  }
+  .slot {
+    padding: 10px;
+  }
+}

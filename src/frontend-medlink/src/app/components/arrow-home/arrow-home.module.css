@@ -1,0 +1,35 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: inherit;
+  transition: color 120ms ease, transform 120ms ease;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Allow keyboard focus styles when the parent <a> or button receives focus */
+.back :where(svg) {
+  display: inline-block;
+}
+
+/* hover on parent (e.g. Link) will apply color change */
+.back:hover {
+  color: var(--color-primary, #2563eb);
+  transform: translateY(-1px);
+}
+
+/* When the parent link/button is focused, show visible outline.
+   The actual focus container is usually the <a> rendered by Link;
+   this rule helps if ArrowHome used directly inside interactive element. */
+.back:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.12);
+  outline-offset: 2px;
+}
+
+/* text span if you need fine-grained control later */
+.back__text {
+  display: inline-block;
+  font-weight: 500;
+}

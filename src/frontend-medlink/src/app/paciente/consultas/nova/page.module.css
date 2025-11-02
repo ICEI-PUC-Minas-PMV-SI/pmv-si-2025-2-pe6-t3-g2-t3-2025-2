@@ -1,0 +1,246 @@
+/* page.module.css - scoped styles for Nova Consulta */
+
+.nova-consulta {
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 24px;
+}
+
+/* Header */
+.nova-consulta__header {
+  display: grid;
+  gap: 10px;
+  align-items: center;
+  grid-template-columns: 1fr auto;
+  margin-bottom: 12px;
+}
+
+.nova-consulta__title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .nova-consulta__title {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .nova-consulta__title {
+    font-size: 1.65rem;
+  }
+}
+
+/* Mensagens */
+.nova-consulta__info {
+  color: var(--color-muted, #4b5563);
+  font-size: 0.95rem;
+  padding: 8px 0;
+}
+
+.nova-consulta__info--error {
+  color: var(--color-danger, #b91c1c);
+  font-weight: 600;
+}
+
+/* Form padrão */
+.form {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 1024px) {
+  .form {
+    gap: 12px; /* um pouco mais denso no desktop */
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-strong, #111827);
+}
+
+.form-input {
+  width: 100%;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: var(--color-surface, #fff);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+@media (min-width: 1024px) {
+  .form-input {
+    padding: 9px 12px; /* ligeiro ajuste para mais densidade */
+    font-size: 0.94rem;
+  }
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--color-bg, #f9fafb);
+}
+
+.form-error {
+  color: var(--color-danger, #b91c1c);
+  font-size: 0.82rem;
+  margin-top: 2px;
+}
+
+/* Grid dos cards de horário */
+.slots-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+@media (min-width: 768px) {
+  .slots-grid {
+    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .slots-grid {
+    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* mais largo no desktop */
+  }
+}
+
+.slots-hint {
+  color: var(--color-muted, #666);
+  font-style: italic;
+  padding: 8px 0;
+}
+
+.slots-error {
+  color: var(--color-danger, #b91c1c);
+  font-weight: 600;
+  padding: 8px 0;
+}
+
+/* Card de slot */
+.slotcard {
+  text-align: left;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-light, #dcdfe4);
+  background: var(--color-surface, #fff);
+  cursor: pointer;
+  display: grid;
+  gap: 2px;
+  transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+@media (min-width: 1024px) {
+  .slotcard {
+    padding: 12px 14px;
+  }
+}
+
+.slotcard:hover:not(:disabled, .slotcard--disabled) {
+  border-color: #c5ccd6;
+  background: #f9fbff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.slotcard--selected {
+  border: 2px solid var(--color-primary, #2563eb);
+  background: #eff6ff;
+}
+
+.slotcard--disabled,
+.slotcard:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.slotcard__start {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.slotcard__end {
+  color: var(--color-muted, #555);
+  font-size: 0.75rem;
+}
+
+.slotcard__badge {
+  margin-top: 6px;
+  color: var(--color-danger, #a00);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Botões padrão */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  background: var(--color-surface, #fff);
+  color: var(--color-text, #111827);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 150ms ease, opacity 150ms ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--color-hover, #f9fafb);
+  opacity: 0.9;
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--color-primary, #2563eb);
+  color: #fff;
+  border-color: var(--color-primary, #2563eb);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Ajustes para mobile */
+@media (max-width: 480px) {
+  .form-input {
+    padding: 9px 11px;
+    font-size: 0.9rem;
+  }
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.875rem;
+  }
+  .slotcard {
+    padding: 10px;
+  }
+}
