@@ -306,7 +306,11 @@ Como já havia marcado as 08:00 esse horário some.
 
 
 
-<img width="886" height="249" alt="image" src="https://github.com/user-attachments/assets/d298b561-14b1-4a29-8556-b5bea1909a97" />
+RNF-004	Atualização em tempo real das agendas de profissionais
+<img width="1733" height="626" alt="image" src="https://github.com/user-attachments/assets/df19697d-e12b-46b2-8fb8-a1353838408a" />
+
+
+
 
 RF-016- Gerar relatórios básicos (ex.: consultas por período/profissional/status; taxa de faltas) <br>
 Profissionais cadastrados
