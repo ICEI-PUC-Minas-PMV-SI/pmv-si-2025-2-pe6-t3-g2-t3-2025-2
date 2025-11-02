@@ -339,9 +339,9 @@ Atualizado em: 31/10/2025
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Beatriz     | Documentação - Design Visual | 29/10/2025     | 02/11/2025 | ✔️    | 31/10/2025      |
-| Beatriz     | Testes    | 29/10/2025     | 02/11/2025 | ✔️    |                 |
+| Beatriz     | Testes    | 29/10/2025     | 02/11/2025 | ✔️    |        02/11/2025         |
 | Ramir   | Documentação - Considerações de Segurança | 29/10/2025     | 02/11/2025 | ✔️    | 02/11/2025      |
-| Ramir   | Testes    | 29/10/2025     | 02/11/2025 | ✔️    |                 |
+| Ramir   | Testes    | 29/10/2025     | 02/11/2025 | ✔️    |    02/11/2025            |
 
 
 Legenda:
