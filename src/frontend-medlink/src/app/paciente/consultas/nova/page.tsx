@@ -14,7 +14,7 @@ import { useAgendarConsultaPorSlot } from '@/features/paciente/useAgendarConsult
 import { useEffect, useMemo, useState } from 'react';
 import { toast } from '@/app/components/ui/toast';
 import { formatTime } from '@/lib/datetime';
-import './styles.css';
+import styles from './page.module.css';
 
 const schema = z.object({
   medicoId: z.string().min(1, 'Selecione um médico'),
@@ -119,134 +119,171 @@ export default function NovaConsultaPacientePage() {
   const disabledSlots = isPending || slotsLoading || slotsError || medicoOuDataIndef;
 
   return (
-    <div className="nova-consulta">
-      <header className="nova-consulta__header">
-        <h1 className="nova-consulta__title">Agendar Consulta</h1>
-        <Link href="/paciente/consultas" className="btn">
-          Voltar
-        </Link>
-      </header>
+    <div className={styles['nova-consulta']}>
+      <div className="container">
+        <header className={styles['nova-consulta__header']}>
+          <h1 className={styles['nova-consulta__title']}>Agendar Consulta</h1>
+          <Link href="/paciente/consultas" className={`${styles.btn}`}>
+            Voltar
+          </Link>
+        </header>
 
-      {medicosError && (
-        <p className="nova-consulta__info nova-consulta__info--error">
-          Erro ao carregar médicos. Verifique sua sessão e permissões.
-        </p>
-      )}
+        {medicosError && (
+          <p className={`${styles['nova-consulta__info']} ${styles['nova-consulta__info--error']}`} role="alert">
+            Erro ao carregar médicos. Verifique sua sessão e permissões.
+          </p>
+        )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="form">
-        <div className="form-field">
-          <label htmlFor="medico" className="form-label">
-            Médico
-          </label>
-          <select
-            id="medico"
-            {...register('medicoId')}
-            disabled={isPending || medicosLoading}
-            defaultValue=""
-            onChange={(e) => {
-              const val = e.target.value;
-              setValue('medicoId', val, { shouldValidate: true, shouldDirty: true });
-              setSelectedSlot('');
-              setValue('slotId', '', { shouldValidate: true });
-            }}
-            className="form-input"
-          >
-            <option value="">Selecione</option>
-            {medicos?.map((m) => (
-              <option key={m.id} value={m.id}>
-                {m.nome} — {m.especialidade}
-              </option>
-            ))}
-          </select>
-          {errors.medicoId && <small className="form-error">{errors.medicoId.message}</small>}
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="data" className="form-label">
-            Data
-          </label>
-          <input
-            id="data"
-            type="date"
-            {...register('data')}
-            disabled={isPending}
-            onChange={(e) => {
-              const val = e.target.value;
-              setValue('data', val, { shouldValidate: true, shouldDirty: true });
-              setSelectedSlot('');
-              setValue('slotId', '', { shouldValidate: true });
-            }}
-            className="form-input"
-          />
-          {errors.data && <small className="form-error">{errors.data.message}</small>}
-        </div>
-
-        {/* Campo escondido para validação do slotId */}
-        <input type="hidden" {...register('slotId')} />
-
-        <div className="form-field">
-          <label htmlFor='horarios' className="form-label">Horários disponíveis</label>
-          <div className="slots-grid" aria-busy={slotsLoading} aria-live="polite">
-            {medicoOuDataIndef && <div className="slots-hint">Selecione médico e data para ver horários.</div>}
-
-            {!medicoOuDataIndef && slotsLoading && <div className="slots-hint">Carregando horários...</div>}
-
-            {!medicoOuDataIndef && !slotsLoading && slotsError && (
-              <div className="slots-error">Erro ao carregar horários.</div>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form} noValidate>
+          <div className={styles['form-field']}>
+            <label htmlFor="medico" className={styles['form-label']}>
+              Médico
+            </label>
+            <select
+              id="medico"
+              {...register('medicoId')}
+              disabled={isPending || medicosLoading}
+              defaultValue=""
+              onChange={(e) => {
+                const val = e.target.value;
+                setValue('medicoId', val, { shouldValidate: true, shouldDirty: true });
+                setSelectedSlot('');
+                setValue('slotId', '', { shouldValidate: true });
+              }}
+              className={styles['form-input']}
+              aria-invalid={!!errors.medicoId}
+              aria-describedby={errors.medicoId ? "medico-error" : undefined}
+            >
+              <option value="">Selecione</option>
+              {medicos?.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.nome} — {m.especialidade}
+                </option>
+              ))}
+            </select>
+            {errors.medicoId && (
+              <small id="medico-error" className={styles['form-error']}>
+                {errors.medicoId.message}
+              </small>
             )}
-
-            {!medicoOuDataIndef && !slotsLoading && !slotsError && slotsOrdenados.length === 0 && (
-              <div className="slots-hint">Sem horários disponíveis para esta data.</div>
-            )}
-
-            {!medicoOuDataIndef &&
-              !slotsLoading &&
-              !slotsError &&
-              slotsOrdenados.map((slot) => {
-                const selected = selectedSlot === slot.id;
-                const indisponivel = slot.status !== 'LIVRE';
-                return (
-                  <button
-                    key={slot.id}
-                    type="button"
-                    onClick={() => handleSelectSlot(slot.id)}
-                    disabled={disabledSlots || indisponivel}
-                    title={formatHoraLabel(slot)}
-                    className={[
-                      'slotcard',
-                      selected ? 'slotcard--selected' : '',
-                      indisponivel ? 'slotcard--disabled' : '',
-                    ].join(' ')}
-                    aria-pressed={selected}
-                  >
-                    <div className="slotcard__start">{formatTime(slot.inicio)}</div>
-                    <div className="slotcard__end">até {formatTime(slot.fim)}</div>
-                    {indisponivel && <div className="slotcard__badge">Indisponível</div>}
-                  </button>
-                );
-              })}
           </div>
-          {errors.slotId && <small className="form-error">{errors.slotId.message}</small>}
-        </div>
 
-        <div className="form-field">
-          <label htmlFor="observacoes" className="form-label">
-            Observações
-          </label>
-          <textarea
-            id="observacoes"
-            {...register('observacoes')}
-            placeholder="Observações (opcional)"
-            disabled={isPending}
-            rows={4}
-            className="form-input"
-          />
-        </div>
+          <div className={styles['form-field']}>
+            <label htmlFor="data" className={styles['form-label']}>
+              Data
+            </label>
+            <input
+              id="data"
+              type="date"
+              {...register('data')}
+              disabled={isPending}
+              onChange={(e) => {
+                const val = e.target.value;
+                setValue('data', val, { shouldValidate: true, shouldDirty: true });
+                setSelectedSlot('');
+                setValue('slotId', '', { shouldValidate: true });
+              }}
+              className={styles['form-input']}
+              aria-invalid={!!errors.data}
+              aria-describedby={errors.data ? "data-error" : undefined}
+            />
+            {errors.data && (
+              <small id="data-error" className={styles['form-error']}>
+                {errors.data.message}
+              </small>
+            )}
+          </div>
 
-        <button type="submit" className="btn btn--primary" disabled={isPending || !selectedSlot}>
-          {isPending ? 'Agendando...' : 'Agendar'}
-        </button>
-      </form>
+          {/* Campo escondido para validação do slotId */}
+          <input type="hidden" {...register('slotId')} />
+
+          <div className={styles['form-field']}>
+            <label htmlFor="horarios" className={styles['form-label']}>
+              Horários disponíveis
+            </label>
+            <div
+              className={styles['slots-grid']}
+              aria-busy={slotsLoading}
+              aria-live="polite"
+              arial-label="Grade de horários disponíveis"
+            >
+              {medicoOuDataIndef && (
+                <div className={styles['slots-hint']}>Selecione médico e data para ver horários.</div>
+              )}
+
+              {!medicoOuDataIndef && slotsLoading && (
+                <div className={styles['slots-hint']}>Carregando horários...</div>
+              )}
+
+              {!medicoOuDataIndef && !slotsLoading && slotsError && (
+                <div className={styles['slots-error']}>Erro ao carregar horários.</div>
+              )}
+
+              {!medicoOuDataIndef && !slotsLoading && !slotsError && slotsOrdenados.length === 0 && (
+                <div className={styles['slots-hint']}>Sem horários disponíveis para esta data.</div>
+              )}
+
+              {!medicoOuDataIndef &&
+                !slotsLoading &&
+                !slotsError &&
+                slotsOrdenados.map((slot) => {
+                  const selected = selectedSlot === slot.id;
+                  const indisponivel = slot.status !== 'LIVRE';
+                  return (
+                    <button
+                      key={slot.id}
+                      type="button"
+                      onClick={() => handleSelectSlot(slot.id)}
+                      disabled={disabledSlots || indisponivel}
+                      title={formatHoraLabel(slot)}
+                      className={[
+                        styles.slotcard,
+                        selected ? styles['slotcard--selected'] : '',
+                        indisponivel ? styles['slotcard--disabled'] : '',
+                      ].join(' ')}
+                      aria-pressed={selected}
+                      aria-label={`Selecionar horário das ${formatTime(slot.inicio)} até ${formatTime(slot.fim)}`}
+                    >
+                      <div className={styles['slotcard__start']}>{formatTime(slot.inicio)}</div>
+                      <div className={styles['slotcard__end']}>até {formatTime(slot.fim)}</div>
+                      {indisponivel && (
+                        <div className={styles['slotcard__badge']}>Indisponível</div>
+                      )}
+                    </button>
+                  );
+                })}
+            </div>
+            {errors.slotId && (
+              <small id="slot-error" className={styles['form-error']}>
+                {errors.slotId.message}
+              </small>
+            )}
+          </div>
+
+          <div className={styles['form-field']}>
+            <label htmlFor="observacoes" className={styles['form-label']}>
+              Observações
+            </label>
+            <textarea
+              id="observacoes"
+              {...register('observacoes')}
+              placeholder="Observações (opcional)"
+              disabled={isPending}
+              rows={4}
+              className={styles['form-input']}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className={`${styles.btn} ${styles['btn--primary']}`}
+            disabled={isPending || !selectedSlot}
+            aria-busy={isPending}
+          >
+            {isPending ? 'Agendando...' : 'Agendar'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

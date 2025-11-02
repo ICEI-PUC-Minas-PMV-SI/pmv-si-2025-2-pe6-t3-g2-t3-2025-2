@@ -1,0 +1,12 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* If you later add text next to the image, keep control over its size */
+.logo :global(img) {
+  display: inline-block;
+}

@@ -1,9 +1,10 @@
 /* Página de Login (escopo local) */
 
-.login.container {
+.login {
   max-width: 1240px;
   width: 100%;
   padding-block: 36px;
+  margin-inline: auto;
 }
 
 .login__top {
@@ -14,6 +15,8 @@
 
 .stack-md {
   border: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* Grid principal: imagem + formulário */
@@ -21,13 +24,6 @@
   display: grid;
   gap: 2rem;
   margin-top: 24px;
-}
-
-.login__form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 24px;
 }
 
 @media (min-width: 1024px) {
@@ -76,6 +72,10 @@
 
 /* Formulário */
 .login__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
   align-self: center;
   padding: 2rem;
 }
@@ -86,7 +86,9 @@
   margin: 0 0 0.5rem;
 }
 
-.stack-md > * + * { margin-top: 1rem; }
+.stack-md > * + * {
+  margin-top: 1rem;
+}
 
 /* Campos */
 .form-field {
@@ -109,9 +111,10 @@
 
 .login__hint {
   font-size: 0.95rem;
+  text-align: center;
 }
 
-/* Links e botões utilitários (caso não tenha global) */
+/* Botões e links */
 .btn {
   display: flex;
   align-items: center;
@@ -125,47 +128,57 @@
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  transition: opacity .15s ease, opacity .15s ease;
+  transition: opacity 0.15s ease;
 }
-.btn:hover { opacity: .5; }
-.btn--lg { padding: 0.675rem 1rem; }
-.btn--primary { background: var(--primary-600, #2563eb); color: #fff; border-color: var(--primary-200, #bfdbfe); font-size: 16px; }
-.btn--primary:hover { opacity: 0.95; }
-.btn--ghost { background: transparent; }
+.btn:hover:not(:disabled) {
+  opacity: 0.5;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.btn--lg {
+  padding: 0.675rem 1rem;
+}
+.btn--primary {
+  background: var(--primary-600, #2563eb);
+  color: #fff;
+  border-color: var(--primary-200, #bfdbfe);
+  font-size: 16px;
+}
+.btn--primary:hover:not(:disabled) {
+  opacity: 0.95;
+}
+.btn--ghost {
+  background: transparent;
+}
 
 .link {
   color: var(--primary-600, #2563eb);
   font-weight: 600;
   text-decoration: none;
 }
-.link:hover { text-decoration: underline; }
-
-/* Alert banner */
-.alert {
-  border: 1px solid var(--color-border, #e5e7eb);
-  border-radius: 8px;
-  padding: 0.75rem 0.875rem;
-  font-size: 0.95rem;
-}
-.alert--error {
-  background: var(--danger-50, #fef2f2);
-  border-color: var(--danger-100, #fee2e2);
-  color: var(--danger, #dc2626);
+.link:hover {
+  text-decoration: underline;
 }
 
-/* Card base (se não tiver global) */
+/* Card base */
 .card {
   background: var(--color-bg, #fff);
   border: 1px solid var(--color-border, #e5e7eb);
   border-radius: 12px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
-/* SR-only p/ ícones com acessibilidade */
+/* SR-only */
 .sr-only {
   position: absolute !important;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0);
-  white-space: nowrap; border: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
