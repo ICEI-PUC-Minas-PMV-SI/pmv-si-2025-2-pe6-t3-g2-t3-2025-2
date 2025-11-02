@@ -212,7 +212,7 @@ Permissões:
 
 ---
 
-## Diagrama (Mermaid) — cole diretamente no README/MD do GitHub
+## Diagrama (Mermaid) 
 
 ```mermaid
 flowchart TD
