@@ -312,6 +312,7 @@ Itens observados: uma paleta de cores harmônica, bom uso de contrastes, botões
 
 RNF-002 - A navegação deve ser simples, com menus claros e informações visíveis <br>
 Itens observados: páginas com botões visíveis e intuitivos, design limpo.
+<img width="809" height="558" alt="image" src="https://github.com/user-attachments/assets/1c8378b9-6cf9-4264-ae16-7060e34ba272" />
 <img width="809" height="245" alt="image" src="https://github.com/user-attachments/assets/56b2ba5c-10d5-499b-b900-a6a4eeff7271" />
 <img width="814" height="36" alt="image" src="https://github.com/user-attachments/assets/e5923c50-4808-4c34-b345-cc09b69d8155" />
 <img width="539" height="591" alt="image" src="https://github.com/user-attachments/assets/9326d8cd-d87a-499d-9887-aac08f7226c9" /><br>
