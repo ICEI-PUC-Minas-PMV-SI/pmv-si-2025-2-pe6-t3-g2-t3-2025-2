@@ -305,6 +305,10 @@ Como já havia marcado as 08:00 esse horário some.
 <img width="886" height="431" alt="image" src="https://github.com/user-attachments/assets/fbc6c506-54a7-431b-9153-305ce86a5f2a" />
 
 
+
+<img width="886" height="249" alt="image" src="https://github.com/user-attachments/assets/d298b561-14b1-4a29-8556-b5bea1909a97" />
+
+
 # Referências
 
 Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
