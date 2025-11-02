@@ -16,7 +16,13 @@ public class WebConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
+<<<<<<< HEAD
         config.setAllowedOrigins(List.of("http://localhost:3000"));
+=======
+        // Altere para o domínio do seu front
+        config.setAllowedOrigins(List.of("http://localhost:3000"));
+        // Se você precisar enviar cookies entre domínios, use setAllowCredentials(true) e configure allowedOriginPatterns.
+>>>>>>> c7771681293bfd0fb68f194e22df68fc8f45a639
         // config.setAllowCredentials(true);
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
