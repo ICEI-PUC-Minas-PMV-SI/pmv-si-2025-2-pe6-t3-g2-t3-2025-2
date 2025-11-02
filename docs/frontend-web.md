@@ -307,6 +307,12 @@ Como já havia marcado as 08:00 esse horário some.
 
 
 <img width="886" height="249" alt="image" src="https://github.com/user-attachments/assets/d298b561-14b1-4a29-8556-b5bea1909a97" />
+RF-016- Gerar relatórios básicos (ex.: consultas por período/profissional/status; taxa de faltas) <br>
+Profissionais cadastrados
+<img width="1344" height="385" alt="image" src="https://github.com/user-attachments/assets/f83041e6-7443-4cdb-b0d7-e8720414c967" />
+Relatório de consultas agendada por paciente
+<img width="1282" height="306" alt="image" src="https://github.com/user-attachments/assets/9f640821-3e68-4f76-95de-7115cd558362" />
+
 
 
 # Referências
@@ -326,7 +332,7 @@ Atualizado em: 31/10/2025
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Beatriz     | Documentação - Design Visual | 29/10/2025     | 02/11/2025 | ✔️    | 31/10/2025      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
+| Beatriz     | Testes    | 29/10/2025     | 02/11/2025 | ✔️    |                 |
 | AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
 | AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
 
