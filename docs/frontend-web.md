@@ -306,6 +306,21 @@ RNF-001- A interface deve ser intuitiva para diferentes tipos de usuários (paci
 Itens observados: uma paleta de cores harmônica, bom uso de contrastes, botões de fácil localização e uma interface intuitiva e amigável.
 <img width="1920" height="3310" alt="screencapture-localhost-3000-2025-11-02-19_46_29" src="https://github.com/user-attachments/assets/c1a8d44e-a79e-41de-a85b-756c25ac74bc" />
 
+RNF-002 - A navegação deve ser simples, com menus claros e informações visíveis <br>
+Itens observados: páginas com botões visíveis e intuitivos, design limpo.
+<img width="809" height="245" alt="image" src="https://github.com/user-attachments/assets/56b2ba5c-10d5-499b-b900-a6a4eeff7271" />
+<img width="814" height="36" alt="image" src="https://github.com/user-attachments/assets/e5923c50-4808-4c34-b345-cc09b69d8155" />
+<img width="539" height="591" alt="image" src="https://github.com/user-attachments/assets/9326d8cd-d87a-499d-9887-aac08f7226c9" /><br>
+Avisos claros, com cores adequadas para indicar sucesso ou falha:<br>
+<img width="368" height="89" alt="image" src="https://github.com/user-attachments/assets/1fe16d15-fd21-4fda-950a-d82aabc61a2e" />
+<img width="368" height="89" alt="image" src="https://github.com/user-attachments/assets/e5b5ff07-aeba-493d-bf12-d5de8ce52e6a" />
+<img width="368" height="89" alt="image" src="https://github.com/user-attachments/assets/0bf8d76f-bc7e-46b4-824b-5feb2fa20353" />
+
+
+
+
+
+
 RNF-003 - Permitir acesso ao sistema via navegador web e aplicativo mobile <br>
 Navegador web:
 <img width="959" height="500" alt="image" src="https://github.com/user-attachments/assets/db77fd1e-8e8a-4428-af3c-d784df765e90" />
