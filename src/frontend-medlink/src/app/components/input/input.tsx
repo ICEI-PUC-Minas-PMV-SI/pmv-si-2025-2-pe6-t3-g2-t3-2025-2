@@ -1,16 +1,23 @@
-import { ComponentProps } from "react";
-import "./styles.css";
+import { ComponentProps, forwardRef } from 'react';
+import styles from './input.module.css';
 
-interface InputProps extends ComponentProps<'input'> {
-    error?: string
+export interface InputProps extends ComponentProps<'input'> {
+  error?: string;
 }
 
-export function Input({ id, className, error, ...props }: InputProps) {
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ id, className = '', error, ...props }, ref) => {
     return (
-        <input 
-            {...props}
-            aria-invalid={!!error}
-            className={`${className ?? ""} ${error ? "input-error" : ""}`}
-        />
-    )
-}
+      <input
+        ref={ref}
+        id={id}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
+        className={`${styles.input} ${className} ${error ? styles['input--error'] : ''}`}
+        {...props}
+      />
+    );
+  }
+);
+
+Input.displayName = 'Input';

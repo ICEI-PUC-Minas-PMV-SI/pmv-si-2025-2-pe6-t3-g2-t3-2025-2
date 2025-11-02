@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCreateMedico } from '@/hooks/useCreateMedico';
 import { toast } from '@/app/components/ui/toast';
-import './styles.css';
+import styles from './page.module.css';
 
 const EspecialidadeEnum = z.enum(['OFTALMOLOGIA', 'CARDIOLOGIA', 'ORTOPEDIA', 'PEDIATRIA']);
 
@@ -66,112 +66,149 @@ export default function NovoMedicoPage() {
   };
 
   return (
-    <div className="novo-medico">
-      <header className="novo-medico__header">
-        <h1 className="novo-medico__title">Cadastrar Médico</h1>
-        <Link href="/admin/medicos" className="btn">
-          Voltar
-        </Link>
-      </header>
+    <div className={styles['novo-medico']}>
+      <div className="container">
+        <header className={styles['novo-medico__header']}>
+          <h1 className={styles['novo-medico__title']}>Cadastrar Médico</h1>
+          <Link href="/admin/medicos" className={`${styles.btn} ${styles['btn--secondary']}`}>
+            Voltar
+          </Link>
+        </header>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="novo-medico__form">
-        <div className="form-field">
-          <label htmlFor="nome" className="form-label">Nome</label>
-          <input
-            id="nome"
-            {...register('nome')}
-            placeholder="Nome completo"
-            className="form-input"
+        <form onSubmit={handleSubmit(onSubmit)} className={styles['novo-medico__form']} noValidate>
+          <div className={styles['form-field']}>
+            <label htmlFor="nome" className={styles['form-label']}>Nome</label>
+            <input
+              id="nome"
+              {...register('nome')}
+              placeholder="Nome completo"
+              className={styles['form-input']}
+              disabled={isPending}
+              aria-invalid={!!errors.nome}
+              aria-describedby={errors.nome ? "nome-error" : undefined}
+            />
+            {errors.nome && (
+              <small id="nome-error" className={styles['form-error']}>
+                {errors.nome.message}
+              </small>
+            )}
+          </div>
+
+          <div className={styles['form-grid']}>
+            <div className={styles['form-field']}>
+              <label htmlFor="email" className={styles['form-label']}>Email</label>
+              <input
+                id="email"
+                type="email"
+                {...register('email')}
+                placeholder="medico@exemplo.com"
+                className={styles['form-input']}
+                disabled={isPending}
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
+              />
+              {errors.email && (
+                <small id="email-error" className={styles['form-error']}>
+                  {errors.email.message}
+                </small>
+              )}
+            </div>
+
+            <div className={styles['form-field']}>
+              <label htmlFor="password" className={styles['form-label']}>Senha</label>
+              <input
+                id="password"
+                type="password"
+                {...register('password')}
+                placeholder="••••••••"
+                className={styles['form-input']}
+                disabled={isPending}
+                aria-invalid={!!errors.password}
+                aria-describedby={errors.password ? "password-error" : undefined}
+              />
+              {errors.password && (
+                <small id="password-error" className={styles['form-error']}>
+                  {errors.password.message}
+                </small>
+              )}
+            </div>
+          </div>
+
+          <div className={styles['form-grid']}>
+            <div className={styles['form-field']}>
+              <label htmlFor="crm" className={styles['form-label']}>CRM</label>
+              <input
+                id="crm"
+                {...register('crm')}
+                placeholder="CRM"
+                className={styles['form-input']}
+                disabled={isPending}
+                aria-invalid={!!errors.crm}
+                aria-describedby={errors.crm ? "crm-error" : undefined}
+              />
+              {errors.crm && (
+                <small id="crm-error" className={styles['form-error']}>
+                  {errors.crm.message}
+                </small>
+              )}
+            </div>
+
+            <div className={styles['form-field']}>
+              <label htmlFor="telefone" className={styles['form-label']}>Telefone</label>
+              <input
+                id="telefone"
+                {...register('telefone')}
+                placeholder="(99) 99999-9999"
+                className={styles['form-input']}
+                disabled={isPending}
+              />
+            </div>
+          </div>
+
+          <div className={styles['form-grid']}>
+            <div className={styles['form-field']}>
+              <label htmlFor="endereco" className={styles['form-label']}>Endereço</label>
+              <input
+                id="endereco"
+                {...register('endereco')}
+                placeholder="Rua, nº, bairro"
+                className={styles['form-input']}
+                disabled={isPending}
+              />
+            </div>
+
+            <div className={styles['form-field']}>
+              <label htmlFor="especialidade" className={styles['form-label']}>Especialidade</label>
+              <select
+                id="especialidade"
+                {...register('especialidade')}
+                className={styles['form-input']}
+                disabled={isPending}
+                aria-invalid={!!errors.especialidade}
+                aria-describedby={errors.especialidade ? "especialidade-error" : undefined}
+              >
+                {EspecialidadeEnum.options.map((e) => (
+                  <option key={e} value={e}>{e}</option>
+                ))}
+              </select>
+              {errors.especialidade && (
+                <small id="especialidade-error" className={styles['form-error']}>
+                  {errors.especialidade.message}
+                </small>
+              )}
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            className={`${styles.btn} ${styles['btn--primary']}`} 
             disabled={isPending}
-          />
-          {errors.nome && <small className="form-error">{errors.nome.message}</small>}
-        </div>
-
-        <div className="form-grid">
-          <div className="form-field">
-            <label htmlFor="email" className="form-label">Email</label>
-            <input
-              id="email"
-              type="email"
-              {...register('email')}
-              placeholder="medico@exemplo.com"
-              className="form-input"
-              disabled={isPending}
-            />
-            {errors.email && <small className="form-error">{errors.email.message}</small>}
-          </div>
-
-          <div className="form-field">
-            <label htmlFor="password" className="form-label">Senha</label>
-            <input
-              id="password"
-              type="password"
-              {...register('password')}
-              placeholder="••••••••"
-              className="form-input"
-              disabled={isPending}
-            />
-            {errors.password && <small className="form-error">{errors.password.message}</small>}
-          </div>
-        </div>
-
-        <div className="form-grid">
-          <div className="form-field">
-            <label htmlFor="crm" className="form-label">CRM</label>
-            <input
-              id="crm"
-              {...register('crm')}
-              placeholder="CRM"
-              className="form-input"
-              disabled={isPending}
-            />
-            {errors.crm && <small className="form-error">{errors.crm.message}</small>}
-          </div>
-
-          <div className="form-field">
-            <label htmlFor="telefone" className="form-label">Telefone</label>
-            <input
-              id="telefone"
-              {...register('telefone')}
-              placeholder="(99) 99999-9999"
-              className="form-input"
-              disabled={isPending}
-            />
-          </div>
-        </div>
-
-        <div className="form-grid">
-          <div className="form-field">
-            <label htmlFor="endereco" className="form-label">Endereço</label>
-            <input
-              id="endereco"
-              {...register('endereco')}
-              placeholder="Rua, nº, bairro"
-              className="form-input"
-              disabled={isPending}
-            />
-          </div>
-
-          <div className="form-field">
-            <label htmlFor="especialidade" className="form-label">Especialidade</label>
-            <select
-              id="especialidade"
-              {...register('especialidade')}
-              className="form-input"
-              disabled={isPending}
-            >
-              {EspecialidadeEnum.options.map((e) => (
-                <option key={e} value={e}>{e}</option>
-              ))}
-            </select>
-            {errors.especialidade && <small className="form-error">{errors.especialidade.message}</small>}
-          </div>
-        </div>
-
-        <button type="submit" className="btn btn--primary" disabled={isPending}>
-          {isPending ? 'Salvando...' : 'Salvar'}
-        </button>
-      </form>
+            aria-busy={isPending}
+          >
+            {isPending ? 'Salvando...' : 'Salvar'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

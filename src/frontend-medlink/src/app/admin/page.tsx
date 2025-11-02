@@ -1,36 +1,41 @@
 'use client';
 
 import Link from 'next/link';
-import './styles.css';
+import styles from './page.module.css';
 
 export default function AdminHome() {
   // Futuro: buscar métricas reais com React Query
   // const { data } = useQuery({ queryKey: ['admin-stats'], queryFn: getAdminStats });
 
   return (
-    <div className="admin">
-      <header className="admin__header">
-        <div className="admin__headinfo">
-          <h1 className="admin__title">Dashboard do Administrador</h1>
-          <p className="admin__subtitle">Gerencie médicos, pacientes e consultas.</p>
+    <div className={styles.admin}>
+      <header className={styles.admin__header}>
+        <div className={styles.admin__headinfo}>
+          <h1 className={styles.admin__title}>Dashboard do Administrador</h1>
+          <p className={styles.admin__subtitle}>Gerencie médicos, pacientes e consultas.</p>
         </div>
-        <div className="admin__headactions">
-          <Link href="/admin/medicos/novo" className="btn btn--primary">Novo Médico</Link>
-          <Link href="/admin/slots" className="btn">Gerenciar Slots</Link>
+
+        <div className={styles.admin__headactions} role="toolbar" aria-label="Ações do administrador">
+          <Link href="/admin/medicos/novo" className={`${styles.btn} ${styles['btn--primary']}`}>
+            Novo Médico
+          </Link>
+          <Link href="/admin/slots" className={styles.btn}>
+            Gerenciar Slots
+          </Link>
         </div>
       </header>
 
-      <section className="admin__cards">
+      <section className={styles.admin__cards} aria-label="Resumo">
         <Card title="Médicos" value="—" href="/admin/medicos" subtitle="Gerenciar médicos" />
         <Card title="Pacientes" value="—" href="/admin/pacientes" subtitle="Lista de pacientes" />
         <Card title="Consultas" value="—" href="/admin/consultas" subtitle="Agenda e histórico" />
         <Card title="Slots" value="—" href="/admin/slots" subtitle="Gerenciar disponibilidade" />
       </section>
 
-      <section className="admin__list">
-        <h2 className="admin__sectiontitle">Atividades recentes</h2>
-        <ul className="admin__ul">
-          <li className="admin__li">Sem atividades recentes</li>
+      <section className={styles.admin__list}>
+        <h2 className={styles.admin__sectiontitle}>Atividades recentes</h2>
+        <ul className={styles.admin__ul}>
+          <li className={styles.admin__li}>Sem atividades recentes</li>
         </ul>
       </section>
     </div>
@@ -49,11 +54,11 @@ function Card({
   subtitle?: string;
 }) {
   return (
-    <Link href={href} className="card">
-      <div className="card__content">
-        <div className="card__title">{title}</div>
-        <div className="card__value">{value}</div>
-        {subtitle && <div className="card__subtitle">{subtitle}</div>}
+    <Link href={href} className={styles.card} aria-label={`${title} — ${subtitle ?? ''}`}>
+      <div className={styles.card__content}>
+        <div className={styles.card__title}>{title}</div>
+        <div className={styles.card__value}>{value}</div>
+        {subtitle && <div className={styles.card__subtitle}>{subtitle}</div>}
       </div>
     </Link>
   );

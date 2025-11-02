@@ -1,0 +1,243 @@
+/* page.module.css - scoped styles for Consultas Paciente */
+
+.consultas {
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 24px;
+}
+
+/* Header */
+.consultas__header {
+  display: grid;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.consultas__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.consultas__actions {
+  display: inline-flex;
+  gap: 8px;
+  justify-self: start;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  .consultas__header {
+    grid-template-columns: 1fr auto;
+  }
+  .consultas__actions {
+    justify-self: end;
+  }
+}
+
+/* Badges de status */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.015em;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.badge--neutral {
+  color: #1f2937; /* gray-800 */
+  background: #f3f4f6; /* gray-100 */
+  border-color: #e5e7eb; /* gray-200 */
+}
+
+.badge--success {
+  color: #065f46; /* emerald-800 */
+  background: #d1fae5; /* emerald-100 */
+  border-color: #a7f3d0; /* emerald-200 */
+}
+
+.badge--danger {
+  color: #991b1b; /* red-800 */
+  background: #fee2e2; /* red-100 */
+  border-color: #fecaca; /* red-200 */
+}
+
+.badge--warning {
+  color: #92400e; /* amber-800 */
+  background: #fef3c7; /* amber-100 */
+  border-color: #fde68a; /* amber-200 */
+}
+
+/* Info messages */
+.consultas__info {
+  color: var(--color-muted, #4b5563);
+  font-size: 0.95rem;
+  padding: 8px 0;
+}
+
+.consultas__info--error {
+  color: var(--color-danger, #b91c1c);
+  font-weight: 600;
+}
+
+/* Lista */
+.consultas__list {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+/* Item de consulta */
+.consulta {
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+  padding: 12px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr; /* mobile */
+  background: var(--color-surface, #fff);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+@media (min-width: 640px) {
+  .consulta {
+    grid-template-columns: 1fr auto; /* duas colunas em telas maiores */
+    align-items: center;
+  }
+}
+
+.consulta__left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.consulta__medico {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.consulta__esp {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-muted, #4b5563);
+}
+
+.consulta__datetime {
+  color: var(--color-muted, #555);
+  font-size: 0.9rem;
+}
+
+.consulta__obs {
+  margin-top: 6px;
+  font-size: 0.875rem;
+  color: var(--color-text, #374151);
+}
+
+.consulta__status {
+  margin-top: 0.25rem;
+  align-self: flex-start;
+}
+
+/* Lado direito: ações */
+.consulta__right {
+  justify-self: start;
+}
+
+@media (min-width: 640px) {
+  .consulta__right {
+    justify-self: end;
+  }
+}
+
+/* Botões reutilizáveis */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  background: var(--color-surface, #fff);
+  color: var(--color-text, #111827);
+  cursor: pointer;
+  transition: background 150ms ease, opacity 150ms ease;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.btn:hover:not(:disabled, .btn--disabled) {
+  background: var(--color-hover, #f9fafb);
+  opacity: 0.9;
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'],
+.btn--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--color-primary, #2563eb);
+  color: #fff;
+  border-color: var(--color-primary, #2563eb);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.btn--danger {
+  color: var(--color-danger, #dc2626);
+  border-color: #fecaca;
+  background: #fff6f6;
+}
+
+.btn--danger:hover:not(:disabled, .btn--disabled) {
+  background: #ffecec;
+}
+
+.btn--sm {
+  padding: 6px 10px;
+  font-size: 0.875rem;
+}
+
+/* Animação de ícone (Refresh) */
+@keyframes ac-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-spin {
+  animation: ac-spin 1s linear infinite;
+}
+
+/* Ajustes para mobile */
+@media (max-width: 480px) {
+  .consultas__title {
+    font-size: 1.4rem;
+  }
+  .btn {
+    padding: 7px 11px;
+    font-size: 0.875rem;
+  }
+  .consulta {
+    padding: 10px;
+  }
+}

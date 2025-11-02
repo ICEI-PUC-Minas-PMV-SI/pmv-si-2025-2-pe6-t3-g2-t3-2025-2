@@ -6,8 +6,8 @@ import { useConsultasPaciente } from '@/features/paciente/useConsultasPaciente';
 import { useCancelarConsulta } from '@/features/paciente/useCancelarConsulta';
 import { toast } from '@/app/components/ui/toast';
 import { formatDateTime, isLessThanHourFromNow } from '@/lib/datetime';
-import './styles.css';
 import { ArrowHome } from '@/app/components/arrow-home/arrow-home';
+import styles from './page.module.css';
 
 export default function ConsultasPacientePage() {
   const { data: consultas, isLoading, isError, refetch, isFetching } = useConsultasPaciente();
@@ -46,103 +46,121 @@ export default function ConsultasPacientePage() {
   };
 
   return (
-    <div className="consultas">
-      <header className="consultas__header">
-        <h1 className="consultas__title">Minhas Consultas</h1>
-        <div className="consultas__actions">
-          <Link href="/paciente/consultas/nova" className="btn btn--primary">
-            <Plus size={16} aria-hidden="true" />
-            <span>Nova</span>
-          </Link>
-          <button
-            type="button"
-            onClick={() => refetch()}
-            disabled={isFetching}
-            className="btn"
-            aria-live="polite"
-          >
-            <RefreshCw size={16} className={isFetching ? 'icon-spin' : ''} aria-hidden="true" />
-            <span>{isFetching ? 'Atualizando...' : 'Atualizar'}</span>
-          </button>
-          <Link href="/" className="btn" aria-live="polite">
-            <ArrowHome />
-          </Link>
-        </div>
-      </header>
+    <div className={styles.consultas}>
+      <div className="container">
+        <header className={styles.consultas__header}>
+          <h1 className={styles.consultas__title}>Minhas Consultas</h1>
+          <div className={styles.consultas__actions} role="toolbar" aria-label="Ações da página">
+            <Link href="/paciente/consultas/nova" className={`${styles.btn} ${styles['btn--primary']}`}>
+              <Plus size={16} aria-hidden="true" />
+              <span>Nova</span>
+            </Link>
+            <button
+              type="button"
+              onClick={() => refetch()}
+              disabled={isFetching}
+              className={styles.btn}
+              aria-label={isFetching ? "Atualizando consultas" : "Atualizar consultas"}
+              aria-live="polite"
+            >
+              <RefreshCw
+                size={16}
+                className={isFetching ? styles['icon-spin'] : ''}
+                aria-hidden="true"
+              />
+              <span>{isFetching ? 'Atualizando...' : 'Atualizar'}</span>
+            </button>
+            <Link href="/" className={styles.btn} aria-label="Voltar para home">
+              <ArrowHome />
+            </Link>
+          </div>
+        </header>
 
-      {isLoading && <p className="consultas__info">Carregando...</p>}
-      {isError && <p className="consultas__info consultas__info--error">Erro ao carregar suas consultas.</p>}
+        {isLoading && <p className={styles.consultas__info}>Carregando...</p>}
+        {isError && (
+          <p className={`${styles.consultas__info} ${styles['consultas__info--error']}`} role="alert">
+            Erro ao carregar suas consultas.
+          </p>
+        )}
 
-      {!isLoading && (consultas?.length ?? 0) === 0 && (
-        <p className="consultas__info">Nenhuma consulta encontrada.</p>
-      )}
+        {!isLoading && (consultas?.length ?? 0) === 0 && (
+          <p className={styles.consultas__info}>Nenhuma consulta encontrada.</p>
+        )}
 
-      <ul className="consultas__list">
-        {consultas
-          // Remova esta linha se o backend já filtrar CANCELADO
-          ?.filter((c) => c.status !== 'CANCELADO')
-          .map((c) => {
-            const bloquearCancelamento = isLessThanHourFromNow(c.dataHora);
-            const podeCancelar = c.status === 'CONFIRMADO' && !bloquearCancelamento;
+        <ul className={styles.consultas__list} aria-label="Lista de consultas">
+          {consultas
+            // Remova esta linha se o backend já filtrar CANCELADO
+            ?.filter((c) => c.status !== 'CANCELADO')
+            .map((c) => {
+              const bloquearCancelamento = isLessThanHourFromNow(c.dataHora);
+              const podeCancelar = c.status === 'CONFIRMADO' && !bloquearCancelamento;
 
-            return (
-              <li key={c.id} className="consulta">
-                <div className="consulta__left">
-                  <div className="consulta__medico">
-                    {c.medicoNome}{' '}
-                    {c.especialidade && <span className="consulta__esp">({c.especialidade})</span>}
+              return (
+                <li key={c.id} className={styles.consulta}>
+                  <div className={styles.consulta__left}>
+                    <div className={styles.consulta__medico}>
+                      {c.medicoNome}{' '}
+                      {c.especialidade && (
+                        <span className={styles.consulta__esp}>({c.especialidade})</span>
+                      )}
+                    </div>
+
+                    {/* Badge de status solicitado */}
+                    {c.status !== 'CONFIRMADO' && (
+                      <output
+                        className={[
+                          styles.badge,
+                          c.status === 'CANCELADO'
+                            ? styles['badge--danger']
+                            : styles['badge--success'],
+                          styles.consulta__status,
+                        ].join(' ')}
+                      >
+                        {c.status === 'CANCELADO' ? 'Cancelada' : 'Concluída'}
+                      </output>
+                    )}
+
+                    <div className={styles.consulta__datetime}>{formatDateTime(c.dataHora)}</div>
+                    {c.observacoes && (
+                      <div className={styles.consulta__obs}>Obs.: {c.observacoes}</div>
+                    )}
                   </div>
 
-                  {/* Badge de status solicitado */}
-                  {c.status !== 'CONFIRMADO' && (
-                    <output
+                  <div className={styles.consulta__right}>
+                    <button
+                      type="button"
+                      onClick={() => handleCancelar(c.id)}
+                      disabled={cancelando || !podeCancelar}
+                      title={
+                        c.status !== 'CONFIRMADO'
+                          ? 'Esta consulta não pode ser cancelada.'
+                          : bloquearCancelamento
+                          ? 'Não é possível cancelar a menos de 1h do início'
+                          : 'Cancelar consulta'
+                      }
                       className={[
-                        'badge',
-                        c.status === 'CANCELADO' ? 'badge--danger' : 'badge--success',
-                        'consulta__status',
+                        styles.btn,
+                        styles['btn--danger'],
+                        styles['btn--sm'],
+                        !podeCancelar ? styles['btn--disabled'] : '',
                       ].join(' ')}
+                      aria-label={`Cancelar consulta com ${c.medicoNome} em ${formatDateTime(c.dataHora)}`}
                     >
-                      {c.status === 'CANCELADO' ? 'Cancelada' : 'Concluída'}
-                    </output>
-                  )}
-
-                  <div className="consulta__datetime">{formatDateTime(c.dataHora)}</div>
-                  {c.observacoes && <div className="consulta__obs">Obs.: {c.observacoes}</div>}
-                </div>
-
-                <div className="consulta__right">
-                  <button
-                    type="button"
-                    onClick={() => handleCancelar(c.id)}
-                    disabled={cancelando || !podeCancelar}
-                    title={
-                      c.status !== 'CONFIRMADO'
-                        ? 'Esta consulta não pode ser cancelada.'
-                        : bloquearCancelamento
-                        ? 'Não é possível cancelar a menos de 1h do início'
-                        : 'Cancelar consulta'
-                    }
-                    className={[
-                      'btn',
-                      'btn--danger',
-                      'btn--sm',
-                      !podeCancelar ? 'btn--disabled' : '',
-                    ].join(' ')}
-                  >
-                    <Trash2 size={16} aria-hidden="true" />
-                    <span>
-                      {cancelando
-                        ? 'Cancelando...'
-                        : !podeCancelar
-                        ? 'Indisponível'
-                        : 'Cancelar'}
-                    </span>
-                  </button>
-                </div>
-              </li>
-            );
-          })}
-      </ul>
+                      <Trash2 size={16} aria-hidden="true" />
+                      <span>
+                        {cancelando
+                          ? 'Cancelando...'
+                          : !podeCancelar
+                          ? 'Indisponível'
+                          : 'Cancelar'}
+                      </span>
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
     </div>
   );
 }
