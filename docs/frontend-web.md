@@ -284,13 +284,26 @@ O desenvolvimento da aplicação **Mobile** (com React Native) é uma fase futur
 
 ## Testes
 
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+RF-001 : Permitir login e autenticação de pacientes e profissionais de saúde:
 
-1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
-2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
-3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
-4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+<img width="886" height="379" alt="image" src="https://github.com/user-attachments/assets/73b5fcd3-1952-48cb-8dd1-474317ec45a5" />
+<img width="886" height="249" alt="image" src="https://github.com/user-attachments/assets/25f6fdcb-836c-48df-a01a-b06a38b35de9" />
+
+RF-002 – Permitir atualização de dados pessoais e contato dos usuários
+Cadastrar e atualizar Médico.
+<img width="886" height="391" alt="image" src="https://github.com/user-attachments/assets/057da726-5609-405a-b7cb-25f734af028b" />
+
+
+RF-003 - Permitir que pacientes visualizem a disponibilidade de profissionais por especialidade
+<img width="886" height="444" alt="image" src="https://github.com/user-attachments/assets/a5c24b43-7888-49ef-bd39-93d33e349166" />
+
+RF-004 - Permitir agendamento de consultas e exames de acordo com horários disponíveis
+<img width="886" height="125" alt="image" src="https://github.com/user-attachments/assets/325b38c2-0715-4b5f-b46c-40b155998c2d" />
+
+RF-005 - Evitar conflitos de horário ao impedir marcações duplicadas ou sobreposição de agendas
+Como já havia marcado as 08:00 esse horário some.
+<img width="886" height="431" alt="image" src="https://github.com/user-attachments/assets/fbc6c506-54a7-431b-9153-305ce86a5f2a" />
+
 
 # Referências
 
