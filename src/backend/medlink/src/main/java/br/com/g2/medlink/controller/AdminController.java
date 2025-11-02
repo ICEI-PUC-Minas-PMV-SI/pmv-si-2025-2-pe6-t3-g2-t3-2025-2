@@ -7,10 +7,6 @@ import br.com.g2.medlink.controller.dto.paciente.PacienteResponse;
 import br.com.g2.medlink.controller.dto.slot.SlotCreateRequest;
 import br.com.g2.medlink.controller.dto.slot.SlotResponse;
 import br.com.g2.medlink.entity.Medico;
-<<<<<<< HEAD
-=======
-import br.com.g2.medlink.entity.Slot;
->>>>>>> c7771681293bfd0fb68f194e22df68fc8f45a639
 import br.com.g2.medlink.service.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +16,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-<<<<<<< HEAD
-=======
-import java.time.LocalDateTime;
-import java.time.LocalTime;
->>>>>>> c7771681293bfd0fb68f194e22df68fc8f45a639
 import java.util.List;
 import java.util.UUID;
 
@@ -148,8 +139,4 @@ public class AdminController {
         slotService.cancelarOuExcluirSlotLivre(slotId); // veja o método abaixo
         return ResponseEntity.noContent().build();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c7771681293bfd0fb68f194e22df68fc8f45a639

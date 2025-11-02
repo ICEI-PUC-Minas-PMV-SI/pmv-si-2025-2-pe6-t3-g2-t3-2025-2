@@ -45,10 +45,6 @@ public class ConsultaService {
         return consultaRepository.findByPacienteId(paciente.getId());
     }
 
-<<<<<<< HEAD
-=======
-    // ATUALIZADO: inclui status e (opcional) filtra canceladas
->>>>>>> c7771681293bfd0fb68f194e22df68fc8f45a639
     public List<ConsultaPacienteResponse> listarConsultasDoPacienteComMedico(Paciente paciente) {
         var consultas = consultaRepository.findByPacienteId(paciente.getId());
 
@@ -146,15 +142,7 @@ public class ConsultaService {
                 observacoes
         );
         consulta.setSlot(slot);
-<<<<<<< HEAD
 
         return consultaRepository.save(consulta);
     }
 }
-=======
-        // status default já é CONFIRMADO
-
-        return consultaRepository.save(consulta);
-    }
-}
->>>>>>> c7771681293bfd0fb68f194e22df68fc8f45a639

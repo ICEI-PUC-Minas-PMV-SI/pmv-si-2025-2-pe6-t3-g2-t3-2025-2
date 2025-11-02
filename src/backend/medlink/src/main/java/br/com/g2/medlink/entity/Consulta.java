@@ -56,12 +56,6 @@ public class Consulta {
         this.medicoId = medicoId;
         this.dataHora = dataHora;
         this.observacoes = observacoes;
-<<<<<<< HEAD
         this.status = StatusConsulta.CONFIRMADO;
     }
 }
-=======
-        this.status = StatusConsulta.CONFIRMADO; // ADICIONE: default ao criar
-    }
-}
->>>>>>> c7771681293bfd0fb68f194e22df68fc8f45a639

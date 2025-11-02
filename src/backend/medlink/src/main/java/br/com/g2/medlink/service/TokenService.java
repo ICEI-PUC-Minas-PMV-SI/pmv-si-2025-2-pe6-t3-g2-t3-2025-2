@@ -20,39 +20,14 @@ public class TokenService {
 
     @Value("${api.security.token.secret}")
     private String secret;
-<<<<<<< HEAD
-
-    private static final String ISSUER = "auth-api";
-=======
->>>>>>> c7771681293bfd0fb68f194e22df68fc8f45a639
 
     private static final String ISSUER = "auth-api";
 
     // Wrapper solicitado para manter compatibilidade
     public String createToken(User user) {
-<<<<<<< HEAD
-        return generateToken(user);
-    }
-
-    // Método principal que gera token
-    public String generateToken(UserDetails user) {
-        Algorithm algorithm = Algorithm.HMAC256(secret);
-
-        List<String> authorities = user.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority) // ex.: "ROLE_PACIENTE"
-                .toList();
-
-        return JWT.create()
-                .withIssuer(ISSUER)
-                .withSubject(user.getUsername()) // email
-                .withArrayClaim("authorities", authorities.toArray(new String[0])) // opcional
-                .withExpiresAt(Instant.now().plus(2, ChronoUnit.HOURS))
-                .sign(algorithm);
-=======
         // sua entidade User implementa UserDetails (recomendado).
         // Caso não implemente, adapte para construir um UserDetails equivalente.
         return generateToken(user);
->>>>>>> c7771681293bfd0fb68f194e22df68fc8f45a639
     }
 
     // Método principal que gera token
@@ -93,8 +68,4 @@ public class TokenService {
             return "";
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c7771681293bfd0fb68f194e22df68fc8f45a639
