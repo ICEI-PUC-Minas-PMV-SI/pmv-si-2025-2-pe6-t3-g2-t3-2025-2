@@ -106,7 +106,131 @@ De forma geral, foram utilizados ícones SVGs que facilitam a navegação, para 
 
 ## Fluxo de Dados
 
-[Diagrama ou descrição do fluxo de dados na aplicação.]
+# User flow — MedLink
+
+## Visão geral
+MedLink é uma aplicação de agendamento e gerenciamento de consultas médicas com duas personas principais: Paciente e Admin (clínica/recepção). Este documento descreve os fluxos principais de uso, pontos de entrada, telas envolvidas, referências ao código (para desenvolvedores) e fluxos alternativos.
+
+---
+
+## Todo (o que foi feito)
+- [x] Levantar contexto do projeto — identificar páginas, componentes e hooks relevantes.
+- [x] Escrever resumo do user flow em Markdown (português).
+- [x] Gerar diagrama Mermaid e alternativa textual.
+- [x] Revisar e entregar Markdown final.
+
+---
+
+## Personas
+- Paciente: registra-se, autentica-se, visualiza/agendar/cancelar consultas.
+- Admin (Recepção/Gestor): gerencia médicos, slots (horários), visualiza e cancela consultas, administra o sistema.
+
+---
+
+## Pontos de entrada (arquivos relevantes)
+- Página pública (Home): `src/app/home/home-page.tsx`, `src/app/page.tsx`  
+- Login: `src/app/login/page.tsx`  
+- Registro: `src/app/register/page.tsx`  
+- Área do Paciente (consultas): `src/app/paciente/consultas/page.tsx`  
+- Área Admin: `src/app/admin/layout.tsx`, `src/app/admin/page.tsx`  
+- Serviços/API: `src/app/services/api.ts`, `src/app/services/auth.ts`  
+- Contexto de autenticação: `src/app/contexts/auth-context.tsx`  
+- Hooks e features: `src/features/*`, `src/hooks/*`  
+- Validações: `src/app/validators/tasks-validators.ts`  
+- Notificações/UI: `src/app/components/ui/toast.tsx`
+
+---
+
+## Fluxos principais
+
+### 1) Registro e autenticação (Paciente)
+- Entrada: Home → `Entrar` / `Registrar` (`/login`, `/register`).
+- Formulário de registro: `src/app/register/page.tsx` chama `src/app/services/auth.ts`.
+- Ao criar conta com sucesso:
+  - Recebe token/sessão → armazenado via `auth-context.tsx` / `services/auth.ts`.
+  - Redireciona para `/paciente/consultas`.
+- Login: `src/app/login/page.tsx` → `services/auth.ts` → `auth-context.tsx`.
+
+Fluxos alternativos / erros:
+- Validação de campos via `src/app/validators/tasks-validators.ts`.
+- Erro do servidor: exibir `toast` (`src/app/components/ui/toast.tsx`).
+
+---
+
+### 2) Visualizar disponibilidade e agendar consulta (Paciente)
+- Painel: `src/app/paciente/consultas/page.tsx`.
+- Usuário clica “Agendar” → formulário (por exemplo `src/app/paciente/consultas/nova`).
+- Seleciona médico/slot → dados vindos de hooks/queries (`src/features/paciente/queries.ts`, `src/hooks/useCreateSlots.ts`).
+- Submete → `src/app/services/api.ts` → backend.
+- Sucesso → refetch da lista de consultas e notificação (toast).
+
+Fluxos alternativos:
+- Slot ocupado no submit → mostrar conflito e sugerir horários.
+- Usuário não autenticado → redirecionar para login.
+
+---
+
+### 3) Cancelar consulta (Paciente)
+- Lista de consultas (`/paciente/consultas`) → ação “Cancelar”.
+- Confirmação → chamada para `useCancelarConsulta.ts` (ou `src/features/paciente/useCancelarConsulta.ts`).
+- Backend processa → lista atualizada, notificação exibida.
+
+Regras de negócio comuns:
+- Cancelamentos com antecedência mínima (configuração backend).
+- Histórico mantido para auditoria.
+
+---
+
+### 4) Administração (Admin)
+- Login admin (pode ser via mesma rota de login, com role checada).
+- Painel admin: `src/app/admin/layout.tsx` → navegação para:
+  - `admin/consultas` — listar/filtrar/cancelar consultas.
+  - `admin/medicos` — criar/editar médicos (`src/hooks/useCreateMedico.ts`).
+  - `admin/slots` — criar/remover slots (`src/hooks/useCreateSlots.ts`, `src/hooks/useAdminSlots.ts`).
+- Ações administrativas usam hooks/features: `src/features/admin/useAdminConsultas.ts`, `src/hooks/useAdminSlots.ts`.
+
+Permissões:
+- Autorizações verificadas via `auth-context.tsx` e hooks como `useAdminAuth.ts`.
+- Acesso negado → redirecionamento / página de erro.
+
+---
+
+## Mapeamento Tela ↔ Componentes / Hooks / Serviços
+- Autenticação
+  - Front: `src/app/login/page.tsx`, `src/app/register/page.tsx`
+  - Contexto: `src/app/contexts/auth-context.tsx`
+  - Serviço: `src/app/services/auth.ts`
+- Painel Paciente
+  - Tela: `src/app/paciente/consultas/page.tsx`
+  - Hooks/queries: `src/features/paciente/queries.ts`, `src/features/paciente/useAgendarConsulta.ts`
+  - UI: componentes em `src/app/components/*`
+- Painel Admin
+  - Layout/telas: `src/app/admin/layout.tsx`, `src/app/admin/consultas/page.tsx`, `src/app/admin/medicos/page.tsx`, `src/app/admin/slots/page.tsx`
+  - Hooks: `src/features/admin/useAdminConsultas.ts`, `src/hooks/useAdminSlots.ts`, `src/hooks/useCreateMedico.ts`, `src/hooks/useCreateSlots.ts`
+- Notificações: `src/app/components/ui/toast.tsx`
+- API central: `src/app/services/api.ts`
+
+---
+
+## Diagrama (Mermaid) — cole diretamente no README/MD do GitHub
+
+```mermaid
+flowchart TD
+  A[Página pública / Home] --> B[Login / Register]
+  B --> |Paciente| C[Painel Paciente]
+  B --> |Admin| D[Painel Admin]
+  C --> E[Ver Consultas]
+  C --> F[Agendar Consulta]
+  F --> G[Selecionar Médico/Slot]
+  G --> H[Confirmar Agendamento]
+  H --> E
+  E --> I[Cancelar Consulta]
+  D --> J[Gerenciar Médicos]
+  D --> K[Gerenciar Slots]
+  D --> L[Ver/Cancelar Consultas]
+  style C fill:#eef,stroke:#33a
+  style D fill:#efe,stroke:#2a2
+```
 
 ## Tecnologias Utilizadas
 
