@@ -5,13 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface ConsultaRepository extends JpaRepository<Consulta, String> {
+public interface ConsultaRepository extends JpaRepository<Consulta, UUID> {
     List<Consulta> findByPacienteId(String pacienteId);
-
-    Optional<Consulta> findById(String consultaId);
 
     List<Consulta> findByMedicoId(String medicoId);
 }

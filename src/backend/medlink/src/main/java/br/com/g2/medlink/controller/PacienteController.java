@@ -1,5 +1,6 @@
 package br.com.g2.medlink.controller;
 
+import br.com.g2.medlink.controller.dto.consulta.ConsultaPacienteResponse;
 import br.com.g2.medlink.controller.dto.consulta.ConsultaRequest;
 import br.com.g2.medlink.controller.dto.medico.MedicoResponse;
 import br.com.g2.medlink.controller.dto.paciente.PacienteRequest;
@@ -12,10 +13,13 @@ import br.com.g2.medlink.service.MedicoService;
 import br.com.g2.medlink.service.PacienteService;
 import br.com.g2.medlink.service.UserService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,6 +39,8 @@ public class PacienteController {
 
     @Autowired
     private MedicoService medicoService;
+
+    private static final Logger log = LoggerFactory.getLogger(PacienteController.class);
 
     @PostMapping("/consulta")
     @PreAuthorize("hasRole('PACIENTE')")
@@ -60,22 +66,21 @@ public class PacienteController {
 
     @GetMapping("/consultas")
     @PreAuthorize("hasRole('PACIENTE')")
-    public ResponseEntity<List<Consulta>> getConsultas() {
+    public ResponseEntity<List<ConsultaPacienteResponse>> getConsultas() {
         Paciente paciente = userService.getPacienteDoUsuarioLogado();
-        List<Consulta> consultas = consultaService.listarConsultasDoPaciente(paciente);
+        List<ConsultaPacienteResponse> consultas = consultaService.listarConsultasDoPacienteComMedico(paciente);
         return ResponseEntity.ok(consultas);
     }
 
     @DeleteMapping("/consulta/{id}")
     @PreAuthorize("hasRole('PACIENTE')")
-    public ResponseEntity<String> deletarConsulta(@PathVariable String id) {
-        try {
-            Paciente paciente = userService.getPacienteDoUsuarioLogado();
-            consultaService.deletarConsultaDoPaciente(id, paciente);
-            return ResponseEntity.ok("Consulta excluída com sucesso!");
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+    public ResponseEntity<String> cancelarConsulta(@PathVariable String id) {
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        log.info("[CANCELAR] authName={}, authorities={}", auth != null ? auth.getName() : null, auth != null ? auth.getAuthorities() : null);
+
+        Paciente paciente = userService.getPacienteDoUsuarioLogado();
+        consultaService.cancelarConsultaDoPaciente(id, paciente);
+        return ResponseEntity.ok("Consulta cancelada com sucesso!");
     }
 
     @PostMapping("/register")

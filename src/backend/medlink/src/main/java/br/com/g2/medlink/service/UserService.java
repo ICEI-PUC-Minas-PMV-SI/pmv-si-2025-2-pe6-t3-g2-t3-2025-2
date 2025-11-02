@@ -13,10 +13,12 @@ import br.com.g2.medlink.repository.MedicoRepository;
 import br.com.g2.medlink.repository.PacienteRepository;
 import br.com.g2.medlink.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -85,9 +87,9 @@ public class UserService {
 
     public Paciente getPacienteDoUsuarioLogado() {
         User user = getCurrentUser()
-                .orElseThrow(() -> new RuntimeException("Usuário não autenticado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado"));
         return pacienteRepository.findByUserId(user.getId())
-                .orElseThrow(() -> new RuntimeException("Paciente não encontrado para o usuário logado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado para o usuário logado"));
     }
 
     public Admin salvarAdmin(AdminRequest adminRequest) {
@@ -102,9 +104,9 @@ public class UserService {
 
     public Medico getMedicoDoUsuarioLogado() {
         User user = getCurrentUser()
-                .orElseThrow(() -> new RuntimeException("Usuário não autenticado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado"));
 
         return medicoRepository.findByUserId(user.getId())
-                .orElseThrow(() -> new RuntimeException("Paciente não encontrado para o usuário logado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado para o usuário logado"));
     }
 }

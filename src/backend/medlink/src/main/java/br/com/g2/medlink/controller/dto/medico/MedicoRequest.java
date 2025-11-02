@@ -12,7 +12,7 @@ public record MedicoRequest(
         String email,
 
         @NotBlank(message = "Senha não pode ficar em branco")
-        @Size(min = 6, message = "Senha deve ter pelo menos 6 caracteres")
+        @Size(min = 8, message = "Senha deve ter pelo menos 8 caracteres")
         String password,
 
         @NotBlank(message = "Nome não pode ficar em branco")

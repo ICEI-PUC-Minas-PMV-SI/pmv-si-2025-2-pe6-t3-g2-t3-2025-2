@@ -29,18 +29,31 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
+        String path = request.getRequestURI();
         String token = recoveryToken(request);
-        if (token != null && !token.isBlank()) {
-            String email = tokenService.validateToken(token);
 
-            if (!email.isBlank() && SecurityContextHolder.getContext().getAuthentication() == null) {
-                User user = userRepository.findByEmail(email)
-                        .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
-
-                var auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(auth);
-            }
+        if (token == null || token.isBlank()) {
+            System.out.println("[SECURITY] sem Authorization header | path=" + path);
+            filterChain.doFilter(request, response);
+            return;
         }
+
+        String email = tokenService.validateToken(token);
+        if (email == null || email.isBlank()) {
+            System.out.println("[SECURITY] token inválido/expirado | path=" + path);
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        if (SecurityContextHolder.getContext().getAuthentication() == null) {
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + email));
+
+            var auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(auth);
+            System.out.println("[SECURITY] OK | path=" + path + " | user=" + user.getEmail() + " | roles=" + user.getAuthorities());
+        }
+
         filterChain.doFilter(request, response);
     }
 

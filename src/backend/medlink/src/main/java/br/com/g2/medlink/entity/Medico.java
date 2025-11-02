@@ -25,19 +25,19 @@ public class Medico {
     private String crm;
 
     @Enumerated(EnumType.STRING)
-    private Especialidade especilidade;
+    private Especialidade especialidade;
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
-    public Medico(User user, String nome, String email, String endereco, String telefone, String crm, Especialidade especilidade) {
+    public Medico(User user, String nome, String email, String endereco, String telefone, String crm, Especialidade especialidade) {
         this.user = user;
         this.nome = nome;
         this.email = email;
         this.endereco = endereco;
         this.telefone = telefone;
         this.crm = crm;
-        this.especilidade = especilidade;
+        this.especialidade = especialidade;
     }
 }
