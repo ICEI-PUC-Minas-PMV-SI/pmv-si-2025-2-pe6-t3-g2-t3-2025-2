@@ -245,7 +245,9 @@ flowchart TD
 
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+Como fatores de segurança, o sistema Medlink utiliza autenticação baseada em JWT para garantir que somente usuários autorizados possam acessar as funcionalidades. Após o usuário concluir o login, o servidor gera um token que identifica o usuário e quais são suas permissões, permitindo que o front-end se comunique com o back-end de forma segura, sem reenviar credenciais a cada requisição. Esse token também impede alterações indevidas, porque a sua assinatura garante a integridade. 
+A aplicação possui a possibilidade de cadastro de perfis diferentes, como médicos, pacientes e administradores. Cada perfil tem permissões específicas, e essas permissões são verificadas a partir das informações presentes no token, evitando que um usuário acesse áreas indevidas. Além disso, as rotas protegidas (ou seja, áreas na aplicação que só podem ser acessadas por usuários que já estão logados) exigem validação do JWT, reforçando o controle de acesso e garantindo que apenas usuários autenticados realizem operações no sistema, como visualizar perfis, acessar o painel médico ou agendar consultas, de acordo com o seu perfil. 
+A expiração do token após 2 horas também contribui para a segurança, reduzindo o risco de uso indevido caso o token seja comprometido. Esses mecanismos combinados fortalecem a proteção da comunicação entre front-end e back-end e ajudam a prevenir acessos não autorizados e ataques comuns em aplicações distribuídas.
 
 
 ## 🚀 Implantação (Deploy)
