@@ -132,40 +132,36 @@ Aplicação SPA (Next.js + React) para agendamento e gestão de consultas médic
 
 ### Wireframes
 
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
-
-## Home
-
-### Home - Desktop
+### Home 
 ![Home - Desktop](https://github.com/user-attachments/assets/19eaf80c-16a4-4fa1-81f8-8ae2fdc56c44)
 
-### Home - Tablet
-![Home Tablet](https://github.com/user-attachments/assets/45bd863a-f7a6-477b-9215-5caba4f5dc9d)
-
-### Home - Mobile
-![Home - Mobile](https://github.com/user-attachments/assets/14d84747-e83d-4339-988f-476288409cba)
-
-## Cadastro
-
-### Cadastro - Desktop
+### Cadastro 
 ![cadastro - desktop](https://github.com/user-attachments/assets/0e4df0c4-ce48-4325-a355-c54690e8008c)
 
-### Cadastro - Tablet
-![cadastro - tablet](https://github.com/user-attachments/assets/044d7396-e2d6-45a2-804e-c7898d5a1d78)
-
-### Cadastro - Mobile
-![cadastro - mobile](https://github.com/user-attachments/assets/6f924285-7e6e-444e-8b52-807889e15f79)
-
-## Login
-
-### Login - Desktop
+### Login 
 ![login - desktop](https://github.com/user-attachments/assets/c52d2364-df46-483a-a532-e0b070084563)
 
-### Login - Tablet
-![login - tablet](https://github.com/user-attachments/assets/037bf97e-2be9-4d03-871d-702a3aedc393)
+### Consultas
+<img width="689" height="544" alt="consulta" src="https://github.com/user-attachments/assets/78982a29-ff7b-49f1-836d-5dd8bc28c9d9" />
 
-### Login - Mobile
-![login - mobile](https://github.com/user-attachments/assets/c1d04d3c-183f-4b36-a13d-b0bec228a291)
+### Cadastrar Consultas
+<img width="720" height="536" alt="criar_Consulta" src="https://github.com/user-attachments/assets/41c32bab-dfd5-47fb-8194-7c57792d2d16" />
+
+### Consultas Criadas
+<img width="720" height="555" alt="consulta_criada" src="https://github.com/user-attachments/assets/671c1600-dab1-4f35-bdb0-94ccfcbcd9f3" />
+
+### Slots de Consultas
+<img width="720" height="554" alt="slots" src="https://github.com/user-attachments/assets/9797690b-18fa-456b-a40b-0263f8c29108" />
+
+### Cadastrar Médicos
+<img width="720" height="560" alt="cdastrar_Medico" src="https://github.com/user-attachments/assets/89de81d8-c01b-4e15-ab2d-f63165e49cd9" />
+
+### Médicos Criados
+<img width="1733" height="626" alt="Screenshot 2025-11-02 193527" src="https://github.com/user-attachments/assets/964fc517-c95b-4550-ab63-305086921e14" />
+
+### Dashboard Administrador
+<img width="1733" height="626" alt="Screenshot 2025-11-02 193527" src="https://github.com/user-attachments/assets/e0209286-3a14-4781-ae58-ba49af5c4294" />
+
 
 ### Design Visual
 
@@ -497,11 +493,18 @@ Atualizado em: 31/10/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
+| Lucas Oliveira     | Documentação - Introdução & Wireframes | 29/10/2025     | 02/11/2025 | ✔️    | 31/10/2025      |
+| Lucas Oliveira     | Testes    | 29/10/2025     | 02/11/2025 | ✔️    |        02/11/2025         |
+| Ricardo   | Documentação - User Flow | 29/10/2025     | 02/11/2025 | ✔️    | 02/11/2025      |
+| Ricardo   | Testes    | 29/10/2025     | 02/11/2025 | ✔️    |    02/11/2025            |
 | Beatriz     | Documentação - Design Visual | 29/10/2025     | 02/11/2025 | ✔️    | 31/10/2025      |
 | Beatriz     | Testes    | 29/10/2025     | 02/11/2025 | ✔️    |        02/11/2025         |
 | Ramir   | Documentação - Considerações de Segurança | 29/10/2025     | 02/11/2025 | ✔️    | 02/11/2025      |
-| Ramir   | Testes    | 29/10/2025     | 02/11/2025 | ✔️    |    02/11/2025            |
-
+| Ramir   | Testes & Apoio conexão front com o back-end    | 29/10/2025     | 02/11/2025 | ✔️    |    02/11/2025            |
+| Felipe   | Contribuição na criação de páginas do front   | 29/10/2025     | 02/11/2025 | ✔️    |    02/11/2025            |
+| Lucas Peres   | Contribuição na criação de páginas do front   | 29/10/2025     | 02/11/2025 | ✔️    |    02/11/2025            |
+| André   | Contribuição na criação de páginas do front   | 29/10/2025     | 02/11/2025 | ✔️    |    02/11/2025            |
+| André   | Contribuição na conexão com o back-end   | 29/10/2025     | 02/11/2025 | ✔️    |    02/11/2025            |
 
 Legenda:
 - ✔️: terminado
