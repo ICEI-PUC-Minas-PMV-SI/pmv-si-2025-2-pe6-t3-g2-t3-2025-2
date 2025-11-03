@@ -297,6 +297,26 @@ RF-005 - Evitar conflitos de horário ao impedir marcações duplicadas ou sobre
 Como já havia marcado as 08:00 esse horário some.
 <img width="886" height="431" alt="image" src="https://github.com/user-attachments/assets/fbc6c506-54a7-431b-9153-305ce86a5f2a" />
 
+RF-006 - Permitir remarcação e cancelamento de consultas com atualização em tempo real
+<img width="1196" height="202" alt="image" src="https://github.com/user-attachments/assets/d24b6b90-d6f2-4abf-a5d9-7be502229739" />
+
+<img width="1282" height="202" alt="image" src="https://github.com/user-attachments/assets/8da7d04c-7f4f-4ada-bd93-ddb4341b96ee" />
+
+RF-007 - Armazenar histórico de consultas dos pacientes (para os profissionais de saúde e pacientes)
+<img width="1282" height="306" alt="image" src="https://github.com/user-attachments/assets/fedab718-5ae1-4abc-8d8f-741128902c40" />
+
+RF-009 - Gestão administrativa (CRUD) de profissionais, especialidades, horários/janelas de atendimento e convênios aceitos.
+<img width="1320" height="606" alt="image" src="https://github.com/user-attachments/assets/501f4779-151d-4a23-8c21-983d3504f5fa" />
+
+<img width="1320" height="606" alt="image" src="https://github.com/user-attachments/assets/126164e9-4436-4d17-940b-dfb7e47c5297" />
+
+<img width="1344" height="606" alt="image" src="https://github.com/user-attachments/assets/e7824fd2-405f-4dd9-a90e-edc7dcebc356" />
+
+
+
+
+
+
 RF-013 - Controle de acesso baseado em perfis (RBAC), com permissões distintas para Paciente, Profissional e Administrativo
 O administrador detém permissão total das ações.
 <img width="1920" height="872" alt="admin" src="https://github.com/user-attachments/assets/4bdc7ef7-1df9-4234-9d1d-73cdca2ac7d3" />
