@@ -14,7 +14,121 @@ Para Administradores: Implementar uma área administrativa robusta para o gerenc
 
 ## Projeto da Interface Web
 
-[Descreva o projeto da interface Web da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
+# Visão geral
+
+Aplicação SPA (Next.js + React) para agendamento e gestão de consultas médicas.
+
+**Objetivos:** proporcionar clareza ao paciente, eficiência administrativa e acessibilidade. Foco em fluxos rápidos (login, agendamento, cancelamento) e painéis com visibilidade imediata de estados críticos.
+
+---
+
+## Design visual
+
+- Estética: limpa, moderna e profissional; paleta neutra com cor de destaque para ações.
+- Tipografia: sans‑serif legível; hierarquia clara (H1–H4, corpo, labels).
+- Cores: primária (CTA), secundária e cores de feedback (sucesso, erro, aviso).
+- Espaçamento: grid de 8px para consistência.
+- Componentes padronizados: botões, inputs, selects, cards, tabelas, modais, toasts, badges.
+
+---
+
+## Layout das páginas
+
+### Home / Landing
+- Header (logo, navegação, CTA), seções de benefícios e rodapé.
+
+### Auth (Login / Register / Recover)
+- Formulários centrados, validações inline, redirecionamentos contextuais.
+
+### Painel Paciente
+- Resumo no cabeçalho (próxima consulta), lista de consultas (card/tabela), botão “Agendar”, calendário/disponibilidade.
+
+### Fluxo de Agendamento
+- Passos: especialidade → médico → data/hora → confirmação (preview).
+
+### Painel Admin
+- Dashboard (KPIs), CRUD de médicos e slots, filtros e ações em lote.
+
+### Páginas auxiliares
+- Perfil, configurações, ajuda, páginas de erro (404/500) com CTA.
+
+---
+
+## Interações do usuário
+
+- Validações imediatas e toasts para operações assíncronas.
+- Modais para confirmações destrutivas.
+- Skeletons/spinners durante carregamentos.
+- Atualizações em tempo real (opcional: websocket) para disponibilidade.
+- Microinterações sutis (hover, transições).
+
+---
+
+## Navegação e fluxo
+
+- Rotas protegidas por role (Paciente vs Admin).
+- Redirecionamento por autenticação/permissões.
+- Breadcrumbs em seções administrativas.
+- Acesso rápido às ações frequentes (agendar, cancelar, criar slot).
+
+---
+
+## Acessibilidade (a11y)
+
+- HTML semântico, labels e aria-attributes quando necessário.
+- Contraste conforme WCAG AA.
+- Navegação por teclado completa e foco visível.
+- Mensagens compatíveis com leitores de tela.
+
+---
+
+## Responsividade
+
+- Mobile-first; menus em drawers, conteúdo empilhado.
+- Ações essenciais visíveis sem scroll em mobile.
+- Testes em breakpoints comuns (320–1440px).
+
+---
+
+## Estado, APIs e sincronização
+
+- Auth centralizado (token + refresh) via context/hook.
+- Queries com caching/invalidação (React Query / SWR).
+- Tratamento de erros e retry configurável.
+- Lock/check de slot no submit para evitar race conditions.
+
+---
+
+## Performance
+
+- Code-splitting e lazy-loading de rotas/componentes pesados.
+- Imagens otimizadas (formatos modernos).
+- Memoização para reduzir re-renders.
+
+---
+
+## Testes e observabilidade
+
+- Unit tests para lógica crítica.
+- E2E para fluxos principais (login, agendar, cancelar).
+- Monitoramento client-side (erros JS, performance).
+
+---
+
+## Segurança e permissões
+
+- Proteção de rotas no frontend e verificação de roles.
+- Backend como fonte de verdade (validações obrigatórias).
+- Proteção contra CSRF/XSS e tratamento seguro de dados sensíveis.
+
+---
+
+## Arquitetura de componentes
+
+- Componentes atômicos/modulares e reutilizáveis.
+- Padrão: pages → containers → componentes puros.
+- Hooks customizados para API, auth e formulários.
+
 
 ### Wireframes
 
