@@ -6,7 +6,6 @@
   vertical-align: middle;
 }
 
-/* If you later add text next to the image, keep control over its size */
 .logo :global(img) {
   display: inline-block;
 }

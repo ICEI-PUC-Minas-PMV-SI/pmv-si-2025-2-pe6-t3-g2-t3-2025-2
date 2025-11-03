@@ -20,14 +20,11 @@ export function useCreateMedico() {
 
   return useMutation({
     mutationFn: async (payload: MedicoRequest) => {
-      // Temporário: usa a rota de médico, já que ADMIN tem ROLE_MEDICO
       const { data } = await api.post("/medlink/medico/register", payload);
       return data;
     },
     onSuccess: () => {
-      // Invalida a lista de médicos para forçar refetch automático
       queryClient.invalidateQueries({ queryKey: ["admin-medicos"] });
     },
-    // onError e onSuccess específicos são tratados na página via callbacks
   });
 }

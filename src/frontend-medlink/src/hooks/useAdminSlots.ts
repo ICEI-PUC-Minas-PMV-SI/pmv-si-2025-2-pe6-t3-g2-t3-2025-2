@@ -9,9 +9,9 @@ export interface AdminSlotDTO {
   id: string;
   medicoId: string;
   medicoNome?: string;
-  data: string; // YYYY-MM-DD
-  inicio: string; // ISO datetime
-  fim: string; // ISO datetime
+  data: string;
+  inicio: string;
+  fim: string;
   status: SlotStatus;
 }
 
@@ -28,6 +28,6 @@ export function useAdminSlots(medicoId?: string, data?: string) {
       );
       return response;
     },
-    enabled: !!medicoId && !!data, // só busca se tiver médico e data
+    enabled: !!medicoId && !!data,
   });
 }

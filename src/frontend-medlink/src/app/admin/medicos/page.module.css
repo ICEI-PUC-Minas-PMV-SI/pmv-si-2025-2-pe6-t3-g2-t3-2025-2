@@ -1,12 +1,9 @@
-/* page.module.css - scoped styles for Médicos List */
-
 .medicos {
   width: 100%;
   padding-top: 8px;
   padding-bottom: 24px;
 }
 
-/* Header */
 .medicos__header {
   display: grid;
   gap: 12px;
@@ -27,7 +24,6 @@
   flex-wrap: wrap;
 }
 
-/* Botões */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -75,7 +71,6 @@
   margin-top: 12px;
 }
 
-/* Lista vazia */
 .medicos__empty {
   padding: 40px 24px;
   text-align: center;
@@ -103,7 +98,6 @@
   font-weight: 600;
 }
 
-/* Tabela */
 .medicos__tablewrap {
   overflow-x: auto;
   background: var(--color-surface, #fff);
@@ -140,7 +134,6 @@
   color: var(--color-muted, #555);
 }
 
-/* Animação do ícone de atualizar */
 @keyframes ac-spin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -150,7 +143,6 @@
   animation: ac-spin 1s linear infinite;
 }
 
-/* Responsividade */
 @media (min-width: 640px) {
   .medicos__header {
     grid-template-columns: 1fr auto;
@@ -171,7 +163,6 @@
   }
 }
 
-/* Ajustes para mobile */
 @media (max-width: 480px) {
   .medicos__table th,
   .medicos__table td {

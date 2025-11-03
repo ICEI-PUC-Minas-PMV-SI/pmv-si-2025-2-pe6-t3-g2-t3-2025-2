@@ -1,5 +1,3 @@
-/* page.module.css - scoped styles for Consultas Paciente */
-
 .consultas {
   width: 100%;
   padding-top: 8px;
@@ -52,30 +50,29 @@
 }
 
 .badge--neutral {
-  color: #1f2937; /* gray-800 */
-  background: #f3f4f6; /* gray-100 */
-  border-color: #e5e7eb; /* gray-200 */
+  color: #1f2937;
+  background: #f3f4f6;
+  border-color: #e5e7eb;
 }
 
 .badge--success {
-  color: #065f46; /* emerald-800 */
-  background: #d1fae5; /* emerald-100 */
-  border-color: #a7f3d0; /* emerald-200 */
+  color: #065f46; 
+  background: #d1fae5;
+  border-color: #a7f3d0;
 }
 
 .badge--danger {
-  color: #991b1b; /* red-800 */
-  background: #fee2e2; /* red-100 */
-  border-color: #fecaca; /* red-200 */
+  color: #991b1b;
+  background: #fee2e2;
+  border-color: #fecaca;
 }
 
 .badge--warning {
-  color: #92400e; /* amber-800 */
-  background: #fef3c7; /* amber-100 */
-  border-color: #fde68a; /* amber-200 */
+  color: #92400e; 
+  background: #fef3c7;
+  border-color: #fde68a;
 }
 
-/* Info messages */
 .consultas__info {
   color: var(--color-muted, #4b5563);
   font-size: 0.95rem;
@@ -109,7 +106,7 @@
 
 @media (min-width: 640px) {
   .consulta {
-    grid-template-columns: 1fr auto; /* duas colunas em telas maiores */
+    grid-template-columns: 1fr auto;
     align-items: center;
   }
 }
@@ -147,7 +144,6 @@
   align-self: flex-start;
 }
 
-/* Lado direito: ações */
 .consulta__right {
   justify-self: start;
 }
@@ -214,7 +210,6 @@
   font-size: 0.875rem;
 }
 
-/* Animação de ícone (Refresh) */
 @keyframes ac-spin {
   from {
     transform: rotate(0deg);

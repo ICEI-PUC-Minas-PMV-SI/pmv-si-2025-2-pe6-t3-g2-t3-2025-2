@@ -1,10 +1,4 @@
-/* src/app/globals.css */
-
-/* ----------------------
-   Tokens (cores, espaçamentos, tipografia, breakpoints)
-   ---------------------- */
 :root{
-  /* Colors */
   --color-bg: #f7f8fa;
   --color-surface: #ffffff;
   --color-border: #eeeeee;
@@ -19,12 +13,10 @@
   --color-hover: #f3f4f6;
   --color-focus-outline: #2563eb;
 
-  /* Semantic */
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger:  #ef4444;
 
-  /* Spacing (8px base) */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -34,12 +26,10 @@
   --space-8: 32px;
   --space-10: 40px;
 
-  /* Radius */
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
 
-  /* Typography */
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   --text-base: 16px;
   --text-lg: 18px;
@@ -49,17 +39,14 @@
 
   --elevation-1: 0 1px 2px rgba(16,24,40,0.03), 0 1px 3px rgba(16,24,40,0.04);
 
-  /* Breakpoints */
   --bp-sm: 640px;  /* large phones */
   --bp-md: 768px;  /* tablets */
   --bp-lg: 1024px; /* desktops */
 
-  /* Motion */
   --motion-fast: 150ms;
   --motion-medium: 250ms;
 }
 
-/* Optional dark theme */
 [data-theme="dark"] {
   --color-bg: #0b1220;
   --color-surface: #071126;
@@ -70,9 +57,6 @@
   --color-primary-100: #0b2b5d;
 }
 
-/* ----------------------
-   Base / Reset
-   ---------------------- */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -94,14 +78,11 @@ body {
   line-height: 1.45;
 }
 
-/* Links */
 a { color: var(--color-primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* Buttons baseline */
 button { font: inherit; cursor: pointer; background: none; border: none; }
 
-/* Focus-visible accessible outline */
 :focus { outline: none; }
 :focus-visible {
   outline: 3px solid var(--color-focus-outline);
@@ -109,7 +90,6 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
   border-radius: 4px;
 }
 
-/* Visually hidden helper */
 .sr-only {
   position: absolute !important;
   width: 1px !important;
@@ -122,17 +102,12 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
   border: 0 !important;
 }
 
-/* Forms baseline */
 input, textarea, select { font: inherit; color: inherit; }
 
-/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
 
-/* ----------------------
-   Utilities (small set)
-   ---------------------- */
 .u-mb-1 { margin-bottom: var(--space-2); }
 .u-mb-2 { margin-bottom: var(--space-3); }
 .u-p-1 { padding: var(--space-2); }
@@ -142,7 +117,6 @@ input, textarea, select { font: inherit; color: inherit; }
 
 .text-muted { color: var(--color-muted); font-size: var(--text-sm); }
 
-/* Layout helpers */
 .container {
   max-width: 1200px;
   margin-left: auto;
@@ -158,18 +132,15 @@ input, textarea, select { font: inherit; color: inherit; }
   box-shadow: var(--elevation-1);
 }
 
-/* Responsive table wrapper */
 .table-responsive {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Simple grid helpers */
 .row { display: flex; gap: var(--space-4); flex-wrap: wrap; }
 .col { flex: 1 1 0; min-width: 200px; }
 
-/* Small-screen touch spacing */
 @media (max-width: calc(var(--bp-md) - 1px)) {
   .touch-lg { padding: 12px 14px; }
 }

@@ -6,7 +6,6 @@ import { useState, useEffect, useRef } from 'react';
 import styles from './layout.module.css';
 import { useAdminLogout } from '@/hooks/useAdminAuth';
 
-// Ícones do lucide-react
 import {
   Gauge,
   Stethoscope,
@@ -22,13 +21,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const logout = useAdminLogout();
   const pathname = usePathname();
 
-  // Estado para controlar drawer aberto/fechado no mobile
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  // Ref para o drawer para trap de foco simples
   const drawerRef = useRef<HTMLDivElement>(null);
 
-  // Fecha drawer ao clicar fora ou apertar ESC
   useEffect(() => {
     if (!drawerOpen) return;
 
@@ -53,7 +49,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     };
   }, [drawerOpen]);
 
-  // Lista de links do menu
   const links = [
     { href: '/admin', label: 'Dashboard', Icon: Gauge, match: (p: string) => p === '/admin' },
     { href: '/admin/medicos', label: 'Médicos', Icon: Stethoscope, match: (p: string) => p.startsWith('/admin/medicos') },

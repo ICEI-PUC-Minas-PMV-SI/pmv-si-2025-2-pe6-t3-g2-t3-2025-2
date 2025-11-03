@@ -340,7 +340,6 @@
   text-decoration: underline;
 }
 
-/* A11y util kept global - you can move to globals.css */
 .sr-only {
   position: absolute !important;
   width: 1px;
@@ -353,7 +352,6 @@
   border: 0;
 }
 
-/* small helper to reset link styles when we wrap ScheduleButton with Link */
 .linkReset {
   display: inline-block;
   text-decoration: none;

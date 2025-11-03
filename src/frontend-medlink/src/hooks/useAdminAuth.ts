@@ -1,4 +1,3 @@
-// src/app/admin/hooks/useAdminAuth.ts (ou src/hooks/useAdminAuth.ts)
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
@@ -20,7 +19,6 @@ export const useAdminLogin = () => {
       return response.data; // { token }
     },
     onSuccess: (data: { token: string }) => {
-      // Salva para axios e para o middleware (cookie)
       localStorage.setItem("token", data.token);
       document.cookie = `token=${data.token}; path=/; max-age=${60 * 60 * 24 * 7}`;
 

@@ -4,9 +4,6 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export default function AdminHome() {
-  // Futuro: buscar métricas reais com React Query
-  // const { data } = useQuery({ queryKey: ['admin-stats'], queryFn: getAdminStats });
-
   return (
     <div className={styles.admin}>
       <header className={styles.admin__header}>

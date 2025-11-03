@@ -28,14 +28,12 @@
   background-color: var(--color-bg-disabled, #e5e7eb);
 }
 
-/* Error state */
 .input--error,
 .input--error:focus {
   border-color: var(--color-danger, #dc2626) !important; /* red-600 fallback */
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
 }
 
-/* Remove default spinner for number inputs */
 .input::-webkit-outer-spin-button,
 .input::-webkit-inner-spin-button {
   -webkit-appearance: none;

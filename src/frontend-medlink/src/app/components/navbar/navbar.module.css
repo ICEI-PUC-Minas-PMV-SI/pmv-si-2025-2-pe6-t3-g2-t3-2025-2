@@ -5,7 +5,7 @@
   align-items: center;
   gap: 12px;
   padding-block: 16px;
-  position: relative; /* ensure absolute panel is positioned relative to nav */
+  position: relative;
   max-width: 1440px;
   margin-inline: auto;
 }
@@ -44,7 +44,6 @@
   outline: none;
 }
 
-/* Reset button styles used for semantic buttons rendered as links */
 .btn-reset {
   border: none;
   background: none;
@@ -64,7 +63,6 @@
   border-radius: 8px;
 }
 
-/* Hover & focus-visible for toggle */
 .navbar__toggle:hover {
   background: rgba(0,0,0,0.04);
 }
@@ -77,7 +75,7 @@
 /* Painel mobile */
 .navbar__panel {
   position: absolute;
-  inset: 64px 16px auto 16px; /* below header; tweak if your header height changes */
+  inset: 64px 16px auto 16px;
   background: var(--surface, #fff);
   border: 1px solid var(--color-border, #e5e7eb);
   border-radius: 12px;
@@ -89,20 +87,17 @@
   z-index: 30;
 }
 
-/* Open state */
 .is-open {
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
 }
 
-/* Panel inner content */
 .navbar__panel-inner {
   display: grid;
   padding: 12px;
 }
 
-/* Block links for panel */
 .link--block {
   display: block;
   padding: 10px 8px;
@@ -135,7 +130,6 @@
   }
 }
 
-/* Small accessibility tweak: ensure focus styles for keyboard users */
 .link:focus-visible,
 .link--block:focus-visible {
   outline: 3px solid rgba(37, 99, 235, 0.12);

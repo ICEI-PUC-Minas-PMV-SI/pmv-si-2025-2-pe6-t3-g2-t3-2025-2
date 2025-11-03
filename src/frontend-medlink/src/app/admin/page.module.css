@@ -1,7 +1,3 @@
-/* page.module.css - estilos scoped para a página AdminHome */
-
-/* O container já é aplicado pelo AdminLayout (classe global .container),
-   então aqui a .admin assume largura total e padding vertical. */
 .admin {
   width: 100%;
   display: grid;
@@ -40,7 +36,6 @@
   color: var(--color-muted, #4b5563);
 }
 
-/* Actions (buttons) */
 .admin__headactions {
   display: inline-flex;
   gap: 8px;
@@ -54,7 +49,6 @@
   }
 }
 
-/* Buttons (reutilizáveis locais) */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -81,7 +75,6 @@
 }
 .btn--primary:hover:not(:disabled) { background: #1d4ed8; border-color: #1d4ed8; }
 
-/* Cards do dashboard */
 .admin__cards {
   display: grid;
   gap: 12px;
@@ -139,7 +132,6 @@
   color: var(--color-muted, #6b7280);
 }
 
-/* Lista de atividades */
 .admin__list {
   display: grid;
   gap: 8px;
@@ -169,7 +161,6 @@
   border-top: none;
 }
 
-/* Tipografia responsiva leve */
 @media (min-width: 1024px) {
   .admin__title { font-size: 1.7rem; }
   .card__value { font-size: 1.7rem; }

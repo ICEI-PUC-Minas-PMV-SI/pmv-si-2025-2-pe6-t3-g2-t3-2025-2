@@ -95,7 +95,6 @@ export function ToastViewport() {
               onClick={() => fechar(t.id)}
               aria-label="Dispensar notificação"
               style={dismissOverlayBtnStyle}
-              // Não precisa de onKeyDown: button já é acessível
               title="Clique para dispensar"
             />
           </div>
@@ -150,13 +149,9 @@ const dismissOverlayBtnStyle: React.CSSProperties = {
   background: "transparent",
   border: "none",
   cursor: "pointer",
-  // manter área do botão X fora do overlay (não interceptar cliques do X)
-  // deixa um "buraco" de clique sobre o X
-  // Truque: overlay cobre tudo, mas o X fica por cima com zIndex maior
   zIndex: 1,
 } as const;
 
-// Garantir que o X fica acima do overlay
 (closeBtnStyle as any).zIndex = 2;
 
 const byTypeStyle: Record<string, React.CSSProperties> = {

@@ -19,10 +19,10 @@ export type ConsultasAdminFilters = {
   status?: '' | ConsultaStatus;
   medicoId?: string;
   pacienteId?: string;
-  from?: string; // yyyy-mm-dd
-  to?: string;   // yyyy-mm-dd
-  page?: number; // ignorado no backend atual
-  size?: number; // ignorado no backend atual
+  from?: string;
+  to?: string;  
+  page?: number;
+  size?: number;
 };
 
 async function fetchConsultasAdmin(filters: ConsultasAdminFilters) {
@@ -33,9 +33,6 @@ async function fetchConsultasAdmin(filters: ConsultasAdminFilters) {
   if (filters.pacienteId) params.set('pacienteId', filters.pacienteId);
   if (filters.from) params.set('from', filters.from);
   if (filters.to) params.set('to', filters.to);
-  // Se o backend não pagina, não envie page/size, ou envie e ignore:
-  // params.set('page', String(filters.page ?? 0));
-  // params.set('size', String(filters.size ?? 10));
 
   const { data } = await api.get<ConsultaAdminDTO[]>(
     `/medlink/admin/consultas?${params.toString()}`

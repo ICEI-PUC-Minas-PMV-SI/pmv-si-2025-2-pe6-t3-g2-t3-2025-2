@@ -1,12 +1,9 @@
-/* page.module.css - scoped styles for Slots */
-
 .slots {
   width: 100%;
   padding-top: 8px;
   padding-bottom: 24px;
 }
 
-/* Header */
 .slots__header {
   margin-bottom: 24px;
 }
@@ -23,20 +20,18 @@
   font-size: 0.95rem;
 }
 
-/* Grid principal (form + lista) */
 .slots__grid {
   display: grid;
   gap: 24px;
-  grid-template-columns: 1fr; /* mobile */
+  grid-template-columns: 1fr; 
 }
 
 @media (min-width: 900px) {
   .slots__grid {
-    grid-template-columns: 1fr 1fr; /* 2 colunas no desktop */
+    grid-template-columns: 1fr 1fr; 
   }
 }
 
-/* Card genérico */
 .card {
   border: 1px solid var(--color-border, #e5e7eb);
   border-radius: 10px;
@@ -51,7 +46,6 @@
   font-weight: 700;
 }
 
-/* Formulário */
 .form {
   display: grid;
   gap: 14px;
@@ -60,12 +54,12 @@
 .form-grid {
   display: grid;
   gap: 12px;
-  grid-template-columns: 1fr; /* mobile */
+  grid-template-columns: 1fr; 
 }
 
 @media (min-width: 640px) {
   .form-grid {
-    grid-template-columns: 1fr 1fr; /* duas colunas */
+    grid-template-columns: 1fr 1fr; 
   }
 }
 
@@ -109,7 +103,6 @@
   margin-top: 2px;
 }
 
-/* Botões reutilizáveis */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -164,7 +157,6 @@
   font-size: 0.85rem;
 }
 
-/* Cabeçalho da lista de slots */
 .slots__listhead {
   display: flex;
   align-items: center;
@@ -191,7 +183,6 @@
   font-style: normal;
 }
 
-/* Lista de slots */
 .slots__list {
   list-style: none;
   padding: 0;
@@ -199,7 +190,6 @@
   gap: 8px;
 }
 
-/* Item do slot */
 .slot {
   border: 1px solid var(--color-border, #e5e7eb);
   border-radius: 8px;
@@ -212,13 +202,13 @@
 }
 
 .slot--ok {
-  background: #f0fff4; /* livre */
+  background: #f0fff4; 
 }
 .slot--warn {
-  background: #fffbeb; /* reservado */
+  background: #fffbeb;
 }
 .slot--danger {
-  background: #fef2f2; /* indisponível/cancelado */
+  background: #fef2f2; 
 }
 
 .slot__info {
@@ -252,7 +242,6 @@
   color: #dc2626;
 }
 
-/* Animação do ícone de atualizar */
 @keyframes ac-spin {
   from {
     transform: rotate(0deg);
@@ -266,7 +255,6 @@
   animation: ac-spin 1s linear infinite;
 }
 
-/* Ajustes para mobile */
 @media (max-width: 480px) {
   .form-input {
     padding: 9px 11px;

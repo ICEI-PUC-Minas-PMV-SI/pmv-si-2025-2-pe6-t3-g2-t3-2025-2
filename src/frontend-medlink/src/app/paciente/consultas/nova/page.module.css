@@ -1,5 +1,3 @@
-/* page.module.css - scoped styles for Nova Consulta */
-
 .nova-consulta {
   width: 100%;
   padding-top: 8px;
@@ -52,7 +50,7 @@
 
 @media (min-width: 1024px) {
   .form {
-    gap: 12px; /* um pouco mais denso no desktop */
+    gap: 12px;
   }
 }
 
@@ -80,7 +78,7 @@
 
 @media (min-width: 1024px) {
   .form-input {
-    padding: 9px 12px; /* ligeiro ajuste para mais densidade */
+    padding: 9px 12px;
     font-size: 0.94rem;
   }
 }

@@ -54,7 +54,6 @@ export default function NovaConsultaPacientePage() {
   const dataISO = watch('data');
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
     console.log('[NovaConsulta] medicoId=', medicoId, 'dataISO=', dataISO);
   }, [medicoId, dataISO]);
 
@@ -65,7 +64,6 @@ export default function NovaConsultaPacientePage() {
 
   useEffect(() => {
     if (slots) {
-      // eslint-disable-next-line no-console
       console.log('[NovaConsulta][Slots]', slots);
     }
   }, [slots]);

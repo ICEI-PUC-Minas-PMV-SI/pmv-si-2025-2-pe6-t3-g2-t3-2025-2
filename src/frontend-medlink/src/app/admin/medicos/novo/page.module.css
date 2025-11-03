@@ -1,12 +1,9 @@
-/* page.module.css - scoped styles for Novo Médico */
-
 .novo-medico {
   width: 100%;
   padding-top: 8px;
   padding-bottom: 24px;
 }
 
-/* Header */
 .novo-medico__header {
   display: grid;
   gap: 12px;
@@ -21,7 +18,6 @@
   font-weight: 700;
 }
 
-/* Formulário */
 .novo-medico__form {
   display: grid;
   gap: 16px;
@@ -32,11 +28,10 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.03);
 }
 
-/* Grid responsivo 2 colunas */
 .form-grid {
   display: grid;
   gap: 12px;
-  grid-template-columns: 1fr; /* mobile */
+  grid-template-columns: 1fr;
 }
 
 /* Campos */
@@ -126,7 +121,6 @@
   border-color: var(--color-border, #e5e7eb);
 }
 
-/* Responsividade */
 @media (min-width: 640px) {
   .form-grid {
     grid-template-columns: 1fr 1fr;
@@ -145,7 +139,6 @@
   }
 }
 
-/* Ajustes para mobile */
 @media (max-width: 480px) {
   .novo-medico__form {
     padding: 16px;

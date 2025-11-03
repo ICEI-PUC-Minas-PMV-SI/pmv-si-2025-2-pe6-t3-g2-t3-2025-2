@@ -15,7 +15,6 @@ type PacienteItem = {
   email?: string | null;
 };
 
-// Helpers
 function toMedicosMap(list: MedicoItem[]) {
   const map = new Map<string, { nome: string; especialidade?: string | null }>();
   for (const m of list) {
@@ -32,7 +31,6 @@ function toPacientesMap(list: PacienteItem[]) {
   return map;
 }
 
-// Hooks
 export function useAdminMedicosMap() {
   return useQuery({
     queryKey: ['admin-medicos-map'],

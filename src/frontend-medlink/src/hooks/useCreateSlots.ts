@@ -5,9 +5,9 @@ import { api } from "@/app/services/api";
 
 export interface CreateSlotsRequest {
   medicoId: string;
-  data: string; // YYYY-MM-DD
-  horaInicio: string; // HH:mm
-  horaFim: string; // HH:mm
+  data: string;
+  horaInicio: string;
+  horaFim: string;
   intervaloMinutos: number;
 }
 

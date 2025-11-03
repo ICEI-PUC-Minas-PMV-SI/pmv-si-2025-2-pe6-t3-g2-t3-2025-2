@@ -17,7 +17,6 @@
   line-height: 1;
 }
 
-/* Hover / active */
 .button:hover:not(:disabled) {
   opacity: 0.95;
   transform: translateY(-1px);
@@ -26,7 +25,6 @@
   transform: translateY(0);
 }
 
-/* Focus visible for keyboard users */
 .button:focus-visible {
   outline: 3px solid rgba(34,197,94,0.18);
   outline-offset: 2px;
@@ -42,12 +40,10 @@
   box-shadow: none;
 }
 
-/* Optional loading modifier (small subtle change) */
 .loading {
   opacity: 0.85;
 }
 
-/* Allow fine control of label if needed */
 .button__label {
   display: inline-block;
   white-space: nowrap;

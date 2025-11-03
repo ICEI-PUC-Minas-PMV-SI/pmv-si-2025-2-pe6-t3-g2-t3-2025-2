@@ -1,9 +1,3 @@
-/* src/app/admin/layout.module.css (corrigido) */
-
-/* ----------------------
-   Admin layout (mobile-first)
-   ---------------------- */
-
 .admin-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -11,19 +5,17 @@
   background: var(--color-bg);
 }
 
-/* Sidebar: hidden por padrão no mobile (mostramos header/hamburger) */
 .admin-layout__sidebar {
-  display: none; /* important: mobile-first hide */
+  display: none;
   border-bottom: 1px solid var(--color-border);
   padding: var(--space-3);
   background: var(--color-surface);
   position: relative;
   z-index: 10;
   flex-direction: column;
-  min-height: 0; /* allow flex children to shrink */
+  min-height: 0;
 }
 
-/* Brand */
 .admin-layout__brand {
   margin: 0 0 var(--space-3) 0;
   font-size: var(--heading-2);
@@ -34,10 +26,6 @@
   gap: var(--space-2);
 }
 
-/* ----------------------
-   Navigation (mobile: horizontal scroll; tablet+: vertical)
-   ---------------------- */
-
 .admin-layout__nav {
   display: flex;
   gap: var(--space-2);
@@ -47,11 +35,9 @@
   align-items: center;
 }
 
-/* Scrollbar styling (optional) */
 .admin-layout__nav::-webkit-scrollbar { height: 8px; }
 .admin-layout__nav::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.06); border-radius: 6px; }
 
-/* Links */
 .admin-layout__link {
   display: inline-flex;
   align-items: center;
@@ -72,7 +58,6 @@
   outline-offset: 2px;
 }
 
-/* Active state */
 .admin-layout__link--active {
   background: var(--color-primary-100);
   color: var(--color-primary);
@@ -81,10 +66,8 @@
 }
 .admin-layout__link--active:hover { background: var(--color-primary-200); }
 
-/* Icon */
 .admin-layout__icon { color: inherit; flex-shrink: 0; display: inline-flex; }
 
-/* Link text: truncate on small screens */
 .admin-layout__linktext {
   display: inline-block;
   max-width: 10rem;
@@ -92,10 +75,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-/* ----------------------
-   Logout / footer
-   ---------------------- */
 
 .admin-layout__logout {
   padding: var(--space-2);
@@ -118,20 +97,11 @@
   margin-top: var(--space-3);
 }
 
-/* ----------------------
-   Main content
-   ---------------------- */
-
 .admin-layout__main {
   padding: var(--space-4);
   min-width: 0;
   background: transparent;
 }
-
-/* ----------------------
-   Responsive: tablet+ (sidebar left)
-   Breakpoint: 768px (tablet)
-   ---------------------- */
 
 @media (min-width: 768px) {
   .admin-layout {
@@ -139,7 +109,7 @@
   }
 
   .admin-layout__sidebar {
-    display: flex; /* show sidebar on tablet+ */
+    display: flex; 
     border-right: 1px solid var(--color-border);
     border-bottom: none;
     min-height: 100vh;
@@ -164,32 +134,21 @@
   .admin-layout__main { padding: var(--space-5); }
 }
 
-/* Desktop: wider sidebar (1024px) */
 @media (min-width: 1024px) {
   .admin-layout { grid-template-columns: 240px 1fr; }
   .admin-layout__sidebar { padding: var(--space-5); }
   .admin-layout__main { padding: var(--space-6); }
 }
 
-/* Touch targets adjustments on small screens */
 @media (max-width: 767.98px) {
   .admin-layout__link { padding: 12px 14px; font-size: var(--text-sm); }
 }
-
-/* ----------------------
-   Helpers
-   ---------------------- */
 
 .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .form-grid { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
 @media (min-width: 768px) { .form-grid { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1024px) { .form-grid { grid-template-columns: 1fr 1fr 1fr; } }
 
-/* ----------------------
-   Mobile header + drawer (hamburger)
-   ---------------------- */
-
-/* Header visible on mobile by default */
 .admin-layout__mobile-header {
   display: flex;
   align-items: center;
@@ -202,7 +161,6 @@
   z-index: 20;
 }
 
-/* Hamburger button */
 .admin-layout__hamburger {
   background: none;
   border: none;
@@ -221,7 +179,6 @@
   outline: none;
 }
 
-/* Mobile header brand/title */
 .admin-layout__mobile-brand {
   font-weight: 700;
   font-size: var(--heading-2);
@@ -229,7 +186,6 @@
   margin: 0;
 }
 
-/* Drawer overlay (semi-opaque backdrop) */
 .admin-layout__drawer-overlay {
   position: fixed;
   inset: 0;
@@ -241,7 +197,6 @@
   backdrop-filter: blur(4px);
 }
 
-/* Drawer panel */
 .admin-layout__drawer {
   background: var(--color-surface);
   width: 240px;
@@ -254,7 +209,6 @@
   overflow-y: auto;
 }
 
-/* Drawer close button */
 .admin-layout__drawer-close {
   background: none;
   border: none;
@@ -272,7 +226,6 @@
   outline: none;
 }
 
-/* Drawer nav layout */
 .admin-layout__drawer-nav {
   display: flex;
   flex-direction: column;
@@ -280,18 +233,15 @@
   flex-grow: 1;
 }
 
-/* Drawer footer */
 .admin-layout__drawer-footer {
   margin-top: var(--space-4);
 }
 
-/* Show header, hide sidebar on small screens */
 @media (max-width: 767.98px) {
   .admin-layout__sidebar { display: none; }
   .admin-layout__mobile-header { display: flex; }
 }
 
-/* Hide header and show sidebar on tablet+ */
 @media (min-width: 768px) {
   .admin-layout__mobile-header { display: none; }
   .admin-layout__sidebar { display: flex; }

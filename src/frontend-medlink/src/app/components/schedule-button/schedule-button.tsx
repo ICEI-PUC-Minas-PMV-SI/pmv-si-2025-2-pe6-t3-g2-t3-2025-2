@@ -6,9 +6,6 @@ import cn from 'clsx';
 import styles from './schedule-button.module.css';
 
 export interface ScheduleButtonProps extends ComponentProps<'button'> {
-  /**
-   * If true, shows a loading state (subtle) and disables the button.
-   */
   loading?: boolean;
 }
 

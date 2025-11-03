@@ -1,4 +1,3 @@
-// src/lib/datetime.ts
 export function formatDateTime(iso: string, locale = "pt-BR") {
   const d = new Date(iso);
   return d.toLocaleString(locale, { dateStyle: "short", timeStyle: "short" });

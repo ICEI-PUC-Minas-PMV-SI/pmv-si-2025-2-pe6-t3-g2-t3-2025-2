@@ -89,7 +89,6 @@ export default function ConsultasPacientePage() {
 
         <ul className={styles.consultas__list} aria-label="Lista de consultas">
           {consultas
-            // Remova esta linha se o backend já filtrar CANCELADO
             ?.filter((c) => c.status !== 'CANCELADO')
             .map((c) => {
               const bloquearCancelamento = isLessThanHourFromNow(c.dataHora);
