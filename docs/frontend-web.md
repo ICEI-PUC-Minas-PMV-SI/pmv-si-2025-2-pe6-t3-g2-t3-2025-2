@@ -301,6 +301,9 @@ RF-013 - Controle de acesso baseado em perfis (RBAC), com permissões distintas 
 O administrador detém permissão total das ações.
 <img width="1920" height="872" alt="admin" src="https://github.com/user-attachments/assets/4bdc7ef7-1df9-4234-9d1d-73cdca2ac7d3" />
 
+RF-015	Permitir filtro e busca de profissionais por especialidade, data, convênio e unidade <br>
+<img width="1218" height="612" alt="image" src="https://github.com/user-attachments/assets/a2396f55-5776-44fa-951f-f5107991d81c" />
+
 RF-016- Gerar relatórios básicos (ex.: consultas por período/profissional/status; taxa de faltas) <br>
 Profissionais cadastrados
 <img width="1344" height="385" alt="image" src="https://github.com/user-attachments/assets/f83041e6-7443-4cdb-b0d7-e8720414c967" />
