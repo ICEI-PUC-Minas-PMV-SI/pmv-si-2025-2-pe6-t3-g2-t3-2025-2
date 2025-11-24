@@ -118,7 +118,7 @@ class HomeContent extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Medical Consultation'),
+        title: Text('Medlink'),
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
