@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ConsultaService {
@@ -29,7 +30,7 @@ public class ConsultaService {
         return consultaRepository.findByPacienteId(paciente.getId());
     }
 
-    public void deletarConsultaDoPaciente(String consultaId, Paciente paciente) {
+    public void deletarConsultaDoPaciente(UUID consultaId, Paciente paciente) {
         Consulta consulta = consultaRepository.findById(consultaId)
                 .orElseThrow(() -> new RuntimeException("Consulta não encontrada"));
 
