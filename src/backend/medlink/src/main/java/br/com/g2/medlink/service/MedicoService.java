@@ -33,4 +33,9 @@ public class MedicoService {
                         medico.getEspecilidade()))
                 .toList();
     }
+
+    public br.com.g2.medlink.entity.Medico buscarPorId(String medicoId) {
+        return medicoRepository.findById(medicoId)
+                .orElseThrow(() -> new IllegalArgumentException("Médico não encontrado: " + medicoId));
+    }
 }

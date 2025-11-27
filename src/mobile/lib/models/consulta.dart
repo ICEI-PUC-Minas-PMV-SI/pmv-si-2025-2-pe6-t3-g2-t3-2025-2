@@ -22,16 +22,42 @@ class Consulta {
   });
 
   factory Consulta.fromJson(Map<String, dynamic> json) {
+    // Backend pode retornar medicoId diretamente ou dentro de um objeto medico
+    String medicoIdValue = '';
+    String medicoNomeValue = 'Dr. Desconhecido';
+    String? especialidadeValue;
+    
+    if (json['medico'] != null && json['medico'] is Map) {
+      // Se medico é um objeto completo
+      medicoIdValue = (json['medico']['id'] ?? '').toString();
+      medicoNomeValue = (json['medico']['nome'] ?? 'Dr. Desconhecido').toString();
+      especialidadeValue = json['medico']['especialidade']?.toString();
+    } else if (json['medicoId'] != null) {
+      // Se só tem medicoId (resposta de criação de consulta)
+      medicoIdValue = json['medicoId'].toString();
+    }
+    
+    // Backend pode retornar pacienteId diretamente ou dentro de um objeto paciente
+    String pacienteIdValue = '';
+    String pacienteNomeValue = 'Desconhecido';
+    
+    if (json['paciente'] != null && json['paciente'] is Map) {
+      pacienteIdValue = (json['paciente']['id'] ?? '').toString();
+      pacienteNomeValue = (json['paciente']['nome'] ?? 'Desconhecido').toString();
+    } else if (json['pacienteId'] != null) {
+      pacienteIdValue = json['pacienteId'].toString();
+    }
+    
     return Consulta(
       id: json['id']?.toString(),
       dataHora: DateTime.parse((json['dataHora'] ?? DateTime.now().toIso8601String()).toString()),
       status: (json['status'] ?? 'PENDENTE').toString(),
       observacoes: json['observacoes']?.toString(),
-      pacienteId: (json['paciente']?['id'] ?? '').toString(),
-      pacienteNome: (json['paciente']?['nome'] ?? 'Desconhecido').toString(),
-      medicoId: (json['medico']?['id'] ?? '').toString(),
-      medicoNome: (json['medico']?['nome'] ?? 'Desconhecido').toString(),
-      especialidade: json['medico']?['especialidade']?.toString(),
+      pacienteId: pacienteIdValue,
+      pacienteNome: pacienteNomeValue,
+      medicoId: medicoIdValue,
+      medicoNome: medicoNomeValue,
+      especialidade: especialidadeValue,
     );
   }
 

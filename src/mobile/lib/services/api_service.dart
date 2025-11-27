@@ -441,7 +441,30 @@ class ApiService {
           if (response.statusCode == 200) {
             final List<dynamic> consultasJson = jsonDecode(response.body) as List<dynamic>;
             print('✅ Encontradas ${consultasJson.length} consultas');
-            return consultasJson.map((json) => Consulta.fromJson(json as Map<String, dynamic>)).toList();
+            
+            // Buscar dados dos médicos para enriquecer as consultas
+            final medicos = await getMedicos(token);
+            final medicosMap = {for (var m in medicos) m.id: m};
+            
+            // Enriquecer consultas com dados dos médicos
+            final consultas = consultasJson.map((json) {
+              final consultaJson = json as Map<String, dynamic>;
+              final medicoId = consultaJson['medicoId']?.toString();
+              
+              // Se a consulta não tem dados do médico completos, adicionar
+              if (medicoId != null && medicosMap.containsKey(medicoId)) {
+                final medico = medicosMap[medicoId]!;
+                consultaJson['medico'] = {
+                  'id': medico.id,
+                  'nome': medico.nome,
+                  'especialidade': medico.especialidade,
+                };
+              }
+              
+              return Consulta.fromJson(consultaJson);
+            }).toList();
+            
+            return consultas;
           } else if (response.statusCode == 403) {
             print('🚫 Acesso negado para $endpoint');
             continue; // Try next endpoint
@@ -514,10 +537,10 @@ class ApiService {
   Future<List<Medico>> getMedicos(String token) async {
     print('🏥 === BUSCANDO MÉDICOS ===');
     
-    // Based on your SecurityConfiguration, only /medlink/admin/medicos exists for ADMIN role
-    final String endpoint = '$baseUrl/medlink/admin/medicos';
+    // Endpoint correto para PACIENTE (igual ao frontend)
+    final String endpoint = '$baseUrl/medlink/paciente/medicos';
     
-    print('🔍 Tentando endpoint ADMIN: $endpoint');
+    print('🔍 Usando endpoint PACIENTE: $endpoint');
 
     try {
       final response = await http.get(
@@ -578,7 +601,8 @@ class ApiService {
     }
   }
 
-  Future<List<DateTime>> getAvailableSlots({
+  /// Retorna lista de slots com ID, início, fim e status (igual ao frontend)
+  Future<List<Map<String, dynamic>>> getAvailableSlots({
     required String token,
     required String medicoId,
     required DateTime date,
@@ -586,16 +610,24 @@ class ApiService {
     try {
       print('⏰ === BUSCANDO HORÁRIOS DISPONÍVEIS ===');
       
-      // According to SecurityConfig: /medlink/medico endpoints
+      // Endpoint correto do PACIENTE (igual ao frontend)
+      final dateStr = date.toIso8601String().split('T')[0];
+      final url = '$baseUrl/medlink/paciente/medicos/$medicoId/slots?data=$dateStr';
+      print('📍 URL: $url');
+      
       final response = await http.get(
-        Uri.parse('$baseUrl/medlink/medico/disponibilidades?medicoId=$medicoId&date=${date.toIso8601String().split('T')[0]}'),
+        Uri.parse(url),
         headers: _headersWithAuth(token),
       );
 
       print('Get Available Slots Status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      
       if (response.statusCode == 200) {
         final List<dynamic> slotsJson = jsonDecode(response.body) as List<dynamic>;
-        return slotsJson.map((slot) => DateTime.parse(slot as String)).toList();
+        // Backend retorna objetos com {id, inicio, fim, status}
+        // Retornar o objeto completo para usar o slotId depois
+        return slotsJson.map((slot) => slot as Map<String, dynamic>).toList();
       } else if (response.statusCode == 403) {
         print('🚫 Acesso negado - Verifique permissões para ver disponibilidade');
       }
@@ -603,6 +635,49 @@ class ApiService {
     } catch (e) {
       print('Get available slots error: $e');
       return [];
+    }
+  }
+
+  /// Agenda consulta usando slotId (igual ao frontend: useAgendarConsultaPorSlot)
+  Future<Map<String, dynamic>?> agendarConsultaPorSlot({
+    required String token,
+    required String slotId,
+    String? observacoes,
+  }) async {
+    try {
+      print('📅 === AGENDANDO CONSULTA POR SLOT ===');
+      print('SlotId: $slotId');
+      
+      final url = '$baseUrl/medlink/paciente/consulta/por-slot';
+      print('📍 URL: $url');
+      
+      // Payload exatamente igual ao frontend: {slotId: string, observacoes?: string}
+      final payload = {
+        'slotId': slotId,
+        if (observacoes != null && observacoes.isNotEmpty) 'observacoes': observacoes,
+      };
+      
+      print('📦 Payload: $payload');
+      
+      final response = await http.post(
+        Uri.parse(url),
+        headers: _headersWithAuth(token),
+        body: jsonEncode(payload),
+      );
+
+      print('Status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('✅ Consulta agendada com sucesso!');
+        return jsonDecode(response.body) as Map<String, dynamic>;
+      } else {
+        print('❌ Erro ao agendar: ${response.statusCode}');
+        throw Exception('Erro ao agendar consulta: ${response.body}');
+      }
+    } catch (e) {
+      print('❌ Erro ao agendar consulta: $e');
+      rethrow;
     }
   }
 }

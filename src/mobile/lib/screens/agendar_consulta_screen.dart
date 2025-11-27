@@ -24,8 +24,8 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
   List<Medico> _medicos = [];
   Medico? _medicoSelecionado;
   DateTime? _dataSelecionada;
-  DateTime? _horarioSelecionado;
-  List<DateTime> _horariosDisponiveis = [];
+  Map<String, dynamic>? _slotSelecionado; // Armazena o slot completo com id
+  List<Map<String, dynamic>> _slotsDisponiveis = []; // Lista de slots com id
   bool _isLoading = false;
   bool _isLoadingHorarios = false;
 
@@ -47,7 +47,7 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
     if (authService.token != null) {
       final medicos = await _apiService.getMedicos(authService.token!);
       setState(() {
-        _medicos = medicos.where((m) => m.disponivel).toList();
+        _medicos = medicos;
       });
     }
   }
@@ -63,8 +63,8 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
     if (picked != null && picked != _dataSelecionada) {
       setState(() {
         _dataSelecionada = picked;
-        _horarioSelecionado = null;
-        _horariosDisponiveis = [];
+        _slotSelecionado = null;
+        _slotsDisponiveis = [];
       });
       
       if (_medicoSelecionado != null) {
@@ -89,7 +89,7 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
       );
       
       setState(() {
-        _horariosDisponiveis = slots;
+        _slotsDisponiveis = slots;
         _isLoadingHorarios = false;
       });
     }
@@ -97,7 +97,7 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
 
   Future<void> _agendarConsulta() async {
     if (!_formKey.currentState!.validate()) return;
-    if (_medicoSelecionado == null || _horarioSelecionado == null) {
+    if (_medicoSelecionado == null || _slotSelecionado == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Por favor, selecione um médico e horário'),
@@ -113,31 +113,37 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
 
     final authService = Provider.of<AuthService>(context, listen: false);
     if (authService.token != null) {
-      final consulta = await _apiService.createConsulta(
-        token: authService.token!,
-        dataHora: _horarioSelecionado!,
-        medicoId: _medicoSelecionado!.id,
-        observacoes: _observacoesController.text.trim().isNotEmpty 
-            ? _observacoesController.text.trim() 
-            : null,
-      );
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      if (consulta != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Consulta agendada com sucesso!'),
-            backgroundColor: AppTheme.secondaryColor,
-          ),
+      try {
+        // Usar o novo método agendarConsultaPorSlot (igual ao frontend)
+        final resultado = await _apiService.agendarConsultaPorSlot(
+          token: authService.token!,
+          slotId: _slotSelecionado!['id'].toString(),
+          observacoes: _observacoesController.text.trim().isNotEmpty 
+              ? _observacoesController.text.trim() 
+              : null,
         );
-        Navigator.of(context).pop(true); // Return success
-      } else {
+
+        setState(() {
+          _isLoading = false;
+        });
+
+        if (resultado != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Consulta agendada com sucesso!'),
+              backgroundColor: AppTheme.secondaryColor,
+            ),
+          );
+          Navigator.of(context).pop(true); // Return success
+        }
+      } catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+        
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Erro ao agendar consulta. Tente novamente.'),
+            content: Text('Erro ao agendar consulta: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -183,8 +189,8 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
                         setState(() {
                           _medicoSelecionado = null;
                           _dataSelecionada = null;
-                          _horarioSelecionado = null;
-                          _horariosDisponiveis = [];
+                          _slotSelecionado = null;
+                          _slotsDisponiveis = [];
                         });
                       },
                     ),
@@ -218,8 +224,8 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
                   onChanged: (medico) async {
                     setState(() {
                       _medicoSelecionado = medico;
-                      _horarioSelecionado = null;
-                      _horariosDisponiveis = [];
+                      _slotSelecionado = null;
+                      _slotsDisponiveis = [];
                     });
                     
                     if (_dataSelecionada != null && medico != null) {
@@ -279,7 +285,7 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
                 
                 if (_isLoadingHorarios) ...[
                   Center(child: CircularProgressIndicator()),
-                ] else if (_horariosDisponiveis.isEmpty) ...[
+                ] else if (_slotsDisponiveis.isEmpty) ...[
                   Container(
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
@@ -303,14 +309,15 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
-                    children: _horariosDisponiveis.map((horario) {
-                      final isSelected = _horarioSelecionado == horario;
+                    children: _slotsDisponiveis.map((slot) {
+                      final isSelected = _slotSelecionado?['id'] == slot['id'];
+                      final horario = DateTime.parse(slot['inicio'].toString());
                       return ChoiceChip(
                         label: Text(DateFormat('HH:mm').format(horario)),
                         selected: isSelected,
                         onSelected: (selected) {
                           setState(() {
-                            _horarioSelecionado = selected ? horario : null;
+                            _slotSelecionado = selected ? slot : null;
                           });
                         },
                         selectedColor: AppTheme.primaryColor,
