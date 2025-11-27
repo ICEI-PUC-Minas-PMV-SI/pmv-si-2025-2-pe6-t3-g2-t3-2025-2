@@ -15,6 +15,9 @@ class _ConsultasScreenState extends State<ConsultasScreen> {
   List<Consulta> _consultas = [];
   bool _isLoading = true;
   final ApiService _apiService = ApiService();
+  
+  // Configuração: tempo mínimo antes da consulta para permitir cancelamento/remarcação
+  static const int HOURS_BEFORE_MIN = 24;
 
   @override
   void initState() {
@@ -37,7 +40,39 @@ class _ConsultasScreenState extends State<ConsultasScreen> {
     }
   }
 
+  // Verifica se a consulta pode ser cancelada/remarcada baseado no tempo
+  bool _canModifyConsulta(Consulta consulta) {
+    final now = DateTime.now();
+    final hoursUntilConsulta = consulta.dataHora.difference(now).inHours;
+    return hoursUntilConsulta >= HOURS_BEFORE_MIN;
+  }
+
+  // Retorna mensagem de erro se não puder modificar
+  String _getModifyErrorMessage(Consulta consulta) {
+    final now = DateTime.now();
+    final hoursUntilConsulta = consulta.dataHora.difference(now).inHours;
+    
+    if (hoursUntilConsulta < 0) {
+      return 'Esta consulta já passou.';
+    } else if (hoursUntilConsulta < HOURS_BEFORE_MIN) {
+      return 'Cancelamento/remarcação deve ser feito com no mínimo $HOURS_BEFORE_MIN horas de antecedência. Faltam apenas $hoursUntilConsulta horas.';
+    }
+    return '';
+  }
+
   Future<void> _cancelConsulta(Consulta consulta) async {
+    // Validação de tempo
+    if (!_canModifyConsulta(consulta)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(_getModifyErrorMessage(consulta)),
+          backgroundColor: Colors.orange,
+          duration: Duration(seconds: 4),
+        ),
+      );
+      return;
+    }
+
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -77,6 +112,88 @@ class _ConsultasScreenState extends State<ConsultasScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erro ao cancelar consulta'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
+    }
+  }
+
+  Future<void> _rescheduleConsulta(Consulta consulta) async {
+    // Validação de tempo
+    if (!_canModifyConsulta(consulta)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(_getModifyErrorMessage(consulta)),
+          backgroundColor: Colors.orange,
+          duration: Duration(seconds: 4),
+        ),
+      );
+      return;
+    }
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Remarcar Consulta'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Você será redirecionado para agendar uma nova consulta.'),
+            SizedBox(height: 12),
+            Text(
+              'A consulta atual será cancelada.',
+              style: TextStyle(
+                fontSize: 12,
+                color: AppTheme.greyColor,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text('Voltar'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text('Continuar'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      final authService = Provider.of<AuthService>(context, listen: false);
+      if (authService.token != null && consulta.id != null) {
+        // Primeiro cancela a consulta atual
+        final success = await _apiService.cancelConsulta(
+          authService.token!,
+          consulta.id!,
+        );
+
+        if (success) {
+          _loadConsultas(); // Reload consultations
+          
+          // Navega para a tela de agendamento
+          // O HomeScreen gerencia a navegação para AgendarConsultaScreen
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Consulta cancelada. Selecione uma nova data.'),
+              backgroundColor: AppTheme.secondaryColor,
+              duration: Duration(seconds: 3),
+            ),
+          );
+          
+          // Notifica o parent para mudar de tab
+          // Esta solução simples usa Navigator para voltar e assumir que o usuário vai para a aba de agendamento
+          Navigator.of(context).pop(); // Volta para HomeScreen
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Erro ao cancelar consulta para remarcação'),
               backgroundColor: Colors.red,
             ),
           );
@@ -181,6 +298,10 @@ class _ConsultasScreenState extends State<ConsultasScreen> {
         statusIcon = Icons.help;
     }
 
+    final bool canModify = _canModifyConsulta(consulta);
+    final bool isActiveConsulta = consulta.status.toLowerCase() == 'agendada' ||
+                                  consulta.status.toLowerCase() == 'confirmada';
+
     return Card(
       margin: EdgeInsets.only(bottom: 16.0),
       elevation: 4,
@@ -256,6 +377,29 @@ class _ConsultasScreenState extends State<ConsultasScreen> {
                 ),
               ],
             ),
+            if (isActiveConsulta && !canModify) ...[
+              SizedBox(height: 12),
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.orange.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.orange.withOpacity(0.3)),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.info_outline, size: 16, color: Colors.orange),
+                    SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Consulta próxima - não pode ser cancelada/remarcada',
+                        style: TextStyle(fontSize: 12, color: Colors.orange.shade800),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
             if (consulta.observacoes != null && consulta.observacoes!.isNotEmpty) ...[
               SizedBox(height: 12),
               Container(
@@ -285,11 +429,21 @@ class _ConsultasScreenState extends State<ConsultasScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(
+                  TextButton.icon(
+                    onPressed: () => _rescheduleConsulta(consulta),
+                    icon: Icon(Icons.calendar_month, size: 18),
+                    label: Text('Remarcar'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: AppTheme.primaryColor,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  TextButton.icon(
                     onPressed: () => _cancelConsulta(consulta),
-                    child: Text(
-                      'Cancelar',
-                      style: TextStyle(color: Colors.red),
+                    icon: Icon(Icons.cancel, size: 18),
+                    label: Text('Cancelar'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.red,
                     ),
                   ),
                 ],
