@@ -216,16 +216,18 @@ class ApiService {
             final responseData = jsonDecode(response.body);
             
             // Se conseguiu acessar este endpoint, o usuário tem este papel
-            if (responseData is List && responseData.isNotEmpty) {
-              // Se é uma lista, pegar o primeiro item ou criar usuário baseado no papel
-              print('✅ Usuário tem papel de $role!');
-              
-              // Criar usuário baseado no papel identificado
-              return User(
-                id: '1',  // Mudado para String
-                email: 'user@medlink.com', // Este será substituído pelos dados reais
-                nome: 'Usuário Identificado',
-                telefone: '',
+            if (responseData is Map<String, dynamic>) {
+              // É um objeto direto (paciente ou médico)
+              print('✅ Usuário $role encontrado!');
+              final user = User.fromJson(responseData);
+              return user.copyWith(
+                role: UserRole.values.firstWhere((r) => r.toString().split('.').last == role),
+              );
+            } else if (responseData is List && responseData.isNotEmpty) {
+              // Se é uma lista, pegar o primeiro item
+              print('✅ Lista de $role encontrada!');
+              final user = User.fromJson(responseData[0] as Map<String, dynamic>);
+              return user.copyWith(
                 role: UserRole.values.firstWhere((r) => r.toString().split('.').last == role),
               );
             }
@@ -285,14 +287,14 @@ class ApiService {
     required String password,
     required String telefone,
     required String especialidade,
-    String? crm,
+    required String crm,
+    String? endereco,
   }) async {
     try {
       print('👨‍⚕️ === CRIANDO MÉDICO (ADMIN) ===');
       
-      // According to Swagger, this should be an admin endpoint
       final response = await http.post(
-        Uri.parse('$baseUrl/medlink/admin/medicos'),
+        Uri.parse('$baseUrl/medlink/medico/register'),
         headers: _headersWithAuth(token),
         body: jsonEncode({
           'nome': nome,
@@ -301,7 +303,7 @@ class ApiService {
           'telefone': telefone,
           'especialidade': especialidade,
           'crm': crm,
-          'disponivel': true,
+          'endereco': endereco,
         }),
       );
 
@@ -309,14 +311,25 @@ class ApiService {
       print('Create Medico Body: ${response.body}');
 
       if (response.statusCode == 201 || response.statusCode == 200) {
-        return Medico.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+        print('✅ Médico criado com sucesso!');
+        return Medico(
+          id: email, // Backend retorna apenas mensagem de sucesso
+          nome: nome,
+          email: email,
+          telefone: telefone,
+          especialidade: especialidade,
+          crm: crm,
+        );
       } else if (response.statusCode == 403) {
-        print('🚫 Acesso negado - Apenas administradores podem criar médicos');
+        throw Exception('Acesso negado - Apenas administradores podem criar médicos');
+      } else if (response.statusCode == 409) {
+        throw Exception('E-mail já cadastrado no sistema');
+      } else {
+        throw Exception('Erro ao criar médico: ${response.body}');
       }
-      return null;
     } catch (e) {
       print('Create medico error: $e');
-      return null;
+      rethrow;
     }
   }
 
@@ -520,13 +533,13 @@ class ApiService {
 
   Future<bool> cancelConsulta(String token, String consultaId) async {
     try {
-      final response = await http.put(
-        Uri.parse('$baseUrl/medlink/consultas/$consultaId/cancel'),
+      final response = await http.delete(
+        Uri.parse('$baseUrl/medlink/paciente/consulta/$consultaId'),
         headers: _headersWithAuth(token),
       );
 
       print('Cancel Consulta Status: ${response.statusCode}');
-      return response.statusCode == 200;
+      return response.statusCode == 200 || response.statusCode == 204;
     } catch (e) {
       print('Cancel consulta error: $e');
       return false;

@@ -91,4 +91,30 @@ class User {
         return 'Paciente';
     }
   }
+
+  User copyWith({
+    String? id,
+    String? email,
+    String? nome,
+    String? telefone,
+    UserRole? role,
+    String? cpf,
+    DateTime? dataNascimento,
+    String? especialidade,
+    String? crm,
+    bool? disponivel,
+  }) {
+    return User(
+      id: id ?? this.id,
+      email: email ?? this.email,
+      nome: nome ?? this.nome,
+      telefone: telefone ?? this.telefone,
+      role: role ?? this.role,
+      cpf: cpf ?? this.cpf,
+      dataNascimento: dataNascimento ?? this.dataNascimento,
+      especialidade: especialidade ?? this.especialidade,
+      crm: crm ?? this.crm,
+      disponivel: disponivel ?? this.disponivel,
+    );
+  }
 }

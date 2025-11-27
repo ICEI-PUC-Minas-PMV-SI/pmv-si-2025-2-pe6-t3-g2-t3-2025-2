@@ -17,7 +17,7 @@ class _ConsultasScreenState extends State<ConsultasScreen> {
   final ApiService _apiService = ApiService();
   
   // Configuração: tempo mínimo antes da consulta para permitir cancelamento/remarcação
-  static const int HOURS_BEFORE_MIN = 24;
+  static const int HOURS_BEFORE_MIN = 2; // Temporariamente 2h para testes
 
   @override
   void initState() {
@@ -424,26 +424,33 @@ class _ConsultasScreenState extends State<ConsultasScreen> {
               ),
             ],
             if (consulta.status.toLowerCase() == 'agendada' ||
-                consulta.status.toLowerCase() == 'confirmada') ...[
+                consulta.status.toLowerCase() == 'confirmada' ||
+                consulta.status.toLowerCase() == 'confirmado') ...[
               SizedBox(height: 16),
+              Divider(),
+              SizedBox(height: 8),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextButton.icon(
-                    onPressed: () => _rescheduleConsulta(consulta),
-                    icon: Icon(Icons.calendar_month, size: 18),
-                    label: Text('Remarcar'),
-                    style: TextButton.styleFrom(
-                      foregroundColor: AppTheme.primaryColor,
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () => _rescheduleConsulta(consulta),
+                      icon: Icon(Icons.calendar_month, size: 18),
+                      label: Text('Remarcar'),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: AppTheme.primaryColor,
+                      ),
                     ),
                   ),
-                  SizedBox(width: 8),
-                  TextButton.icon(
-                    onPressed: () => _cancelConsulta(consulta),
-                    icon: Icon(Icons.cancel, size: 18),
-                    label: Text('Cancelar'),
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.red,
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () => _cancelConsulta(consulta),
+                      icon: Icon(Icons.cancel, size: 18),
+                      label: Text('Cancelar'),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: Colors.red,
+                      ),
                     ),
                   ),
                 ],

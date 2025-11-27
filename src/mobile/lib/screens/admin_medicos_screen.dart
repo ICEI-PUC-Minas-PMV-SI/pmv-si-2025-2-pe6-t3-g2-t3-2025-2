@@ -344,11 +344,18 @@ class _CreateMedicoDialogState extends State<CreateMedicoDialog> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _telefoneController = TextEditingController();
-  final _especialidadeController = TextEditingController();
   final _crmController = TextEditingController();
   
+  String? _especialidadeSelecionada;
   bool _isLoading = false;
   final ApiService _apiService = ApiService();
+  
+  final List<Map<String, String>> especialidades = [
+    {'value': 'OFTALMOLOGIA', 'label': 'Oftalmologia'},
+    {'value': 'CARDIOLOGIA', 'label': 'Cardiologia'},
+    {'value': 'ORTOPEDIA', 'label': 'Ortopedia'},
+    {'value': 'PEDIATRIA', 'label': 'Pediatria'},
+  ];
 
   @override
   void dispose() {
@@ -356,7 +363,6 @@ class _CreateMedicoDialogState extends State<CreateMedicoDialog> {
     _emailController.dispose();
     _passwordController.dispose();
     _telefoneController.dispose();
-    _especialidadeController.dispose();
     _crmController.dispose();
     super.dispose();
   }
@@ -438,14 +444,25 @@ class _CreateMedicoDialogState extends State<CreateMedicoDialog> {
                   },
                 ),
                 SizedBox(height: 16),
-                TextFormField(
-                  controller: _especialidadeController,
+                DropdownButtonFormField<String>(
+                  value: _especialidadeSelecionada,
                   decoration: InputDecoration(
                     labelText: 'Especialidade *',
                     prefixIcon: Icon(Icons.medical_services),
                   ),
+                  items: especialidades.map((esp) {
+                    return DropdownMenuItem<String>(
+                      value: esp['value'],
+                      child: Text(esp['label']!),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _especialidadeSelecionada = value;
+                    });
+                  },
                   validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
+                    if (value == null || value.isEmpty) {
                       return 'Especialidade é obrigatória';
                     }
                     return null;
@@ -492,14 +509,25 @@ class _CreateMedicoDialogState extends State<CreateMedicoDialog> {
 
     final authService = Provider.of<AuthService>(context, listen: false);
     if (authService.token != null) {
+      if (_especialidadeSelecionada == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Por favor, selecione uma especialidade'),
+            backgroundColor: Colors.red,
+          ),
+        );
+        return;
+      }
+      
       final medico = await _apiService.createMedico(
         token: authService.token!,
         nome: _nomeController.text.trim(),
         email: _emailController.text.trim(),
         password: _passwordController.text,
         telefone: _telefoneController.text.trim(),
-        especialidade: _especialidadeController.text.trim(),
-        crm: _crmController.text.trim().isNotEmpty ? _crmController.text.trim() : null,
+        especialidade: _especialidadeSelecionada!,
+        crm: _crmController.text.trim(),
+        endereco: null,
       );
 
       setState(() {

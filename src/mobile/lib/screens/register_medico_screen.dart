@@ -79,9 +79,9 @@ class _RegisterMedicoScreenState extends State<RegisterMedicoScreen> {
         telefone: _telefoneController.text.trim(),
         especialidade: _especialidadeSelecionada!,
         crm: _crmController.text.trim(),
-        endereco: _enderecoController.text.trim().isNotEmpty 
-            ? _enderecoController.text.trim() 
-            : null,
+        endereco: _enderecoController.text.trim().isEmpty 
+            ? null
+            : _enderecoController.text.trim(),
       );
       
       setState(() {
