@@ -15,6 +15,8 @@ class _MedicosScreenState extends State<MedicosScreen> {
   List<Medico> _medicos = [];
   List<Medico> _filteredMedicos = [];
   bool _isLoading = true;
+  String? _selectedEspecialidade;
+  List<String> _especialidades = [];
   final ApiService _apiService = ApiService();
   final TextEditingController _searchController = TextEditingController();
 
@@ -35,9 +37,15 @@ class _MedicosScreenState extends State<MedicosScreen> {
     final authService = Provider.of<AuthService>(context, listen: false);
     if (authService.token != null) {
       final medicos = await _apiService.getMedicos(authService.token!);
-      
+
       setState(() {
         _medicos = medicos;
+        _especialidades = medicos
+            .map((m) => m.especialidade)
+            .where((s) => s.isNotEmpty)
+            .toSet()
+            .toList();
+        _especialidades.sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
         _filteredMedicos = medicos;
         _isLoading = false;
       });
@@ -48,10 +56,25 @@ class _MedicosScreenState extends State<MedicosScreen> {
     final query = _searchController.text.toLowerCase();
     setState(() {
       _filteredMedicos = _medicos.where((medico) {
-        return medico.nome.toLowerCase().contains(query) ||
-               medico.especialidade.toLowerCase().contains(query);
+        final matchesQuery = medico.nome.toLowerCase().contains(query) ||
+            medico.especialidade.toLowerCase().contains(query);
+        final matchesEspecialidade = _selectedEspecialidade == null || _selectedEspecialidade!.isEmpty
+            ? true
+            : medico.especialidade.toLowerCase() == _selectedEspecialidade!.toLowerCase();
+        return matchesQuery && matchesEspecialidade;
       }).toList();
     });
+  }
+
+  void _selectEspecialidade(String? especialidade) {
+    setState(() {
+      if (especialidade == null || especialidade.isEmpty) {
+        _selectedEspecialidade = null;
+      } else {
+        _selectedEspecialidade = especialidade;
+      }
+    });
+    _filterMedicos();
   }
 
   @override
@@ -81,9 +104,42 @@ class _MedicosScreenState extends State<MedicosScreen> {
                 ),
                 filled: true,
                 fillColor: Colors.grey[100],
+                
               ),
             ),
           ),
+          if (_especialidades.isNotEmpty) ...[
+            SizedBox(height: 8),
+            Container(
+              height: 52,
+              padding: EdgeInsets.only(left: 16.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(right: 8.0),
+                      child: ChoiceChip(
+                        label: Text('Todos'),
+                        selected: _selectedEspecialidade == null,
+                        onSelected: (_) => _selectEspecialidade(null),
+                      ),
+                    ),
+                    ..._especialidades.map((esp) {
+                      return Padding(
+                        padding: EdgeInsets.only(right: 8.0),
+                        child: ChoiceChip(
+                          label: Text(esp),
+                          selected: _selectedEspecialidade?.toLowerCase() == esp.toLowerCase(),
+                          onSelected: (_) => _selectEspecialidade(esp),
+                        ),
+                      );
+                    }).toList(),
+                  ],
+                ),
+              ),
+            ),
+          ],
           
           // Medicos List
           Expanded(
