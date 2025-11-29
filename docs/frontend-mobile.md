@@ -1,9 +1,25 @@
 # Front-end Móvel
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+O front-end móvel do sistema Medlink é o aplicativo voltado principalmente ao paciente, permitindo que ele gerencie sua jornada de atendimento diretamente pelo smartphone. A partir dessa interface, o usuário pode realizar cadastro e login, visualizar suas consultas agendadas, buscar disponibilidade por especialidade e profissional, agendar, remarcar ou cancelar consultas, além de receber feedbacks claros sobre o status de cada ação. O app consome os mesmos serviços REST do backend distribuído, garantindo que as informações de agenda sejam atualizadas em tempo real e fiquem consistentes com o sistema web e a base de dados central.
 
 ## Projeto da Interface
-[Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
+A interface móvel foi planejada para ser simples, objetiva e focada em tarefas, facilitando o uso por pacientes de diferentes perfis. A navegação é organizada em abas inferiores (bottom tab) e pilhas de navegação (stack), permitindo que o usuário avance e retorne nos fluxos sem perder o contexto.
+
+As principais telas previstas são:
+
+Tela de boas-vindas / splash, com a identidade visual do sistema e acesso rápido ao login ou cadastro.
+
+Tela de login e cadastro, com formulários enxutos, validação dos campos e mensagens de erro claras.
+
+Tela inicial do paciente, exibindo a próxima consulta em destaque, um resumo da agenda e atalhos para “Agendar nova consulta” e “Ver todas as consultas”.
+
+Fluxo de agendamento em etapas, guiando o usuário pela escolha de especialidade, profissional, data/horário disponível e confirmação final do agendamento.
+
+Tela “Minhas consultas”, listando consultas futuras e passadas com status (agendada, remarcada, cancelada) e ações rápidas para remarcar ou cancelar quando permitido.
+
+Tela de perfil, onde o paciente pode atualizar dados cadastrais básicos (nome, telefone, e-mail, documento, contato de emergência etc.).
+
+As interações foram pensadas para reduzir o número de toques e digitações: botões de ação bem destacados, listas filtráveis e mensagens de confirmação/sucesso/erro em formato de toasts ou alertas. O objetivo é que o paciente consiga concluir um agendamento completo em poucos passos, com o mínimo de frustração e sem necessidade de treinamento prévio.
 
 ### Wireframes
 
@@ -15,11 +31,37 @@
 
 ## Fluxo de Dados
 
-[Diagrama ou descrição do fluxo de dados na aplicação.]
+ No front-end móvel, o aplicativo atua como um cliente leve que consome os serviços REST expostos pelo backend Medlink. Todo o tráfego de dados é feito sobre HTTPS e, após a autenticação, as chamadas utilizam um token JWT no cabeçalho de autorização.
+>
+> O fluxo básico de dados funciona da seguinte forma:
+>
+> 1. Autenticação: ao fazer login, o app envia as credenciais do usuário para o endpoint `/medlink/login`. Em caso de sucesso, o backend devolve um token JWT, que é armazenado com segurança no dispositivo.
+> 2. Carregamento de dados do paciente: com o token, o aplicativo chama o endpoint `/medlink/paciente` para buscar os dados cadastrais e montar a tela inicial personalizada.
+> 3. Consulta da agenda: para montar a lista de consultas, o app consome `/medlink/paciente/consultas`, recebendo do backend os horários já agendados, seus status e demais informações necessárias para exibição.
+> 4. Agendamento de consulta: ao longo do fluxo de agendamento, o aplicativo envia ao backend os dados selecionados pelo usuário (especialidade, profissional, data/horário e observações) por meio do endpoint de criação de consulta (`/medlink/paciente/consultas`). O backend valida conflitos de agenda e devolve a confirmação com o registro persistido no banco.
+> 5. Atualização e cancelamento: quando o paciente remarca ou cancela uma consulta, o app envia a solicitação ao backend (por exemplo, via `PUT` ou `DELETE` em endpoints específicos). O backend atualiza o registro e retorna o novo estado, que é refletido instantaneamente na lista exibida no aplicativo.
+>
+> Esse modelo garante que o front-end móvel não mantenha regras de negócio complexas localmente: toda a lógica crítica (validação de horários, perfis, regras de agendamento) permanece no backend distribuído. O aplicativo apenas orquestra as chamadas, apresenta as informações de forma amigável e mantém o estado de interface sincronizado com as respostas da API.
 
 ## Tecnologias Utilizadas
 
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+As principais tecnologias previstas para o desenvolvimento do front-end móvel são:
+
+React Native: framework principal para construção da interface móvel, permitindo desenvolvimento multiplataforma (Android/iOS) com código compartilhado.
+
+JavaScript/TypeScript: linguagem utilizada para implementação dos componentes, lógica de interface e integração com a API.
+
+React Navigation: biblioteca responsável pelo sistema de navegação em pilhas e abas (stack e bottom tab), permitindo fluxos de agendamento em múltiplas etapas.
+
+Biblioteca de componentes UI (ex.: NativeBase ou React Native Paper): conjunto de componentes prontos (inputs, botões, cards, modais) para garantir padronização visual e responsividade.
+
+Axios ou Fetch API: camada de comunicação HTTP com o backend Medlink, responsável por enviar requisições autenticadas e tratar respostas e erros.
+
+AsyncStorage (ou equivalente seguro): armazenamento local para o token JWT e pequenas preferências do usuário, garantindo que ele permaneça autenticado entre sessões.
+
+Ferramentas de apoio, como ESLint/Prettier para padronização de código e, futuramente, Jest/React Native Testing Library para testes de componentes e fluxos críticos.
+
+Esse conjunto de tecnologias está alinhado com a arquitetura distribuída proposta para o projeto, facilitando a integração com o backend em Spring Boot e permitindo evolução futura do aplicativo móvel sem necessidade de reescrita completa.
 
 ## Considerações de Segurança
 
