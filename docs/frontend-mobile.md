@@ -151,6 +151,12 @@ Obs:. Ao selecionar o médico, aparece um texto em vermelho com parte do código
 
 ![GIF demonstrando o fluxo de agendar consulta no Medlink](https://github.com/user-attachments/assets/ee99e52c-2609-4189-a865-65dae44290df)
 
+--------------------------------------------
+
+## Cadastro de médico
+Nessa tela é possível realizar o cadastro de um médico, informando seus dados pessoais e sua especialidade
+![cadastro médico](https://github.com/user-attachments/assets/1c21d2a9-9bd6-4f2b-9fb0-58f8723c222c)
+
 # Referências
 
 Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
