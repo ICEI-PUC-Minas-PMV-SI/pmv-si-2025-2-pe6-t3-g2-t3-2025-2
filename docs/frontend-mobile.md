@@ -31,17 +31,21 @@ As interações foram pensadas para reduzir o número de toques e digitações: 
 
 ## Fluxo de Dados
 
- No front-end móvel, o aplicativo atua como um cliente leve que consome os serviços REST expostos pelo backend Medlink. Todo o tráfego de dados é feito sobre HTTPS e, após a autenticação, as chamadas utilizam um token JWT no cabeçalho de autorização.
->
-> O fluxo básico de dados funciona da seguinte forma:
->
-> 1. Autenticação: ao fazer login, o app envia as credenciais do usuário para o endpoint `/medlink/login`. Em caso de sucesso, o backend devolve um token JWT, que é armazenado com segurança no dispositivo.
-> 2. Carregamento de dados do paciente: com o token, o aplicativo chama o endpoint `/medlink/paciente` para buscar os dados cadastrais e montar a tela inicial personalizada.
-> 3. Consulta da agenda: para montar a lista de consultas, o app consome `/medlink/paciente/consultas`, recebendo do backend os horários já agendados, seus status e demais informações necessárias para exibição.
-> 4. Agendamento de consulta: ao longo do fluxo de agendamento, o aplicativo envia ao backend os dados selecionados pelo usuário (especialidade, profissional, data/horário e observações) por meio do endpoint de criação de consulta (`/medlink/paciente/consultas`). O backend valida conflitos de agenda e devolve a confirmação com o registro persistido no banco.
-> 5. Atualização e cancelamento: quando o paciente remarca ou cancela uma consulta, o app envia a solicitação ao backend (por exemplo, via `PUT` ou `DELETE` em endpoints específicos). O backend atualiza o registro e retorna o novo estado, que é refletido instantaneamente na lista exibida no aplicativo.
->
-> Esse modelo garante que o front-end móvel não mantenha regras de negócio complexas localmente: toda a lógica crítica (validação de horários, perfis, regras de agendamento) permanece no backend distribuído. O aplicativo apenas orquestra as chamadas, apresenta as informações de forma amigável e mantém o estado de interface sincronizado com as respostas da API.
+No front-end móvel, o aplicativo atua como um cliente leve que consome os serviços REST expostos pelo backend Medlink. Todo o tráfego de dados é feito sobre HTTPS e, após a autenticação, as chamadas utilizam um token JWT no cabeçalho de autorização.
+
+O fluxo básico de dados funciona da seguinte forma:
+
+1- Autenticação: ao fazer login, o app envia as credenciais do usuário para o endpoint /medlink/login. Em caso de sucesso, o backend devolve um token JWT, que é armazenado com segurança no dispositivo.
+
+2- Carregamento de dados do paciente: com o token, o aplicativo chama o endpoint /medlink/paciente para buscar os dados cadastrais e montar a tela inicial personalizada.
+
+3- Consulta da agenda: para montar a lista de consultas, o app consome /medlink/paciente/consultas, recebendo do backend os horários já agendados, seus status e demais informações necessárias para exibição.
+
+4- Agendamento de consulta: ao longo do fluxo de agendamento, o aplicativo envia ao backend os dados selecionados pelo usuário (especialidade, profissional, data/horário e observações) por meio do endpoint de criação de consulta (/medlink/paciente/consultas). O backend valida conflitos de agenda e devolve a confirmação com o registro persistido no banco.
+
+5- Atualização e cancelamento: quando o paciente remarca ou cancela uma consulta, o app envia a solicitação ao backend (por exemplo, via PUT ou DELETE em endpoints específicos). O backend atualiza o registro e retorna o novo estado, que é refletido instantaneamente na lista exibida no aplicativo.
+
+Esse modelo garante que o front-end móvel não mantenha regras de negócio complexas localmente: toda a lógica crítica (validação de horários, perfis, regras de agendamento) permanece no backend distribuído. O aplicativo apenas orquestra as chamadas, apresenta as informações de forma amigável e mantém o estado de interface sincronizado com as respostas da API.
 
 ## Tecnologias Utilizadas
 
