@@ -45,14 +45,71 @@
 4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
 5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
 
-## Demonstração – Agendar Consulta
+## Casos de Teste – Cadastro de Usuário
+
+### 1. Cadastro bem-sucedido
+
+Fluxo de cadastro de um novo usuário no Medlink:
+
+Obs: Fluxo de cadastramento ocorreu normalmente
+
+![GIF demonstrando o fluxo de cadastro de usuário no Medlink](https://github.com/user-attachments/assets/2a7943b3-125d-4af3-8e1b-1c68620b8f6e)
+
+### 2. Tentativa de cadastro com e-mail já existente
+
+Caso de teste que valida a regra de não permitir cadastro com um e-mail já utilizado:
+
+- Pré-condição: já existe um usuário cadastrado com o e-mail informado.
+- Ação: usuário preenche o formulário de cadastro utilizando o mesmo e-mail.
+- Resultado esperado: o sistema exibe mensagem de erro informando que o e-mail já está em uso e não finaliza o cadastro.
+
+Obs.: Sistema não permitiu o cadastramento, mas mensagem de erro poderia ser mais assertiva. 
+
+Demonstração visual do comportamento:
+
+![GIF demonstrando tentativa de cadastro com e-mail já existente](https://github.com/user-attachments/assets/02a471da-e215-49d7-89c1-808a1a415606)
+
+## Casos de Teste – Login
+
+### 1. Login bem-sucedido
+
+Caso de teste que valida o fluxo de autenticação com credenciais válidas.
+
+- **Pré-condição:** usuário previamente cadastrado no sistema.
+- **Ação:** informar e-mail e senha corretos e clicar em **“Entrar”**.
+- **Resultado esperado:** usuário é autenticado e redirecionado para a tela inicial, exibindo mensagem de boas-vindas e as ações rápidas (por exemplo, *“Agendar Consulta”* e *“Minhas Consultas”*).
+
+Demonstração visual:
+
+![GIF demonstrando login bem-sucedido no Medlink](https://github.com/user-attachments/assets/4a57372d-5205-448b-93d8-593bd5cf130f)
+
+---
+
+### 2. Login com e-mail ou senha incorretos
+
+Caso de teste que valida o tratamento de credenciais inválidas.
+
+- **Pré-condição:** o e-mail e/ou a senha informados não correspondem a um usuário válido.
+- **Ação:** informar e-mail e/ou senha incorretos e clicar em **“Entrar”**.
+- **Resultado esperado:**
+  - o sistema **não** autentica o usuário;
+  - é exibida uma mensagem de erro em destaque, por exemplo:  
+    **“Email ou senha incorretos”**;
+  - o usuário permanece na tela de login para tentar novamente.
+
+Demonstração visual:
+
+![GIF demonstrando tentativa de login com e-mail ou senha incorretos](https://github.com/user-attachments/assets/9f72a0d5-4fbf-46a1-a036-7f8e92c90544)
+
+
+
+## Casos de Teste – Agendar Consulta
 
 Fluxo de agendamento de uma nova consulta no Medlink:
 
 Obs:. Ao selecionar o médico, aparece um texto em vermelho com parte do código prejudicando a experiência do usuário.
 
-![agendando-consulta](https://github.com/user-attachments/assets/ee99e52c-2609-4189-a865-65dae44290df)
-)
+![GIF demonstrando o fluxo de agendar consulta no Medlink](https://github.com/user-attachments/assets/ee99e52c-2609-4189-a865-65dae44290df)
 
 # Referências
 
