@@ -154,9 +154,29 @@ Obs:. Ao selecionar o médico, aparece um texto em vermelho com parte do código
 --------------------------------------------
 
 ## Cadastro de médico
-Nessa tela é possível realizar o cadastro de um médico, informando seus dados pessoais e sua especialidade
+
+Teste: Nessa tela é possível realizar o cadastro de um médico, informando seus dados pessoais e sua especialidade
+
 ![cadastro médico](https://github.com/user-attachments/assets/1c21d2a9-9bd6-4f2b-9fb0-58f8723c222c)
 
+------------------------------------------
+
+## Gerenciamento de médicos
+
+Teste: Nessa tela conseguimos visualizar todos os médicos cadastrados na plataforma e editar suas informações
+
+![medico cadastrado](https://github.com/user-attachments/assets/cc8b3bf8-c68d-4470-ae18-1e4baf096438)
+
+------------------------------------------
+
+## Login médico
+
+Teste: Login com o perfil de médico
+
+![login médico](https://github.com/user-attachments/assets/c6b1ca47-ffaa-4116-95e3-5f65b449e28d)
+
+
+Tela de login inicial 
 # Referências
 
 Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
