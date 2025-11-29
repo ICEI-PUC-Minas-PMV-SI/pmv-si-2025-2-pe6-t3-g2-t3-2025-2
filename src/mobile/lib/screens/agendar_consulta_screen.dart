@@ -204,19 +204,36 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
               ] else ...[
                 DropdownButtonFormField<Medico>(
                   value: _medicoSelecionado,
+                  isExpanded: true,
                   decoration: InputDecoration(
                     labelText: 'Escolha um médico',
                     border: OutlineInputBorder(),
                   ),
+                  // Render a simpler widget when an item is selected to avoid
+                  // vertical overflow in the closed dropdown field.
+                  selectedItemBuilder: (BuildContext context) {
+                    return _medicos.map((medico) {
+                      return Text(
+                        'Dr. ${medico.nome}',
+                        overflow: TextOverflow.ellipsis,
+                      );
+                    }).toList();
+                  },
                   items: _medicos.map((medico) {
                     return DropdownMenuItem<Medico>(
                       value: medico,
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Dr. ${medico.nome}'),
+                          Text(
+                            'Dr. ${medico.nome}',
+                            overflow: TextOverflow.ellipsis,
+                          ),
                           Text(
                             medico.especialidade,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 12,
                               color: AppTheme.greyColor,

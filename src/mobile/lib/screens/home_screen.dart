@@ -9,6 +9,7 @@ import 'profile_screen.dart';
 import 'agendar_consulta_screen.dart';
 import 'admin_medicos_screen.dart';
 import 'medico_consultas_screen.dart';
+import 'medico_horarios_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -299,8 +300,8 @@ class HomeContent extends StatelessWidget {
           subtitle: 'Definir disponibilidade',
           color: Colors.green,
           onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Funcionalidade em desenvolvimento')),
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => MedicoHorariosScreen()),
             );
           },
         ),
