@@ -51,19 +51,13 @@ Esse modelo garante que o front-end móvel não mantenha regras de negócio comp
 
 As principais tecnologias previstas para o desenvolvimento do front-end móvel são:
 
-React Native: framework principal para construção da interface móvel, permitindo desenvolvimento multiplataforma (Android/iOS) com código compartilhado.
+Flutter: framework principal para construção da interface móvel.
 
 JavaScript/TypeScript: linguagem utilizada para implementação dos componentes, lógica de interface e integração com a API.
-
-React Navigation: biblioteca responsável pelo sistema de navegação em pilhas e abas (stack e bottom tab), permitindo fluxos de agendamento em múltiplas etapas.
-
-Biblioteca de componentes UI (ex.: NativeBase ou React Native Paper): conjunto de componentes prontos (inputs, botões, cards, modais) para garantir padronização visual e responsividade.
 
 Axios ou Fetch API: camada de comunicação HTTP com o backend Medlink, responsável por enviar requisições autenticadas e tratar respostas e erros.
 
 AsyncStorage (ou equivalente seguro): armazenamento local para o token JWT e pequenas preferências do usuário, garantindo que ele permaneça autenticado entre sessões.
-
-Ferramentas de apoio, como ESLint/Prettier para padronização de código e, futuramente, Jest/React Native Testing Library para testes de componentes e fluxos críticos.
 
 Esse conjunto de tecnologias está alinhado com a arquitetura distribuída proposta para o projeto, facilitando a integração com o backend em Spring Boot e permitindo evolução futura do aplicativo móvel sem necessidade de reescrita completa.
 
