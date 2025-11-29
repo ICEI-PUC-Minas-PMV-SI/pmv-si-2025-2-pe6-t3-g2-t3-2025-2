@@ -651,6 +651,51 @@ class ApiService {
     }
   }
 
+  /// Cria slots de atendimento para o médico no intervalo [inicio, fim]
+  /// com duração em minutos `duracaoMin`.
+  /// Caso o backend retorne erro, lança Exception.
+  Future<void> createSlots({
+    required String token,
+    required DateTime inicio,
+    required DateTime fim,
+    required int duracaoMin,
+  }) async {
+    try {
+      print('⏳ === CRIANDO SLOTS ===');
+      final url = '$baseUrl/medlink/medico/slots';
+      print('📍 URL: $url');
+
+      final payload = {
+        'inicio': inicio.toIso8601String(),
+        'fim': fim.toIso8601String(),
+        'duracaoMin': duracaoMin,
+      };
+
+      print('📦 Payload: $payload');
+
+      final response = await http.post(
+        Uri.parse(url),
+        headers: _headersWithAuth(token),
+        body: jsonEncode(payload),
+      );
+
+      print('Create Slots Status: ${response.statusCode}');
+      print('Create Slots Body: ${response.body}');
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('✅ Slots criados com sucesso');
+        return;
+      } else if (response.statusCode == 403) {
+        throw Exception('Acesso negado ao criar slots');
+      } else {
+        throw Exception('Erro ao criar slots: ${response.statusCode} - ${response.body}');
+      }
+    } catch (e) {
+      print('Create slots error: $e');
+      rethrow;
+    }
+  }
+
   /// Agenda consulta usando slotId (igual ao frontend: useAgendarConsultaPorSlot)
   Future<Map<String, dynamic>?> agendarConsultaPorSlot({
     required String token,

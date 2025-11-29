@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import '../services/auth_service.dart';
 import '../services/api_service.dart';
 import '../models/medico.dart';
-import '../models/consulta.dart';
 import '../utils/theme.dart';
 
 class AgendarConsultaScreen extends StatefulWidget {
@@ -154,14 +153,20 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text('Agendar Consulta'),
       ),
       body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
+          key: _formKey,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+              top: 16.0,
+              bottom: 16.0 + MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Medico Selection
@@ -356,7 +361,14 @@ class _AgendarConsultaScreenState extends State<AgendarConsultaScreen> {
                   child: ElevatedButton(
                     onPressed: _isLoading ? null : _agendarConsulta,
                     child: _isLoading
-                        ? CircularProgressIndicator(color: Colors.white)
+                        ? SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2.0,
+                            ),
+                          )
                         : Text('Agendar Consulta'),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: 16),
