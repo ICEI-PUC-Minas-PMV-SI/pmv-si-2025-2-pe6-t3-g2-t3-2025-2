@@ -23,7 +23,33 @@ As interações foram pensadas para reduzir o número de toques e digitações: 
 
 ### Wireframes
 
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
+Tela de login
+
+![tela de login](https://github.com/user-attachments/assets/358cb369-9ac5-4666-a457-1480e775b753)
+
+Cadastro paciente
+
+![cadastro paciente](https://github.com/user-attachments/assets/76b5f3d6-12e3-4971-9e0b-ce83db58cdd5)
+
+Perfil paciente
+
+![perfil paciente](https://github.com/user-attachments/assets/f8510d86-3161-45a7-a0b9-a5a8edcf6034)
+
+Agendar consulta
+
+![agendar consulta](https://github.com/user-attachments/assets/911b6a45-4d23-4106-8f25-5136c60e951c)
+
+Cadastro médico
+
+![cadastro médico](https://github.com/user-attachments/assets/5775b38f-91c2-48d4-8614-0532fabfcc08)
+
+Gerenciamento de médicos
+
+![gerenciar medico](https://github.com/user-attachments/assets/009b0d8d-bb4d-48b7-84bb-21c91e658120)
+
+Tela inicial
+
+![tela inicial](https://github.com/user-attachments/assets/5dbcbb2c-9063-4171-ba28-4815330e513c)
 
 ### Design Visual
 
