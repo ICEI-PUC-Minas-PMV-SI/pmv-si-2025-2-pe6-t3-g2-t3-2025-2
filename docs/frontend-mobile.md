@@ -177,7 +177,7 @@ Teste: Login com o perfil de médico
 
 Tela de login inicial
 
-### 3. Busca e Filtro de Profissionais
+### Busca e Filtro de Profissionais
 
 Teste : Permitir filtro e busca de profissionais por especialidade e nome
 
