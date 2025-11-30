@@ -175,6 +175,13 @@ Teste: Login com o perfil de médico
 
 ![login médico](https://github.com/user-attachments/assets/c6b1ca47-ffaa-4116-95e3-5f65b449e28d)
 
+### 3. Busca e Filtro de Profissionais
+
+Teste : Permitir filtro e busca de profissionais por especialidade e nome
+
+![WhatsApp Image 2025-11-29 at 14 55 29](https://github.com/user-attachments/assets/7026d6c3-d216-43cb-bc8e-00f9ec45355f)
+
+
 
 Tela de login inicial 
 # Referências
