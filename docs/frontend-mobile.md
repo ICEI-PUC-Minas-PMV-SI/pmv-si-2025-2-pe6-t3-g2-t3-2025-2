@@ -53,7 +53,38 @@ Tela inicial
 
 ### Design Visual
 
-[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
+### Paleta de cores:
+
+A paleta de cores do Medlink foi escolhida para transmitir profissionalismo, clareza e confiança, com foco em saúde e bem-estar do paciente. 
+
+#### Cores principais:
+
+
+#### Cores de alerta:
+
+### Tipografia:
+
+A tipografia do sistema Medlink foi cuidadosamente otimizada para dispositivos móveis, garantindo leitura clara e consistente em diferentes telas e sistemas operacionais. As fontes possuem variados pesos e tamanhos, permitindo que os usuários identifiquem rapidamente seções e informações importantes, mesmo em telas menores
+
+### Utilização de ícones:
+
+O painel inicial após login do Medlink utiliza uma combinação de ícones gráficos para tornar a navegação intuitiva para o usuário e reforçar visualmente as funcionalidades principais. Eles seguem a paleta de cores da interface e ajudam o usuário a identificar rapidamente cada seção. Abaixo, exemplos de utilização de ícones no projeto:
+
+1. Ícone +: Permite ao usuário iniciar o processo de agendamento de uma nova consulta médica.
+2. Ícone calendário: leva o usuário à visualização de todos os seus agendamentos de consultas já realizados.
+3. Ícone médicos: direciona o usuário para uma lista ou busca de médicos e suas especialidades.
+4. Ícone perfil: permite ao usuário acessar e gerenciar seus dados pessoais e informações de perfil. <br>
+<br>
+<img width="212" height="380" alt="image" src="https://github.com/user-attachments/assets/6c3909b8-77f4-4dbd-852c-3d7a88a58898" />
+
+
+A utilização de ícones na tela de cadastro também tem o objetivo de dizer imediatamente ao usuário qual tipo de dado é esperado, tornando o formulário rápido de entender. <br><br>
+<img width="286" height="520" alt="Captura de tela 2025-11-30 100715" src="https://github.com/user-attachments/assets/40261f72-1943-415a-bd81-bb918b46d3da" />
+
+De forma geral, foram utilizados ícones SVGs que facilitam a navegação, para que fique mais fluido para o usuário, como pode ser visto no exemplo abaixo (opção do admin de excluir um médico). É importante ressaltar que todos os ícones seguem a paleta de cores, mantendo coerência visual. <br><br>
+<img width="157" height="98" alt="image" src="https://github.com/user-attachments/assets/ec3c4c73-28ec-45f2-bc33-9fdcc815e1de" />
+
+
 
 ## Fluxo de Dados
 
