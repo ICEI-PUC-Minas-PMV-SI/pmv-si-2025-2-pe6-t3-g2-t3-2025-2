@@ -378,25 +378,23 @@ Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvo
 
 ### Semana 1
 
-Atualizado em: 21/04/2024
+Atualizado em: 30/11/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
-| AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
+| Lucas Oliveira     | Criação de novas páginas e resolução de bugs | 03/11/2025     | 30/11/2025 | ✔️    | 30/11/2025      |
+| Ricardo   | Início do projeto, criação de páginas Mobile e conexão com os endpoints | 03/11/2025     | 20/11/2025 | ✔️    | 20/11/2025      |
+| Beatriz     | Documentação - Design Visual | 03/11/2025     | 30/11/2025 | ✔️    | 30/11/2025      |
+| Beatriz     | Testes    | 03/11/2025     | 30/11/2025 | ✔️    | 30/11/2025      |
+| Ramir   | Documentação - Considerações de Segurança | 03/11/2025     | 30/11/2025 | ✔️    | 30/11/2025      |
+| Ramir   | Testes | 03/11/2025     | 30/11/2025 | ✔️    | 30/11/2025      |
+| Felipe   | Testes   | 03/11/2025     | 30/11/2025 | ✔️    | 30/11/2025      |
+| Felipe   | Documentação - Wireframes   | 03/11/2025     | 30/11/2025 | ✔️    | 30/11/2025      |
+| Lucas Peres   | Testes  | 03/11/2025     | 30/11/2025 | ✔️    | 30/11/2025      |
+| Lucas Peres  | Documentação - Front-End Móvel, Projeto de Interface e Fluxo de Dados | 03/11/2025     | 30/11/2025 | ✔️    | 30/11/2025      |
+| André   | Testes  | 03/11/2025     | 30/11/2025 | ✔️    | 30/11/2025      |
 
-#### Semana 2
 
-Atualizado em: 21/04/2024
-
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
 
 Legenda:
 - ✔️: terminado
