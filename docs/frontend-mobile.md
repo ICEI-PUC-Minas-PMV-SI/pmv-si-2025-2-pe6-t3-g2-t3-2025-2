@@ -58,9 +58,25 @@ Tela inicial
 A paleta de cores do Medlink foi escolhida para transmitir profissionalismo, clareza e confiança, com foco em saúde e bem-estar do paciente. 
 
 #### Cores principais:
+A cor azul (#0066CC) utilizada em várias telas da aplicação foi escolhida para demonstrar confiança, segurança e profissionalismo, qualidades essenciais em uma aplicação de saúde. Essa cor é estrategicamente aplicada para destacar os pontos de maior importância, como ícones e botões principais de cada tela, reforçando não apenas uma forte identidade de marca, mas também fornecendo uma boa legibilidade e hierarquia visual ao criar um alto contraste com o texto branco em diversas telas.
+<br>
+
+Para manter a tela visualmente calma e focada, o Medlink usa duas cores neutras: o cinza muito claro (#F5F5F5) como fundo de tela principal, e o cinza claro (#F7F2FA) nos em campos (por exemplo, o de imput da tela incial). Essa diferença sutil garante que os campos de preenchimento se destaquem levemente do fundo, permitindo que a cor azul da marca e o texto sejam os elementos mais importantes e fáceis de ver.
+
+<img width="227" height="101" alt="image" src="https://github.com/user-attachments/assets/d3488383-5d6b-4dc7-b83a-3a968a27500f" />
 
 
-#### Cores de alerta:
+Por fim, as cores verde (#4EB053), laranja (#FF9600) e roxo (#A025B6) são utilizadas na seção "Ações Rápidas" da tela inicial logada para complementar o azul (cor principal). Elas são usadas para diferenciar visualmente as funcionalidades e criar um sistema de sinalização rápida e eficaz. <br>
+
+<img width="249" height="85" alt="image" src="https://github.com/user-attachments/assets/4d841fae-1452-4b3f-8f0b-5ba81b3567dd" />
+
+#### Cor de alerta:
+
+Na versão mobile do sistema, a cor #F44336 foi aplicada para indicar mensagens de erro e alertas ao usuário. Ela aparece em elementos como textos de validação de formulários, banners de notificação e ícones de alerta, destacando falhas ou informações que precisam de atenção imediata. Essa escolha garante que erros sejam rapidamente identificáveis, mesmo em telas pequenas, mantendo consistência visual e contraste adequado para legibilidade em dispositivos móveis. <br>
+
+<img width="97" height="80" alt="image" src="https://github.com/user-attachments/assets/78ac31e7-7d04-4a1c-aa78-bdea8e882fe8" />
+
+
 
 ### Tipografia:
 
