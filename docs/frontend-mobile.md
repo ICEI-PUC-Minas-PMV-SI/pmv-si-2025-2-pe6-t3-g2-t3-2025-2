@@ -224,9 +224,7 @@ Obs:. Ao selecionar o médico, aparece um texto em vermelho com parte do código
 
 ![GIF demonstrando o fluxo de agendar consulta no Medlink](https://github.com/user-attachments/assets/ee99e52c-2609-4189-a865-65dae44290df)
 
-## Casos de Teste – Exclusão de médico cadastrado
 
-<img width="294" height="524" alt="image" src="https://github.com/user-attachments/assets/e3d85e7b-65f4-418f-8784-e4a4acea90b4" />
 
 
 --------------------------------------------
@@ -245,6 +243,10 @@ Teste: Nessa tela conseguimos visualizar todos os médicos cadastrados na plataf
 
 ![medico cadastrado](https://github.com/user-attachments/assets/cc8b3bf8-c68d-4470-ae18-1e4baf096438)
 
+## Casos de Teste – Exclusão de médico cadastrado
+
+<img width="294" height="524" alt="image" src="https://github.com/user-attachments/assets/e3d85e7b-65f4-418f-8784-e4a4acea90b4" />
+
 ------------------------------------------
 
 ## Login médico
@@ -262,6 +264,78 @@ Teste : Permitir filtro e busca de profissionais por especialidade e nome
 ![WhatsApp Image 2025-11-29 at 14 55 29](https://github.com/user-attachments/assets/7026d6c3-d216-43cb-bc8e-00f9ec45355f)
 
 
+## Casos de Teste - RNF-001 - A interface deve ser intuitiva para diferentes tipos de usuários (pacientes e profissionais de saúde) 
+
+Esse caso de teste visa verificar se a interface de login, apesar de unificada (usando os mesmos campos de Email/Senha), oferece a funcionalidade necessária para autenticar diferentes perfis de usuário conforme a regra de negócio.
+
+Objetivo: verificar se a tela de login/acesso rápido é clara ao indicar os diferentes perfis de usuário que podem ser selecionados para autenticação.
+
+Resultado Esperado: a tela deve ter uma seção que indique claramente os perfis disponíveis através de botões distintos (ex: "Paciente", "Médico", "Admin"), permitindo ao usuário selecionar o perfil desejado antes de entrar.
+
+Resultado Obtido: a tela de Login apresenta a seção "Login Rápido (Para Teste)" com três botões distintos rotulados "Admin", "Médico" e "Paciente", indicando claramente qual perfil deve ser clicado para acessar a respectiva área, cumprindo o requisito de intuitividade na diferenciação de usuários.
+
+Demonstração visual:
+
+<img width="922" height="825" alt="Captura de tela 2025-11-30 112526" src="https://github.com/user-attachments/assets/e053e6ef-85e8-43cb-80ef-6549f71f2923" />
+
+## Casos de Teste - RNF-002 - A navegação deve ser simples, com menus claros e informações visíveis
+
+Este caso de teste verifica se a estrutura de navegação do sistema, exemplificada pela barra inferior e pelo painel inicial, cumpre o requisito de ser simples, clara e com informações visíveis.
+
+Objetivo: verificar a clareza e funcionalidade das Ações Rápidas na tela inicial.
+
+Resultado esperado: a navegação entre as telas deve ser rápida e intuitiva.
+
+Resultado obtido: a seção "Ações Rápidas" cumpre integralmente o requisito de navegação simples e clara, utilizando um design visualmente atraente e funcional para guiar o usuário de forma intuitiva às principais áreas do sistema.
+
+Demonstração visual:
+
+<img width="425" height="760" alt="Captura de tela 2025-11-30 103804" src="https://github.com/user-attachments/assets/8a841750-ac6a-4f94-970d-81f19e186c62" />
+
+## Casos de Teste - RNF-003 - Permitir acesso ao sistema via navegador web e aplicativo mobile
+
+Este caso de teste verifica o requisito de acesso multiplataforma (RNF-003), focando especificamente na capacidade de acesso e funcionalidade através do aplicativo mobile, já que o acesso web foi abordado em outra parte da documentação (frontend-web.md).
+
+Objetivo: assegurar a navegação seja funcional no aplicativo mobile.
+
+Resultado esperado: o aplicativo deve abrir sem erros e o login deve ser realizado com sucesso.
+
+Resultado obtido: o login com o perfil de Paciente foi realizado com sucesso, direcionando o usuário para o Painel Inicial.
+
+Demonstração visual:
+
+<img width="146" height="260" alt="image" src="https://github.com/user-attachments/assets/97f38183-7996-47c2-ab5b-499625379a18" />
+
+![9a3dfa9e-c090-4dbd-82d7-d2c21ba5a0a4](https://github.com/user-attachments/assets/49887525-2abd-4b29-92fa-f618497f7e08)
+
+
+## Casos de Teste - RNF-005 - Controle de acesso por perfil (paciente e profissional de saúde)
+
+Este caso de teste verifica se o sistema, após o login, aplica corretamente o controle de acesso e direciona o usuário para a interface específica do seu perfil, conforme o requisito de controle de acesso por perfil (paciente e profissional de saúde).
+
+Objetivo: verificar se o sistema autentica e direciona os usuários (paciente, profissional de saúde, admin) para o painel apropriado para seu perfil.
+
+Resultado esperado: o login com credenciais de Paciente deve levar ao painel com "Ações Rápidas" (Agendar Consulta, Minhas Consultas), o login com credenciais de profissional de saúde ou admin deve levar a um painel com funcionalidades específicas para suas roles
+
+Resultado obtido: o sistema validou e separou os perfis com sucesso. O login do Paciente resultou no acesso ao Painel Inicial com foco em agendamentos, enquanto o login do profissional de saúde resultou em um painel diferente, com ferramentas e funcionalidades exclusivas para médicos. O mesmo ocorre com o Admin. O controle de acesso está funcionando corretamente.
+
+Demonstração visual:
+
+Funcionalidade admin:
+
+Inclusão e remoção de médicos
+
+<img width="139" height="227" alt="image" src="https://github.com/user-attachments/assets/2353d378-222d-429f-bdcf-6b9773382457" />
+
+<img width="139" height="227" alt="image" src="https://github.com/user-attachments/assets/124bb244-b60d-4903-9c12-a75de34bb220" />
+
+
+Funcionalidade paciente:
+<br>
+
+Visualização do painel inicial para pacientes
+
+<img width="145" height="260" alt="image" src="https://github.com/user-attachments/assets/94bce3df-74bd-46ae-b447-6bc6a25e7fb6" />
  
 # Referências
 
