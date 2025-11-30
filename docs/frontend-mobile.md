@@ -224,6 +224,11 @@ Obs:. Ao selecionar o médico, aparece um texto em vermelho com parte do código
 
 ![GIF demonstrando o fluxo de agendar consulta no Medlink](https://github.com/user-attachments/assets/ee99e52c-2609-4189-a865-65dae44290df)
 
+## Casos de Teste – Exclusão de médico cadastrado
+
+<img width="294" height="524" alt="image" src="https://github.com/user-attachments/assets/e3d85e7b-65f4-418f-8784-e4a4acea90b4" />
+
+
 --------------------------------------------
 
 ## Cadastro de médico
