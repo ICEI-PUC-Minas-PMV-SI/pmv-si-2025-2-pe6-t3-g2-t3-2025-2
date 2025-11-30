@@ -136,7 +136,7 @@ Esse conjunto de tecnologias está alinhado com a arquitetura distribuída propo
 
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+Para garantir a segurança no Medlink (versão Mobile), o sistema utiliza autenticação baseada em JWT, permitindo que apenas usuários autorizados acessem as funcionalidades. Após o login, o servidor gera um token que identifica o usuário e suas permissões, possibilitando comunicação segura entre front-end e back-end sem precisar reenviar credenciais a cada requisição. Cada perfil - como médico, paciente ou administrador - possui permissões específicas, validadas diretamente pelo token, impedindo acessos indevidos. Rotas protegidas exigem a verificação do JWT, garantindo que apenas usuários autenticados possam realizar operações, como visualizar perfis, acessar o painel médico ou agendar consultas, conforme seu perfil. A expiração do token em 2 horas adiciona uma camada extra de proteção, minimizando riscos em caso de comprometimento. Esses mecanismos combinados fortalecem a segurança da aplicação móvel, prevenindo acessos não autorizados e protegendo a comunicação entre front-end e back-end.
 
 ## Implantação
 
@@ -263,6 +263,27 @@ Teste : Permitir filtro e busca de profissionais por especialidade e nome
 
 ![WhatsApp Image 2025-11-29 at 14 55 29](https://github.com/user-attachments/assets/7026d6c3-d216-43cb-bc8e-00f9ec45355f)
 
+## Casos de Teste - RNF-013 - Controle de acesso baseado em perfis (RBAC), com permissões distintas para Paciente, Profissional e Administrativo
+
+Este caso de teste visa verificar a aplicação do modelo de Controle de Acesso Baseado em Perfis (RBAC), garantindo que cada perfil de usuário (Paciente, Profissional de Saúde e Administrativo) tenha permissões e acesso exclusivos às funcionalidades pertinentes às suas funções.
+
+Resultado esperado: 
+1. O Paciente não deve conseguir acessar telas e funcionalidades exclusivas de Médico ou Administrador. 
+2. O médico não deve conseguir acessar telas e funcionalidades exclusivas de administrador.
+3. O Admin deve ter acesso a todas as funcionalidades de gestão, mas não deve conseguir executar ações restritas a pacientes (como criar uma nova consulta no seu próprio nome sem a devida interface).
+Resultado obtido: O sistema Medlink aplica o controle de acesso baseado em Perfis (RBAC) de forma eficaz, garantindo que pacientes, profissionais de saúde e admin tenham permissões distintas e segregadas.
+
+Demonstração visual:
+Perfil Paciente
+<img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/fb3d557b-4046-472f-a326-66ff9e9c1bb8" />
+
+Perfil Médico
+<img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/e7ec5675-d300-4704-a1a9-3dbbfb663289" />
+
+Perfil Administrador
+<img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/fc51ea19-2eba-4f92-a554-b10e87977349" />
+
+
 
 ## Casos de Teste - RNF-001 - A interface deve ser intuitiva para diferentes tipos de usuários (pacientes e profissionais de saúde) 
 
@@ -320,6 +341,14 @@ Resultado esperado: o login com credenciais de Paciente deve levar ao painel com
 Resultado obtido: o sistema validou e separou os perfis com sucesso. O login do Paciente resultou no acesso ao Painel Inicial com foco em agendamentos, enquanto o login do profissional de saúde resultou em um painel diferente, com ferramentas e funcionalidades exclusivas para médicos. O mesmo ocorre com o Admin. O controle de acesso está funcionando corretamente.
 
 Demonstração visual:
+Perfil Paciente
+<img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/fb3d557b-4046-472f-a326-66ff9e9c1bb8" />
+
+Perfil Médico
+<img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/e7ec5675-d300-4704-a1a9-3dbbfb663289" />
+
+Perfil Administrador
+<img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/fc51ea19-2eba-4f92-a554-b10e87977349" />
 
 Funcionalidade admin:
 
