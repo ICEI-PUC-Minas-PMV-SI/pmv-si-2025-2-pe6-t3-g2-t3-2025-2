@@ -263,7 +263,66 @@ Teste : Permitir filtro e busca de profissionais por especialidade e nome
 
 ![WhatsApp Image 2025-11-29 at 14 55 29](https://github.com/user-attachments/assets/7026d6c3-d216-43cb-bc8e-00f9ec45355f)
 
-## Casos de Teste - RNF-013 - Controle de acesso baseado em perfis (RBAC), com permissões distintas para Paciente, Profissional e Administrativo
+
+## RF-005 - Evitar conflitos de horário ao impedir marcações duplicadas ou sobreposição de agendas
+
+Objetivo: verificar se o sistema impede corretamente a marcação de consultas em horários já ocupados ou sobrepostos na agenda de um profissional de saúde, garantindo a integridade dos agendamentos.
+
+Resultado Esperado: 
+1. Após um paciente agendar um horário (X) com um médico, esse horário (X) deve ser removido ou desativado da visualização de agendamento para todos os outros pacientes.
+
+Resultado obtido: o sistema funcionou totalmente conforme o esperado. Após um horário ser reservado por um paciente, ele não apareceu nas opções de agendamento para outros pacientes, evitando conflitos e sobreposição de agendas com sucesso.
+
+<img width="535" height="620" alt="image" src="https://github.com/user-attachments/assets/16f9819b-d51e-40df-a151-7c580ab77557" />
+
+
+## RF-006	Permitir remarcação e cancelamento de consultas com atualização em tempo real
+
+Este caso de teste visa verificar a funcionalidade de gestão de agendamentos, incluindo a capacidade de remarcar e cancelar uma consulta, e assegurar que as alterações sejam propagadas pelo sistema em tempo real (atualização imediata).
+
+Resultado esperado	
+1. A remarcação deve ser concluída com sucesso e a nova Data X/Horário Y deve aparecer na interface do paciente de forma instantânea.
+2. O cancelamento deve ser concluído com sucesso e a consulta deve ser removida/marcada como cancelada para o paciente.
+
+Resultado obtido:
+Ao tentar realizar a remarcação da consulta (X → Y), o sistema exibiu uma mensagem de erro e não permitiu a alteração da data/horário. Quando cancelado, a consulta foi removida da lista do Paciente (ou marcada como cancelada).
+
+<img width="535" height="620" alt="image" src="https://github.com/user-attachments/assets/97de784b-6e1f-462e-8f05-96e528092bc5" />
+
+<img width="535" height="620" alt="image" src="https://github.com/user-attachments/assets/84e89d72-80cd-4441-a57d-6a5f0272bca8" />
+
+<img width="535" height="620" alt="image" src="https://github.com/user-attachments/assets/c92e96ee-018a-4f54-9aed-375d79b32bab" />
+
+<img width="535" height="620" alt="image" src="https://github.com/user-attachments/assets/71f1ea23-f3e1-4618-9f38-1b9da5351486" />
+
+
+## RF-007 - Armazenar histórico de consultas dos pacientes (para os profissionais de saúde e pacientes)
+
+Verificar se o sistema armazena corretamente o histórico de consultas (agendadas e canceladas) e se ele é acessível pelos perfis de Paciente e Profissional de Saúde.
+
+Resultado esperado: 
+1. O Paciente deve conseguir visualizar todas as suas consultas passadas.
+2. O Profissional de Saúde deve conseguir acessar as consultas agendadas para ele.
+
+Resultado obtido: o paciente conseguiu acessar e visualizar integralmente seu histórico de consultas passadas, confirmando o armazenamento correto. No entanto, o médico não conseguiu acessar o histórico de consultas do paciente, resultando em uma falha na implementação do requisito.
+
+<img width="535" height="620" alt="image" src="https://github.com/user-attachments/assets/c4e47c0b-9098-49e1-8e8a-b5b41d5ebdfb" />
+
+## RF-009 Gestão administrativa (CRUD) de profissionais, especialidades, horários/janelas de atendimento e convênios aceitos
+
+Verificar a funcionalidade completa de Gestão Administrativa (CRUD - Criar, Ler, Atualizar, Deletar) para os profissionais.
+
+Resultado Esperado: o perfil admin deve conseguir realizar todas as operações de CRUD para todas as entidades (profissionais, especialidades, horários, convênios).
+
+Resultado obtido: As funcionalidades de Adicionar (C - Create) e Ler (R - Read) para profissionais estão operacionais. No entanto, as operações de Update (Atualizar/Editar) e Delete (Excluir) para profissionais apresentam falha
+
+<img width="533" height="620" alt="image" src="https://github.com/user-attachments/assets/64eab543-ee2c-45b5-906e-c0089af94534" />
+
+<img width="533" height="620" alt="image" src="https://github.com/user-attachments/assets/97b297c9-526f-4ff5-984e-aeb3456de404" />
+
+
+
+## Casos de Teste - RF-013 - Controle de acesso baseado em perfis (RBAC), com permissões distintas para Paciente, Profissional e Administrativo
 
 Este caso de teste visa verificar a aplicação do modelo de Controle de Acesso Baseado em Perfis (RBAC), garantindo que cada perfil de usuário (Paciente, Profissional de Saúde e Administrativo) tenha permissões e acesso exclusivos às funcionalidades pertinentes às suas funções.
 
@@ -282,8 +341,6 @@ Perfil Médico
 
 Perfil Administrador
 <img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/fc51ea19-2eba-4f92-a554-b10e87977349" />
-
-
 
 ## Casos de Teste - RNF-001 - A interface deve ser intuitiva para diferentes tipos de usuários (pacientes e profissionais de saúde) 
 
