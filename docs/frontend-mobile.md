@@ -321,7 +321,6 @@ Resultado obtido: As funcionalidades de Adicionar (C - Create) e Ler (R - Read) 
 <img width="533" height="620" alt="image" src="https://github.com/user-attachments/assets/97b297c9-526f-4ff5-984e-aeb3456de404" />
 
 
-
 ## Casos de Teste - RF-013 - Controle de acesso baseado em perfis (RBAC), com permissões distintas para Paciente, Profissional e Administrativo
 
 Este caso de teste visa verificar a aplicação do modelo de Controle de Acesso Baseado em Perfis (RBAC), garantindo que cada perfil de usuário (Paciente, Profissional de Saúde e Administrativo) tenha permissões e acesso exclusivos às funcionalidades pertinentes às suas funções.
@@ -334,12 +333,15 @@ Resultado obtido: O sistema Medlink aplica o controle de acesso baseado em Perfi
 
 Demonstração visual:
 Perfil Paciente
-<img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/fb3d557b-4046-472f-a326-66ff9e9c1bb8" />
+
+<img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/fb3d557b-4046-472f-a326-66ff9e9c1bb8" /> 
 
 Perfil Médico
+
 <img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/e7ec5675-d300-4704-a1a9-3dbbfb663289" />
 
 Perfil Administrador
+
 <img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/fc51ea19-2eba-4f92-a554-b10e87977349" />
 
 ## Casos de Teste - RNF-001 - A interface deve ser intuitiva para diferentes tipos de usuários (pacientes e profissionais de saúde) 
@@ -382,9 +384,28 @@ Resultado obtido: o login com o perfil de Paciente foi realizado com sucesso, di
 
 Demonstração visual:
 
-<img width="146" height="260" alt="image" src="https://github.com/user-attachments/assets/97f38183-7996-47c2-ab5b-499625379a18" />
+<img width="146" height="260" alt="image" src="https://github.com/user-attachments/assets/97f38183-7996-47c2-ab5b-499625379a18" /><br>
+
 
 ![9a3dfa9e-c090-4dbd-82d7-d2c21ba5a0a4](https://github.com/user-attachments/assets/49887525-2abd-4b29-92fa-f618497f7e08)
+
+## Casos de Teste - RNF-004 - Atualização em tempo real das agendas de profissionais	
+
+Esse caso de teste verifica se o sistema, após qualquer alteração no agendamento, aplica corretamente a atualização em tempo real dos horários dos profissionais de saúde, conforme o requisito RNF-004.
+
+Objetivo: verificar se as alterações (como uma nova marcação ou um cancelamento) feitas por um paciente são refletidas e atualizadas instantaneamente na interface de agenda do profissional.
+
+Resultado esperado: qualquer alteração no status de um slot disponível deve ser visível na agenda do profissional imediatamente, sem a necessidade de recarregar a página ou o aplicativo.
+
+Resultado obtido: o sistema validou as atualizações com sucesso. Após um agendamento ser realizado pelo paciente, a agenda do médico foi atualizada em tempo real, não exibindo mais o horário instantaneamente. O controle de atualização está funcionando corretamente.
+
+Consulta agendada as 17h:
+
+<img width="535" height="620" alt="image" src="https://github.com/user-attachments/assets/20b7e7ce-1c97-4f00-b460-20f463f85a14" />
+
+Último horário disponível as 16:30:
+
+<img width="535" height="620" alt="image" src="https://github.com/user-attachments/assets/1d50feba-337c-4492-99ad-c36aafa35789" />
 
 
 ## Casos de Teste - RNF-005 - Controle de acesso por perfil (paciente e profissional de saúde)
@@ -398,20 +419,25 @@ Resultado esperado: o login com credenciais de Paciente deve levar ao painel com
 Resultado obtido: o sistema validou e separou os perfis com sucesso. O login do Paciente resultou no acesso ao Painel Inicial com foco em agendamentos, enquanto o login do profissional de saúde resultou em um painel diferente, com ferramentas e funcionalidades exclusivas para médicos. O mesmo ocorre com o Admin. O controle de acesso está funcionando corretamente.
 
 Demonstração visual:
-Perfil Paciente
+
+Perfil Paciente<br>
+
 <img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/fb3d557b-4046-472f-a326-66ff9e9c1bb8" />
 
-Perfil Médico
+Perfil Médico<br>
+
 <img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/e7ec5675-d300-4704-a1a9-3dbbfb663289" />
 
-Perfil Administrador
+Perfil Administrador<br>
+
 <img width="324" height="547" alt="image" src="https://github.com/user-attachments/assets/fc51ea19-2eba-4f92-a554-b10e87977349" />
+
 
 Funcionalidade admin:
 
-Inclusão e remoção de médicos
+Inclusão e remoção de médicos<br>
 
-<img width="139" height="227" alt="image" src="https://github.com/user-attachments/assets/2353d378-222d-429f-bdcf-6b9773382457" />
+<img width="139" height="227" alt="image" src="https://github.com/user-attachments/assets/2353d378-222d-429f-bdcf-6b9773382457" /><br>
 
 <img width="139" height="227" alt="image" src="https://github.com/user-attachments/assets/124bb244-b60d-4903-9c12-a75de34bb220" />
 
@@ -419,9 +445,27 @@ Inclusão e remoção de médicos
 Funcionalidade paciente:
 <br>
 
-Visualização do painel inicial para pacientes
+Visualização do painel inicial para pacientes<br>
 
 <img width="145" height="260" alt="image" src="https://github.com/user-attachments/assets/94bce3df-74bd-46ae-b447-6bc6a25e7fb6" />
+
+## Casos de Teste - RNF-006 - Garantir a capacidade de adicionar novos profissionais e usuários sem impacto significativo no sistema
+
+Este caso de teste verifica se o sistema tem a capacidade e estabilidade para adicionar novos usuários (médicos).
+
+Objetivo: verificar se a adição de novos usuários/profissionais pelo perfil admin é realizada com sucesso, sem causar lentidão ou impacto significativo no desempenho do sistema para outros usuários.
+
+Resultado esperado: a adição de novos perfis deve ser concluída rapidamente (em poucos segundos), o novo perfil deve estar funcional imediatamente, e o desempenho do sistema para outros usuários ativos não deve ser afetado.
+
+Resultado obtido: o sistema funciona corretamente. O Administrador consegue adicionar novos médicos através da interface de gestão. A operação é concluída de forma rápida e o processo não causa lentidão ou interrupções.
+
+Demonstração visual:
+
+<img width="533" height="620" alt="image" src="https://github.com/user-attachments/assets/49218171-16e1-4c1f-be97-6d55842c9cb4" />
+
+<img width="533" height="620" alt="image" src="https://github.com/user-attachments/assets/cce6d46c-c4ab-4322-bb95-2b0994027a97" />
+
+
  
 # Referências
 
