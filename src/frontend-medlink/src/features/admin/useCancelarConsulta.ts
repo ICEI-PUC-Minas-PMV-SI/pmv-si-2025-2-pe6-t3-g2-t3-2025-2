@@ -14,17 +14,18 @@ export function useCancelarConsultaAdmin() {
     onSuccess: (_data, _variables) => {
       qc.invalidateQueries({ queryKey: ['admin-consultas'], exact: false });
     },
-    onError: (err: any) => {
+    onError: (err: unknown) => {
+      const axiosErr = err as import('axios').AxiosError | undefined;
       console.error('[CancelarConsulta][error]', {
-        message: err?.message,
-        status: err?.response?.status,
-        data: err?.response?.data,
+        message: axiosErr?.message || String(err),
+        status: axiosErr?.response?.status,
+        data: axiosErr?.response?.data,
       });
       alert(
-        `Falha ao cancelar: ${err?.response?.status ?? ''} ${
-          typeof err?.response?.data === 'string'
-            ? err.response.data
-            : JSON.stringify(err?.response?.data ?? {})
+        `Falha ao cancelar: ${axiosErr?.response?.status ?? ''} ${
+          typeof axiosErr?.response?.data === 'string'
+            ? axiosErr?.response?.data
+            : JSON.stringify(axiosErr?.response?.data ?? {})
         }`,
       );
     },

@@ -6,7 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from '@/app/components/ui/toast';
 
-import { NewTaskFormData, newTaskFormSchema } from '@/app/validators/tasks-validators';
+import type { NewTaskFormData } from '@/app/validators/tasks-validators';
+import { newTaskFormSchema } from '@/app/validators/tasks-validators';
 import { useRegister } from '@/app/services/auth';
 
 import register_img from '../assets/register_img.png';
@@ -30,12 +31,14 @@ export default function RegisterPage() {
         toast.success('Cadastro realizado com sucesso! Faça login para continuar.');
         form.reset();
       },
-      onError: (err: any) => {
-        const status = err?.response?.status;
+      onError: (err: unknown) => {
+        const axiosErr = err as import('axios').AxiosError | undefined;
+        const status = axiosErr?.response?.status;
         const msg =
-          err?.response?.data?.message ||
-          err?.response?.data ||
-          err?.message ||
+          axiosErr?.response?.data?.message ||
+          axiosErr?.response?.data ||
+          axiosErr?.message ||
+          String(err) ||
           'Não foi possível concluir o cadastro.';
 
         if (status === 409) toast.warning('Este e-mail já está cadastrado. Tente outro.');
@@ -45,9 +48,9 @@ export default function RegisterPage() {
 
         console.log('[Register][ERR]', {
           status,
-          url: err?.config?.url,
-          method: err?.config?.method,
-          data: err?.response?.data,
+          url: axiosErr?.config?.url,
+          method: axiosErr?.config?.method,
+          data: axiosErr?.response?.data,
         });
       },
     });
@@ -104,7 +107,7 @@ export default function RegisterPage() {
 
             {isError && (
               <div className={`${styles.alert} ${styles['alert--error']}`} role="alert">
-                <p>Erro ao criar conta: {error?.message || 'Tente novamente'}</p>
+                <p>Erro ao criar conta: {(error as import('axios').AxiosError)?.message || 'Tente novamente'}</p>
               </div>
             )}
 

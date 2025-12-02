@@ -14,13 +14,42 @@ import { Trash2, RefreshCw, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import styles from './page.module.css';
 
-const schema = z.object({
+const schema = z
+  .object({
   medicoId: z.string().min(1, 'Selecione um médico'),
   data: z.string().min(1, 'Informe a data'),
   horaInicio: z.string().regex(/^\d{2}:\d{2}$/, 'Formato HH:mm'),
   horaFim: z.string().regex(/^\d{2}:\d{2}$/, 'Formato HH:mm'),
   intervaloMinutos: z.number().min(15, 'Mínimo 15 minutos').max(120, 'Máximo 120 minutos'),
-});
+  })
+  // horaFim deve ser posterior a horaInicio
+  .refine((d) => {
+    try {
+      const [h1, m1] = d.horaInicio.split(':').map(Number);
+      const [h2, m2] = d.horaFim.split(':').map(Number);
+      if (Number.isNaN(h1) || Number.isNaN(m1) || Number.isNaN(h2) || Number.isNaN(m2)) return false;
+      const t1 = h1 * 60 + m1;
+      const t2 = h2 * 60 + m2;
+      return t2 > t1;
+    } catch {
+      return false;
+    }
+  }, { message: 'Hora final deve ser posterior à hora inicial', path: ['horaFim'] })
+  // data + horaInicio deve estar no futuro (não permitir criar slots para datas/horas passadas)
+  .refine((d) => {
+    try {
+      // data format: YYYY-MM-DD; horaInicio: HH:mm
+      const dt = new Date(`${d.data}T${d.horaInicio}:00`);
+      // If invalid date, reject
+      if (Number.isNaN(dt.getTime())) return false;
+      // Compare to now (local time) - ensure start is at or after current minute
+      const now = new Date();
+      // Allow creating slots that start at the current minute or later
+      return dt.getTime() >= now.getTime();
+    } catch {
+      return false;
+    }
+  }, { message: 'A data/hora inicial deve ser no futuro', path: ['horaInicio'] });
 
 type FormData = z.infer<typeof schema>;
 
@@ -68,6 +97,26 @@ export default function AdminSlotsPage() {
   } = useAdminSlots(filtroMedicoId, filtroData);
 
   const onSubmit = (values: FormData) => {
+    // Extra safety: verify times before calling API (prevents race/edge issues)
+    const start = new Date(`${values.data}T${values.horaInicio}:00`);
+    const end = new Date(`${values.data}T${values.horaFim}:00`);
+    const now = new Date();
+
+    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
+      toast.error('Formulário inválido. Verifique data e horários.');
+      return;
+    }
+
+    if (end.getTime() <= start.getTime()) {
+      toast.error('Hora final deve ser posterior à hora inicial.');
+      return;
+    }
+
+    if (start.getTime() < now.getTime()) {
+      toast.error('Não é permitido criar slots em datas/horas passadas.');
+      return;
+    }
+
     criarSlots(
       {
         medicoId: values.medicoId,
@@ -77,25 +126,27 @@ export default function AdminSlotsPage() {
         intervaloMinutos: values.intervaloMinutos,
       },
       {
-        onSuccess: (resp: any) => {
-          const count = Array.isArray(resp) ? resp.length : resp?.count || 'vários';
+        onSuccess: (resp: unknown) => {
+          const obj = resp as Record<string, unknown>;
+          const count = Array.isArray(resp) ? resp.length : (typeof obj.count === 'number' ? obj.count : obj.count ?? 'vários');
           toast.success(`${count} slot(s) criado(s) com sucesso!`);
           reset({ intervaloMinutos: 30, medicoId: '', data: '', horaInicio: '', horaFim: '' });
           setFiltroMedicoId(values.medicoId);
           setFiltroData(values.data);
         },
-        onError: (err: any) => {
-          const status = err?.response?.status;
-          const msg = err?.response?.data?.message || err?.response?.data;
+        onError: (err: unknown) => {
+          const axiosErr = err as import('axios').AxiosError | undefined;
+          const status = axiosErr?.response?.status;
+          const msg = axiosErr?.response?.data?.message || axiosErr?.response?.data;
           if (status === 404) toast.error('Médico não encontrado.');
           else if (status === 400) toast.info(msg || 'Dados inválidos. Verifique os horários.');
           else if (status === 403) toast.error('Você não tem permissão para criar slots.');
           else toast.error('Erro ao criar slots. Tente novamente.');
           console.log('[CriarSlots][ERR]', {
             status,
-            url: err?.config?.url,
-            payload: err?.config?.data,
-            data: err?.response?.data,
+            url: axiosErr?.config?.url,
+            payload: axiosErr?.config?.data,
+            data: axiosErr?.response?.data,
           });
         },
       },
@@ -106,14 +157,15 @@ export default function AdminSlotsPage() {
     if (!confirm('Tem certeza que deseja cancelar este slot?')) return;
     cancelarSlot(slotId, {
       onSuccess: () => toast.success('Slot cancelado com sucesso!'),
-      onError: (err: any) => {
-        const status = err?.response?.status;
-        const msg = err?.response?.data?.message || err?.response?.data;
+      onError: (err: unknown) => {
+        const axiosErr = err as import('axios').AxiosError | undefined;
+        const status = axiosErr?.response?.status;
+        const msg = axiosErr?.response?.data?.message || axiosErr?.response?.data;
         if (status === 404) toast.error('Slot não encontrado.');
         else if (status === 400) toast.info(msg || 'Não é possível cancelar este slot.');
         else if (status === 403) toast.error('Você não tem permissão para cancelar slots.');
         else toast.error('Erro ao cancelar slot.');
-        console.log('[CancelarSlot][ERR]', { status, url: err?.config?.url, data: err?.response?.data });
+        console.log('[CancelarSlot][ERR]', { status, url: axiosErr?.config?.url, data: axiosErr?.response?.data });
       },
     });
   };

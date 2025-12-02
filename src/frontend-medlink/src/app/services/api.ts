@@ -6,9 +6,12 @@ export const api = axios.create({
 });
 
 function clearAuthAndRedirect() {
-  // Limpa token de ambos os lugares
-  localStorage.removeItem("token");
+  // Limpa token do cookie (do not use localStorage for auth)
   Cookies.remove("token", { path: "/" });
+
+  // TEMP LOG: debug auth clear
+  // eslint-disable-next-line no-console
+  console.debug('[DEBUG][api] cleared auth cookie token');
 
   // Redirecionamento contextual (opcional)
   const path = typeof window !== "undefined" ? window.location.pathname : "/";
@@ -17,10 +20,16 @@ function clearAuthAndRedirect() {
 }
 
 api.interceptors.request.use((config) => {
-  if (typeof window !== "undefined") {
-    // Prioriza cookie; se ausente, usa localStorage
-    const token = Cookies.get("token") || localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+    // Use cookie-only approach
+    const token = Cookies.get("token");
+    // TEMP LOG: what token is read from cookie (only for localhost debugging)
+    // eslint-disable-next-line no-console
+    console.debug('[DEBUG][api] token from cookie:', token ? '<<REDACTED>>' : null);
     if (token) {
+      // TEMP LOG: confirm setting Authorization header
+      // eslint-disable-next-line no-console
+      console.debug('[DEBUG][api] attaching Authorization header');
       config.headers.Authorization = `Bearer ${token}`;
     }
   }

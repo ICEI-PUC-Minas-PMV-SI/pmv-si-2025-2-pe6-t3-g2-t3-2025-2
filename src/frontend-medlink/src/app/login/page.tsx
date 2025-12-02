@@ -10,7 +10,8 @@ import { Logo } from '@/app/components/logo/logo';
 import { Input } from '../components/input/input';
 import register_img from '../assets/register_img.png';
 
-import { NewTaskFormDataLogin, newTaskFormSchemaLogin } from '@/app/validators/tasks-validators';
+import type { NewTaskFormDataLogin } from '@/app/validators/tasks-validators';
+import { newTaskFormSchemaLogin } from '@/app/validators/tasks-validators';
 import { useLogin } from '@/app/services/auth';
 import { toast } from '@/app/components/ui/toast';
 
@@ -29,8 +30,8 @@ export default function LoginPage() {
       onSuccess: () => {
         toast.success('Login realizado com sucesso!');
       },
-      onError: (err: any) => {
-        const status = err?.response?.status;
+      onError: (err: unknown) => {
+        const status = (err as import('axios').AxiosError)?.response?.status;
         const msg =
           err?.response?.data?.message ||
           err?.response?.data ||
@@ -45,11 +46,12 @@ export default function LoginPage() {
           toast.error(msg);
         }
 
+        const axiosErr = err as import('axios').AxiosError | undefined;
         console.log('[Login][ERR]', {
           status,
-          url: err?.config?.url,
-          method: err?.config?.method,
-          data: err?.response?.data,
+          url: axiosErr?.config?.url,
+          method: axiosErr?.config?.method,
+          data: axiosErr?.response?.data,
         });
       },
     });

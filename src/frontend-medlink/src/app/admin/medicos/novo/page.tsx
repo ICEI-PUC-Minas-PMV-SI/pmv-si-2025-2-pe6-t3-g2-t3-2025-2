@@ -47,19 +47,20 @@ export default function NovoMedicoPage() {
         toast.success('Médico cadastrado com sucesso!');
         router.push('/admin/medicos');
       },
-      onError: (err: any) => {
-        const status = err?.response?.status;
-        const msg = err?.response?.data?.message || err?.response?.data;
+      onError: (err: unknown) => {
+        const axiosErr = err as import('axios').AxiosError | undefined;
+        const status = axiosErr?.response?.status;
+        const msg = axiosErr?.response?.data?.message || axiosErr?.response?.data;
         if (status === 409) toast.warning('Este e-mail já está cadastrado.');
         else if (status === 400) toast.info(msg || 'Dados inválidos. Verifique os campos.');
         else if (status === 403) toast.error('Você não tem permissão para cadastrar médicos.');
         else toast.error('Erro ao cadastrar médico. Tente novamente.');
         console.log('[CadastrarMedico][ERR]', {
           status,
-          url: err?.config?.url,
-          method: err?.config?.method,
-          payload: err?.config?.data,
-          data: err?.response?.data,
+          url: axiosErr?.config?.url,
+          method: axiosErr?.config?.method,
+          payload: axiosErr?.config?.data,
+          data: axiosErr?.response?.data,
         });
       },
     });

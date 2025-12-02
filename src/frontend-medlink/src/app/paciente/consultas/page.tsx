@@ -16,14 +16,15 @@ export default function ConsultasPacientePage() {
   const handleCancelar = (id: string) => {
     if (!confirm('Tem certeza que deseja cancelar esta consulta?')) return;
     cancelar(id, {
-      onSuccess: (msg: any) => {
+      onSuccess: (msg: unknown) => {
         toast.success(typeof msg === 'string' ? msg : 'Consulta cancelada.');
       },
-      onError: (err: any) => {
-        const status = err?.response?.status;
+      onError: (err: unknown) => {
+        const axiosErr = err as import('axios').AxiosError | undefined;
+        const status = axiosErr?.response?.status;
         const msg =
-          err?.response?.data?.message ||
-          err?.response?.data ||
+          axiosErr?.response?.data?.message ||
+          axiosErr?.response?.data ||
           'Não foi possível cancelar a consulta.';
 
         if (status === 404) toast.error('Consulta não encontrada.');
@@ -37,9 +38,9 @@ export default function ConsultasPacientePage() {
 
         console.log('[CancelarConsulta][ERR]', {
           status,
-          url: err?.config?.url,
-          method: err?.config?.method,
-          data: err?.response?.data,
+          url: axiosErr?.config?.url,
+          method: axiosErr?.config?.method,
+          data: axiosErr?.response?.data,
         });
       },
     });

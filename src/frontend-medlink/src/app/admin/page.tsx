@@ -1,9 +1,31 @@
-'use client';
-
 import Link from 'next/link';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import styles from './page.module.css';
 
-export default function AdminHome() {
+function parseJwt(token: string | undefined | null) {
+  if (!token) return null;
+  try {
+    const parts = token.split('.');
+    if (parts.length < 2) return null;
+    const base64 = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+    const padded = base64 + '='.repeat((4 - (base64.length % 4)) % 4);
+    const json = Buffer.from(padded, 'base64').toString('utf-8');
+    return JSON.parse(json);
+  } catch {
+    return null;
+  }
+}
+
+export default async function AdminHome() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get?.('token')?.value;
+  if (!token) redirect('/admin/login');
+
+  const user = parseJwt(token);
+  // Accept role in `role` or OR in `authorities` (e.g. ['ROLE_ADMIN'])
+  const isAdmin = user && (user.role === 'ADMIN' || (Array.isArray(user.authorities) && user.authorities.includes('ROLE_ADMIN')));
+  if (!isAdmin) redirect('/admin/login');
   return (
     <div className={styles.admin}>
       <header className={styles.admin__header}>

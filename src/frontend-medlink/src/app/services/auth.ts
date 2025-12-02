@@ -1,6 +1,7 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
+import type { AxiosError } from 'axios';
 import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/auth-context";
 import { api } from "./api";
@@ -38,8 +39,8 @@ export const useRegister = () => {
     onSuccess: () => {
       router.push("/login");
     },
-    onError: (err: any) => {
-      const status = err?.response?.status;
+    onError: (err: AxiosError | unknown) => {
+      const status = (err as AxiosError)?.response?.status;
       if (status === 409) {
         throw new Error("E-mail já cadastrado.");
       }
@@ -61,8 +62,8 @@ export const useLogin = () => {
       login(token);
       router.push("/paciente/consultas");
     },
-    onError: (err: any) => {
-      const status = err?.response?.status;
+    onError: (err: AxiosError | unknown) => {
+      const status = (err as AxiosError)?.response?.status;
       if (status === 401 || status === 403) {
         throw new Error("E-mail ou senha inválidos.");
       }

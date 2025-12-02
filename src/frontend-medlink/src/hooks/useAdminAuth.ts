@@ -3,6 +3,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { api } from "@/app/services/api";
+import Cookies from 'js-cookie';
 
 interface AdminLoginData {
   email: string;
@@ -19,8 +20,18 @@ export const useAdminLogin = () => {
       return response.data; // { token }
     },
     onSuccess: (data: { token: string }) => {
-      localStorage.setItem("token", data.token);
-      document.cookie = `token=${data.token}; path=/; max-age=${60 * 60 * 24 * 7}`;
+      // TEMP LOG: show token value briefly to help debugging (remove later)
+      // Note: remove this in production — token is sensitive.
+      // eslint-disable-next-line no-console
+      console.debug('[DEBUG][useAdminLogin] received token:', data.token);
+      // Persist token in cookie (httpOnly should be set by server ideally).
+      // In development on localhost we must not set `secure: true` otherwise cookie
+      // won't be sent over HTTP. Use secure when running on HTTPS / production.
+      const secure = typeof window !== 'undefined' ? window.location.protocol === 'https:' : false;
+      Cookies.set('token', data.token, { path: '/', sameSite: 'lax', secure, expires: 7 });
+      // TEMP LOG: confirm cookie set
+      // eslint-disable-next-line no-console
+      console.debug('[DEBUG][useAdminLogin] cookie set token (exists?):', !!Cookies.get('token'));
 
       const redirect = search.get("redirect");
       router.push(redirect || "/admin");
@@ -31,8 +42,7 @@ export const useAdminLogin = () => {
 export const useAdminLogout = () => {
   const router = useRouter();
   return () => {
-    localStorage.removeItem("token");
-    document.cookie = "token=; path=/; max-age=0;";
+    Cookies.remove('token', { path: '/' });
     router.push("/admin/login");
   };
 };

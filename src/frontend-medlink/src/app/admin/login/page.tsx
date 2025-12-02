@@ -24,9 +24,9 @@ export default function AdminLoginPage() {
 
   const onSubmit = (values: FormData) => {
     mutate(values, {
-      onError: (err: any) => {
-        const status = err?.response?.status;
-        const msg = err?.response?.data?.message || "Erro ao realizar login";
+      onError: (err: unknown) => {
+        const status = (err as import('axios').AxiosError)?.response?.status;
+        const msg = (err as import('axios').AxiosError)?.response?.data?.message || "Erro ao realizar login";
         if (status === 401) toast.error("Credenciais inválidas");
         else toast.error(msg);
       },
@@ -38,7 +38,7 @@ export default function AdminLoginPage() {
       <h1 className={styles.title}>Login do Administrador</h1>
       {isError && (
         <p className={styles["is-error"]} role="alert">
-          {(error as any)?.message || "Erro ao realizar login"}
+          {(error as import('axios').AxiosError)?.message || "Erro ao realizar login"}
         </p>
       )}
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form} noValidate>

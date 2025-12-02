@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Toast = {
   id: number;
@@ -140,6 +140,7 @@ const closeBtnStyle: React.CSSProperties = {
   background: "transparent",
   color: "#444",
   cursor: "pointer",
+  zIndex: 2,
 } as const;
 
 const dismissOverlayBtnStyle: React.CSSProperties = {
@@ -152,7 +153,7 @@ const dismissOverlayBtnStyle: React.CSSProperties = {
   zIndex: 1,
 } as const;
 
-(closeBtnStyle as any).zIndex = 2;
+// zIndex set inline above on closeBtnStyle
 
 const byTypeStyle: Record<string, React.CSSProperties> = {
   success: { borderColor: "#c7f9cc", background: "#f0fff4" },
