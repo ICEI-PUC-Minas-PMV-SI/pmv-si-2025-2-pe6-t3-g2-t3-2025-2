@@ -1,4 +1,4 @@
-:root{
+:root {
   --color-bg: #f7f8fa;
   --color-surface: #ffffff;
   --color-border: #eeeeee;
@@ -15,7 +15,7 @@
 
   --color-success: #10b981;
   --color-warning: #f59e0b;
-  --color-danger:  #ef4444;
+  --color-danger: #ef4444;
 
   --space-1: 4px;
   --space-2: 8px;
@@ -30,17 +30,20 @@
   --radius-md: 8px;
   --radius-lg: 12px;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
   --text-base: 16px;
   --text-lg: 18px;
   --text-sm: 14px;
   --heading-1: 1.5rem;
   --heading-2: 1.125rem;
 
-  --elevation-1: 0 1px 2px rgba(16,24,40,0.03), 0 1px 3px rgba(16,24,40,0.04);
+  --elevation-1:
+    0 1px 2px rgba(16, 24, 40, 0.03), 0 1px 3px rgba(16, 24, 40, 0.04);
 
-  --bp-sm: 640px;  /* large phones */
-  --bp-md: 768px;  /* tablets */
+  --bp-sm: 640px; /* large phones */
+  --bp-md: 768px; /* tablets */
   --bp-lg: 1024px; /* desktops */
 
   --motion-fast: 150ms;
@@ -52,16 +55,22 @@
   --color-surface: #071126;
   --color-text: #e5e7eb;
   --color-text-strong: #ffffff;
-  --color-border: rgba(255,255,255,0.06);
-  --color-hover: rgba(255,255,255,0.03);
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-hover: rgba(255, 255, 255, 0.03);
   --color-primary-100: #0b2b5d;
 }
 
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after {
+  box-sizing: border-box;
+}
 
-html, body, #__next { height: 100%; }
+html,
+body,
+#__next {
+  height: 100%;
+}
 
 html {
   font-size: 100%;
@@ -78,12 +87,24 @@ body {
   line-height: 1.45;
 }
 
-a { color: var(--color-primary); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 
-button { font: inherit; cursor: pointer; background: none; border: none; }
+button {
+  font: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
 
-:focus { outline: none; }
+:focus {
+  outline: none;
+}
 :focus-visible {
   outline: 3px solid var(--color-focus-outline);
   outline-offset: 2px;
@@ -91,31 +112,52 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
 }
 
 .sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-input, textarea, select { font: inherit; color: inherit; }
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+  * {
+    animation: none;
+    transition: none;
+  }
 }
 
-.u-mb-1 { margin-bottom: var(--space-2); }
-.u-mb-2 { margin-bottom: var(--space-3); }
-.u-p-1 { padding: var(--space-2); }
-.u-p-2 { padding: var(--space-3); }
+.u-mb-1 {
+  margin-bottom: var(--space-2);
+}
+.u-mb-2 {
+  margin-bottom: var(--space-3);
+}
+.u-p-1 {
+  padding: var(--space-2);
+}
+.u-p-2 {
+  padding: var(--space-3);
+}
 
-.u-hidden { display: none !important; }
+.u-hidden {
+  display: none;
+}
 
-.text-muted { color: var(--color-muted); font-size: var(--text-sm); }
+.text-muted {
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
 
 .container {
   max-width: 1200px;
@@ -138,9 +180,18 @@ input, textarea, select { font: inherit; color: inherit; }
   -webkit-overflow-scrolling: touch;
 }
 
-.row { display: flex; gap: var(--space-4); flex-wrap: wrap; }
-.col { flex: 1 1 0; min-width: 200px; }
+.row {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.col {
+  flex: 1 1 0;
+  min-width: 200px;
+}
 
 @media (max-width: calc(var(--bp-md) - 1px)) {
-  .touch-lg { padding: 12px 14px; }
+  .touch-lg {
+    padding: 12px 14px;
+  }
 }

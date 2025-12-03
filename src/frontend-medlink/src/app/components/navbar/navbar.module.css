@@ -30,7 +30,9 @@
   font-weight: 500;
   color: var(--text, #111827);
   text-decoration: none;
-  transition: color .12s ease, opacity .12s ease;
+  transition:
+    color 0.12s ease,
+    opacity 0.12s ease;
   background: transparent;
   border: none;
   padding: 0;
@@ -48,8 +50,6 @@
   border: none;
   background: none;
   padding: 0;
-  color: inherit;
-  font: inherit;
   cursor: pointer;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .navbar__toggle:hover {
-  background: rgba(0,0,0,0.04);
+  background: rgba(0, 0, 0, 0.04);
 }
 .navbar__toggle:focus-visible {
   outline: 3px solid rgba(37, 99, 235, 0.12);
@@ -79,11 +79,13 @@
   background: var(--surface, #fff);
   border: 1px solid var(--color-border, #e5e7eb);
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   transform: translateY(-8px);
   opacity: 0;
   pointer-events: none;
-  transition: transform .16s ease, opacity .16s ease;
+  transition:
+    transform 0.16s ease,
+    opacity 0.16s ease;
   z-index: 30;
 }
 

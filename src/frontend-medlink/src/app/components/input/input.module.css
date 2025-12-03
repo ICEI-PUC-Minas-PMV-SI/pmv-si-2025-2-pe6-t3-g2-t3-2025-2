@@ -1,5 +1,4 @@
 .input {
-  border: none;
   background-color: var(--color-bg, #f3f4f6); /* gray-100 fallback */
   padding: 12px;
   border-radius: 8px;
@@ -9,7 +8,9 @@
   font-size: 1rem;
   color: var(--color-text, #111827); /* gray-900 fallback */
   border: 2px solid transparent;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
   box-sizing: border-box;
 }
 
@@ -30,8 +31,8 @@
 
 .input--error,
 .input--error:focus {
-  border-color: var(--color-danger, #dc2626) !important; /* red-600 fallback */
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+  border-color: var(--color-danger, #dc2626); /* red-600 fallback */
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
 }
 
 .input::-webkit-outer-spin-button,
@@ -40,6 +41,6 @@
   margin: 0;
 }
 
-.input[type='number'] {
+.input[type="number"] {
   -moz-appearance: textfield;
 }

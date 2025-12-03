@@ -24,7 +24,7 @@ export function useAdminSlots(medicoId?: string, data?: string) {
       if (data) params.append("data", data);
 
       const { data: response } = await api.get<AdminSlotDTO[]>(
-        `/medlink/admin/slots?${params.toString()}`
+        `/medlink/admin/slots?${params.toString()}`,
       );
       return response;
     },

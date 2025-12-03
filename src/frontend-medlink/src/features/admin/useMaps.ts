@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useQuery } from '@tanstack/react-query';
-import { api } from '@/app/services/api';
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@/app/services/api";
 
 type MedicoItem = {
   id: string;
@@ -16,7 +16,10 @@ type PacienteItem = {
 };
 
 function toMedicosMap(list: MedicoItem[]) {
-  const map = new Map<string, { nome: string; especialidade?: string | null }>();
+  const map = new Map<
+    string,
+    { nome: string; especialidade?: string | null }
+  >();
   for (const m of list) {
     map.set(m.id, { nome: m.nome, especialidade: m.especialidade ?? null });
   }
@@ -33,9 +36,9 @@ function toPacientesMap(list: PacienteItem[]) {
 
 export function useAdminMedicosMap() {
   return useQuery({
-    queryKey: ['admin-medicos-map'],
+    queryKey: ["admin-medicos-map"],
     queryFn: async () => {
-      const { data } = await api.get<MedicoItem[]>('/medlink/admin/medicos');
+      const { data } = await api.get<MedicoItem[]>("/medlink/admin/medicos");
       return toMedicosMap(data ?? []);
     },
     staleTime: 5 * 60 * 1000, // 5 min
@@ -45,9 +48,11 @@ export function useAdminMedicosMap() {
 
 export function useAdminPacientesMap() {
   return useQuery({
-    queryKey: ['admin-pacientes-map'],
+    queryKey: ["admin-pacientes-map"],
     queryFn: async () => {
-      const { data } = await api.get<PacienteItem[]>('/medlink/admin/pacientes');
+      const { data } = await api.get<PacienteItem[]>(
+        "/medlink/admin/pacientes",
+      );
       return toPacientesMap(data ?? []);
     },
     staleTime: 5 * 60 * 1000,

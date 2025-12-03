@@ -1,0 +1,229 @@
+.perfil {
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 24px;
+}
+
+/* Header */
+.perfil__header {
+  display: grid;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.perfil__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.perfil__actions {
+  display: inline-flex;
+  gap: 8px;
+  justify-self: start;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  .perfil__header {
+    grid-template-columns: 1fr auto;
+  }
+  .perfil__actions {
+    justify-self: end;
+  }
+}
+
+/* Conteúdo principal */
+.perfil__content {
+  display: grid;
+  gap: 24px;
+}
+
+/* Email display (read-only) */
+.perfil__section {
+  display: grid;
+  gap: 12px;
+}
+
+.perfil__section-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text, #111827);
+}
+
+.perfil__email-display {
+  padding: 10px 12px;
+  background-color: var(--color-surface-secondary, #f5f5f5);
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 6px;
+  color: var(--color-muted, #666);
+  font-size: 0.95rem;
+}
+
+.perfil__email-hint {
+  font-size: 12px;
+  color: var(--color-muted, #999);
+  margin-top: 4px;
+}
+
+/* Campos de entrada */
+.perfil__form-group {
+  display: grid;
+  gap: 8px;
+}
+
+.perfil__label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-text, #111827);
+}
+
+.perfil__input {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: var(--color-surface, #fff);
+  color: var(--color-text, #111827);
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+  font-family: inherit;
+}
+
+.perfil__input:focus {
+  outline: none;
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.perfil__input:disabled {
+  background-color: var(--color-surface-secondary, #f5f5f5);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.perfil__input[aria-invalid="true"] {
+  border-color: var(--color-danger, #dc2626);
+}
+
+.perfil__input[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.perfil__error {
+  color: var(--color-danger, #d32f2f);
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Botões */
+.perfil__actions-group {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: auto auto;
+  margin-top: 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  background: var(--color-surface, #fff);
+  color: var(--color-text, #111827);
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    opacity 150ms ease,
+    border-color 150ms ease;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.btn:hover:not(:disabled, [aria-disabled="true"]) {
+  background: var(--color-hover, #f9fafb);
+  border-color: var(--color-border-hover, #d1d5db);
+}
+
+.btn:active:not(:disabled, [aria-disabled="true"]) {
+  opacity: 0.95;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--color-primary, #2563eb);
+  color: #fff;
+  border-color: var(--color-primary, #2563eb);
+}
+
+.btn--primary:hover:not(:disabled, [aria-disabled="true"]) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.btn--secondary {
+  background: var(--color-surface, #fff);
+  color: var(--color-text, #111827);
+  border-color: var(--color-border, #e5e7eb);
+}
+
+.btn--secondary:hover:not(:disabled, [aria-disabled="true"]) {
+  background: var(--color-surface-secondary, #f9fafb);
+}
+
+/* Loading state */
+.perfil__loading,
+.perfil__error-message {
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.perfil__loading {
+  background-color: var(--color-surface-secondary, #f5f5f5);
+  color: var(--color-muted, #666);
+}
+
+.perfil__error-message {
+  background-color: #fef2f2;
+  color: var(--color-danger, #991b1b);
+  border: 1px solid #fecaca;
+}
+
+/* Info */
+.perfil__info {
+  color: var(--color-muted, #4b5563);
+  font-size: 0.95rem;
+  padding: 8px 0;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .perfil__title {
+    font-size: 1.25rem;
+  }
+
+  .perfil__actions-group {
+    grid-template-columns: 1fr;
+  }
+
+  .btn {
+    padding: 9px 14px;
+    font-size: 0.9rem;
+  }
+}

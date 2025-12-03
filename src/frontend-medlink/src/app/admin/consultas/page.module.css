@@ -62,7 +62,6 @@
   border-top: 1px solid var(--color-border, #e5e7eb);
 }
 
-.ac-cell { }
 .ac-cell--error {
   color: var(--color-danger, #b91c1c);
   font-weight: 600;
@@ -194,4 +193,6 @@
   }
 }
 
-.ac-table tr td:first-child { white-space: nowrap; }
+.ac-table tr td:first-child {
+  white-space: nowrap;
+}

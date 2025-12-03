@@ -1,20 +1,19 @@
-import { Inter } from "next/font/google"
-import { AuthProvider } from "./contexts/auth-context";
 import type { Metadata } from "next";
-import { Providers } from "./services/providers";
+import { Inter } from "next/font/google";
 import { ToastViewport } from "./components/ui/toast";
+import { AuthProvider } from "./contexts/auth-context";
+import { Providers } from "./services/providers";
 
-import './globals.css'
-
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Medlink",
 };
 
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter'
-})
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export default function RootLayout({
   children,

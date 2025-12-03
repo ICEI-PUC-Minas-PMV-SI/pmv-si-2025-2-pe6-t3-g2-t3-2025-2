@@ -8,7 +8,9 @@ export function useCancelarConsulta() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const { data } = await api.delete<string>(`/medlink/paciente/consulta/${id}`);
+      const { data } = await api.delete<string>(
+        `/medlink/paciente/consulta/${id}`,
+      );
       return data; // mensagem do backend
     },
     onSuccess: () => {

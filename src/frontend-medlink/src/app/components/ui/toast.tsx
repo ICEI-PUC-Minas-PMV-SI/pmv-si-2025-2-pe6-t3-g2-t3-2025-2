@@ -100,7 +100,9 @@ export function ToastViewport() {
           </div>
         ))}
       </div>
-      <style jsx global>{globalAnim}</style>
+      <style jsx global>
+        {globalAnim}
+      </style>
     </>
   );
 }
@@ -122,8 +124,7 @@ const toastContainerStyle: React.CSSProperties = {
   background: "#fff",
   color: "#111",
   border: "1px solid #e5e7eb",
-  boxShadow:
-    "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)",
+  boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)",
   animation: "slideIn 200ms ease-out",
 } as const;
 

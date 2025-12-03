@@ -23,12 +23,12 @@
 .slots__grid {
   display: grid;
   gap: 24px;
-  grid-template-columns: 1fr; 
+  grid-template-columns: 1fr;
 }
 
 @media (min-width: 900px) {
   .slots__grid {
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -54,12 +54,12 @@
 .form-grid {
   display: grid;
   gap: 12px;
-  grid-template-columns: 1fr; 
+  grid-template-columns: 1fr;
 }
 
 @media (min-width: 640px) {
   .form-grid {
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -82,7 +82,9 @@
   padding: 10px 12px;
   font-size: 0.95rem;
   background: var(--color-surface, #fff);
-  transition: border-color 150ms ease, box-shadow 150ms ease;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
 }
 
 .form-input:focus {
@@ -114,7 +116,9 @@
   background: var(--color-surface, #fff);
   color: var(--color-text, #111827);
   cursor: pointer;
-  transition: background 150ms ease, opacity 150ms ease;
+  transition:
+    background 150ms ease,
+    opacity 150ms ease;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
@@ -202,13 +206,13 @@
 }
 
 .slot--ok {
-  background: #f0fff4; 
+  background: #f0fff4;
 }
 .slot--warn {
   background: #fffbeb;
 }
 .slot--danger {
-  background: #fef2f2; 
+  background: #fef2f2;
 }
 
 .slot__info {

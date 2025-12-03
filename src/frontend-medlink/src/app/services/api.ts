@@ -11,7 +11,7 @@ function clearAuthAndRedirect() {
 
   // TEMP LOG: debug auth clear
   // eslint-disable-next-line no-console
-  console.debug('[DEBUG][api] cleared auth cookie token');
+  console.debug("[DEBUG][api] cleared auth cookie token");
 
   // Redirecionamento contextual (opcional)
   const path = typeof window !== "undefined" ? window.location.pathname : "/";
@@ -20,16 +20,19 @@ function clearAuthAndRedirect() {
 }
 
 api.interceptors.request.use((config) => {
-    if (typeof window !== "undefined") {
+  if (typeof window !== "undefined") {
     // Use cookie-only approach
     const token = Cookies.get("token");
     // TEMP LOG: what token is read from cookie (only for localhost debugging)
     // eslint-disable-next-line no-console
-    console.debug('[DEBUG][api] token from cookie:', token ? '<<REDACTED>>' : null);
+    console.debug(
+      "[DEBUG][api] token from cookie:",
+      token ? "<<REDACTED>>" : null,
+    );
     if (token) {
       // TEMP LOG: confirm setting Authorization header
       // eslint-disable-next-line no-console
-      console.debug('[DEBUG][api] attaching Authorization header');
+      console.debug("[DEBUG][api] attaching Authorization header");
       config.headers.Authorization = `Bearer ${token}`;
     }
   }
@@ -46,5 +49,5 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );

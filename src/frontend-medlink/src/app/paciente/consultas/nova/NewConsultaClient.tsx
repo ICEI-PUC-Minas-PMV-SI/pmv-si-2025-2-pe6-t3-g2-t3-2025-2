@@ -1,25 +1,25 @@
 "use client";
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { toast } from "@/app/components/ui/toast";
 import {
+  type SlotDTO,
   useListMedicosParaPaciente,
   useSlotsLivresDoMedico,
-  type SlotDTO,
-} from '@/features/paciente/queries';
-import { useAgendarConsultaPorSlot } from '@/features/paciente/useAgendarConsulta';
-import { useEffect, useMemo, useState } from 'react';
-import { toast } from '@/app/components/ui/toast';
-import { formatTime } from '@/lib/datetime';
-import styles from './page.module.css';
+} from "@/features/paciente/queries";
+import { useAgendarConsultaPorSlot } from "@/features/paciente/useAgendarConsulta";
+import { formatTime } from "@/lib/datetime";
+import styles from "./page.module.css";
 
 const schema = z.object({
-  medicoId: z.string().min(1, 'Selecione um médico'),
-  data: z.string().min(1, 'Informe a data'),
-  slotId: z.string().min(1, 'Selecione um horário'),
+  medicoId: z.string().min(1, "Selecione um médico"),
+  data: z.string().min(1, "Informe a data"),
+  slotId: z.string().min(1, "Selecione um horário"),
   observacoes: z.string().optional(),
 });
 type FormData = z.infer<typeof schema>;
@@ -30,8 +30,11 @@ function formatHoraLabel(s: SlotDTO) {
 
 export default function NewConsultaClient() {
   const router = useRouter();
-  const { data: medicos, isLoading: medicosLoading, isError: medicosError } =
-    useListMedicosParaPaciente();
+  const {
+    data: medicos,
+    isLoading: medicosLoading,
+    isError: medicosError,
+  } = useListMedicosParaPaciente();
   const { mutate: agendar, isPending } = useAgendarConsultaPorSlot();
 
   const {
@@ -43,66 +46,72 @@ export default function NewConsultaClient() {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      medicoId: '',
-      data: '',
-      slotId: '',
-      observacoes: '',
+      medicoId: "",
+      data: "",
+      slotId: "",
+      observacoes: "",
     },
   });
 
-  const medicoId = watch('medicoId');
-  const dataISO = watch('data');
+  const medicoId = watch("medicoId");
+  const dataISO = watch("data");
 
   useEffect(() => {
-    console.log('[NovaConsulta] medicoId=', medicoId, 'dataISO=', dataISO);
+    console.log("[NovaConsulta] medicoId=", medicoId, "dataISO=", dataISO);
   }, [medicoId, dataISO]);
 
-  const { data: slots, isLoading: slotsLoading, isError: slotsError } = useSlotsLivresDoMedico(
-    medicoId,
-    dataISO,
-  );
+  const {
+    data: slots,
+    isLoading: slotsLoading,
+    isError: slotsError,
+  } = useSlotsLivresDoMedico(medicoId, dataISO);
 
   useEffect(() => {
     if (slots) {
-      console.log('[NovaConsulta][Slots]', slots);
+      console.log("[NovaConsulta][Slots]", slots);
     }
   }, [slots]);
 
-  const [selectedSlot, setSelectedSlot] = useState<string>('');
+  const [selectedSlot, setSelectedSlot] = useState<string>("");
 
   const slotsOrdenados = useMemo(
-    () => (slots ?? []).slice().sort((a, b) => a.inicio.localeCompare(b.inicio)),
+    () =>
+      (slots ?? []).slice().sort((a, b) => a.inicio.localeCompare(b.inicio)),
     [slots],
   );
 
   const handleSelectSlot = (slotId: string) => {
     setSelectedSlot(slotId);
-    setValue('slotId', slotId, { shouldValidate: true });
+    setValue("slotId", slotId, { shouldValidate: true });
   };
 
   const onSubmit = (values: FormData) => {
     agendar(
-      { slotId: values.slotId, observacoes: values.observacoes || '' },
+      { slotId: values.slotId, observacoes: values.observacoes || "" },
       {
         onSuccess: () => {
-          toast.success('Consulta agendada com sucesso!');
-          router.push('/paciente/consultas');
+          toast.success("Consulta agendada com sucesso!");
+          router.push("/paciente/consultas");
         },
         onError: (err: unknown) => {
-          const axiosErr = err as import('axios').AxiosError | undefined;
+          const axiosErr = err as import("axios").AxiosError | undefined;
           const status = axiosErr?.response?.status;
           if (status === 409) {
-            toast.warning('Esse horário acabou de ser reservado. Escolha outro.');
+            toast.warning(
+              "Esse horário acabou de ser reservado. Escolha outro.",
+            );
           } else if (status === 404) {
-            toast.error('Slot não encontrado.');
+            toast.error("Slot não encontrado.");
           } else if (status === 400) {
-            toast.info(axiosErr?.response?.data?.message || 'Dados inválidos.');
+            toast.info(((axiosErr?.response?.data as Record<string, unknown>)?.message as string | undefined) || "Dados inválidos.");
           } else if (status === 403) {
-            toast.error('Você não tem permissão para agendar. Faça login como paciente.');
+            toast.error(
+              "Você não tem permissão para agendar. Faça login como paciente.",
+            );
           } else {
-            toast.error('Erro ao agendar consulta.');
+            toast.error("Erro ao agendar consulta.");
           }
-          console.log('[AgendarConsulta][ERR]', {
+          console.log("[AgendarConsulta][ERR]", {
             status,
             url: axiosErr?.config?.url,
             method: axiosErr?.config?.method,
@@ -115,41 +124,52 @@ export default function NewConsultaClient() {
   };
 
   const medicoOuDataIndef = !medicoId || !dataISO;
-  const disabledSlots = isPending || slotsLoading || slotsError || medicoOuDataIndef;
+  const disabledSlots =
+    isPending || slotsLoading || slotsError || medicoOuDataIndef;
 
   return (
-    <div className={styles['nova-consulta']}>
+    <div className={styles["nova-consulta"]}>
       <div className="container">
-        <header className={styles['nova-consulta__header']}>
-          <h1 className={styles['nova-consulta__title']}>Agendar Consulta</h1>
+        <header className={styles["nova-consulta__header"]}>
+          <h1 className={styles["nova-consulta__title"]}>Agendar Consulta</h1>
           <Link href="/paciente/consultas" className={`${styles.btn}`}>
             Voltar
           </Link>
         </header>
 
         {medicosError && (
-          <p className={`${styles['nova-consulta__info']} ${styles['nova-consulta__info--error']}`} role="alert">
+          <p
+            className={`${styles["nova-consulta__info"]} ${styles["nova-consulta__info--error"]}`}
+            role="alert"
+          >
             Erro ao carregar médicos. Verifique sua sessão e permissões.
           </p>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form} noValidate>
-          <div className={styles['form-field']}>
-            <label htmlFor="medico" className={styles['form-label']}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={styles.form}
+          noValidate
+        >
+          <div className={styles["form-field"]}>
+            <label htmlFor="medico" className={styles["form-label"]}>
               Médico
             </label>
             <select
               id="medico"
-              {...register('medicoId')}
+              {...register("medicoId")}
               disabled={isPending || medicosLoading}
               defaultValue=""
               onChange={(e) => {
                 const val = e.target.value;
-                setValue('medicoId', val, { shouldValidate: true, shouldDirty: true });
-                setSelectedSlot('');
-                setValue('slotId', '', { shouldValidate: true });
+                setValue("medicoId", val, {
+                  shouldValidate: true,
+                  shouldDirty: true,
+                });
+                setSelectedSlot("");
+                setValue("slotId", "", { shouldValidate: true });
               }}
-              className={styles['form-input']}
+              className={styles["form-input"]}
               aria-invalid={!!errors.medicoId}
               aria-describedby={errors.medicoId ? "medico-error" : undefined}
             >
@@ -161,73 +181,87 @@ export default function NewConsultaClient() {
               ))}
             </select>
             {errors.medicoId && (
-              <small id="medico-error" className={styles['form-error']}>
+              <small id="medico-error" className={styles["form-error"]}>
                 {errors.medicoId.message}
               </small>
             )}
           </div>
 
-          <div className={styles['form-field']}>
-            <label htmlFor="data" className={styles['form-label']}>
+          <div className={styles["form-field"]}>
+            <label htmlFor="data" className={styles["form-label"]}>
               Data
             </label>
             <input
               id="data"
               type="date"
-              {...register('data')}
+              {...register("data")}
               disabled={isPending}
               onChange={(e) => {
                 const val = e.target.value;
-                setValue('data', val, { shouldValidate: true, shouldDirty: true });
-                setSelectedSlot('');
-                setValue('slotId', '', { shouldValidate: true });
+                setValue("data", val, {
+                  shouldValidate: true,
+                  shouldDirty: true,
+                });
+                setSelectedSlot("");
+                setValue("slotId", "", { shouldValidate: true });
               }}
-              className={styles['form-input']}
+              className={styles["form-input"]}
               aria-invalid={!!errors.data}
               aria-describedby={errors.data ? "data-error" : undefined}
             />
             {errors.data && (
-              <small id="data-error" className={styles['form-error']}>
+              <small id="data-error" className={styles["form-error"]}>
                 {errors.data.message}
               </small>
             )}
           </div>
 
           {/* Campo escondido para validação do slotId */}
-          <input type="hidden" {...register('slotId')} />
+          <input type="hidden" {...register("slotId")} />
 
-          <div className={styles['form-field']}>
-            <label htmlFor="horarios" className={styles['form-label']}>
+          <div className={styles["form-field"]}>
+            <label htmlFor="horarios" className={styles["form-label"]}>
               Horários disponíveis
             </label>
             <div
-              className={styles['slots-grid']}
+              className={styles["slots-grid"]}
               aria-busy={slotsLoading}
               aria-live="polite"
               arial-label="Grade de horários disponíveis"
             >
               {medicoOuDataIndef && (
-                <div className={styles['slots-hint']}>Selecione médico e data para ver horários.</div>
+                <div className={styles["slots-hint"]}>
+                  Selecione médico e data para ver horários.
+                </div>
               )}
 
               {!medicoOuDataIndef && slotsLoading && (
-                <div className={styles['slots-hint']}>Carregando horários...</div>
+                <div className={styles["slots-hint"]}>
+                  Carregando horários...
+                </div>
               )}
 
               {!medicoOuDataIndef && !slotsLoading && slotsError && (
-                <div className={styles['slots-error']}>Erro ao carregar horários.</div>
+                <div className={styles["slots-error"]}>
+                  Erro ao carregar horários.
+                </div>
               )}
 
-              {!medicoOuDataIndef && !slotsLoading && !slotsError && slotsOrdenados.length === 0 && (
-                <div className={styles['slots-hint']}>Sem horários disponíveis para esta data.</div>
-              )}
+              {!medicoOuDataIndef &&
+                !slotsLoading &&
+                !slotsError &&
+                slotsOrdenados.length === 0 && (
+                  <div className={styles["slots-hint"]}>
+                    Sem horários disponíveis para esta data.
+                  </div>
+                )}
 
               {!medicoOuDataIndef &&
                 !slotsLoading &&
                 !slotsError &&
                 slotsOrdenados.map((slot) => {
                   const selected = selectedSlot === slot.id;
-                  const indisponivel = slot.status !== 'LIVRE';
+                  const indisponivel = slot.status !== "LIVRE";
                   return (
                     <button
                       key={slot.id}
@@ -237,49 +271,55 @@ export default function NewConsultaClient() {
                       title={formatHoraLabel(slot)}
                       className={[
                         styles.slotcard,
-                        selected ? styles['slotcard--selected'] : '',
-                        indisponivel ? styles['slotcard--disabled'] : '',
-                      ].join(' ')}
+                        selected ? styles["slotcard--selected"] : "",
+                        indisponivel ? styles["slotcard--disabled"] : "",
+                      ].join(" ")}
                       aria-pressed={selected}
                       aria-label={`Selecionar horário das ${formatTime(slot.inicio)} até ${formatTime(slot.fim)}`}
                     >
-                      <div className={styles['slotcard__start']}>{formatTime(slot.inicio)}</div>
-                      <div className={styles['slotcard__end']}>até {formatTime(slot.fim)}</div>
+                      <div className={styles.slotcard__start}>
+                        {formatTime(slot.inicio)}
+                      </div>
+                      <div className={styles.slotcard__end}>
+                        até {formatTime(slot.fim)}
+                      </div>
                       {indisponivel && (
-                        <div className={styles['slotcard__badge']}>Indisponível</div>
+                        <div className={styles.slotcard__badge}>
+                          Indisponível
+                        </div>
                       )}
                     </button>
                   );
                 })}
             </div>
             {errors.slotId && (
-              <small id="slot-error" className={styles['form-error']}>
+              <small id="slot-error" className={styles["form-error"]}>
                 {errors.slotId.message}
               </small>
             )}
           </div>
 
-          <div className={styles['form-field']}>
-            <label htmlFor="observacoes" className={styles['form-label']}>
+          <div className={styles["form-field"]}>
+            <label htmlFor="observacoes" className={styles["form-label"]}>
               Observações
             </label>
             <textarea
               id="observacoes"
-              {...register('observacoes')}
+              {...register("observacoes")}
               placeholder="Observações (opcional)"
               disabled={isPending}
               rows={4}
-              className={styles['form-input']}
+              className={styles["form-input"]}
             />
           </div>
 
           <button
             type="submit"
-            className={`${styles.btn} ${styles['btn--primary']}`}
+            className={`${styles.btn} ${styles["btn--primary"]}`}
             disabled={isPending || !selectedSlot}
             aria-busy={isPending}
           >
-            {isPending ? 'Agendando...' : 'Agendar'}
+            {isPending ? "Agendando..." : "Agendar"}
           </button>
         </form>
       </div>

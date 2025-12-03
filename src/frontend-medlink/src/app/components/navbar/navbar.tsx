@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { useAuth } from '@/app/contexts/auth-context';
-import { Logo } from '../logo/logo';
-import styles from './navbar.module.css';
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { useAuth } from "@/app/contexts/auth-context";
+import { Logo } from "../logo/logo";
+import styles from "./navbar.module.css";
 
 interface NavbarLink {
   label: string;
@@ -16,9 +16,9 @@ export function Navbar() {
   const { isAuthenticated, logout } = useAuth();
 
   const links: NavbarLink[] = [
-    { label: 'Sobre', href: '#sobre' },
-    { label: 'Especialidades', href: '#especialidades' },
-    { label: 'Profissionais', href: '#profissionais' },
+    { label: "Sobre", href: "#sobre" },
+    { label: "Especialidades", href: "#especialidades" },
+    { label: "Profissionais", href: "#profissionais" },
   ];
 
   const [open, setOpen] = useState(false);
@@ -33,7 +33,7 @@ export function Navbar() {
   // Fecha com Escape e clique fora
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === "Escape") setOpen(false);
     }
     function onClickOutside(e: MouseEvent) {
       const target = e.target as Node;
@@ -47,11 +47,11 @@ export function Navbar() {
         setOpen(false);
       }
     }
-    document.addEventListener('keydown', onKey);
-    document.addEventListener('mousedown', onClickOutside);
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onClickOutside);
     return () => {
-      document.removeEventListener('keydown', onKey);
-      document.removeEventListener('mousedown', onClickOutside);
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onClickOutside);
     };
   }, [open]);
 
@@ -75,7 +75,7 @@ export function Navbar() {
               logout();
               setOpen(false);
             }}
-            className={`${styles.link} ${styles['btn-reset']}`}
+            className={`${styles.link} ${styles["btn-reset"]}`}
             type="button"
           >
             Sair
@@ -91,27 +91,31 @@ export function Navbar() {
       <button
         type="button"
         ref={btnRef}
-        className={`${styles['navbar__toggle']} ${styles['btn-reset']}`}
-        aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+        className={`${styles.navbar__toggle} ${styles["btn-reset"]}`}
+        aria-label={open ? "Fechar menu" : "Abrir menu"}
         aria-expanded={open}
         aria-controls="navbar-mobile-panel"
         onClick={() => setOpen((s) => !s)}
       >
-        {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+        {open ? (
+          <X size={22} aria-hidden="true" />
+        ) : (
+          <Menu size={22} aria-hidden="true" />
+        )}
       </button>
 
       {/* Painel mobile */}
       <div
         id="navbar-mobile-panel"
         ref={panelRef}
-        className={`${styles['navbar__panel']} ${open ? styles['is-open'] : ''}`}
+        className={`${styles.navbar__panel} ${open ? styles["is-open"] : ""}`}
       >
-        <div className={styles['navbar__panel-inner']}>
+        <div className={styles.navbar__panel_inner}>
           {links.map((link) => (
             <Link
               href={link.href}
               key={link.label}
-              className={`${styles.link} ${styles['link--block']}`}
+              className={`${styles.link} ${styles["link--block"]}`}
               onClick={handleNavigate}
             >
               {link.label}
@@ -124,13 +128,17 @@ export function Navbar() {
                 logout();
                 setOpen(false);
               }}
-              className={`${styles.link} ${styles['link--block']} ${styles['btn-reset']}`}
+              className={`${styles.link} ${styles["link--block"]} ${styles["btn-reset"]}`}
               type="button"
             >
               Sair
             </button>
           ) : (
-            <Link href="/login" className={`${styles.link} ${styles['link--block']}`} onClick={handleNavigate}>
+            <Link
+              href="/login"
+              className={`${styles.link} ${styles["link--block"]}`}
+              onClick={handleNavigate}
+            >
               Entrar
             </Link>
           )}

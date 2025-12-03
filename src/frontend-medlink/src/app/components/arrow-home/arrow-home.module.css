@@ -4,7 +4,9 @@
   gap: 8px;
   font-size: 16px;
   color: inherit;
-  transition: color 120ms ease, transform 120ms ease;
+  transition:
+    color 120ms ease,
+    transform 120ms ease;
   line-height: 1;
   vertical-align: middle;
 }
@@ -17,7 +19,6 @@
   color: var(--color-primary, #2563eb);
   transform: translateY(-1px);
 }
-
 
 .back:focus-visible {
   outline: 3px solid rgba(37, 99, 235, 0.12);

@@ -3,7 +3,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/app/services/api";
 
-export type Especialidade = "OFTALMOLOGIA" | "CARDIOLOGIA" | "ORTOPEDIA" | "PEDIATRIA";
+export type Especialidade =
+  | "OFTALMOLOGIA"
+  | "CARDIOLOGIA"
+  | "ORTOPEDIA"
+  | "PEDIATRIA";
 
 export interface MedicoRequest {
   email: string;

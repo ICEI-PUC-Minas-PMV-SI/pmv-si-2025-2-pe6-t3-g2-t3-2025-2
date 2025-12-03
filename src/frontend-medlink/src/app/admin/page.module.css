@@ -65,15 +65,23 @@
   font-size: 0.95rem;
 }
 
-.btn:hover:not(:disabled) { background: var(--color-hover, #f9fafb); }
-.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn:hover:not(:disabled) {
+  background: var(--color-hover, #f9fafb);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 .btn--primary {
   background: var(--color-primary, #2563eb);
   color: #fff;
   border-color: var(--color-primary, #2563eb);
 }
-.btn--primary:hover:not(:disabled) { background: #1d4ed8; border-color: #1d4ed8; }
+.btn--primary:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
 
 .admin__cards {
   display: grid;
@@ -100,7 +108,9 @@
   background: var(--color-surface, #fff);
   text-decoration: none;
   color: inherit;
-  transition: background var(--motion-fast, 150ms) ease, border-color var(--motion-fast, 150ms) ease;
+  transition:
+    background var(--motion-fast, 150ms) ease,
+    border-color var(--motion-fast, 150ms) ease;
   display: block;
 }
 
@@ -162,6 +172,10 @@
 }
 
 @media (min-width: 1024px) {
-  .admin__title { font-size: 1.7rem; }
-  .card__value { font-size: 1.7rem; }
+  .admin__title {
+    font-size: 1.7rem;
+  }
+  .card__value {
+    font-size: 1.7rem;
+  }
 }
