@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -16,6 +17,7 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -30,6 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     Cookies.remove("token", { path: "/" });
     setIsAuthenticated(false);
+    queryClient.clear();
     router.push("/login");
   };
 

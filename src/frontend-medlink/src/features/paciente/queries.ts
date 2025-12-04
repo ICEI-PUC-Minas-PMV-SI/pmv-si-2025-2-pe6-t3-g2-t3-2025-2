@@ -44,5 +44,6 @@ export function useSlotsLivresDoMedico(medicoId?: string, dataISO?: string) {
       return data;
     },
     enabled: !!medicoId && !!dataISO,
+    staleTime: 1000 * 30, // 30 segundos
   });
 }

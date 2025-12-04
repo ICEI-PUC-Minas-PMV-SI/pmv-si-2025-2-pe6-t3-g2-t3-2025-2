@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
 import { api } from "@/app/services/api";
@@ -26,6 +26,7 @@ function parseJwt(token: string) {
 export const useAdminLogin = () => {
   const router = useRouter();
   const search = useSearchParams();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (data: AdminLoginData) => {
@@ -37,6 +38,10 @@ export const useAdminLogin = () => {
       // Note: remove this in production — token is sensitive.
       // eslint-disable-next-line no-console
       console.debug("[DEBUG][useAdminLogin] received token:", data.token);
+
+      // Clear cache to avoid data conflicts between users
+      queryClient.clear();
+
       // Persist token in cookie (httpOnly should be set by server ideally).
       // In development on localhost we must not set `secure: true` otherwise cookie
       // won't be sent over HTTP. Use secure when running on HTTPS / production.
@@ -85,8 +90,12 @@ export const useAdminLogin = () => {
 
 export const useAdminLogout = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
+
   return () => {
     Cookies.remove("token", { path: "/" });
+    // Clear cache to avoid data conflicts between users
+    queryClient.clear();
     router.push("/admin/login");
   };
 };

@@ -3,6 +3,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/app/services/api";
+import { getUserIdFromToken } from "@/lib/auth-utils";
 
 export type ConsultaPaciente = {
   id: string; // mesmo vindo UUID no Java, chega como string no JSON
@@ -23,9 +24,12 @@ async function fetchConsultasPaciente(): Promise<ConsultaPaciente[]> {
 }
 
 export function useConsultasPaciente() {
+  const userId = getUserIdFromToken();
+
   return useQuery({
-    queryKey: ["consultas-paciente"],
+    queryKey: ["consultas-paciente", userId],
     queryFn: fetchConsultasPaciente,
     staleTime: 1000 * 30, // 30s
+    enabled: !!userId,
   });
 }

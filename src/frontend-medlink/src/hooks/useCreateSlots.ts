@@ -21,6 +21,7 @@ export function useCreateSlots() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-slots"] });
+      queryClient.invalidateQueries({ queryKey: ["slots"] });
     },
   });
 }

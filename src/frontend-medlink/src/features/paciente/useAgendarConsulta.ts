@@ -1,7 +1,8 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/app/services/api";
+import { getUserIdFromToken } from "@/lib/auth-utils";
 
 export type ConsultaResponse = {
   id: string;
@@ -17,6 +18,9 @@ export interface AgendarPorSlotPayload {
 }
 
 export function useAgendarConsultaPorSlot() {
+  const queryClient = useQueryClient();
+  const userId = getUserIdFromToken();
+
   return useMutation({
     mutationFn: async (payload: AgendarPorSlotPayload) => {
       const { data } = await api.post<ConsultaResponse>(
@@ -24,6 +28,9 @@ export function useAgendarConsultaPorSlot() {
         payload,
       );
       return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["consultas-paciente", userId] });
     },
   });
 }

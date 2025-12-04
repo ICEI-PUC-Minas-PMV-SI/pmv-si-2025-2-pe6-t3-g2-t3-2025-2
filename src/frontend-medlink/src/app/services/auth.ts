@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { AxiosError } from 'axios';
 import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/auth-context";
@@ -55,6 +55,7 @@ export const useRegister = () => {
 export const useLogin = () => {
   const router = useRouter();
   const { login } = useAuth();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (data: LoginData) => {
@@ -62,6 +63,7 @@ export const useLogin = () => {
       return response.data;
     },
     onSuccess: ({ token }) => {
+      queryClient.clear();
       login(token);
       router.push("/paciente/consultas");
     },

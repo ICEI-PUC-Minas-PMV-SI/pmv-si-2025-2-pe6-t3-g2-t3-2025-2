@@ -13,6 +13,7 @@ export function useCancelarSlot() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-slots"] });
+      queryClient.invalidateQueries({ queryKey: ["slots"] });
     },
   });
 }
