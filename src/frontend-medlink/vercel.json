@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["gru1"],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@next_public_api_url",
+    "NEXT_PUBLIC_APP_URL": "@next_public_app_url",
+    "NEXT_PUBLIC_FORGOT_PASSWORD_PATH": "@next_public_forgot_password_path",
+    "NEXT_PUBLIC_RESET_PASSWORD_PATH": "@next_public_reset_password_path"
+  }
+}
