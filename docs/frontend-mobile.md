@@ -37,16 +37,15 @@ Perfil paciente
 
 Agendar consulta
 
-![agendar consulta]<img width="627" height="880" alt="a" src="https://github.com/user-attachments/assets/9060a951-23de-4e09-a484-9b778339b4d7" />
+![agendar consulta](https://github.com/user-attachments/assets/9013812a-9e30-439f-9363-2b737930f3e7)
 
+![agendar consulta](https://github.com/user-attachments/assets/9060a951-23de-4e09-a484-9b778339b4d7)
 
-![agendar consulta]<img width="627" height="881" alt="aa" src="https://github.com/user-attachments/assets/5f41a139-57ea-4913-82f8-936ae5c99ac7" />
-
+![agendar consulta](https://github.com/user-attachments/assets/5f41a139-57ea-4913-82f8-936ae5c99ac7)
 
 Minhas consultas
 
-![minhas consultas]<img width="627" height="875" alt="aaa" src="https://github.com/user-attachments/assets/7258ece4-9538-4a37-9417-4526aeb83ce8" />
-
+![minhas consultas](https://github.com/user-attachments/assets/7258ece4-9538-4a37-9417-4526aeb83ce8)
 
 Cadastro médico
 
