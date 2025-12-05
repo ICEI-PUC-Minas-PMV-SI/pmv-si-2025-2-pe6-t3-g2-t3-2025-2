@@ -39,6 +39,14 @@ Agendar consulta
 
 ![agendar consulta](https://github.com/user-attachments/assets/911b6a45-4d23-4106-8f25-5136c60e951c)
 
+![agendar consulta](https://github.com/user-attachments/assets/911b6a45-4d23-4106-8f25-5136c60e951c)
+
+![agendar consulta](https://github.com/user-attachments/assets/018bf73b-bdee-404a-a8eb-03f22e4045cb)
+
+Minhas consultas
+
+![minhas consultas](https://github.com/user-attachments/assets/65b8510b-a984-43f9-a9e1-c22c9abdbdc8)
+
 Cadastro médico
 
 ![cadastro médico](https://github.com/user-attachments/assets/5775b38f-91c2-48d4-8614-0532fabfcc08)
